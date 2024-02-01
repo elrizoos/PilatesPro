@@ -1,0 +1,691 @@
+// Fonts
+@import url("https://fonts.bunny.net/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+body {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+ol,
+ul {
+    list-style: none;
+}
+blockquote,
+q {
+    quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+//fuentes
+
+@font-face {
+    font-family: Exo;
+    src: url("../../public/fuentes/exo_2/Exo2-Regular.otf");
+}
+
+@font-face {
+    font-family: fe_font;
+    src: url("../../public/fuentes/fe_font/FE-FONT.TTF");
+}
+
+@font-face {
+    font-family: COD;
+    src: url("../../public/fuentes/call_of_ops_duty/Call of Ops Duty.otf");
+}
+
+@font-face {
+    font-family: Nexa;
+    src: url("../../public/fuentes/nexa_rust_sans/WEB/NexaRustScriptB-Trial-Shadow2.woff");
+}
+
+//Barra de navegación
+.navbar {
+    width: 21vw;
+    padding: 0;
+    background-color: #1b1b1b;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-evenly;
+    position: fixed;
+}
+
+.logo {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    top: -50px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.lista {
+    width: 100%;
+    position: relative;
+    top: -5%;
+}
+
+.lista ul li {
+    padding: 2% 13%;
+    font-size: 1.3em;
+    font-family: COD;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lista ul li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+ul li a.activeMenu {
+    color: #8e6d45;
+}
+
+.lista ul li a:hover {
+    color: #8e6d45;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.botones {
+    width: 100%;
+}
+
+ul.botones-auth {
+    width: 100%;
+    gap: 10%;
+    font-size: 2em;
+    color: #e6d5b3;
+
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.botones-auth li {
+    padding: 5%;
+    background-color: #1b1b1b;
+    border-radius: 50%;
+    width: 45%;
+    color: rgba(255, 255, 255, 0.5);
+    height: 60%;
+    font-size: 0.6em;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 6px 9px 26px 6px rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.botones-auth li:hover {
+    color: #8e6d45;
+    box-shadow: 6px 9px 26px 6px #8e6d45;
+    transition: all 0.3s ease;
+}
+
+.inicioSesion {
+    position: relative;
+    top: -50px;
+}
+
+.botones-login {
+    display: none;
+}
+li.barra {
+    padding: 0;
+    padding-top: 5%;
+    gap: 0;
+}
+
+//Main
+.py-4 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: 200vh;
+    width: 78vw;
+    float: right;
+}
+
+//Pagina de inicio
+
+//Slider
+
+.slider-seccion {
+    height: 100vh;
+}
+.slider {
+    display: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-uno {
+    background-image: url("../../public/imagenes/pilates_suelo_maquina_valladolid.jpg");
+    background-size: cover;
+}
+.slider-dos {
+    background-image: url("../../public/imagenes/edificio.jpg");
+    background-size: cover;
+}
+.slider-tres {
+    background-image: url("../../public/imagenes/pilates_valladolid-scaled.jpg");
+    background-size: cover;
+}
+
+.active {
+    display: flex;
+}
+
+.slider::before {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.contenedorSlider {
+    width: 80%;
+    height: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linea {
+    width: 100%;
+}
+
+.iconos {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.iconos-pequeños {
+    height: 25px;
+}
+
+.iconos-izquierda {
+    justify-content: flex-start;
+}
+
+.iconos span {
+    display: inline-block;
+    background-image: url("../../public/imagenes/pelota-de-pilates2.png");
+    background-size: cover;
+    width: 50px;
+    z-index: 11;
+}
+
+.iconos-pequeños span {
+    width: 25px;
+}
+
+.slider h1 {
+    display: inline-block;
+    position: relative;
+    z-index: 11;
+    color: white;
+    top: 0;
+    font-size: 2em;
+    text-align: center;
+    font-family: Exo;
+    text-transform: uppercase;
+}
+
+.slider p {
+    color: white;
+    font-size: 4em;
+    text-transform: uppercase;
+    z-index: 11;
+    letter-spacing: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.slider .boton-slider {
+    padding: 2% 5%;
+    background: none;
+    border: 2px solid #e6d5b3;
+    color: #e6d5b3;
+    z-index: 11;
+    text-transform: uppercase;
+}
+
+.seccion {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b1b1b;
+}
+
+.marco {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.columna {
+    width: 50%;
+    height: 100%;
+}
+
+.columna-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.columna-texto * {
+    position: relative;
+}
+
+.columna-texto .iconos {
+    top: -5%;
+}
+
+.columna-texto h1 {
+    font-size: 2em;
+    color: #8e6d45;
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto;
+    top: -5%;
+}
+
+.columna-texto h3 {
+    font-size: 3em;
+    color: white;
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto;
+    top: -10%;
+}
+
+.columna-texto p {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.5);
+    width: 80%;
+    margin: 0 auto;
+    top: -15%;
+}
+
+.columna-texto .parrafo-segundo {
+    top: -20%;
+}
+.columna-imagenes {
+    display: flex;
+}
+
+.columna-imagenes .columna {
+    padding: 4%;
+}
+
+.imagen-columna {
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+
+.columna-imagenes .columna {
+    position: relative;
+}
+
+.img-col-izquierda {
+    position: relative;
+    top: 0;
+    background-size: cover;
+    background-image: url("../../public/imagenes/mujer-pelota.jpg");
+}
+
+.img-col-derecha {
+    position: absolute;
+    bottom: 4%;
+    width: 84%;
+    background-image: url("../../public/imagenes/ejercicio.jpg");
+    background-size: cover;
+    background-position: 50%;
+}
+
+.seccion-abajo {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.texto-titulo {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 5%;
+    height: 100px;
+}
+
+.texto-titulo h1 {
+    color: #8e6d45;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.texto-titulo h3 {
+    color: white;
+    font-size: 3em;
+    
+}
+
+.contenedor-grid {
+    width: 100%;
+    height: 85%;
+    padding: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    gap: 30px 30px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "uno uno dos dos tres tres"
+        "cuatro cuatro cuatro cinco cinco cinco";
+}
+
+.uno {
+    grid-area: uno;
+    background-image: url($ruta + "/P9270200.jpg");
+    background-size: 130%;
+}
+
+.dos {
+    grid-area: dos;
+    background-image: url($ruta + "/P4080125 (1).jpg");
+    background-size: 130%;
+}
+
+.tres {
+    grid-area: tres;
+    background-image: url($ruta + "/P4091723.jpg");
+    background-size: 100%;
+}
+
+.cuatro {
+    grid-area: cuatro;
+    background-image: url($ruta + "/P9100632-768x1024.jpg");
+    background-size: 100%;
+}
+
+.cinco {
+    grid-area: cinco;
+    background-image: url($ruta + "/P4080878.jpg");
+    background-size: 100%;
+}
+
+.cuadro-imagen {
+    position: relative;
+    padding: 5%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 1s ease;
+    overflow: hidden;
+}
+
+.cuadro-imagen::before {
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.contenedor-imagen {
+    position: absolute;
+    z-index: 20;
+    top: 76%;
+    width: 100%;
+    transition: top .5s ease;
+}
+
+.contenedor-imagen hr {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 10px;
+    width: 20%;
+    transition: width .5s ease;
+}
+
+.submenu-imagen {
+    position: relative;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+}
+
+.nivel-clase span {
+    display: inline-block;
+}
+
+.nivel-clase span:nth-child(1) {
+    background-image: url($ruta + "/iconoPelota1.png");
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+}
+.nivel-clase span:nth-child(2) {
+    background-image: url($ruta + "/iconoPelota2.png");
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+}
+.nivel-clase span:nth-child(3) {
+    background-image: url($ruta + "/iconoPelota3.png");
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+.cuadro-imagen:hover {
+    background-size: 130%;
+    transition: all .5s ease;
+}
+
+.uno:hover, .dos:hover {
+    background-size: 160%;
+    transition: all .5s ease;
+}
+
+
+.cuadro-imagen:hover .contenedor-imagen {
+    top: 60%;
+    transition: top .5s ease;
+}
+
+.cuatro:hover .contenedor-imagen, .cinco:hover .contenedor-imagen {
+    top: 25%;
+    transition: top .5s ease;
+}
+
+.cuatro .contenedor-imagen, .cinco .contenedor-imagen {
+    top: 52%;
+    transition: top .5s ease;
+}
+
+.cuadro-imagen:hover hr {
+    width: 90%;
+    transition: width .5s ease;
+}
+
+.cuadro-imagen .precio {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.cuadro-imagen .nivel-clase {
+    font-size: 2em;
+    color: white;
+}
+
+.mas-detalles {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+.mas-detalles span {
+    display: inline-block;
+    background-image: url($ruta + "/circulo-de-flecha.png");
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+}
+
+//MEDIA QUERYS
+@media (min-width: 768px) {
+    .navbar-expand-md .navbar-nav {
+        flex-direction: column;
+    }
+}
