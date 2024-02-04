@@ -301,6 +301,10 @@ li.barra {
     display: flex;
 }
 
+.no-active {
+    display: none;
+}
+
 .slider::before {
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
@@ -730,6 +734,18 @@ li.barra {
     opacity: 0.5;
 }
 
+.marco-video #botonCerrar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    background-image: url($ruta + '/cerrar-cruz.png');
+    background-size: contain;
+    display: none;
+}
+
 .contenido-video {
     position: relative;
     width: 30%;
@@ -746,10 +762,8 @@ li.barra {
 .reproductor-video{
     display: none;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 10%;
+    left: 10%;
     width: 80%;
     height: 80%;
 }
@@ -800,6 +814,38 @@ li.barra {
 .contenido-video .icono-play:hover {
     background-image: url($ruta + '/boton-de-play (1).png');
     transition: all .5s ease;
+}
+
+//Seccion de facilidades
+.contenedor-facilidades {
+    border: 3px solid white;
+    width: 90%;
+    height: 80%;
+}
+
+.contenedor-facilidades .facilidades-titulo{
+    color: #8e6d45;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+.contenedor-facilidades .facilidades-subtitulo{
+    color: white;
+    font-size: 3em;
+}
+
+.contenedor-facilidades-grid {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: red;
+}
+
+.contenedor-facilidades-grid div {
+    border: 5px solid black;
 }
 
 //MEDIA QUERYS
