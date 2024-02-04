@@ -202,10 +202,11 @@
     </div>
     <div class="seccion transparente fondo">
         <div class="marco-video">
-            <iframe id="reproductor-video" class="reproductor-video" width="560" height="315" src="https://www.youtube.com/embed/iUYXLN4JAi0?si=ckAwHDSLjd2Lh1zl"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
+            <video id="reproductor-video" class="reproductor-video" width="320" height="240" controls>
+                <source src="{{ asset('videos/video-presentacion.mp4') }}" type="video/mp4">
+                Tu navegador no soporta el elemento de video HTML5.
+            </video>
+            <span id="botonCerrar"></span>
             <div class="contenido-video">
                 <div class="linea-iconos">
                     <span></span>
@@ -216,7 +217,45 @@
                 </div>
                 <h3>Chus Alvarez Pilates</h3>
                 <h4>Video de promoción</h4>
-                <span class="icono-play"></span>
+                <span id="botonPlay" class="icono-play"></span>
+            </div>
+        </div>
+    </div>
+    <div class="seccion">
+        <div class="contenedor-facilidades">
+            <h3 class="facilidades-titulo">Nuestros servicios</h3>
+            <h4 class="facilidades-subtitulo">Facilidades del estudio</h4>
+            <div class="contenedor-facilidades-grid">
+                <div class="elemento-uno">
+                    <span></span>
+                    <h4>Sala de Relax</h4>
+                    <p>Sala dónde podrás recuperar energías despues de cada clase y recibir un poco de calma</p>
+                </div>
+                <div class="elemento-dos">
+                    <span></span>
+                    <h4>Duchas y Vestuarios</h4>
+                    <p>Disponemos de vestuarios equipados completamente y duchas para cada usuario</p>
+                </div>
+                <div class="elemento-tres">
+                    <span></span>
+                    <h4>Tienda de Productos</h4>
+                    <p>Disponemos de una tienda con productos propios del estudio</p>
+                </div>
+                <div class="elemento-cuatro">
+                    <span></span>
+                    <h4>Servicio de nutricion</h4>
+                    <p>Podrás mejorar tu alimentación con nuestro servicio Aliméntate</p>
+                </div>
+                <div class="elemento-cinco">
+                    <span></span>
+                    <h4>Cafe o zona de snacks saludables</h4>
+                    <p>Tomate tu cafe mañanero o cuando lo necesites</p>
+                </div>
+                <div class="elemento-seis">
+                    <span></span>
+                    <h4>Estacionamiento o facil transporte en la zona</h4>
+                    <p>Disponemos de parquin privado, y zona de autobuses a menos de 100 metros</p>
+                </div>
             </div>
         </div>
     </div>
