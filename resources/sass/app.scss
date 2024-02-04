@@ -702,8 +702,8 @@ li.barra {
     background: none;
 }
 .seccion.transparente.fondo::before {
-    content: '';
-    background-image: url($ruta + '/recepcion.jpg');
+    content: "";
+    background-image: url($ruta + "/recepcion.jpg");
     background-size: contain;
     width: 100%;
     height: 100%;
@@ -722,7 +722,7 @@ li.barra {
     position: relative;
 }
 .marco-video::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     position: absolute;
@@ -741,7 +741,7 @@ li.barra {
     position: absolute;
     right: 5%;
     top: 5%;
-    background-image: url($ruta + '/cerrar-cruz.png');
+    background-image: url($ruta + "/cerrar-cruz.png");
     background-size: contain;
     display: none;
 }
@@ -759,7 +759,7 @@ li.barra {
     position: relative;
 }
 
-.reproductor-video{
+.reproductor-video {
     display: none;
     position: absolute;
     top: 10%;
@@ -808,44 +808,89 @@ li.barra {
     height: 100px;
     margin: 0 auto;
     top: 20%;
-    transition: background-image .5s ease;
+    transition: background-image 0.5s ease;
 }
 
 .contenido-video .icono-play:hover {
-    background-image: url($ruta + '/boton-de-play (1).png');
-    transition: all .5s ease;
+    background-image: url($ruta + "/boton-de-play (1).png");
+    transition: all 0.5s ease;
 }
 
 //Seccion de facilidades
 .contenedor-facilidades {
-    border: 3px solid white;
     width: 90%;
     height: 80%;
 }
 
-.contenedor-facilidades .facilidades-titulo{
+.contenedor-facilidades .facilidades-titulo {
     color: #8e6d45;
     font-size: 2em;
     text-transform: uppercase;
 }
 
-.contenedor-facilidades .facilidades-subtitulo{
+.contenedor-facilidades .facilidades-subtitulo {
     color: white;
     font-size: 3em;
 }
 
 .contenedor-facilidades-grid {
     width: 100%;
-    height: 100%;
+    height: 90%;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    background-color: red;
+    gap: 5%;
+    top: 5%;
 }
 
 .contenedor-facilidades-grid div {
-    border: 5px solid black;
+    position: relative;
+    padding: 10%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contenedor-facilidades-grid div * {
+    position: relative;
+}
+
+.contenedor-facilidades-grid div span {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+
+}
+
+.elemento-uno span {
+    background-image: url($ruta + "/meditacion.png");
+}
+.elemento-dos span {
+    background-image: url($ruta + "/vestuario (1).png");
+}
+.elemento-tres span {
+    background-image: url($ruta + "/tienda (1).png");
+}
+.elemento-cuatro span {
+    background-image: url($ruta + "/plan (1).png");
+}
+.elemento-cinco span {
+    background-image: url($ruta + "/taza-de-cafe (1).png");
+}
+.elemento-seis span {
+    background-image: url($ruta + "/coche.png");
+}
+
+.contenedor-facilidades-grid div h4 {
+    color: white;
+    font-size: 2em;
+    top: 5%;
+}
+
+.contenedor-facilidades-grid div p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2em;
+    top: 15%;
 }
 
 //MEDIA QUERYS
