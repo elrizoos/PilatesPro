@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="seccion">
+    <div class="seccion claro">
         <div class="marco">
             <div class="columna columna-texto">
                 <div class="linea">
@@ -197,6 +197,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="seccion transparente fondo">
+        <div class="marco-video">
+            <iframe id="reproductor-video" class="reproductor-video" width="560" height="315" src="https://www.youtube.com/embed/iUYXLN4JAi0?si=ckAwHDSLjd2Lh1zl"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            <div class="contenido-video">
+                <div class="linea-iconos">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <h3>Chus Alvarez Pilates</h3>
+                <h4>Video de promoción</h4>
+                <span class="icono-play"></span>
             </div>
         </div>
     </div>
