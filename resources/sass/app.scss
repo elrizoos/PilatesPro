@@ -154,6 +154,83 @@ table {
     src: url("../../public/fuentes/nexa_rust_sans/WEB/NexaRustScriptB-Trial-Shadow2.woff");
 }
 
+//Main login y register
+
+.main-auth {
+    height: 100vh;
+    background-color: #1b1b1bef;
+}
+
+.main-auth .container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-login {
+    width: 50%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.div-logo {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-logo .imagen-logo {
+    background-image: url($ruta + '/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 65%;
+    height: 95%;
+}
+
+.div-formulario {
+    width: 100%;
+    height: 65%;
+    background-color: #1b1b1b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-formulario form {
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.div-formulario form input {
+    border: 0;
+    border-bottom: 2px solid #8e6d45;
+    background: none;
+    width: 100%;
+    height: 3em;
+}
+
+.div-formulario form #nombre:focus-visible {
+    border: none;
+}
+.div-formulario form #nombre:focus {
+    border: 2px solid #8e6d45;
+}
+
+.div-formulario form .boton-enviar {
+    width: 30%;
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0.5);
+    border: 0;
+}
+
 //Barra de navegación
 .navbar {
     width: 21vw;
@@ -248,6 +325,16 @@ ul.botones-auth {
 .inicioSesion {
     position: relative;
     top: -50px;
+}
+
+.inicioSesion a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.registroSesion a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .botones-login {
@@ -859,7 +946,6 @@ li.barra {
     width: 80px;
     height: 80px;
     background-size: contain;
-
 }
 
 .elemento-uno span {

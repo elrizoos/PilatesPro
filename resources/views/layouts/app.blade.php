@@ -18,7 +18,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar">
+        @if (Route::currentRouteName() !== 'login')
+            <nav class="navbar">
             <div class="logo">
                 <img src="{{asset('imagenes/logo.png')}}" alt="">
             </div>
@@ -36,8 +37,8 @@
             </div>
             <div class="botones">
                 <ul class="botones-auth">
-                    <li class="inicioSesion">Inicio Sesión</li>
-                    <li class="registroSesion">Registro</li>
+                    <li class="inicioSesion"><a href="{{route('login')}}">Inicio Sesión</a></li>
+                    <li class="registroSesion"><a href="{{route('registro')}}">Registro</a></li>
                 </ul>
                 <ul class="botones-login">
                     <li>I</li>
@@ -48,8 +49,14 @@
                 </ul>
             </div>
         </nav>
+        @else 
 
-        <main class="py-4">
+
+        @endif
+            
+        
+
+        <main class="{{Route::currentRouteName() !== 'login' ? 'py-4' : 'main-auth'}}">
             @yield('content')
         </main>
     </div>
