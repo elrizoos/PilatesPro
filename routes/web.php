@@ -48,7 +48,13 @@ Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
 
+Route::get('/login', function() {
+    return view('auth.login');
+})->name('login');
 
+Route::get('/registro', function() {
+    return view('auth.register');
+})->name('registro');
 
 Auth::routes();
 

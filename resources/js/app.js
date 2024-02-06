@@ -41,3 +41,4 @@ $(document).ready(function () {
         tiempo = video.currentTime;
     });
 });
+
