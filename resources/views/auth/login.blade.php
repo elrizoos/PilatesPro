@@ -9,7 +9,9 @@
         <div class="div-formulario">
             <form action="" method="post">
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <hr class="linea-login">
                 <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                <hr class="linea-login">
                 <input class="boton-enviar" type="submit" value="Entrar">
             </form>
         </div>
