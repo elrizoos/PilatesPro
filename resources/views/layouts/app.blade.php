@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        @if (Route::currentRouteName() !== 'login')
+        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro')
             <nav class="navbar">
             <div class="logo">
                 <img src="{{asset('imagenes/logo.png')}}" alt="">
@@ -56,7 +56,7 @@
             
         
 
-        <main class="{{Route::currentRouteName() !== 'login' ? 'py-4' : 'main-auth'}}">
+        <main class="{{Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro' ? 'py-4' : 'main-auth'}}">
             @yield('content')
         </main>
     </div>
