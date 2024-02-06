@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->boolean('used')->default(false);
+            $table->string('email');
             $table->timestamps();
         });
     }

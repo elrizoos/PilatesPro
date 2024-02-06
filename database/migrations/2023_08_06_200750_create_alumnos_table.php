@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('codigoGrupo');
             $table->string('foto');
             $table->foreign('codigoGrupo')->references('id')->on('grupos');
+            $table->string('password');
             $table->timestamps();
         });
     }
