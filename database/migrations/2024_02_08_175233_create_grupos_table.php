@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('grupos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('maxParticipantes');
-            $table->unsignedBigInteger('codigoClase');
-            $table->foreign('codigoClase')->references('id')->on('clases');
+            $table->string('nombre', 255);
+            $table->string('descripcion')->nullable();
+            $table->unsignedBigInteger('profesor_id');
+            $table->foreign('profesor_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

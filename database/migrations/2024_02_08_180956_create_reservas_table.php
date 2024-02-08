@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_alumno');
-            $table->unsignedBigInteger('id_horario');
-            $table->foreign('id_alumno')->references('id')->on('alumnos')->constrained()->onDelete('cascade');
-            $table->foreign('id_horario')->references('id')->on('horarios')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('clase_id');
+            $table->unsignedBigInteger('alumno_id');
+            $table->foreign('clase_id')->references('id')->on('clases')->onDelete('cascade');
+            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('reservas');
     }
 };
