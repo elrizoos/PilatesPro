@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asistencias', function (Blueprint $table) {
+        Schema::create('facturas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alumno_id')->constrained()->onDelete('cascade');
-            $table->foreignId('clase_id')->constrained()->onDelete('cascade');
-            $table->date('fecha_asistencia');
+            $table->date('fecha_emision');
+            $table->decimal('monto_total', 8, 2);
+            $table->enum('estado', ['Pagada', 'Pendiente', 'Vencida']);
+            $table->unsignedBigInteger('alumno_id');
+            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('facturas');
     }
 };

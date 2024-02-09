@@ -56,6 +56,30 @@ Route::get('/registro', function() {
     return view('auth.register');
 })->name('registro');
 
+Route::get('/configuracion', function() {
+    return view('usuario.perfil');
+})->name('configuracion-usuario');
+
+Route::get('/usuario/general', function() {
+    return view('usuario.general');
+})->name('usuario-general');
+
+Route::get('/usuario/reservas', function () {
+    return view('usuario.reservas');
+})->name('usuario-reservas');
+
+Route::get('/usuario/suscripcion', function () {
+    return view('usuario.suscripcion');
+})->name('usuario-suscripcion');
+
+Route::get('/usuario/contrasena', function () {
+    return view('usuario.contrasena');
+})->name('usuario-contrasena');
+
+Route::get('/usuario/otros', function () {
+    return view('usuario.otros');
+})->name('usuario-otros');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitation_codes', function (Blueprint $table) {
+        Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->boolean('used')->default(false);
-            $table->string('email');
+            $table->unsignedBigInteger('reserva_id');
+            $table->date('fecha');
+            $table->boolean('asistio');
+            $table->foreign('reserva_id')->references('id')->on('reservas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitation_codes');
+        Schema::dropIfExists('asistencias');
     }
 };

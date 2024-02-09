@@ -132,6 +132,15 @@ table {
     border-spacing: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 50px rgb(27,27,27) inset !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.4) !important;
+    color: rgba(255, 255, 255, 0.5);
+}
+
 //fuentes
 
 @font-face {
@@ -170,12 +179,18 @@ table {
     position: relative;
 }
 
-.formulario-login, .formulario-register {
+.formulario-login,
+.formulario-register {
     width: 50%;
     height: 70%;
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+.formulario-register {
+    height: 85%;
+    width: 100%;
 }
 
 .div-logo {
@@ -194,6 +209,10 @@ table {
     height: 95%;
 }
 
+.formulario-register .div-logo .imagen-logo {
+    width: 50%;
+}
+
 .div-formulario {
     width: 100%;
     height: 65%;
@@ -207,14 +226,23 @@ table {
     width: 70%;
     height: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     position: relative;
+    gap: 5%;
+}
+
+.formulario-register .div-formulario form {
+    width: 85%;
+}
+
+.row-registro {
+    width: 35%;
 }
 
 .div-formulario form input {
-    border:0;
+    border: 0;
     background: none;
     width: 100%;
     height: 3em;
@@ -222,24 +250,29 @@ table {
     font-size: 1.5em;
     color: rgba(255, 255, 255, 0.5);
 }
+.fecha-auth,
+#fechaNacimiento {
+    color: rgba(255, 255, 255, 0.4);
+}
 
-.div-formulario .linea-login {
+.div-formulario .linea-auth {
     background-color: #8e6d45;
     height: 4px;
     width: 10%;
     margin-top: 0;
     position: relative;
     top: -7%;
-    transition: width .5s ease;
+    transition: width 0.5s ease;
 }
 
-#nombre:focus-visible, #contrasena:focus-visible {
+input:focus-visible {
     outline: none;
 }
 
-#nombre:focus + .linea-login, #contrasena:focus + .linea-login  {
+input:focus + .linea-auth {
     width: 100%;
-    transition: all .5s ease;
+    height: 7px;
+    transition: all 0.5s ease;
 }
 
 .div-formulario form .boton-enviar {
@@ -358,7 +391,36 @@ ul.botones-auth {
 }
 
 .botones-login {
-    display: none;
+    display: flex;
+    background-color: red;
+    height: 100px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 5%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.botones-login li:nth-child(1) {
+    text-transform: uppercase;
+}
+
+.icono-ajustes span{
+    display: inline-block;
+    background-image: url($ruta + '/configuraciones.png');
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.icono-suscripcion span {
+    display: inline-block;
+    background-image: url($ruta + '/calidad-premium.png');
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 li.barra {
     padding: 0;
@@ -406,6 +468,10 @@ li.barra {
 
 .active {
     display: flex;
+}
+
+.active-block {
+    display: block;
 }
 
 .no-active {
@@ -997,6 +1063,73 @@ li.barra {
     color: rgba(255, 255, 255, 0.5);
     font-size: 1.2em;
     top: 15%;
+}
+
+
+//Perfil de usuario
+.nav-perfil {
+    background-color: #1b1b1b;
+    width: 100%;
+    height: 15vh;
+    position: relative;
+}
+
+.logo-perfil {
+    width: 15%;
+    height: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    background-image: url($ruta + '/logo.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
+.contenedor-ajustes {
+    background-color: #1b1b1b;
+    height: 85vh;
+    position: relative;
+}
+
+.botones-ajustes {
+    position: relative;
+    width: 80%;
+    height: 10vh;
+    margin: 0 auto;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-ajustes-botones {
+    position: relative;
+    display: flex;
+}
+
+.nav-ajustes-botones li {
+    padding: 10%;
+    white-space: nowrap;
+    cursor: pointer;    
+}
+
+.nombre-ajustes {
+    position: relative;
+    width: 30%;
+    height: 10vh;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 2%;
+}
+
+.nombre-ajustes span {
+    background-image: url($ruta + '/usuario.png');
+    background-size: contain;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
 }
 
 //MEDIA QUERYS

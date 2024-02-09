@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('imagenes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('ruta');
+            $table->unsignedBigInteger('usuario_id');
+            $table->string('ruta_imagen', 255);
+            $table->string('descripcion')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
