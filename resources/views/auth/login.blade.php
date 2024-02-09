@@ -19,9 +19,9 @@
             <form action="{{route('login')}}" method="post">
                 @csrf
                 <input type="email" name="email" id="email" placeholder="Email">
-                <hr class="linea-login">
+                <hr class="linea-auth">
                 <input type="password" name="password" id="password" placeholder="Contraseña">
-                <hr class="linea-login">
+                <hr class="linea-auth">
                 <input class="boton-enviar" type="submit" value="Entrar">
             </form>
         </div>
