@@ -22,7 +22,7 @@ $(document).ready(function () {
     console.log("SCRIPT JS LOAD");
     var botonPlay = $("#botonPlay");
     var botonCerrar = $("#botonCerrar");
-    var video = $('#reproductor-video').get(0);
+    var video = $("#reproductor-video").get(0);
     var tiempo = 0;
 
     botonPlay.click(function () {
@@ -40,5 +40,26 @@ $(document).ready(function () {
         video.pause();
         tiempo = video.currentTime;
     });
-});
 
+    //pagina perfil usuario
+    $("#contenidoGeneral").click(function () {
+        var url = $(this).data('url');
+        $("#contenido-dinamico").load(url);
+    });
+    $("#contenidoReservas").click(function () {
+        var url = $(this).data("url");
+        $("#contenido-dinamico").load(url);
+    });
+    $("#contenidoSuscripcion").click(function () {
+        var url = $(this).data("url");
+        $("#contenido-dinamico").load(url);
+    });
+    $("#contenidoContraseña").click(function () {
+        var url = $(this).data("url");
+        $("#contenido-dinamico").load(url);
+    });
+    $("#contenidoOtros").click(function () {
+        var url = $(this).data("url");
+        $("#contenido-dinamico").load(url);
+    });
+});

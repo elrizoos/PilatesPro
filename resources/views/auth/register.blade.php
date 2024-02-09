@@ -7,7 +7,20 @@
                 <div class="imagen-logo"></div>
             </div>
             <div class="div-formulario">
-
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('register') }}" method="post">
                     @csrf
                     <div class="row-registro">
@@ -32,7 +45,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <input type="password" name="password_confirmed" id="password_confirmed"
+                        <input type="password" name="password_confirmation" id="password_confirmation"
                             placeholder="Confirmar Contraseña">
                         <hr class="linea-auth">
                         @error('password_confirmed')
@@ -63,9 +76,9 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <input class="fecha-auth"type="date" name="fechaNacimiento" id="fechaNacimiento">
+                        <input class="fecha-auth"type="date" name="fecha_nacimiento" id="fecha_nacimiento">
                         <hr class="linea-auth">
-                        @error('fechaNacimiento')
+                        @error('fecha_nacimiento')
                             <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

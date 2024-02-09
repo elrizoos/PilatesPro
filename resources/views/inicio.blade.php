@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('registro-exitoso'))
+    <div class="alert alert-success">
+        {{ session('registro-exitoso') }}
+    </div>
+@endif
     <div class="slider-seccion">
         <div class="slider slider-uno">
             <div class="contenedorSlider">

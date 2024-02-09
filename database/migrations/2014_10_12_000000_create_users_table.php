@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('telefono', 9);
             $table->string('email', 255)->unique();
             $table->string('direccion', 255);
+            $table->date('fecha_nacimiento');
             $table->string('password');
-            $table->enum('tipo_usuario', ['Alumno' , 'Profesor']);
+            $table->enum('tipo_usuario', ['Alumno' , 'Profesor'])->nullable();
             $table->string('especializacion', 255)->nullable();
             $table->timestamps();
         });
