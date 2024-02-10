@@ -62,4 +62,9 @@ $(document).ready(function () {
         var url = $(this).data("url");
         $("#contenido-dinamico").load(url);
     });
+
+    $('.imagen-logo').click(function() {
+        var url = $(this).data('url');
+        window.location.href = url;
+    });
 });

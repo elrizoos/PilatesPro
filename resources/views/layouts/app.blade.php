@@ -23,7 +23,7 @@
     <div id="app">
         @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro')
             <nav class="navbar">
-                <div class="logo">
+                <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
                     <img src="{{ asset('imagenes/logo.png') }}" alt="">
                 </div>
                 <div class="lista">
