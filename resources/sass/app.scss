@@ -193,6 +193,10 @@ input:-webkit-autofill:active {
     width: 100%;
 }
 
+.imagen-logo {
+    cursor: pointer;
+}
+
 .div-logo {
     width: 100%;
     height: 35%;
@@ -307,6 +311,8 @@ input:focus + .linea-auth {
 .logo img {
     width: 100%;
 }
+
+
 
 .lista {
     width: 100%;

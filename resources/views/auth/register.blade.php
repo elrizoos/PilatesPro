@@ -4,7 +4,7 @@
     <div class="container">
         <div class="formulario-register">
             <div class="div-logo">
-                <div class="imagen-logo"></div>
+                <div class="imagen-logo" data-url="{{ route('inicio') }}"></div>
             </div>
             <div class="div-formulario">
                 @if (session('success'))
