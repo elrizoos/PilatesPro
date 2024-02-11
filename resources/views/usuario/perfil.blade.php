@@ -8,14 +8,14 @@
             </div>
             <div class="botones-ajustes">
                 <ul class="nav-ajustes-botones">
-                    <li id="contenidoGeneral" data-url="{{ url('/usuario/general') }}">General</li>
-                    <li id="contenidoReservas" data-url="{{ url('/usuario/reservas') }}">Reservas</li>
-                    <li id="contenidoSuscripcion" data-url="{{ url('/usuario/suscripcion') }}">Suscripcion</li>
-                    <li id="contenidoContraseña" data-url="{{ url('/usuario/contrasena') }}">Cambiar contraseña</li>
-                    <li id="contenidoOtros" data-url="{{ url('/usuario/otros') }}">Otros ajustes</li>
+                    <li class="contenido-cargable" id="contenidoGeneral" data-url="{{ url('/usuario/general') }}">General</li>
+                    <li class="contenido-cargable" id="contenidoReservas" data-url="{{ url('/usuario/reservas') }}">Reservas</li>
+                    <li class="contenido-cargable" id="contenidoSuscripcion" data-url="{{ url('/usuario/suscripcion') }}">Suscripcion</li>
+                    <li class="contenido-cargable" id="contenidoContraseña" data-url="{{ url('/usuario/contrasena') }}">Cambiar contraseña</li>
+                    <li class="contenido-cargable" id="contenidoOtros" data-url="{{ url('/usuario/otros') }}">Otros ajustes</li>
                 </ul>
                 <div class="nombre-ajustes">
-                    <span></span>{{Auth::user()->nombre}}
+                    <span></span>{{Auth::user()->nombre}} <span class="cerrar-icono"></span>
                 </div>
             </div>
             <div id="contenido-dinamico" class="contenido-ajustes">
