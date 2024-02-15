@@ -40,20 +40,112 @@ $(document).ready(function () {
         }
     }
 
+    if (localStorage.getItem("elementosActivos")) {
+        establecerElementosActivos();
+    } else {
+        const URLPREDEFINIDAPESTAÑA = $("#contenidoGeneral").data("url");
+        $("#contenido-dinamico").load(URLPREDEFINIDAPESTAÑA, function () {
+            $("#contenidoGeneral").addClass("selected");
+
+            const URLPREFEFINIDAGRUPO = $("#informacionGeneral").data("url");
+            $("#contenido-dinamico-interno").load(URLPREFEFINIDAGRUPO);
+            $("#informacionGeneral").addClass("selected");
+        });
+    }
+
+    //Carga de contenido dinámico precargado
+
     // Carga de Contenido Dinámico
     $(".contenido-cargable").on("click", function () {
+        console.log("hola funciona");
         const url = $(this).data("url");
         $("#contenido-dinamico").load(url);
         $(".contenido-cargable").removeClass("selected");
         $(this).addClass("selected");
+        elementosActivos();
     });
 
-    $(".contenido-cargable-interno").on("click", function () {
+    $(document).on("click", ".contenido-cargable-interno", function () {
+        console.log("hola funciona");
         const url = $(this).data("url");
         $("#contenido-dinamico-interno").load(url);
         $(".contenido-cargable-interno").removeClass("selected");
         $(this).addClass("selected");
+        elementosActivos();
     });
+
+    function contenidoDinamico(elemento, url, callback) {
+        $("#contenido-dinamico").load(url, function() {
+            if(callback){
+                callback();
+            }
+        });
+        $(".contenido-cargable").removeClass("selected");
+
+    }
+
+    function contenidoDinamicoInterno(elemento, url) {
+        const url = $("." + clase).data("url");
+        console.log(url);
+        $("#contenido-dinamico-interno").load(url);
+        $(".contenido-cargable-interno").removeClass("selected");
+    }
+
+    function elementosActivos() {
+        var elementos = $(".selected");
+
+        var clasesElementosActivos = [];
+        var idsElementosSelected = [];
+        var urlElementosActivos = [];
+
+        var elementosActivos = [];
+
+        elementos.each(function () {
+            urlElementosActivos.push($("#" + this.id).data("url"));
+        });
+
+        elementos.each(function () {
+            clasesElementosActivos.push($("#" + this.id).attr("class"));
+        });
+        console.log(clasesElementosActivos);
+
+        elementos.each(function () {
+            idsElementosSelected.push(this.id);
+        });
+        console.log(idsElementosSelected);
+        elementosActivos.push(
+            clasesElementosActivos,
+            idsElementosSelected,
+            urlElementosActivos
+        );
+
+        console.log(elementosActivos);
+
+        localStorage.setItem(
+            "elementosActivos",
+            JSON.stringify(elementosActivos)
+        );
+    }
+
+    function establecerElementosActivos() {
+        var elementosActivosStorage = localStorage.getItem("elementosActivos");
+        //0 para clases
+        //1 para id
+        //2 para url
+        var elementosActivos = JSON.parse(elementosActivosStorage);
+        var id = elementosActivos[1][0]; //1 para id 0 para el primer elemento
+        var elemento = $('#' + id);
+        var url = elementosActivos[1][2];
+
+        var idInterno = elementosActivos[1][1];
+        var elementoInterno = $('#' + idInterno);
+        var urlInterno = elementosActivos[2][1];
+
+        contenidoDinamico(url, elemento, function() {
+            contenidoDinamicoInterno(urlInterno, elementoInterno)
+        })
+
+    }
 
     // Redirección con Imagen del Logo
     $(".imagen-logo").on("click", function () {

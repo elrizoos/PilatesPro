@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Imagen;
 
 class User extends Authenticatable
 {
@@ -48,4 +49,14 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function imagen()
+    {
+        return $this->hasOne(Imagen::class, 'usuario_id');
+    }
+
+    public function getRutaImagenAttribute()
+    {
+        return $this->imagen ? $this->imagen->ruta_imagen : 'ruta/a/imagen/por/defecto.png';
+    }
 }

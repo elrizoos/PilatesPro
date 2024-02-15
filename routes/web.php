@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,23 +51,23 @@ Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
 
-Route::get('/login', function() {
+Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/registro', function() {
+Route::get('/registro', function () {
     return view('auth.register');
 })->name('registro');
 
-Route::get('/configuracion', function() {
+Route::get('/configuracion', function () {
     return view('usuario.perfil');
 })->name('configuracion-usuario');
 
-Route::get('/usuario/general', function() {
+Route::get('/usuario/general', function () {
     return view('usuario.general');
 })->name('usuario-general');
 
-Route::get('/usuario/general/infoUsuario', function() {
+Route::get('/usuario/general/infoUsuario', function () {
     return view('usuario.submenu.GEN-infoUsuario');
 })->name('general-informacion');
 
@@ -87,15 +89,15 @@ Route::get('/usuario/reservas', function () {
 
 Route::get('/usuario/reservas/histoReservas', function () {
     return view('usuario.submenu.RES-histoReservas');
-})->name('general-histoReservas');
+})->name('reservas-histoReservas');
 
 Route::get('/usuario/reservas/reservasActivas', function () {
     return view('usuario.submenu.RES-reservasActivas');
-})->name('general-reservasActivas');
+})->name('reservas-reservasActivas');
 
 Route::get('/usuario/reservas/sugerenciasReservas', function () {
     return view('usuario.submenu.RES-sugerenciasReservas');
-})->name('general-sugerenciasReservas');
+})->name('reservas-sugerenciasReservas');
 
 Route::get('/usuario/suscripcion', function () {
     return view('usuario.suscripcion');
@@ -103,19 +105,19 @@ Route::get('/usuario/suscripcion', function () {
 
 Route::get('/usuario/suscripcion/cambioPlan', function () {
     return view('usuario.submenu.SUS-cambioPlan');
-})->name('general-cambioPlan');
+})->name('suscripcion-cambioPlan');
 
 Route::get('/usuario/suscripcion/detallesPlan', function () {
     return view('usuario.submenu.SUS-detallesPlan');
-})->name('general-detallesPlan');
+})->name('suscripcion-detallesPlan');
 
 Route::get('/usuario/suscripcion/estadoSuscripcion', function () {
     return view('usuario.submenu.SUS-estadoSuscripcion');
-})->name('general-estadoSuscripcion');
+})->name('suscripcion-estadoSuscripcion');
 
 Route::get('/usuario/suscripcion/historialPago', function () {
     return view('usuario.submenu.SUS-historialPago');
-})->name('general-historialPago');
+})->name('suscripcion-historialPago');
 
 
 
@@ -124,18 +126,18 @@ Route::get('/usuario/contrasena', function () {
 })->name('usuario-contrasena');
 
 
-Route::get('/usuario/otros/cambiarContraseña', function () {
+Route::get('/usuario/contrasena/cambiarContraseña', function () {
     return view('usuario.submenu.CON-cambiarContraseña');
-})->name('general-cambiarContraseña');
+})->name('contrasena-cambiarContraseña');
 
-Route::get('/usuario/otros/opciones', function () {
+Route::get('/usuario/contrasena/opciones', function () {
     return view('usuario.submenu.CON-opciones');
-})->name('general-opciones');
+})->name('contrasena-opciones');
 
 
-Route::get('/usuario/otros/politicas', function () {
+Route::get('/usuario/contrasena/politicas', function () {
     return view('usuario.submenu.CON-politicas');
-})->name('general-politicas');
+})->name('contrasena-politicas');
 
 Route::get('/usuario/otros', function () {
     return view('usuario.otros');
@@ -143,19 +145,26 @@ Route::get('/usuario/otros', function () {
 
 Route::get('/usuario/otros/notificaciones', function () {
     return view('usuario.submenu.OTR-notificaciones');
-})->name('general-notificaciones');
+})->name('otros-notificaciones');
 
 Route::get('/usuario/otros/privacidad', function () {
     return view('usuario.submenu.OTR-privacidad');
-})->name('general-privacidad');
-
+})->name('otros-privacidad');
 
 Route::get('/usuario/otros/redSocial', function () {
     return view('usuario.submenu.OTR-redSocial');
-})->name('general-redSocial');
+})->name('otros-redSocial');
+
+Route::get('/usuario/otros/eliminar', function () {
+    return view('usuario.submenu.OTR-eliminar');
+})->name('otros-eliminar');
 
 
+//Enlaces a controladores
 
+Route::get('/usuario/guardarCambios', [UsuarioController::class, 'guardarCambios'])->name('usuario-guardarCambios');
+
+Route::resource('usuario/imagen', ImagenController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
