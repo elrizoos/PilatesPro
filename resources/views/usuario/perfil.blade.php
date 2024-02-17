@@ -20,7 +20,7 @@
             @endif
             <div class="botones-ajustes">
                 <ul class="nav-ajustes-botones">
-                    <li class="contenido-cargable" id="contenidoGeneral" data-url="{{ url('/usuario/general') }}">General
+                    <li class="contenido-cargable" id="contenidoGeneral" data-url="{{ route('general-informacion') }}">General
                     </li>
                     <li class="contenido-cargable" id="contenidoReservas" data-url="{{ url('/usuario/reservas') }}">Reservas
                     </li>
@@ -36,7 +36,17 @@
                 </div>
             </div>
             <div id="contenido-dinamico" class="contenido-ajustes">
-
+                <div class="contenidoGeneral" id="contenedor-contenidoGeneral">
+                    @yield('contenidoGeneral')
+                </div>
+                <div class="contenidoReservas" id="contenedor-contenidoReservas">
+                    @yield('contenidoReservas')</div>
+                <div class="contenidoSuscripcion" id="contenedor-contenidoSuscripcion">
+                    @yield('contenidoSuscripcion')</div>
+                <div class="contenidoContraseña" id="contenedor-contenidoContraseña">
+                    @yield('contenidoContraseña')</div>
+                <div class="contenidoOtros" id="contenedor-contenidoOtros">
+                    @yield('contenidoOtros')</div>
             </div>
         </div>
     </div>

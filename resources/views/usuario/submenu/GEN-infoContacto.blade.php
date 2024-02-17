@@ -1,3 +1,5 @@
+@extends('usuario.general')
+@section('informacionContacto')
 <form action="{{ route('usuario-guardarCambios') }}" class="formulario-informacion-general">
     <input type="hidden" name="tipo_informacion" value="informacionContacto">
     <input type="hidden" name="usuario" value="{{ Auth::user()->email }}">
@@ -9,3 +11,5 @@
     </div>
     <input type="submit" value="Guardar cambios">
 </form>
+
+@endsection

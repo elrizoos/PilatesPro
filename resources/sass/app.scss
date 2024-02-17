@@ -499,7 +499,7 @@ li.barra {
 }
 
 .active {
-    display: flex;
+    display: flex !important;
 }
 
 .active-block {
@@ -507,7 +507,7 @@ li.barra {
 }
 
 .no-active {
-    display: none;
+    display: none !important;
 }
 
 .slider::before {
@@ -1197,7 +1197,6 @@ li.barra {
     margin: 0 auto;
     padding: 2%;
     padding-bottom: 0;
-    display: flex;
     position: relative;
 }
 
@@ -1225,20 +1224,35 @@ li.barra {
 
 .botonera ul li:hover {
     color: #8e6d45;
-    
 }
 
 .contenido-dinamico-interno {
     width: 80%;
     height: 94%;
     padding: 5%;
-    display: flex;
     align-items: center;
 }
 
+#contenido-dinamico > div {
+    width: 100%;
+    height: 100%;
+}
 
+#contenido-dinamico-interno > div {
+    width: 100%;
+    height: 100%;
+}
 
 //Perfil de usuario: Pestaña general
+
+.contenidoGeneral {
+    display: flex;
+}
+
+.botonera ul li.selected {
+    color: #e6d5b3;
+
+}
 
 .formulario-informacion-general {
     padding: 5%;
@@ -1248,6 +1262,7 @@ li.barra {
     justify-content: space-evenly;
     gap: 2em;
     width: 100%;
+    height: 100%;
 }
 
 .formulario-informacion-general .grupo-formulario {
@@ -1258,7 +1273,8 @@ li.barra {
     align-items: center;
 }
 
-.formulario-informacion-general .grupo-formulario label, .formulario-informacion-general .grupo-formulario span{
+.formulario-informacion-general .grupo-formulario label,
+.formulario-informacion-general .grupo-formulario span {
     width: 20%;
     padding: 2%;
     font-size: 1.2em;
@@ -1280,11 +1296,6 @@ li.barra {
     border-color: #ebb472;
     box-shadow: 0 0 0 0.25rem #fde60d40;
 }
-
-
-
-
-
 
 //MEDIA QUERYS
 @media (min-width: 768px) {
