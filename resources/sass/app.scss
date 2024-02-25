@@ -1297,6 +1297,12 @@ li.barra {
     box-shadow: 0 0 0 0.25rem #fde60d40;
 }
 
+.formulario-preferenciasIdioma {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
 //MEDIA QUERYS
 @media (min-width: 768px) {
     .navbar-expand-md .navbar-nav {

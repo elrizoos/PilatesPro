@@ -1,3 +1,5 @@
+@extends('usuario.general')
+@section('fotoPerfil')
 <form id="formularioFotoPerfil" class="formulario-informacion-general" action="{{ route('imagen.store') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
@@ -22,6 +24,9 @@
     <button id="borrarFoto" type="submit">Eliminar Imagen</button>
 </form>
 }@endif
+
 <script>
     var imagenStore = "{{ route('imagen.store') }}";
 </script>
+@vite(['resources/js/contenidoInterno.js'])
+@endsection

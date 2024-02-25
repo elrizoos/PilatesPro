@@ -49,7 +49,7 @@
                     @auth
                         <ul class="botones-login">
                             <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
-                            <li class="icono-ajustes"><a href="{{ route('configuracion-usuario') }}"><span></span></a></li>
+                            <li class="icono-ajustes"><a href="{{ route('general-informacion') }}"><span></span></a></li>
                             <li class="icono-suscripcion"><span></span></li>
                             <li class="icono-logout">
                                 <form action="{{ route('logout') }}" method="POST">

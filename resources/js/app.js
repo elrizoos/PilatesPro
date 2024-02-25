@@ -29,15 +29,9 @@ $(document).ready(function () {
         toggleVideo(false);
     });
 
-    
-
     // Redirección con Imagen del Logo
     $(".imagen-logo").on("click", function () {
         const url = $(this).data("url");
         window.location.href = url;
     });
 });
-
-function establecerElementosDinamicos() {
-    
-}

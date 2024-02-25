@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,11 +69,11 @@ Route::get('/usuario/general', function () {
     return view('usuario.general');
 })->name('usuario-general');
 
-Route::get('/usuario/general/infoUsuario', function () {
+Route::get('/usuario/general/informacionGeneral', function () {
     return view('usuario.submenu.GEN-infoUsuario');
 })->name('general-informacion');
 
-Route::get('/usuario/general/infoContacto', function () {
+Route::get('/usuario/general/informacionContacto', function () {
     return view('usuario.submenu.GEN-infoContacto');
 })->name('general-informacion-contacto');
 
@@ -87,9 +89,7 @@ Route::get('/usuario/reservas', function () {
     return view('usuario.reservas');
 })->name('usuario-reservas');
 
-Route::get('/usuario/reservas/histoReservas', function () {
-    return view('usuario.submenu.RES-histoReservas');
-})->name('reservas-histoReservas');
+
 
 Route::get('/usuario/reservas/reservasActivas', function () {
     return view('usuario.submenu.RES-reservasActivas');
@@ -165,6 +165,10 @@ Route::get('/usuario/otros/eliminar', function () {
 Route::get('/usuario/guardarCambios', [UsuarioController::class, 'guardarCambios'])->name('usuario-guardarCambios');
 
 Route::resource('usuario/imagen', ImagenController::class);
+
+Route::get('/usuario/reservas/historialReservas', [ReservasController::class,'index'])->name('reservas-historialReservas');
+
+Route::resource('usuario/reservas', ReservasController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

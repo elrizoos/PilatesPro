@@ -1,14 +1,16 @@
-function establecerClaseSelected(elementoUno, elementoDos) {
-    console.log(elementoUno);
+function establecerClaseSelected(elementoDinamico, elementoDinamicoInterno) {
+    console.log(elementoDinamico.attr('id'),elementoDinamicoInterno.attr('id'));
     borrarClaseSelected();
     desactivarDivs();
-    elementoUno.addClass("selected");
-    elementoDos.addClass("selected");
+    $('#' + elementoDinamico.attr('id')).addClass("selected");
+    $('.' + elementoDinamico.attr('id')).addClass("selected");
 
-    $("." + elementoUno.attr("id"))
+    $("#" + elementoDinamicoInterno.attr("id")).addClass("selected");
+
+    $("." + elementoDinamico.attr("id"))
         .removeClass("no-active")
         .addClass("active");
-    $("." + elementoDos.attr("id"))
+    $("." + elementoDinamicoInterno.attr("id"))
         .removeClass("no-active")
         .addClass("active");
 
@@ -39,4 +41,42 @@ function redirigirPagina(url) {
     window.location.href = url;
 }
 
-establecerClaseSelected($("#contenidoGeneral"), $("#informacionGeneral"));
+var path = window.location.pathname; // Obtiene la ruta completa
+var parts = path.split("/"); // Divide la ruta en partes
+var lastSegment = parts.pop() || parts.pop(); // Toma el último segmento no vacío
+
+console.log(lastSegment);
+
+switch (lastSegment) {
+    case "informacionGeneral":
+    case "informacionContacto":
+    case "fotoPerfil":
+    case "preferenciasIdioma":
+        var elementoDinamico = "contenidoGeneral";
+        break;
+    case "historialReservas":
+    case "reservasActivas":
+    case "sugerenciasReservas":
+        var elementoDinamico = "contenidoReservas";
+        break;
+    case "cambioPlan":
+    case "detallesPlan":
+    case "estadoSuscripcion":
+    case "historialPago":
+        var elementoDinamico = "contenidoSuscripcion";
+        break;
+    case "cambiarContraseña":
+    case "opciones":
+    case "politicas":
+        var elementoDinamico = "contenidoContraseña";
+        break;
+    case "notificaciones":
+    case "privacidad":
+    case "redSocial":
+    case "eliminar":
+        var elementoDinamico = "contenidoOtros";
+        break;
+}
+var elementoDinamicoInterno = $("#" + lastSegment);
+var elementoDinamico = $("#" + elementoDinamico);
+establecerClaseSelected(elementoDinamico, elementoDinamicoInterno);

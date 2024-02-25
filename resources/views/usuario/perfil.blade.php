@@ -22,13 +22,13 @@
                 <ul class="nav-ajustes-botones">
                     <li class="contenido-cargable" id="contenidoGeneral" data-url="{{ route('general-informacion') }}">General
                     </li>
-                    <li class="contenido-cargable" id="contenidoReservas" data-url="{{ url('/usuario/reservas') }}">Reservas
+                    <li class="contenido-cargable" id="contenidoReservas" data-url="{{ route('reservas-historialReservas') }}">Reservas
                     </li>
-                    <li class="contenido-cargable" id="contenidoSuscripcion" data-url="{{ url('/usuario/suscripcion') }}">
+                    <li class="contenido-cargable" id="contenidoSuscripcion" data-url="{{ route('suscripcion-cambioPlan') }}">
                         Suscripcion</li>
-                    <li class="contenido-cargable" id="contenidoContraseña" data-url="{{ url('/usuario/contrasena') }}">
+                    <li class="contenido-cargable" id="contenidoContraseña" data-url="{{ route('contrasena-cambiarContraseña') }}">
                         Cambiar contraseña</li>
-                    <li class="contenido-cargable" id="contenidoOtros" data-url="{{ url('/usuario/otros') }}">Otros ajustes
+                    <li class="contenido-cargable" id="contenidoOtros" data-url="{{ route('otros-notificaciones')}}">Otros ajustes
                     </li>
                 </ul>
                 <div class="nombre-ajustes">

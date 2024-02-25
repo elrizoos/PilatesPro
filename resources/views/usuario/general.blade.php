@@ -20,7 +20,7 @@
             @yield('informacionGeneral')</div>
         <div class="informacionContacto contenedor-interno" id="contenedor-informacionContacto">
             @yield('informacionContacto')</div>
-        <div class="fotoPerfil contenedor-interno" id="contenedor-fotoPerfil">
+        <div class="fotoPerfil contenedor-interno " id="contenedor-fotoPerfil">
             @yield('fotoPerfil')</div>
         <div class="preferenciasIdioma contenedor-interno" id="contenedor-preferenciasIdioma">
             @yield('preferenciasIdioma')</div>

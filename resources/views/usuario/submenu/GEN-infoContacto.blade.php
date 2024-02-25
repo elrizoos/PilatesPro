@@ -11,5 +11,5 @@
     </div>
     <input type="submit" value="Guardar cambios">
 </form>
-
+@vite(['resources/js/contenidoInterno.js'])
 @endsection
