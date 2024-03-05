@@ -291,7 +291,7 @@ input:focus + .linea-auth {
 
 //Barra de navegación
 .navbar {
-    width: 21vw;
+    width: 21.1vw;
     padding: 0;
     background-color: #1b1b1b;
     display: flex;
@@ -311,8 +311,6 @@ input:focus + .linea-auth {
 .logo img {
     width: 100%;
 }
-
-
 
 .lista {
     width: 100%;
@@ -501,7 +499,7 @@ li.barra {
 }
 
 .active {
-    display: flex;
+    display: flex !important;
 }
 
 .active-block {
@@ -509,7 +507,7 @@ li.barra {
 }
 
 .no-active {
-    display: none;
+    display: none !important;
 }
 
 .slider::before {
@@ -1129,9 +1127,9 @@ li.barra {
     width: 80%;
     height: 10vh;
     margin: 0 auto;
-    background-color: red;
     display: flex;
     justify-content: space-between;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-ajustes-botones {
@@ -1140,20 +1138,41 @@ li.barra {
 }
 
 .nav-ajustes-botones li {
-    padding: 10%;
+    padding: 7%;
     white-space: nowrap;
     cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    font-size: 1.1em;
+}
+
+.nav-ajustes-botones li:hover {
+    background: rgb(142, 109, 69);
+    background: radial-gradient(
+        circle,
+        rgba(142, 109, 69, 1) 0%,
+        rgba(110, 83, 52, 1) 10%,
+        rgba(27, 27, 27, 1) 45%
+    );
+    transition: all 0.5s ease;
+    color: white;
+}
+
+.nav-ajustes-botones li.selected {
+    box-shadow: inset 0px -2px 0px 0px #8e6d45;
+    transition: all 0.5s ease;
 }
 
 .nombre-ajustes {
     position: relative;
     width: 30%;
     height: 10vh;
-    background-color: blue;
     display: flex;
     align-items: center;
     justify-content: right;
     padding: 0 2%;
+    gap: 5%;
+    text-transform: uppercase;
 }
 
 .nombre-ajustes span {
@@ -1162,6 +1181,193 @@ li.barra {
     display: inline-block;
     width: 20px;
     height: 20px;
+}
+
+.nombre-ajustes span.cerrar-icono {
+    background-image: url($ruta + "/cerrar-cruz.png");
+    background-size: contain;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.contenido-ajustes {
+    width: 80%;
+    height: 70vh;
+    margin: 0 auto;
+    padding: 2%;
+    padding-bottom: 0;
+    position: relative;
+}
+
+.botonera {
+    width: 20%;
+    height: 94%;
+    padding: 0;
+    position: relative;
+}
+
+.botonera ul {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.botonera ul li {
+    padding: 5% 0%;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #8e6d45d0;
+}
+
+.botonera ul li:hover {
+    color: #8e6d45;
+}
+
+.contenido-dinamico-interno {
+    width: 80%;
+    height: 94%;
+    padding: 5%;
+    align-items: center;
+}
+
+#contenido-dinamico > div {
+    width: 100%;
+    height: 100%;
+}
+
+#contenido-dinamico-interno > div {
+    width: 100%;
+    height: 100%;
+}
+
+//Perfil de usuario: Pestaña general
+
+.contenidoGeneral {
+    display: flex;
+}
+
+.botonera ul li.selected {
+    color: #e6d5b3;
+}
+
+.formulario-informacion-general {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2em;
+    width: 100%;
+    height: 100%;
+}
+
+.formulario-informacion-general .grupo-formulario {
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formulario-informacion-general .grupo-formulario label,
+.formulario-informacion-general .grupo-formulario span {
+    width: 20%;
+    padding: 2%;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.formulario-informacion-general .grupo-formulario input {
+    width: 25%;
+    line-height: 1em;
+    height: 1.5em;
+    background: none;
+    border-color: #8e6d45;
+    padding: 2%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.1em;
+}
+
+.formulario-informacion-general .grupo-formulario input:focus {
+    border-color: #ebb472;
+    box-shadow: 0 0 0 0.25rem #fde60d40;
+}
+
+.formulario-preferenciasIdioma {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+//Panel de control
+.panel-contenedor {
+    background-color: #1b1b1b;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.panel-contenedor .panel-logo {
+    position: relative;
+    grid-area: 1 / 1 / 2 / 6;
+}
+
+.panel-logo .logo {
+    background-image: url($ruta + "/logo.png");
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    width: 23%;
+    height: 90%;
+}
+
+.panel-contenedor .panel-nav {
+    position: relative;
+    grid-area: 2 / 1 / 6 / 2;
+}
+
+.panel-nav .nav-menu .menu-general {
+    background-color: #1b1b1b;
+    padding: 5% 10%;
+}
+
+.panel-nav .nav-menu .menu-general > li {
+    padding: 4% 1%;
+    color: #8e6d45;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+.panel-nav .nav-menu .menu-general > li span {
+    background-image: url($ruta + "/flecha-hacia-abajo.png");
+    background-size: contain;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.panel-nav .nav-menu .menu-general .submenu {
+    padding: 2% 0;
+    color: #e6d5b3;
+}
+
+.panel-nav .nav-menu .menu-general .submenu > li {
+    padding: 2% 5%;
+}
+
+.panel-contenedor .panel-contenido {
+    background-color: green;
+    position: relative;
+    grid-area: 2 / 2 / 6 / 6;
 }
 
 //MEDIA QUERYS
