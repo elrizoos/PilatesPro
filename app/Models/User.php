@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasOne(Imagen::class, 'usuario_id');
     }
 
+
+    public function grupo() {
+        return $this->hasOne(Grupo::class);
+    }
+
     public function getRutaImagenAttribute()
     {
         return $this->imagen ? $this->imagen->ruta_imagen : 'ruta/a/imagen/por/defecto.png';

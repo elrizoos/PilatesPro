@@ -291,7 +291,7 @@ input:focus + .linea-auth {
 
 //Barra de navegación
 .navbar {
-    width: 21vw;
+    width: 21.1vw;
     padding: 0;
     background-color: #1b1b1b;
     display: flex;
@@ -1251,7 +1251,6 @@ li.barra {
 
 .botonera ul li.selected {
     color: #e6d5b3;
-
 }
 
 .formulario-informacion-general {
@@ -1301,6 +1300,74 @@ li.barra {
     width: 100%;
     height: 100%;
     background-color: red;
+}
+
+//Panel de control
+.panel-contenedor {
+    background-color: #1b1b1b;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.panel-contenedor .panel-logo {
+    position: relative;
+    grid-area: 1 / 1 / 2 / 6;
+}
+
+.panel-logo .logo {
+    background-image: url($ruta + "/logo.png");
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    width: 23%;
+    height: 90%;
+}
+
+.panel-contenedor .panel-nav {
+    position: relative;
+    grid-area: 2 / 1 / 6 / 2;
+}
+
+.panel-nav .nav-menu .menu-general {
+    background-color: #1b1b1b;
+    padding: 5% 10%;
+}
+
+.panel-nav .nav-menu .menu-general > li {
+    padding: 4% 1%;
+    color: #8e6d45;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+.panel-nav .nav-menu .menu-general > li span {
+    background-image: url($ruta + "/flecha-hacia-abajo.png");
+    background-size: contain;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.panel-nav .nav-menu .menu-general .submenu {
+    padding: 2% 0;
+    color: #e6d5b3;
+}
+
+.panel-nav .nav-menu .menu-general .submenu > li {
+    padding: 2% 5%;
+}
+
+.panel-contenedor .panel-contenido {
+    background-color: green;
+    position: relative;
+    grid-area: 2 / 2 / 6 / 6;
 }
 
 //MEDIA QUERYS

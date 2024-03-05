@@ -12,4 +12,8 @@ class Reserva extends Model
     public function asistencias(){
         return $this->hasMany(Asistencia::class);
     }
+
+    public function clase(){
+        return $this->belongsTo(Clase::class);
+    }
 }

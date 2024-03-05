@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reserva;
+use App\Models\Panel;
 use App\Http\Controllers\Controller;
+use App\Models\Reserva;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ReservasController extends Controller
+class PanelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $reservas = Reserva::where('alumno_id', '=', Auth()->user()->id)->get();
-        //dd($reservas);
-        return view('usuario.submenu.RES-histoReservas', compact('reservas'));
+        $alumnos = User::where('tipo_usuario', '=', 'alumno')->get();
+        $profesores = User::where('tipo_usuario', '=', 'profesor')->get();
+        $reservas = Reserva::get();
+        
+        //depuracion
+        //dd('Alumnos: ' . $alumnos);
+        //dd('Profesores: ' . $profesores);
+        //dd('Reservas: ' . $reservas);
+
+        return view('panel-control', compact(['alumnos','profesores','reservas']));
     }
 
     /**
@@ -37,7 +46,7 @@ class ReservasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reserva $reserva)
+    public function show(Panel $panel)
     {
         //
     }
@@ -45,7 +54,7 @@ class ReservasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Reserva $reserva)
+    public function edit(Panel $panel)
     {
         //
     }
@@ -53,7 +62,7 @@ class ReservasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reserva $reserva)
+    public function update(Request $request, Panel $panel)
     {
         //
     }
@@ -61,17 +70,8 @@ class ReservasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reserva $reserva)
+    public function destroy(Panel $panel)
     {
         //
-    }
-
-    public function obtenerClasesReservadas(){
-        $reservas = Reserva::where('alumno_id', '=', Auth()->user()->id)
-        ->whereHas('asistencias', function ($query) {
-            $query->where('asistio','=',0);
-        })->get();
-
-        return view('usuario.submenu.RES-reservasActivas', compact('reservas'));
     }
 }
