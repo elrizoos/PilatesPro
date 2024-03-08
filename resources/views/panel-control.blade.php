@@ -30,7 +30,7 @@
                     <li>General</li>
                     <li class="usuarios">Usuarios <span></span>
                         <ul class="submenu">
-                            <li>Crear Usuario Nuevo</li>
+                            <li><a href="{{ route('contenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
                             <li>Editar Usuario Existente</li>
                             <li>Eliminar Usuario</li>
                             <li>Gestion Contraseñas</li>
@@ -85,7 +85,19 @@
             </div>
         </div>
         <div class="panel-contenido">
+            @if ($tipo)
+                @switch($tipo)
+                    @case('USER-crear')
+                        @yield('USER-crear')
+                    @break
 
+                    @case(2)
+                    @break
+
+                    @default
+                @endswitch
+            @else
+            @endif
         </div>
     </div>
     <script>
