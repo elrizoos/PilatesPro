@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-@if (session('registro-exitoso'))
-    <div class="alert alert-success">
-        {{ session('registro-exitoso') }}
-    </div>
-@endif
+    @if (session('registro-exitoso'))
+        <div class="alert alert-success">
+            {{ session('registro-exitoso') }}
+        </div>
+    @endif
     <div class="slider-seccion">
         <div class="slider slider-uno">
             <div class="contenedorSlider">
@@ -232,33 +232,45 @@
             <h4 class="facilidades-subtitulo">Facilidades del estudio</h4>
             <div class="contenedor-facilidades-grid">
                 <div class="elemento-uno">
-                    <span></span>
-                    <h4>Sala de Relax</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Sala de Relax</h4>
+                    </div>
                     <p>Sala dónde podrás recuperar energías despues de cada clase y recibir un poco de calma</p>
                 </div>
                 <div class="elemento-dos">
-                    <span></span>
-                    <h4>Duchas y Vestuarios</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Duchas y Vestuarios</h4>
+                    </div>
                     <p>Disponemos de vestuarios equipados completamente y duchas para cada usuario</p>
                 </div>
                 <div class="elemento-tres">
-                    <span></span>
-                    <h4>Tienda de Productos</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Tienda de Productos</h4>
+                    </div>
                     <p>Disponemos de una tienda con productos propios del estudio</p>
                 </div>
                 <div class="elemento-cuatro">
-                    <span></span>
-                    <h4>Servicio de nutricion</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Servicio de nutricion</h4>
+                    </div>
                     <p>Podrás mejorar tu alimentación con nuestro servicio Aliméntate</p>
                 </div>
                 <div class="elemento-cinco">
-                    <span></span>
-                    <h4>Cafe o zona de snacks saludables</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Cafe o zona de snacks saludables</h4>
+                    </div>
                     <p>Tomate tu cafe mañanero o cuando lo necesites</p>
                 </div>
                 <div class="elemento-seis">
-                    <span></span>
-                    <h4>Estacionamiento o facil transporte en la zona</h4>
+                    <div class="elemento-row">
+                        <span></span>
+                        <h4>Estacionamiento o facil transporte en la zona</h4>
+                    </div>
                     <p>Disponemos de parquin privado, y zona de autobuses a menos de 100 metros</p>
                 </div>
             </div>
