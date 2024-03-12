@@ -163,12 +163,31 @@ input:-webkit-autofill:active {
     src: url("../../public/fuentes/nexa_rust_sans/WEB/NexaRustScriptB-Trial-Shadow2.woff");
 }
 
+body {
+    width: 100vw;
+    overflow-x: hidden;
+}
+#appEscritorio,
+#appMovil {
+    position: relative;
+}
+#appMovil {
+    display: none;
+}
+
+#appEscritorio {
+    display: flex;
+    width: 100vw;
+}
+
 //Main login y register
 
 .main-auth {
     height: 100vh;
+    width: 100vw;
     background-color: #1b1b1bef;
     position: relative;
+    overflow: hidden;
 }
 
 .main-auth .container {
@@ -191,6 +210,10 @@ input:-webkit-autofill:active {
 .formulario-register {
     height: 85%;
     width: 100%;
+}
+
+.imagen-logo {
+    cursor: pointer;
 }
 
 .div-logo {
@@ -287,21 +310,27 @@ input:focus + .linea-auth {
 
 //Barra de navegación
 .navbar {
-    width: 21vw;
+    width: 20vw;
     padding: 0;
+    height: 100vh;
     background-color: #1b1b1b;
+    position: relative;
+}
+
+.navbar .fixed {
+    background: #1b1b1b;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     justify-content: space-evenly;
-    position: fixed;
+    height: 100vh;
+    z-index: 100;
 }
 
 .logo {
-    width: 75%;
+    width: 18vw;
     margin: 0 auto;
     position: relative;
-    top: -50px;
+    top: -3vh;
 }
 
 .logo img {
@@ -309,18 +338,18 @@ input:focus + .linea-auth {
 }
 
 .lista {
-    width: 100%;
+    width: 20vw;
     position: relative;
-    top: -5%;
+    top: -4vh;
 }
 
 .lista ul li {
-    padding: 2% 13%;
+    padding: 1vh 3vw;
     font-size: 1.3em;
     font-family: COD;
     color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1vw;
 }
 
 .lista ul li a {
@@ -339,14 +368,13 @@ ul li a.activeMenu {
     cursor: pointer;
 }
 .botones {
-    width: 100%;
+    width: 20vw;
     position: relative;
-    top: 5%;
 }
 
 ul.botones-auth {
-    width: 100%;
-    gap: 10%;
+    width: 20vw;
+    gap: 5vh;
     font-size: 2em;
     color: #e6d5b3;
 
@@ -357,13 +385,13 @@ ul.botones-auth {
 }
 
 .botones-auth li {
-    padding: 5%;
+    padding: 3vh 2vw;
     background-color: #1b1b1b;
     border-radius: 50%;
-    width: 45%;
+    width: 15vw;
     color: rgba(255, 255, 255, 0.5);
-    height: 60%;
-    font-size: 0.6em;
+
+    font-size: 0.5em;
     text-align: center;
     font-weight: bold;
     box-shadow: 6px 9px 26px 6px rgba(255, 255, 255, 0.5);
@@ -380,7 +408,6 @@ ul.botones-auth {
 
 .inicioSesion {
     position: relative;
-    top: -50px;
 }
 
 .inicioSesion a {
@@ -395,45 +422,57 @@ ul.botones-auth {
 
 .botones-login {
     display: flex;
-    height: 100px;
-    width: 90%;
+    height: 25vh;
+    width: 19vw;
     margin: 0 auto;
     padding: 5%;
     justify-content: space-around;
     align-items: center;
     position: relative;
-    top: 5%;
+    flex-direction: column;
+}
+
+.botones-login li {
+    text-align: left;
+    width: 15vw;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .botones-login li:nth-child(1) {
+    font-size: 1em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: #8e6d45;
 }
 
 .icono-ajustes span {
     display: inline-block;
     background-image: url($ruta + "/configuraciones.png");
     background-size: contain;
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
     cursor: pointer;
+}
+
+.icono-ajustes a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
 }
 
 .icono-suscripcion span {
     display: inline-block;
     background-image: url($ruta + "/calidad-premium.png");
     background-size: contain;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.icono-ajustes span {
-    display: inline-block;
-    background-image: url($ruta + "/configuraciones.png");
-    background-size: contain;
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
     cursor: pointer;
 }
 
@@ -441,9 +480,14 @@ ul.botones-auth {
     display: inline-block;
     background-image: url($ruta + "/cerrar-sesion.png");
     background-size: contain;
-    width: 20px;
-    height: 20px;
+    width: 1em;
+    height: 1em;
     cursor: pointer;
+}
+
+.icono-logout button {
+    padding: 0;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .boton-logout {
@@ -461,8 +505,12 @@ li.barra {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     height: 200vh;
-    width: 78vw;
-    float: right;
+    width: 79vw;
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
 }
 
 //Pagina de inicio
@@ -477,8 +525,8 @@ li.barra {
     position: relative;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 80vw;
+    height: 100vh;
 }
 
 .slider-uno {
@@ -495,7 +543,7 @@ li.barra {
 }
 
 .active {
-    display: flex;
+    display: flex !important;
 }
 
 .active-block {
@@ -503,7 +551,7 @@ li.barra {
 }
 
 .no-active {
-    display: none;
+    display: none !important;
 }
 
 .slider::before {
@@ -521,8 +569,8 @@ li.barra {
 }
 
 .contenedorSlider {
-    width: 80%;
-    height: 48%;
+    width: 60vw;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -530,19 +578,20 @@ li.barra {
 }
 
 .linea {
-    width: 100%;
+    width: 60vw;
 }
 
 .iconos {
-    width: 80%;
-    height: 50px;
+    width: 60vw;
+    height: 1em;
     margin: 0 auto;
     display: flex;
     justify-content: center;
 }
 
 .iconos-pequeños {
-    height: 25px;
+    height: 1em;
+    width: 50vw;
 }
 
 .iconos-izquierda {
@@ -553,12 +602,13 @@ li.barra {
     display: inline-block;
     background-image: url("../../public/imagenes/pelota-de-pilates2.png");
     background-size: cover;
-    width: 50px;
+    width: 1em;
+    height: 1em;
     z-index: 11;
 }
 
 .iconos-pequeños span {
-    width: 25px;
+    width: 1em;
 }
 
 .slider h1 {
@@ -584,7 +634,7 @@ li.barra {
 }
 
 .slider .boton-slider {
-    padding: 2% 5%;
+    padding: 2vh 5vw;
     background: none;
     border: 2px solid #e6d5b3;
     color: #e6d5b3;
@@ -593,7 +643,7 @@ li.barra {
 }
 
 .seccion {
-    width: 100%;
+    width: 80vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -606,14 +656,14 @@ li.barra {
 }
 
 .marco {
-    width: 90%;
-    height: 80%;
+    width: 79vw;
+    height: 100vh;
     display: flex;
     flex-direction: row;
 }
 
 .columna {
-    width: 50%;
+    width: 38.5vw;
     height: 100%;
 }
 
@@ -621,44 +671,49 @@ li.barra {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    height: 69vh;
+    position: relative;
+    top: 13vh;
 }
 
 .columna-texto * {
     position: relative;
 }
 
-.columna-texto .iconos {
-    top: -5%;
+.columna-texto .linea {
+    width: 38.5vw;
+}
+
+.columna-texto .linea .iconos {
+    width: 30vw;
 }
 
 .columna-texto h1 {
     font-size: 2em;
     color: #8e6d45;
     display: inline-block;
-    width: 80%;
+    width: 30vw;
     margin: 0 auto;
-    top: -5%;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .columna-texto h3 {
     font-size: 3em;
     color: white;
     display: inline-block;
-    width: 80%;
+    width: 30vw;
     margin: 0 auto;
-    top: -10%;
 }
 
 .columna-texto p {
     font-size: 1.3em;
     color: rgba(255, 255, 255, 0.5);
-    width: 80%;
+    width: 30vw;
     margin: 0 auto;
-    top: -15%;
 }
 
 .columna-texto .parrafo-segundo {
-    top: -20%;
 }
 .columna-imagenes {
     display: flex;
@@ -787,7 +842,7 @@ li.barra {
 .contenedor-imagen {
     position: absolute;
     z-index: 20;
-    top: 76%;
+    top: 27vh;
     width: 100%;
     transition: top 0.5s ease;
 }
@@ -811,25 +866,20 @@ li.barra {
 
 .nivel-clase span {
     display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 0.8em;
+    height: 0.8em;
 }
 
 .nivel-clase span:nth-child(1) {
     background-image: url($ruta + "/iconoPelota1.png");
-    background-size: contain;
-    width: 1em;
-    height: 1em;
 }
 .nivel-clase span:nth-child(2) {
     background-image: url($ruta + "/iconoPelota2.png");
-    background-size: contain;
-    width: 1em;
-    height: 1em;
 }
 .nivel-clase span:nth-child(3) {
     background-image: url($ruta + "/iconoPelota3.png");
-    background-size: contain;
-    width: 1em;
-    height: 1em;
 }
 
 .cuadro-imagen:hover {
@@ -844,19 +894,19 @@ li.barra {
 }
 
 .cuadro-imagen:hover .contenedor-imagen {
-    top: 60%;
+    top: 20vh;
     transition: top 0.5s ease;
 }
 
 .cuatro:hover .contenedor-imagen,
 .cinco:hover .contenedor-imagen {
-    top: 25%;
+    top: 1vh;
     transition: top 0.5s ease;
 }
 
 .cuatro .contenedor-imagen,
 .cinco .contenedor-imagen {
-    top: 52%;
+    top: 7vh;
     transition: top 0.5s ease;
 }
 
@@ -881,7 +931,7 @@ li.barra {
     color: white;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-transform: uppercase;
 }
 
@@ -899,7 +949,7 @@ li.barra {
 }
 
 .transparente {
-    height: 80vh;
+    height: 100vh;
     background: none;
 }
 .seccion.transparente.fondo::before {
@@ -1019,47 +1069,63 @@ li.barra {
 
 //Seccion de facilidades
 .contenedor-facilidades {
-    width: 90%;
-    height: 80%;
+    width: 79vw;
+    height: 100vh;
+    padding: 5% 0;
 }
 
 .contenedor-facilidades .facilidades-titulo {
     color: #8e6d45;
     font-size: 2em;
     text-transform: uppercase;
+    padding-left: 2vw;
 }
 
 .contenedor-facilidades .facilidades-subtitulo {
     color: white;
     font-size: 3em;
+    padding-left: 2vw;
 }
 
 .contenedor-facilidades-grid {
-    width: 100%;
-    height: 90%;
+    width: 75vw;
+    height: 70vh;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 5%;
     top: 5%;
+    margin: 0 auto;
 }
 
-.contenedor-facilidades-grid div {
+.contenedor-facilidades-grid > div {
     position: relative;
     padding: 10%;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.contenedor-facilidades-grid div * {
+.elemento-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.contenedor-facilidades-grid > div * {
     position: relative;
+    width: 100%;
 }
 
 .contenedor-facilidades-grid div span {
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 3em;
+    height: 3em;
     background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .elemento-uno span {
@@ -1083,7 +1149,7 @@ li.barra {
 
 .contenedor-facilidades-grid div h4 {
     color: white;
-    font-size: 2em;
+    font-size: 1.5em;
     top: 5%;
 }
 
@@ -1123,9 +1189,9 @@ li.barra {
     width: 80%;
     height: 10vh;
     margin: 0 auto;
-    background-color: red;
     display: flex;
     justify-content: space-between;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-ajustes-botones {
@@ -1134,20 +1200,41 @@ li.barra {
 }
 
 .nav-ajustes-botones li {
-    padding: 10%;
+    padding: 7%;
     white-space: nowrap;
     cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    font-size: 1.1em;
+}
+
+.nav-ajustes-botones li:hover {
+    background: rgb(142, 109, 69);
+    background: radial-gradient(
+        circle,
+        rgba(142, 109, 69, 1) 0%,
+        rgba(110, 83, 52, 1) 10%,
+        rgba(27, 27, 27, 1) 45%
+    );
+    transition: all 0.5s ease;
+    color: white;
+}
+
+.nav-ajustes-botones li.selected {
+    box-shadow: inset 0px -2px 0px 0px #8e6d45;
+    transition: all 0.5s ease;
 }
 
 .nombre-ajustes {
     position: relative;
     width: 30%;
     height: 10vh;
-    background-color: blue;
     display: flex;
     align-items: center;
     justify-content: right;
     padding: 0 2%;
+    gap: 5%;
+    text-transform: uppercase;
 }
 
 .nombre-ajustes span {
@@ -1158,9 +1245,571 @@ li.barra {
     height: 20px;
 }
 
+.nombre-ajustes span.cerrar-icono {
+    background-image: url($ruta + "/cerrar-cruz.png");
+    background-size: contain;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.contenido-ajustes {
+    width: 80%;
+    height: 70vh;
+    margin: 0 auto;
+    padding: 2%;
+    padding-bottom: 0;
+    position: relative;
+}
+
+.botonera {
+    width: 20%;
+    height: 94%;
+    padding: 0;
+    position: relative;
+}
+
+.botonera ul {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.botonera ul li {
+    padding: 5% 0%;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #8e6d45d0;
+}
+
+.botonera ul li:hover {
+    color: #8e6d45;
+}
+
+.contenido-dinamico-interno {
+    width: 80%;
+    height: 94%;
+    padding: 5%;
+    align-items: center;
+}
+
+#contenido-dinamico > div {
+    width: 100%;
+    height: 100%;
+}
+
+#contenido-dinamico-interno > div {
+    width: 100%;
+    height: 100%;
+}
+
+//Perfil de usuario: Pestaña general
+
+.contenidoGeneral {
+    display: flex;
+}
+
+.botonera ul li.selected {
+    color: #e6d5b3;
+}
+
+.formulario-informacion-general {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2em;
+    width: 100%;
+    height: 100%;
+}
+
+.formulario-informacion-general .grupo-formulario {
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formulario-informacion-general .grupo-formulario label,
+.formulario-informacion-general .grupo-formulario span {
+    width: 20%;
+    padding: 2%;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.formulario-informacion-general .grupo-formulario input {
+    width: 25%;
+    line-height: 1em;
+    height: 1.5em;
+    background: none;
+    border-color: #8e6d45;
+    padding: 2%;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.1em;
+}
+
+.formulario-informacion-general .grupo-formulario input:focus {
+    border-color: #ebb472;
+    box-shadow: 0 0 0 0.25rem #fde60d40;
+}
+
+.formulario-preferenciasIdioma {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+//Panel de control
+.panel-contenedor {
+    background-color: #1b1b1b;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.panel-contenedor .panel-logo {
+    position: relative;
+    grid-area: 1 / 1 / 2 / 6;
+}
+
+.panel-logo .logo {
+    background-image: url($ruta + "/logo.png");
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    width: 23%;
+    height: 90%;
+}
+
+.panel-contenedor .panel-nav {
+    position: relative;
+    grid-area: 2 / 1 / 6 / 2;
+}
+
+.panel-nav .nav-menu .menu-general {
+    background-color: #1b1b1b;
+    padding: 5% 10%;
+}
+
+.panel-nav .nav-menu .menu-general > li {
+    padding: 4% 1%;
+    color: #8e6d45;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+.panel-nav .nav-menu .menu-general > li span {
+    background-image: url($ruta + "/flecha-hacia-abajo.png");
+    background-size: contain;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.panel-nav .nav-menu .menu-general .submenu {
+    padding: 2% 0;
+    color: #e6d5b3;
+}
+
+.panel-nav .nav-menu .menu-general .submenu > li {
+    padding: 2% 5%;
+}
+
+.panel-contenedor .panel-contenido {
+    background-color: green;
+    position: relative;
+    grid-area: 2 / 2 / 6 / 6;
+}
+
+//PANEL DE CONTROL - USUARIOS
+.contenedor-formulario {
+    background-color: #1b1b1b;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario-usuario-nuevo {
+    background-color: #222121;
+    position: relative;
+    width: 80%;
+    height: 90%;
+    border: 5px solid #8e6d45;
+    border-radius: 20px;
+    font-size: 1.2em;
+}
+
+.formulario-usuario-nuevo .grupo-formulario {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5% 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formulario-usuario-nuevo .grupo-input {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.formulario-usuario-nuevo .grupo-error {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.formulario-usuario-nuevo .grupo-error span {
+    display: inline-block;
+    width: 40%;
+}
+
+.formulario-usuario-nuevo .estilo-formulario {
+    background: none;
+    border: none;
+    color: white;
+    border-bottom: 2px solid #8e6d45;
+    width: 40%;
+    text-align: center;
+    color: #e6d5b3;
+}
+
+.formulario-usuario-nuevo .estilo-formulario::placeholder {
+    color: #8e6d45;
+    text-align: center;
+}
+
+.formulario-usuario-nuevo select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 4px;
+    border: 1px solid #8e6d45;
+    border-radius: 9px;
+}
+
+.formulario-usuario-nuevo select option {
+    background: #8e6d45;
+    color: white;
+}
+
+.formulario-usuario-nuevo input[type="submit"] {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #e6d5b3;
+    padding: 4px;
+    border: 1px solid #e6d5b3;
+    border-radius: 9px;
+}
+
+.formulario-usuario-nuevo input[type="date"] {
+    background: none;
+    border: 0px;
+    border-bottom: 2px solid #8e6d45;
+    color: #8e6d45;
+    width: 40%;
+    text-align: center;
+}
+
+.formulario-usuario-nuevo
+    input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.ventana-emergente {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    background: grey;
+    z-index: 11;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ventana-emergente span {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url($ruta + "/cerrar-cruz.png");
+    background-size: contain;
+    cursor: pointer;
+}
+
 //MEDIA QUERYS
 @media (min-width: 768px) {
     .navbar-expand-md .navbar-nav {
         flex-direction: column;
+    }
+}
+
+/* Smartphones (retrato y paisaje) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    #appEscritorio {
+        display: none;
+    }
+
+    #appMovil {
+        display: inline-block;
+    }
+
+    #iconoMenu {
+        display: inline-block;
+        position: relative;
+        background-image: url($ruta + "/menu.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1em;
+        height: 1em;
+        left: 5%;
+        z-index: 3;
+    }
+
+    #iconoPerfil {
+        display: inline-block;
+        position: relative;
+        background-image: url($ruta + "/usuario.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1em;
+        height: 1em;
+        right: 5%;
+    }
+
+    .navbar {
+        width: 100vw;
+        height: 30vh;
+        z-index: 22;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .botones {
+        display: none;
+    }
+
+    .lista {
+        width: 100%;
+        height: 2em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .lista ul {
+        display: none;
+        position: absolute;
+        top: 1.5em;
+        background: #1b1b1b;
+        width: 100%;
+        padding: 5%;
+    }
+
+    .logo {
+        top: 0;
+    }
+
+    .py-4 {
+        width: 100vw;
+    }
+
+    .py-4 > div {
+        height: 50vh;
+    }
+
+    .seccion.claro {
+        height: 100vh;
+    }
+
+    .marco {
+        flex-direction: column;
+    }
+
+    .columna {
+        width: 100%;
+    }
+
+    .columna-texto h1,
+    .columna-texto h3,
+    .columna-texto p,
+    .iconos {
+        width: 100%;
+        top: 0;
+    }
+
+    .columna-texto h1,
+    .columna-texto h3 {
+        font-size: 1.5em;
+    }
+
+    .marco {
+        height: 95%;
+    }
+
+    .columna-texto .parrafo-segundo {
+        top: 0;
+    }
+
+    .contenedorSlider .linea .iconos {
+        height: 25px;
+    }
+
+    .contenedorSlider .linea .iconos span {
+        width: 25px;
+    }
+
+    .slider p {
+        font-size: 1.5em;
+        letter-spacing: 5px;
+    }
+
+    .slider h1 {
+        font-size: 1em;
+    }
+
+    .seccion.seccion-abajo {
+        height: 100vh;
+    }
+
+    .texto-titulo h1 {
+        font-size: 1em;
+    }
+
+    .texto-titulo h3 {
+        font-size: 1.5em;
+    }
+
+    .contenedor-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "uno"
+            "dos"
+            "tres"
+            "cuatro"
+            "cinco";
+    }
+
+    .cuadro-imagen .precio {
+        font-size: 1.2em;
+    }
+
+    .cuadro-imagen .nivel-clase {
+        font-size: 1em;
+    }
+
+    .contenedor-imagen,
+    .cuatro .contenedor-imagen,
+    .cinco .contenedor-imagen {
+        top: 30%;
+    }
+
+    .contenedor-imagen {
+        display: flex;
+        left: 60vw;
+    }
+
+    .contenedor-imagen hr {
+        display: none;
+    }
+}
+
+/* Smartphones (paisaje) ----------- */
+@media only screen and (min-width: 321px) {
+}
+
+/* Smartphones (retrato) ----------- */
+@media only screen and (max-width: 320px) {
+}
+
+/* Tabletas (retrato y paisaje) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+/* Tabletas (retrato) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+
+/* Tabletas (paisaje) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+
+/* Pantallas de escritorio pequeñas ----------- */
+@media only screen and (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/* Pantallas de escritorio grandes ----------- */
+@media only screen and (min-width: 1281px) {
+}
+
+/* Extra pequeños dispositivos (teléfonos, hasta 600px) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Pequeños dispositivos (retrato de tabletas y teléfonos grandes, 600px y más) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Dispositivos medianos (tabletas en paisaje, 768px y más) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Grandes dispositivos (computadoras/laptops, 992px y más) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra grandes dispositivos (pantallas grandes, 1200px y más) */
+@media only screen and (min-width: 1200px) {
+}
+
+/*Pantallas escritorio 4k 2560x1120*/
+@media only screen and (min-width: 2500px) {
+    .logo {
+        width: 18vw;
+    }
+
+    .lista ul li {
+        font-size: 2em;
+    }
+
+    .botones-auth li {
+        font-size: 1em;
+    }
+
+    .slider h1 {
+        font-size: 3em;
+    }
+
+    .slider p {
+        font-size: 7em;
+    }
+    .slider .boton-slider {
+        font-size: 3em;
     }
 }

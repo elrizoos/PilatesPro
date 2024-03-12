@@ -1,65 +1,60 @@
 import "./bootstrap";
 
 $(document).ready(function () {
+    console.log("SCRIPT JS LOAD");
+
+    // Slider
     let slideIndex = 0;
     showSlides();
-
+    showSlidesMovil();
     function showSlides() {
-        let slides = $(".slider");
-        for (let i = 0; i < slides.length; i++) {
-            $(slides[i]).removeClass("active");
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) {
-            slideIndex = 1;
-        }
-        $(slides[slideIndex - 1]).addClass("active");
+        const slides = $("#appEscritorio .slider");
+        console.log(slides);
+        slides.removeClass("active");
+        slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
+        slides.eq(slideIndex++).addClass("active");
         setTimeout(showSlides, 3000);
     }
-});
 
-$(document).ready(function () {
-    console.log("SCRIPT JS LOAD");
-    var botonPlay = $("#botonPlay");
-    var botonCerrar = $("#botonCerrar");
-    var video = $("#reproductor-video").get(0);
-    var tiempo = 0;
+    function showSlidesMovil() {
+        const slides = $("#appMovil .slider");
+        console.log(slides);
+        slides.removeClass("active");
+        slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
+        slides.eq(slideIndex++).addClass("active");
+        setTimeout(showSlidesMovil, 3000);
+    }
 
-    botonPlay.click(function () {
-        $(".contenido-video").toggle();
-        $("#reproductor-video").toggle();
-        $("#botonCerrar").toggle();
+    // Control de Video
+    const botonPlay = $("#botonPlay");
+    const botonCerrar = $("#botonCerrar");
+    const video = $("#reproductor-video").get(0);
+    let tiempo = 0;
+
+    botonPlay.on("click", function () {
+        toggleVideo(true);
+    });
+
+    botonCerrar.on("click", function () {
+        toggleVideo(false);
+    });
+function toggleVideo(play) {
+    $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
+    if (play) {
         video.currentTime = tiempo;
         video.play();
-    });
-    botonCerrar.click(function () {
-        $(".contenido-video").toggle();
-        $("#reproductor-video").toggle();
-        $("#botonCerrar").toggle();
-
+    } else {
         video.pause();
         tiempo = video.currentTime;
+    }
+}
+    // Redirección con Imagen del Logo
+    $(".imagen-logo").on("click", function () {
+        const url = $(this).data("url");
+        window.location.href = url;
     });
 
-    //pagina perfil usuario
-    $("#contenidoGeneral").click(function () {
-        var url = $(this).data('url');
-        $("#contenido-dinamico").load(url);
-    });
-    $("#contenidoReservas").click(function () {
-        var url = $(this).data("url");
-        $("#contenido-dinamico").load(url);
-    });
-    $("#contenidoSuscripcion").click(function () {
-        var url = $(this).data("url");
-        $("#contenido-dinamico").load(url);
-    });
-    $("#contenidoContraseña").click(function () {
-        var url = $(this).data("url");
-        $("#contenido-dinamico").load(url);
-    });
-    $("#contenidoOtros").click(function () {
-        var url = $(this).data("url");
-        $("#contenido-dinamico").load(url);
-    });
+    $('#iconoMenu').on('click', function() {
+        $('.lista ul').toggle();
+    })
 });

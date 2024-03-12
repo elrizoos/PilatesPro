@@ -112,6 +112,7 @@ class RegisterController extends Controller
             'direccion' => $data['direccion'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
+            'tipo_usuario' => $data['tipo_usuario'] ? $data['tipo_usuario'] : null,
         ]);
 
     }
@@ -123,5 +124,12 @@ class RegisterController extends Controller
         return route('inicio');
     }
 
+    public function validar($array) {
+        return $this->validator($array);
+    }
+
+    public function crearUsuario($array) {
+        return $this->create($array);
+    }
 
 }
