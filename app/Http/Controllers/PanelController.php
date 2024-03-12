@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Panel;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Validator;
 
 class PanelController extends Controller
 {
@@ -18,13 +20,14 @@ class PanelController extends Controller
         $alumnos = User::where('tipo_usuario', '=', 'alumno')->get();
         $profesores = User::where('tipo_usuario', '=', 'profesor')->get();
         $reservas = Reserva::get();
-        
+        $tipo = "";
+
         //depuracion
         //dd('Alumnos: ' . $alumnos);
         //dd('Profesores: ' . $profesores);
         //dd('Reservas: ' . $reservas);
 
-        return view('panel-control', compact(['alumnos','profesores','reservas']));
+        return view('panel-control', compact(['alumnos', 'profesores', 'reservas', 'tipo']));
     }
 
     /**
@@ -73,5 +76,25 @@ class PanelController extends Controller
     public function destroy(Panel $panel)
     {
         //
+    }
+
+    public function mostrarFormularioUsuario($tipo)
+    {
+        return view('admin.USER-crear', compact('tipo'));
+    }
+
+    public function crearUsuario(Request $request)
+    {
+        $registerController = new RegisterController();
+        $data = $request->all();
+        $data['password_confirmation'] = $data['password'];
+        $validator = $registerController->validar($data);
+        if ($validator->fails()) {
+            //dd('error: ' . var_dump($data));
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        //dd('funciona: ' . var_dump($data));
+        $usuario = $registerController->crearUsuario($data);
+        return redirect()->back()->with('success','El usuario ha sido registrado con exito');
     }
 }

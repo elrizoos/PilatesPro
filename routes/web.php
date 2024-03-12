@@ -177,6 +177,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/panel-control', [PanelController::class, 'index'])->name('panel-control');
+Route::get('/panel-control/{tipo}', [PanelController::class,'mostrarFormularioUsuario'])->name('contenido');
+Route::post('/panel-control/crearUsuario', [PanelController::class,'crearUsuario'])->name('crearUsuarioNuevo');
+
 
 Auth::routes();
 
