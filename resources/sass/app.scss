@@ -601,7 +601,8 @@ li.barra {
 .iconos span {
     display: inline-block;
     background-image: url("../../public/imagenes/pelota-de-pilates2.png");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 1em;
     height: 1em;
     z-index: 11;
@@ -1588,7 +1589,7 @@ li.barra {
         background-size: contain;
         width: 1em;
         height: 1em;
-        left: 5%;
+        left: 1vw;
         z-index: 3;
     }
 
@@ -1600,7 +1601,7 @@ li.barra {
         background-size: contain;
         width: 1em;
         height: 1em;
-        right: 5%;
+        right: 1vw;
     }
 
     .navbar {
@@ -1644,37 +1645,43 @@ li.barra {
         height: 50vh;
     }
 
-    .seccion.claro {
-        height: 100vh;
+    .linea, .iconos {
+        width: 60vh;
     }
 
     .marco {
         flex-direction: column;
+        height: 50vh;
     }
 
     .columna {
         width: 100%;
     }
 
+    .columna-texto
     .columna-texto h1,
     .columna-texto h3,
     .columna-texto p,
     .iconos {
-        width: 100%;
+        width: 100vw;
         top: 0;
+        font-size: 0.5em;
     }
 
     .columna-texto h1,
     .columna-texto h3 {
-        font-size: 1.5em;
+        font-size: 1em;
+        width: 100vw;
     }
 
-    .marco {
-        height: 95%;
-    }
+    
 
     .columna-texto .parrafo-segundo {
         top: 0;
+    }
+
+    .contenedorSlider {
+        justify-content: space-around;
     }
 
     .contenedorSlider .linea .iconos {
@@ -1683,10 +1690,12 @@ li.barra {
 
     .contenedorSlider .linea .iconos span {
         width: 25px;
+        height: 25px;
     }
 
     .slider {
         width: 100vw;
+        height: 50vh;
     }
 
     .slider p {
@@ -1698,9 +1707,12 @@ li.barra {
         font-size: 1em;
     }
 
-    .seccion.seccion-abajo {
-        height: 100vh;
+    .seccion {
+        width: 100vw;
+        height: 50vh;
     }
+
+    
 
     .texto-titulo h1 {
         font-size: 1em;
