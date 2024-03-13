@@ -1570,13 +1570,14 @@ li.barra {
 }
 
 /* Smartphones (retrato y paisaje) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (max-device-width: 480px) {
     #appEscritorio {
         display: none;
     }
 
     #appMovil {
         display: inline-block;
+        width: 100vw;
     }
 
     #iconoMenu {
@@ -1682,6 +1683,10 @@ li.barra {
 
     .contenedorSlider .linea .iconos span {
         width: 25px;
+    }
+
+    .slider {
+        width: 100vw;
     }
 
     .slider p {
