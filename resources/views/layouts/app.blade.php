@@ -79,7 +79,7 @@
     <div id="appMovil">
         @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro')
             <nav class="navbar">
-                <div class="fixed">
+                
                     <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
                         <img src="{{ asset('imagenes/logo.png') }}" alt="">
                     </div>
@@ -122,7 +122,7 @@
                         @endauth
 
                     </div>
-                </div>
+                
             </nav>
         @else
         @endif
