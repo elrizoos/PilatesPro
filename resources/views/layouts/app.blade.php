@@ -21,7 +21,7 @@
 
 <body>
     <div id="appEscritorio">
-        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro')
+        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register')
             <nav class="navbar">
                 <div class="fixed">
                     <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
@@ -72,57 +72,62 @@
 
 
         <main
-            class="{{ Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro' ? 'py-4' : 'main-auth' }}">
+            class="{{ Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register' ? 'py-4' : 'main-auth' }}">
             @yield('content')
         </main>
     </div>
     <div id="appMovil">
-        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro')
+        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register')
             <nav class="navbar">
-                
-                    <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
-                        <img src="{{ asset('imagenes/logo.png') }}" alt="">
-                    </div>
-                    <div class="lista">
-                        <span id="iconoMenu"></span>
-                        <ul>
-                            <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
-                            <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
-                            <li><a href="{{ route('clases') }}">Clases</a></li>
-                            <li><a href="{{ route('horarios') }}">Horario</a></li>
-                            <li><a href="{{ route('instructores') }}">Instructores</a></li>
-                            <li><a href="{{ route('reservas') }}">Reservas</a></li>
-                            <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
-                            <li><a href="{{ route('contacto') }}">Contacto</a></li>
+
+                <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
+                    <img src="{{ asset('imagenes/logo.png') }}" alt="">
+                </div>
+                <div class="lista">
+                    <span id="iconoMenu"></span>
+                    <ul>
+                        <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
+                        <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
+                        <li><a href="{{ route('clases') }}">Clases</a></li>
+                        <li><a href="{{ route('horarios') }}">Horario</a></li>
+                        <li><a href="{{ route('instructores') }}">Instructores</a></li>
+                        <li><a href="{{ route('reservas') }}">Reservas</a></li>
+                        <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
+                        <li><a href="{{ route('contacto') }}">Contacto</a></li>
+                    </ul>
+                    @guest
+                        <a href="{{ route('login') }}"><span id="iconoPerfil"></span></a>
+                    @endguest
+                    @auth
+                        <a href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span id="iconoPerfil"></span></a>
+                    @endauth
+                </div>
+                <div class="botones">
+                    @guest
+                        <ul class="botones-auth">
+                            <li class="inicioSesion"><a href="{{ route('login') }}">Inicio Sesión</a></li>
+                            <li class="registroSesion"><a href="{{ route('registro') }}">Registro</a></li>
                         </ul>
-                        <a href="{{route('login')}}"><span id="iconoPerfil"></span></a>
-                    </div>
-                    <div class="botones">
-                        @guest
-                            <ul class="botones-auth">
-                                <li class="inicioSesion"><a href="{{ route('login') }}">Inicio Sesión</a></li>
-                                <li class="registroSesion"><a href="{{ route('registro') }}">Registro</a></li>
-                            </ul>
-                        @endguest
+                    @endguest
 
-                        @auth
-                            <ul class="botones-login">
-                                <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
-                                <li class="icono-ajustes"><a
-                                        href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span></a>
-                                </li>
-                                <li class="icono-suscripcion"><span></span></li>
-                                <li class="icono-logout">
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button class="boton-logout" type="submit"><span></span></button>
-                                    </form></a>
-                                </li>
-                            </ul>
-                        @endauth
+                    @auth
+                        <ul class="botones-login">
+                            <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
+                            <li class="icono-ajustes"><a
+                                    href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span></a>
+                            </li>
+                            <li class="icono-suscripcion"><span></span></li>
+                            <li class="icono-logout">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="boton-logout" type="submit"><span></span></button>
+                                </form></a>
+                            </li>
+                        </ul>
+                    @endauth
 
-                    </div>
-                
+                </div>
+
             </nav>
         @else
         @endif
@@ -130,7 +135,7 @@
 
 
         <main
-            class="{{ Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'registro' ? 'py-4' : 'main-auth' }}">
+            class="{{ Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register' ? 'py-4' : 'main-auth' }}">
             @yield('content')
         </main>
     </div>

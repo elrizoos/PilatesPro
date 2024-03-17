@@ -23,73 +23,92 @@
                 @endif
                 <form action="{{ route('register') }}" method="post">
                     @csrf
-                    <div class="row-registro">
-                        <input type="text" name="name" id="name" placeholder="Nombre">
-                        <hr class="linea-auth">
-                        @error('name')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
-                        <hr class="linea-auth">
-                        @error('apellidos')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="password" name="password" id="password" placeholder="Contraseña">
-                        <hr class="linea-auth">
-                        @error('password')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="password" name="password_confirmation" id="password_confirmation"
-                            placeholder="Confirmar Contraseña">
-                        <hr class="linea-auth">
-                        @error('password_confirmed')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="text" name="dni" id="dni" placeholder="DNI">
-                        <hr class="linea-auth">
-                        @error('dni')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                    <div class="row-registro gridUno">
+                        <div class="elemento elementoNombre">
+                            <input type="text" name="name" id="name" placeholder="Nombre">
+                            <hr class="linea-auth">
+                            @error('name')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoApellidos">
+                            <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
+                            <hr class="linea-auth">
+                            @error('apellidos')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoPassword">
+                            <input type="password" name="password" id="password" placeholder="Contraseña">
+                            <hr class="linea-auth">
+                            @error('password')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoPasswordConfirmation">
+                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                placeholder="Confirmar Contraseña">
+                            <hr class="linea-auth">
+                            @error('password_confirmed')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoDni">
+                            <input type="text" name="dni" id="dni" placeholder="DNI">
+                            <hr class="linea-auth">
+                            @error('dni')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="row-registro">
-                        <input type="tel" name="telefono" id="telefono" placeholder="Telefono">
-                        <hr class="linea-auth">
-                        @error('telefono')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="email" name="email" id="email" placeholder="Email">
-                        <hr class="linea-auth">
-                        @error('email')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input class="fecha-auth"type="date" name="fecha_nacimiento" id="fecha_nacimiento">
-                        <hr class="linea-auth">
-                        @error('fecha_nacimiento')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        <input type="text" name="direccion" id="direccion" placeholder="Direccion">
-                        <hr class="linea-auth">
-                        @error('direccion')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                    <div class="row-registro gridDos">
+                        <div class="elemento elementoTelefono">
+                            <input type="tel" name="telefono" id="telefono" placeholder="Telefono">
+                            <hr class="linea-auth">
+                            @error('telefono')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoEmail">
+                            <input type="email" name="email" id="email" placeholder="Email">
+                            <hr class="linea-auth">
+                            @error('email')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoFechaNacimiento">
+                            <input class="fecha-auth"type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+                            <hr class="linea-auth">
+                            @error('fecha_nacimiento')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="elemento elementoDireccion">
+                            <input type="text" name="direccion" id="direccion" placeholder="Direccion">
+                            <hr class="linea-auth">
+                            @error('direccion')
+                                <span class="invalid-feedback active-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                     </div>
 
                     <input class="boton-enviar" type="submit" value="Entrar">

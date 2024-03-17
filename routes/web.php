@@ -183,4 +183,6 @@ Route::post('/panel-control/crearUsuario', [PanelController::class,'crearUsuario
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function(){
+    return redirect('inicio');
+})->name('home');
