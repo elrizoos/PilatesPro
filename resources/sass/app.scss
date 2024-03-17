@@ -1877,16 +1877,15 @@ li.barra {
         height: 110vh;
     }
 
-    .contenedor-facilidades  {
+    .contenedor-facilidades {
         height: 100%;
     }
 
     .contenedor-facilidades-grid {
-        height:max-content;
+        height: max-content;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
         top: 2vw;
-
     }
 
     .contenedor-facilidades-grid > div {
@@ -1913,6 +1912,43 @@ li.barra {
     .contenedor-facilidades-grid div span {
         width: 5vw;
         height: 5vw;
+    }
+
+    //Login y register
+    .main-auth .container {
+        width: 100%;
+    }
+
+    .formulario-login {
+        height: 100%;
+        width: 100%;
+    }
+
+    .div-logo .imagen-logo {
+        width: 86%;
+        height: 60%;
+    }
+
+    .div-formulario {
+        width: 80%;
+        height: 40%;
+        margin: 0 auto;
+    }
+    .div-formulario form {
+        height: 50%;
+    }
+
+    .div-formulario form input {
+        font-size: 5vw;
+    }
+
+    .div-formulario form .boton-enviar {
+        font-size: 5vw;
+        width: 100%;
+    }
+
+    .div-formulario .linea-auth {
+        top: unset;
     }
 }
 
