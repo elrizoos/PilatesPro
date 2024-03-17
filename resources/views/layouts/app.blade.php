@@ -95,7 +95,7 @@
                             <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
                             <li><a href="{{ route('contacto') }}">Contacto</a></li>
                         </ul>
-                        <span id="iconoPerfil"></span>
+                        <a href="{{route('login')}}"><span id="iconoPerfil"></span></a>
                     </div>
                     <div class="botones">
                         @guest
