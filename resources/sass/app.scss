@@ -345,7 +345,7 @@ input:focus + .linea-auth {
 
 .lista ul li {
     padding: 1vh 3vw;
-    font-size: 1.3em;
+    font-size: 1.4vw;
     font-family: COD;
     color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
@@ -375,7 +375,7 @@ ul li a.activeMenu {
 ul.botones-auth {
     width: 20vw;
     gap: 5vh;
-    font-size: 2em;
+    font-size: 1vw;
     color: #e6d5b3;
 
     display: flex;
@@ -391,7 +391,6 @@ ul.botones-auth {
     width: 15vw;
     color: rgba(255, 255, 255, 0.5);
 
-    font-size: 0.5em;
     text-align: center;
     font-weight: bold;
     box-shadow: 6px 9px 26px 6px rgba(255, 255, 255, 0.5);
@@ -583,14 +582,14 @@ li.barra {
 
 .iconos {
     width: 60vw;
-    height: 1em;
+    height: 1vw;
     margin: 0 auto;
     display: flex;
     justify-content: center;
 }
 
 .iconos-pequeños {
-    height: 1em;
+    height: 1vw;
     width: 50vw;
 }
 
@@ -603,13 +602,14 @@ li.barra {
     background-image: url("../../public/imagenes/pelota-de-pilates2.png");
     background-repeat: no-repeat;
     background-size: contain;
-    width: 1em;
-    height: 1em;
+    width: 1vw;
+    height: 1vw;
     z-index: 11;
 }
 
 .iconos-pequeños span {
-    width: 1em;
+    width: 1vw;
+    height: 1vw;
 }
 
 .slider h1 {
@@ -618,7 +618,7 @@ li.barra {
     z-index: 11;
     color: white;
     top: 0;
-    font-size: 2em;
+    font-size: 2vw;
     text-align: center;
     font-family: Exo;
     text-transform: uppercase;
@@ -626,10 +626,10 @@ li.barra {
 
 .slider p {
     color: white;
-    font-size: 4em;
+    font-size: 4vw;
     text-transform: uppercase;
     z-index: 11;
-    letter-spacing: 15px;
+    letter-spacing: 1vw;
     text-align: center;
     position: relative;
 }
@@ -637,7 +637,7 @@ li.barra {
 .slider .boton-slider {
     padding: 2vh 5vw;
     background: none;
-    border: 2px solid #e6d5b3;
+    border: 0.1vw solid #e6d5b3;
     color: #e6d5b3;
     z-index: 11;
     text-transform: uppercase;
@@ -665,7 +665,6 @@ li.barra {
 
 .columna {
     width: 38.5vw;
-    height: 100%;
 }
 
 .columna-texto {
@@ -690,7 +689,7 @@ li.barra {
 }
 
 .columna-texto h1 {
-    font-size: 2em;
+    font-size: 2vw;
     color: #8e6d45;
     display: inline-block;
     width: 30vw;
@@ -700,7 +699,7 @@ li.barra {
 }
 
 .columna-texto h3 {
-    font-size: 3em;
+    font-size: 2.5vw;
     color: white;
     display: inline-block;
     width: 30vw;
@@ -708,7 +707,7 @@ li.barra {
 }
 
 .columna-texto p {
-    font-size: 1.3em;
+    font-size: 1.5vw;
     color: rgba(255, 255, 255, 0.5);
     width: 30vw;
     margin: 0 auto;
@@ -721,7 +720,7 @@ li.barra {
 }
 
 .columna-imagenes .columna {
-    padding: 4%;
+    padding: 1vw;
 }
 
 .imagen-columna {
@@ -744,7 +743,7 @@ li.barra {
 .img-col-derecha {
     position: absolute;
     bottom: 4%;
-    width: 84%;
+    width: 100%;
     background-image: url("../../public/imagenes/ejercicio.jpg");
     background-size: cover;
     background-position: 50%;
@@ -765,13 +764,13 @@ li.barra {
 
 .texto-titulo h1 {
     color: #8e6d45;
-    font-size: 2em;
+    font-size: 2vw;
     text-transform: uppercase;
 }
 
 .texto-titulo h3 {
     color: white;
-    font-size: 3em;
+    font-size: 2.5vw;
 }
 
 .contenedor-grid {
@@ -843,7 +842,7 @@ li.barra {
 .contenedor-imagen {
     position: absolute;
     z-index: 20;
-    top: 27vh;
+    top: 70%;
     width: 100%;
     transition: top 0.5s ease;
 }
@@ -917,13 +916,13 @@ li.barra {
 }
 
 .cuadro-imagen .precio {
-    font-size: 1.5em;
+    font-size: 1.5vw;
     text-transform: uppercase;
     color: white;
 }
 
 .cuadro-imagen .nivel-clase {
-    font-size: 2em;
+    font-size: 1.6vw;
     color: white;
 }
 
@@ -932,7 +931,7 @@ li.barra {
     color: white;
     justify-content: center;
     align-items: center;
-    font-size: 1.2em;
+    font-size: 1.2vw;
     text-transform: uppercase;
 }
 
@@ -940,8 +939,8 @@ li.barra {
     display: inline-block;
     background-image: url($ruta + "/circulo-de-flecha.png");
     background-size: contain;
-    width: 1em;
-    height: 1em;
+    width: 1vw;
+    height: 1vw;
 }
 
 //Seccion video
@@ -957,7 +956,7 @@ li.barra {
     content: "";
     background-image: url($ruta + "/recepcion.jpg");
     background-size: contain;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     position: fixed;
     top: 0;
@@ -1040,13 +1039,13 @@ li.barra {
 .contenido-video h3 {
     text-transform: uppercase;
     color: white;
-    font-size: 1.5em;
+    font-size: 2.5vw;
     text-align: center;
     top: -2%;
 }
 
 .contenido-video h4 {
-    font-size: 3em;
+    font-size: 3vw;
     color: white;
     text-align: center;
     top: 2%;
@@ -1077,14 +1076,14 @@ li.barra {
 
 .contenedor-facilidades .facilidades-titulo {
     color: #8e6d45;
-    font-size: 2em;
+    font-size: 2vw;
     text-transform: uppercase;
     padding-left: 2vw;
 }
 
 .contenedor-facilidades .facilidades-subtitulo {
     color: white;
-    font-size: 3em;
+    font-size: 2.5vw;
     padding-left: 2vw;
 }
 
@@ -1150,13 +1149,13 @@ li.barra {
 
 .contenedor-facilidades-grid div h4 {
     color: white;
-    font-size: 1.5em;
+    font-size: 1.5vw;
     top: 5%;
 }
 
 .contenedor-facilidades-grid div p {
     color: rgba(255, 255, 255, 0.5);
-    font-size: 1.2em;
+    font-size: 1.2vw;
     top: 15%;
 }
 
@@ -1571,7 +1570,7 @@ li.barra {
 }
 
 /* Smartphones (retrato y paisaje) ----------- */
-@media only screen and (max-device-width: 800px) {
+@media (max-width: 800px) {
     #appEscritorio {
         display: none;
     }
@@ -1589,7 +1588,7 @@ li.barra {
         background-size: contain;
         width: 1em;
         height: 1em;
-        left: 1vw;
+        left: 5vw;
         z-index: 3;
     }
 
@@ -1601,7 +1600,7 @@ li.barra {
         background-size: contain;
         width: 1em;
         height: 1em;
-        right: 1vw;
+        right: 5vw;
     }
 
     .navbar {
@@ -1630,11 +1629,12 @@ li.barra {
         top: 1.5em;
         background: #1b1b1b;
         width: 100%;
-        padding: 5%;
+        padding: 3vw;
     }
 
     .logo {
         top: 0;
+        width: 65vw;
     }
 
     .py-4 {
@@ -1645,43 +1645,72 @@ li.barra {
         height: 50vh;
     }
 
-    .linea, .iconos {
+    .linea,
+    .iconos {
         width: 60vh;
     }
 
     .marco {
         flex-direction: column;
-        height: 50vh;
+        height: 100vh;
+        width: 100vw;
     }
 
     .columna {
-        width: 100%;
+        width: 100vw;
+        height: 50vh;
     }
 
-    .columna-texto
-    .columna-texto h1,
+    .columna-texto .columna-texto h1,
     .columna-texto h3,
     .columna-texto p,
     .iconos {
-        width: 100vw;
+        width: 70vw;
         top: 0;
         font-size: 0.5em;
     }
 
+    .columna-texto p,
     .columna-texto h1,
     .columna-texto h3 {
-        font-size: 1em;
         width: 100vw;
+        padding: 0 5vw;
     }
 
-    
+    .columna-texto h1 {
+        font-size: 6vw;
+    }
+
+    .columna-texto h3 {
+        font-size: 7vw;
+    }
+
+    .columna-texto p {
+        font-size: 3.7vw;
+    }
+
+    .columna-texto {
+        top: 0;
+    }
+
+    .columna-texto .linea {
+        padding: 0 5vw;
+    }
 
     .columna-texto .parrafo-segundo {
         top: 0;
     }
 
+    .columna-imagenes {
+        padding: 5vw;
+    }
+
+    .columna-imagenes .columna {
+        height: 100%;
+    }
     .contenedorSlider {
         justify-content: space-around;
+        height: 50vh;
     }
 
     .contenedorSlider .linea .iconos {
@@ -1689,8 +1718,8 @@ li.barra {
     }
 
     .contenedorSlider .linea .iconos span {
-        width: 25px;
-        height: 25px;
+        width: 5vw;
+        height: 5vw;
     }
 
     .slider {
@@ -1699,12 +1728,12 @@ li.barra {
     }
 
     .slider p {
-        font-size: 1.5em;
+        font-size: 7vw;
         letter-spacing: 5px;
     }
 
     .slider h1 {
-        font-size: 1em;
+        font-size: 6vw;
     }
 
     .seccion {
@@ -1712,14 +1741,29 @@ li.barra {
         height: 50vh;
     }
 
-    
+    .seccion.claro {
+        height: 100vh;
+    }
 
+    .iconos-pequeños span {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .seccion.seccion-abajo {
+        height: 100vh;
+    }
+
+    .texto-titulo {
+        padding: 5vw;
+        height: unset;
+    }
     .texto-titulo h1 {
-        font-size: 1em;
+        font-size: 6vw;
     }
 
     .texto-titulo h3 {
-        font-size: 1.5em;
+        font-size: 7vw;
     }
 
     .contenedor-grid {
@@ -1731,29 +1775,144 @@ li.barra {
             "tres"
             "cuatro"
             "cinco";
+        padding-top: 0;
+    }
+
+    .contenedor-imagen {
+        top: 0;
+        left: 0;
+        position: relative;
     }
 
     .cuadro-imagen .precio {
-        font-size: 1.2em;
+        font-size: 5vw;
     }
 
     .cuadro-imagen .nivel-clase {
-        font-size: 1em;
+        font-size: 4vw;
     }
 
-    .contenedor-imagen,
+    .texto-imagen {
+        width: 100%;
+    }
+
+    .mas-detalles {
+        font-size: 3vw;
+    }
+
     .cuatro .contenedor-imagen,
     .cinco .contenedor-imagen {
-        top: 30%;
+        top: 0;
     }
 
     .contenedor-imagen {
         display: flex;
-        left: 60vw;
     }
 
     .contenedor-imagen hr {
         display: none;
+    }
+
+    .cuadro-imagen:hover {
+        background-size: 100%;
+        transition: all 0.5s ease;
+    }
+
+    .uno:hover,
+    .dos:hover {
+        background-size: 100%;
+        transition: all 0.5s ease;
+    }
+
+    .cuadro-imagen:hover .contenedor-imagen {
+        top: 0;
+        transition: top 0.5s ease;
+    }
+
+    .cuatro:hover .contenedor-imagen,
+    .cinco:hover .contenedor-imagen {
+        top: 0;
+        transition: top 0.5s ease;
+    }
+
+    .cuatro .contenedor-imagen,
+    .cinco .contenedor-imagen {
+        top: 0;
+        transition: top 0.5s ease;
+    }
+
+    .cuadro-imagen:hover hr {
+        width: 0%;
+        transition: width 0.5s ease;
+    }
+
+    .linea-iconos {
+        height: 1vw;
+    }
+
+    .linea-iconos span {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .contenido-video {
+        height: 100%;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .contenido-video * {
+        top: 0 !important;
+    }
+
+    .contenido-video h3 {
+        font-size: 6vw;
+    }
+
+    .contenido-video h4 {
+        font-size: 7vw;
+    }
+
+    .seccion.facilidades {
+        height: 110vh;
+    }
+
+    .contenedor-facilidades  {
+        height: 100%;
+    }
+
+    .contenedor-facilidades-grid {
+        height:max-content;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        top: 2vw;
+
+    }
+
+    .contenedor-facilidades-grid > div {
+        padding: 5%;
+        height: max-content;
+        gap: 5vw;
+    }
+
+    .contenedor-facilidades .facilidades-titulo {
+        font-size: 6vw;
+    }
+
+    .contenedor-facilidades .facilidades-subtitulo {
+        font-size: 7vw;
+    }
+
+    .contenedor-facilidades-grid div h4 {
+        font-size: 5vw;
+    }
+    .contenedor-facilidades-grid div p {
+        font-size: 4vw;
+    }
+
+    .contenedor-facilidades-grid div span {
+        width: 5vw;
+        height: 5vw;
     }
 }
 
@@ -1828,5 +1987,17 @@ li.barra {
     }
     .slider .boton-slider {
         font-size: 3em;
+    }
+}
+
+@media (min-width: 1340px) and (max-width: 1465px) {
+    .contenedor-imagen {
+        top: 72%;
+    }
+}
+
+@media (min-width: 1150px) and (max-width: 1340px) {
+    .contenedor-imagen {
+        top: 75%;
     }
 }
