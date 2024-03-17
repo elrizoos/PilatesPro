@@ -226,7 +226,7 @@
             </div>
         </div>
     </div>
-    <div class="seccion">
+    <div class="seccion facilidades">
         <div class="contenedor-facilidades">
             <h3 class="facilidades-titulo">Nuestros servicios</h3>
             <h4 class="facilidades-subtitulo">Facilidades del estudio</h4>
