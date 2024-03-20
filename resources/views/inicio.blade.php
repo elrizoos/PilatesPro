@@ -6,7 +6,7 @@
             {{ session('registro-exitoso') }}
         </div>
     @endif
-    <div class="slider-seccion">
+    <div class="seccion slider-seccion">
         <div class="slider slider-uno">
             <div class="contenedorSlider">
                 <div class="linea">
@@ -57,8 +57,9 @@
         </div>
     </div>
     <div class="seccion claro">
-        <div class="marco">
-            <div class="columna columna-texto">
+        <div class="marcoGrid">
+
+            <div class="marcoGrid-elemento marcoGrid-uno">
                 <div class="linea">
                     <div class="iconos iconos-pequeños iconos-izquierda">
                         <span></span>
@@ -70,26 +71,33 @@
                 </div>
                 <h1>Estudio Pilates Valladolid</h1>
                 <h3>Disfruta de una experiencia única</h3>
+            </div>
+            <div class="marcoGrid-elemento marcoGrid-cuatro">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque nihil corrupti sit velit modi quia
                     tempore laudantium consectetur soluta quas totam, recusandae suscipit reiciendis numquam explicabo
                     nostrum optio mollitia rerum!</p>
-                <p class="parrafo-segundo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id beatae aliquid
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id beatae aliquid
                     incidunt rerum fugit dolore consequuntur voluptatum excepturi eaque! Impedit nesciunt enim id velit
                     optio magni eaque, qui mollitia ad.</p>
-
             </div>
-            <div class="columna columna-imagenes">
-                <div class="columna">
-                    <div class="imagen-columna img-col-izquierda">
 
-                    </div>
-                </div>
-                <div class="columna">
-                    <div class="imagen-columna img-col-derecha">
 
-                    </div>
+
+
+            <div class="marcoGrid-elemento marcoGrid-tres">
+                <div class="imagen-columna img-col-izquierda">
+
                 </div>
             </div>
+
+
+            <div class="marcoGrid-elemento marcoGrid-dos">
+                <div class="imagen-columna img-col-derecha">
+
+                </div>
+            </div>
+
+
         </div>
     </div>
     <div class="seccion seccion-abajo">
@@ -207,7 +215,7 @@
     </div>
     <div class="seccion transparente fondo">
         <div class="marco-video">
-            <video id="reproductor-video" class="reproductor-video" width="320" height="240" controls>
+            <video id="reproductor-video" class="reproductor-video" controls>
                 <source src="{{ asset('videos/video-presentacion.mp4') }}" type="video/mp4">
                 Tu navegador no soporta el elemento de video HTML5.
             </video>

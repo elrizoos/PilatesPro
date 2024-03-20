@@ -35,8 +35,16 @@ $(document).ready(function () {
         toggleVideo(true);
     });
 
+    $(document).on('touchstart', '#botonPlay', function() {
+        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
+    });
+
     botonCerrar.on("click", function () {
         toggleVideo(false);
+    });
+
+    $(document).on("touchstart", "#botonCerrar", function () {
+        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
     });
 function toggleVideo(play) {
     $(".contenido-video, #reproductor-video, #botonCerrar").toggle();

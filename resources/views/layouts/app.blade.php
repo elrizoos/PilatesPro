@@ -23,46 +23,53 @@
     <div id="appEscritorio">
         @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register')
             <nav class="navbar">
-                <div class="fixed">
-                    <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
-                        <img src="{{ asset('imagenes/logo.png') }}" alt="">
+                <div class="fixed grid">
+                    <div class="grid-elemento elemento-uno">
+                        <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
+                            
+                        </div>
                     </div>
-                    <div class="lista">
-                        <ul>
-                            <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
-                            <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
-                            <li><a href="{{ route('clases') }}">Clases</a></li>
-                            <li><a href="{{ route('horarios') }}">Horario</a></li>
-                            <li><a href="{{ route('instructores') }}">Instructores</a></li>
-                            <li><a href="{{ route('reservas') }}">Reservas</a></li>
-                            <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
-                            <li><a href="{{ route('contacto') }}">Contacto</a></li>
-                        </ul>
+                    <div class="grid-elemento elemento-dos">
+                        <div class="lista">
+                            <ul>
+                                <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
+                                <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
+                                <li><a href="{{ route('clases') }}">Clases</a></li>
+                                <li><a href="{{ route('horarios') }}">Horario</a></li>
+                                <li><a href="{{ route('instructores') }}">Instructores</a></li>
+                                <li><a href="{{ route('reservas') }}">Reservas</a></li>
+                                <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
+                                <li><a href="{{ route('contacto') }}">Contacto</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="botones">
-                        @guest
-                            <ul class="botones-auth">
-                                <li class="inicioSesion"><a href="{{ route('login') }}">Inicio Sesión</a></li>
-                                <li class="registroSesion"><a href="{{ route('registro') }}">Registro</a></li>
-                            </ul>
-                        @endguest
+                    <div class="grid-elemento elemento-tres">
+                        <div class="botones">
+                            @guest
+                                <ul class="botones-auth">
+                                    <li class="inicioSesion"><a href="{{ route('login') }}">Inicio Sesión</a></li>
+                                    <li class="registroSesion"><a href="{{ route('registro') }}">Registro</a></li>
+                                </ul>
+                            @endguest
 
-                        @auth
-                            <ul class="botones-login">
-                                <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
-                                <li class="icono-ajustes"><a class="flex-center"
-                                        href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
-                                </li>
-                                <li class="icono-suscripcion"><span></span>Suscripción</li>
-                                <li class="icono-logout">
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                        <button class="boton-logout flex-center" type="submit"><span></span>Salir</button>
-                                    </form></a>
-                                </li>
-                            </ul>
-                        @endauth
+                            @auth
+                                <ul class="botones-login">
+                                    <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
+                                    <li class="icono-ajustes"><a class="flex-center"
+                                            href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
+                                    </li>
+                                    <li class="icono-suscripcion"><span></span>Suscripción</li>
+                                    <li class="icono-logout">
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button class="boton-logout flex-center"
+                                                type="submit"><span></span>Salir</button>
+                                        </form></a>
+                                    </li>
+                                </ul>
+                            @endauth
 
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -99,7 +106,9 @@
                         <a href="{{ route('login') }}"><span id="iconoPerfil"></span></a>
                     @endguest
                     @auth
-                        <a href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span id="iconoPerfil"></span></a>
+                        <a
+                            href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span
+                                id="iconoPerfil"></span></a>
                     @endauth
                 </div>
                 <div class="botones">
