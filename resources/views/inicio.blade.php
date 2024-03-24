@@ -18,7 +18,7 @@
                         <span></span>
                     </div>
                 </div>
-                <h1>Titulo 1</h1>
+                <h2>Titulo 1</h2>
                 <p>parrafo Lorem, ipsum dolor sit amet consectetur</p>
                 <input class="boton-slider" type="button" value="hola">
             </div>
@@ -34,7 +34,7 @@
                         <span></span>
                     </div>
                 </div>
-                <h1>Titulo 1</h1>
+                <h2>Titulo 1</h2>
                 <p>parrafo Lorem, ipsum dolor sit amet consectetur</p>
                 <input class="boton-slider" type="button" value="hola">
             </div>
@@ -50,7 +50,7 @@
                         <span></span>
                     </div>
                 </div>
-                <h1>Titulo 1</h1>
+                <h2>Titulo 1</h2>
                 <p>parrafo Lorem, ipsum dolor sit amet consectetur</p>
                 <input class="boton-slider" type="button" value="hola">
             </div>
@@ -102,7 +102,7 @@
     </div>
     <div class="seccion seccion-abajo">
         <div class="texto-titulo">
-            <h1>Chus Alvarez Pilates</h1>
+            <h2>Chus Alvarez Pilates</h2>
             <h3>Cursos por nivel de experiencia</h3>
         </div>
         <div class="contenedor-grid">
@@ -228,16 +228,16 @@
                     <span></span>
                     <span></span>
                 </div>
-                <h3>Chus Alvarez Pilates</h3>
-                <h4>Video de promoción</h4>
+                <h2>Chus Alvarez Pilates</h3>
+                <h3>Video de promoción</h4>
                 <span id="botonPlay" class="icono-play"></span>
             </div>
         </div>
     </div>
     <div class="seccion facilidades">
         <div class="contenedor-facilidades">
-            <h3 class="facilidades-titulo">Nuestros servicios</h3>
-            <h4 class="facilidades-subtitulo">Facilidades del estudio</h4>
+            <h2 class="facilidades-titulo">Nuestros servicios</h3>
+            <h3 class="facilidades-subtitulo">Facilidades del estudio</h4>
             <div class="contenedor-facilidades-grid">
                 <div class="elemento-uno">
                     <div class="elemento-row">

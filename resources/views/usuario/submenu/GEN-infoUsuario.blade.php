@@ -18,7 +18,9 @@
             <input class="form-control" type="text" name="dni" id="dni" value="{{ Auth::user()->dni }}"
                 disabled>
         </div>
-        <input type="submit" value="Guardar cambios">
+        <div class="grupo-formulario submit">
+            <input type="submit" value="Guardar cambios">
+        </div>
     </form>
-@vite(['resources/js/contenidoInterno.js'])
+    @vite(['resources/js/contenidoInterno.js'])
 @endsection

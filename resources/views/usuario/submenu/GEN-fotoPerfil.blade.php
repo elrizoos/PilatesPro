@@ -8,14 +8,16 @@
     <div class="grupo-formulario">
         <label for="fotoPerfil">Foto de perfil actual:</label>
         @if (auth()->user()->imagen)
-            <img src="{{ asset('storage/' . auth()->user()->imagen->ruta_imagen) }}" alt="Imagen de perfil">
+            <img class="imagenPerfil" src="{{ asset('storage/' . auth()->user()->imagen->ruta_imagen) }}" alt="Imagen de perfil">
         @else
             <p>No hay imagen de perfil</p>
         @endif
 
-        <input type="file" name="fotoPerfil" id="fotoperfil">
+        <input class="subir-imagen" type="file" name="fotoPerfil" id="fotoperfil">
     </div>
-    <input type="submit" value="Guardar cambios">
+    <div class="grupo-formulario submit">
+            <input type="submit" value="Guardar cambios">
+        </div>
 </form>
 @if(Auth()->user()->imagen){
 <form action="{{ route('imagen.destroy', ['imagen' => Auth()->user()->imagen->id]) }}" method="POST">
