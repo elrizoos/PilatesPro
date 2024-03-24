@@ -1,14 +1,15 @@
 @extends('usuario.reservas')
 @section('reservasActivas')
     <p>En esta seccion podras ver las reservas que tienes activas en este momento.</p>
-    <table class="table table-light">
-        <tbody>
+    <table class="table tabla-dorada">
+        <thead>
             <tr>
-                <td>Nº Reserva</td>
-                <td>Clase</td>
-                <td>Fecha</td>
-                <td>Profesor</td>
+                <th>Nº Reserva</th>
+                <th>Clase</th>
+                <th>Fecha</th>
+                <th>Profesor</th>
             </tr>
+        </thead>
             <tr>
                 @foreach ($reservas as $reserva)
                     <td>{{$reserva->id}}</td>
@@ -21,13 +22,7 @@
                     <td>{{$reserva->clase->grupo->profesor->nombre}}</td>
                 @endforeach
             </tr>
-            @foreach ($reservas as $reserva)
-                @if ($reserva->clase)
-                    @if ($reserva->clase->grupo)
-                        {{$reserva->clase->grupo->profesor->nombre}}
-                    @endif
-                @endif
-            @endforeach
+            
         </tbody>
     </table>
     @vite(['resources/js/contenidoInterno.js'])

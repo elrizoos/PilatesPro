@@ -112,7 +112,7 @@ class RegisterController extends Controller
             'direccion' => $data['direccion'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
-            'tipo_usuario' => $data['tipo_usuario'] ? $data['tipo_usuario'] : null,
+            'tipo_usuario' => $data['tipo_usuario'] ?? null,
         ]);
 
     }
