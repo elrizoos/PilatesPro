@@ -211,7 +211,7 @@ input:-webkit-autofill:active {
 body {
     font-size: 50%;
 }
-.active {
+.active, .flex {
     display: flex !important;
 }
 
@@ -250,7 +250,7 @@ body {
 }
 
 #appEscritorio > * {
-    min-width: 400px;
+    min-width: 500px;
 }
 
 .navbar {
@@ -288,7 +288,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 150px;
+    min-height: 15em;
     margin: 0 auto;
 }
 
@@ -468,6 +468,7 @@ li.barra {
     height: 100vh;
     background: $colorFondo;
     position: relative;
+    min-height: 100vh;
 }
 
 .transparente {
@@ -701,6 +702,7 @@ li.barra {
     flex: 1;
     text-transform: uppercase;
     color: $colorSecundario;
+    text-wrap: nowrap;
 }
 
 .marcoGrid-uno h3 {
@@ -1766,5 +1768,71 @@ div#contenedor-sugerenciaReservas {
 @media (min-width: 250px) and (max-width: 800px) {
     body {
         font-size: 40%;
+    }
+}
+
+@media (max-width: 3000px) {
+    body {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 2270px) {
+    body {
+        font-size: 60%;
+    }
+}
+
+@media (max-width: 1550px) {
+    body {
+        font-size: 50%;
+    }
+}
+@media (max-width: 1451px) {
+    body {
+        font-size: 35%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .grid-elemento.elemento-dos {
+        width: 20em;
+        height: 100%;
+        background-image: url($ruta + "/menu.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        z-index: 31;
+    }
+    .grid-elemento.elemento-dos ul {
+        display: flex;
+        flex-direction: column;
+        background-color: $colorFondo;
+        position: absolute;
+        top: 6em;
+        left: 4vw;
+        border: 1px solid $colorSecundario;
+        border-radius: 1em;
+        bottom: 0;
+        width: 90vw;
+        height: max-content;
+        z-index: 30;
+        gap: 1em;
+        padding: 2em;
+    }
+    .grid-elemento.elemento-uno .logo.imagen-logo {
+        width: 74em;
+        height: 34em;
+    }
+
+    .grid {
+        grid-template-rows: 1fr 0.1fr 1fr;
+    }
+    .botones {
+        font-size: 1.5em;
+    }
+    .lista ul li {
+        padding: 0;
     }
 }

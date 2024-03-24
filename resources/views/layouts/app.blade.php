@@ -29,9 +29,9 @@
                             
                         </div>
                     </div>
-                    <div class="grid-elemento elemento-dos">
+                    <div id="listaMenu" class="grid-elemento elemento-dos">
                         <div class="lista">
-                            <ul>
+                            <ul style="display: none">
                                 <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
                                 <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
                                 <li><a href="{{ route('clases') }}">Clases</a></li>

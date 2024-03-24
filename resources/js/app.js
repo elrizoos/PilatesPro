@@ -65,4 +65,8 @@ function toggleVideo(play) {
     $('#iconoMenu').on('click', function() {
         $('.lista ul').toggle();
     })
+
+    $('#listaMenu').on('click', function() {
+        $('#listaMenu ul').toggle();
+    });
 });
