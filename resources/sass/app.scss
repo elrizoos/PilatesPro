@@ -211,7 +211,8 @@ input:-webkit-autofill:active {
 body {
     font-size: 50%;
 }
-.active, .flex {
+.active,
+.flex {
     display: flex !important;
 }
 
@@ -250,7 +251,7 @@ body {
 }
 
 #appEscritorio > * {
-    min-width: 500px;
+    min-width: 200px;
 }
 
 .navbar {
@@ -281,6 +282,18 @@ body {
     justify-content: center;
     align-items: center;
 }
+// ! pongo important para que no se me quite por el span de grid element puesto en otra seccion del código
+.iconoMenu {
+    width: 5em;
+    height: 5em;
+    background-image: url($ruta + "/menu.png") !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    z-index: 31;
+    display: none;
+}
 
 .logo.imagen-logo {
     position: relative;
@@ -292,6 +305,9 @@ body {
     margin: 0 auto;
 }
 
+.lista {
+    display: flex;
+}
 .lista,
 .lista ul {
     width: 100%;
@@ -1795,26 +1811,23 @@ div#contenedor-sugerenciaReservas {
 }
 
 @media (max-width: 1000px) {
-    .grid-elemento.elemento-dos {
-        width: 20em;
-        height: 100%;
-        background-image: url($ruta + "/menu.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        position: relative;
-        z-index: 31;
+    #appEscritorio > * {
+        min-width: 500px;
+    }
+    .lista ul {
+        display: none;
+    }
+    .navbar .elemento-dos .iconoMenu {
+        display: inline-block;
     }
     .grid-elemento.elemento-dos ul {
-        display: flex;
         flex-direction: column;
         background-color: $colorFondo;
         position: absolute;
-        top: 6em;
+        bottom: 5em;
         left: 4vw;
         border: 1px solid $colorSecundario;
         border-radius: 1em;
-        bottom: 0;
         width: 90vw;
         height: max-content;
         z-index: 30;
@@ -1834,5 +1847,60 @@ div#contenedor-sugerenciaReservas {
     }
     .lista ul li {
         padding: 0;
+    }
+
+    .marcoGrid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+    }
+
+    .marcoGrid-uno {
+        grid-area: 1 / 1 / 4 / 7;
+    }
+
+    .marcoGrid-dos {
+        grid-area: 4 / 1 / 10 / 4;
+    }
+
+    .marcoGrid-tres {
+        grid-area: 4 / 4 / 10 / 7;
+    }
+
+    .marcoGrid-cuatro {
+        grid-area: 10 / 1 / 13 / 7;
+    }
+
+    .marcoGrid-elemento {
+        padding: 1%;
+    }
+
+    .seccion.seccion-abajo {
+        height: 200vh;
+    }
+
+    .seccion.facilidades{
+        height: max-content;
+    }
+    .contenedor-facilidades {
+        padding: 1%;
+    }
+    .contenedor-facilidades-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-areas: "uno"
+        "dos"
+        "tres"
+        "cuatro"
+        "cinco";
+    }
+
+    .formulario-login {
+        width: 100%;
+        height: 100%;
+        padding: 3%;
     }
 }
