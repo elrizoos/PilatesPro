@@ -187,6 +187,7 @@ Route::get('/panel-control/mostrarFormularioContrasena/{usuario}', [PanelControl
 Route::put('/panel-control/modificarContrasena/{usuario}' , [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
 
 Route::get('/panel-control/crearContenido/{opcion}', [PanelController::class, 'crearContenido'])->name('crearContenido');
+Route::post('/panel-control/crearContenidoGestionFormulario', [PanelController::class, 'crearContenidoGestionFormulario'])->name('crearContenidoGestionFormulario');
 Auth::routes();
 
 Route::get('/home', function(){

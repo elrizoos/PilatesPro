@@ -1896,19 +1896,21 @@ div#contenedor-sugerenciaReservas {
 //Contenido crear pagina
 .seccion-elegir {
     background-color: $colorFondo;
-    width: 70%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
+
+
 
 .seccion-elegir .opcion {
     border: 0.2em inset #8e6d45;
     position: relative;
 }
 
-.opcion-uno {
+.opcion-tres {
     background-image: url($ruta + "/Imagen.png");
     background-size: 90%;
     background-position: center;
@@ -1920,7 +1922,7 @@ div#contenedor-sugerenciaReservas {
     background-position: center;
     background-repeat: no-repeat;
 }
-.opcion-tres {
+.opcion-uno {
     background-image: url($ruta + "/Imagen3.png");
     background-size: 90%;
     background-position: center;
@@ -1968,12 +1970,54 @@ div#contenedor-sugerenciaReservas {
 //Estructura nueva
 .seccion.seccion-nueva {
     background: $colorPrincipal;
-    border: 0.2em inset $colorDorado;
+    border: 0.2em inset $dorado;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    height: 100%;
+    min-height: unset;
+}
+.seccion.seccion-nueva > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seccion-nueva .titulo input {
+    background: none;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 3em;
+    text-align: center;
+}
+.seccion-nueva .imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seccion-nueva .imagen .imagen-marco {
+    background-color: orange;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seccion-nueva .imagen input{
+    display: none;
+}
+
+.seccion-nueva .parrafo textarea {
+    width: 70%;
+    height: 90%;
+    background: none;
+    border: none;
+    font-size:2em;
+    color: $colorGris;
+    text-align: center;
 }
 
 //Estructura uno
@@ -1986,6 +2030,13 @@ div#contenedor-sugerenciaReservas {
 }
 .seccion.seccion-nueva.seccion-uno .parrafo {
     grid-area: 3 / 5 / 7 / 9;
+}
+
+.formulario-creacion {
+    background-color: red;
+    position: relative;
+    width: 80%;
+    height: 90%;
 }
 
 //Estructura dos
@@ -2019,7 +2070,7 @@ div#contenedor-sugerenciaReservas {
     grid-area: 1 / 1 / 3 / 9;
 }
 .seccion.seccion-nueva.seccion-cuatro .parrafo {
-    grid-area: 3 / 1 / 7 / 9; 
+    grid-area: 3 / 1 / 7 / 9;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

@@ -204,4 +204,22 @@ class PanelController extends Controller
 
     }
 
+    public function crearContenido($opcion) {
+        switch($opcion) {
+            case 'uno':
+                $tipo = 'CONT-opcion-uno';
+                return view('formularios-contenido.uno', compact('tipo'));
+                break;
+            case 'dos':
+                break;
+            case 'tres':
+                break;
+            case 'cuatro':
+                break;
+        }
+    }
+
+    public function crearContenidoGestionFormulario(Request $request) {
+        dd($request->all());
+    }
 }

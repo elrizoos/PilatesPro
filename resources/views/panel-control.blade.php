@@ -113,6 +113,18 @@
                         @yield('CONT-crear')
                     @break
 
+                    @case('CONT-opcion-uno')
+                        @yield('CONT-opcion-uno')
+                    @break
+
+                    @case('CONT-opcion-dos')
+                        @yield('CONT-crear')
+                    @break
+
+                    @case('CONT-opcion-tres')
+                        @yield('CONT-crear')
+                    @break
+
                     @default
                 @endswitch
             @else
