@@ -21,7 +21,7 @@
 
 <body>
     <div class="panel-contenedor">
-        
+
         <div class="panel-logo">
             <div class="logo"></div>
         </div>
@@ -34,12 +34,13 @@
                             <li><a href="{{ route('contenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
                             <li><a href="{{ route('contenido', 'USER-editar') }}">Editar Usuario
                                     Existente</a></li>
-                            <li>Gestion Contraseñas</li>
+                            <li><a href="{{ route('contenido', 'USER-gestionContrasena') }}">Gestion Contraseñas</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="contenido">Contenido <span></span>
                         <ul class="submenu">
-                            <li>Crear nueva pagina</li>
+                            <li><a href="{{ route('contenido', 'CONT-crear') }}">Crear nueva pagina</a></li>
                             <li>Crear nueva sección</li>
                             <li>Eliminar seccion o página</li>
                             <li>Galeria de imagenes y videos</li>
@@ -98,6 +99,18 @@
 
                     @case('USER-editar-formulario')
                         @yield('USER-editar-formulario')
+                    @break
+
+                    @case('USER-gestionContrasena')
+                        @yield('USER-gestionContrasena')
+                    @break
+
+                    @case('USER-gestionContrasena-formulario')
+                        @yield('USER-gestionContrasena-formulario')
+                    @break
+
+                    @case('CONT-crear')
+                        @yield('CONT-crear')
                     @break
 
                     @default

@@ -72,12 +72,12 @@
                     <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
                 </div>
                 <div class="grupo-error">
-                    @error('name')
+                    @error('password')
                         <span class="invalid-feedback active-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    @error('apellidos')
+                    @error('fecha_nacimiento')
                         <span class="invalid-feedback active-block" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

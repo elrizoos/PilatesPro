@@ -183,6 +183,10 @@ Route::get('/panel-control/mostrarUsuarios', [PanelController::class, 'mostrarUs
 Route::get('/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
 Route::put('/panel-control/actualizarUsuario', [PanelController::class, 'actualizarUsuario'])->name('actualizarUsuario');
 Route::delete('/panel-control/eliminarUsuario/{usuario}', [UsuarioController::class, 'delete'])->name('eliminarUsuario');
+Route::get('/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
+Route::put('/panel-control/modificarContrasena/{usuario}' , [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
+
+Route::get('/panel-control/crearContenido/{opcion}', [PanelController::class, 'crearContenido'])->name('crearContenido');
 Auth::routes();
 
 Route::get('/home', function(){
