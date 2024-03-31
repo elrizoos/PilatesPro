@@ -21,6 +21,7 @@
 
 <body>
     <div class="panel-contenedor">
+        
         <div class="panel-logo">
             <div class="logo"></div>
         </div>
@@ -31,8 +32,8 @@
                     <li class="usuarios">Usuarios <span></span>
                         <ul class="submenu">
                             <li><a href="{{ route('contenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
-                            <li>Editar Usuario Existente</li>
-                            <li>Eliminar Usuario</li>
+                            <li><a href="{{ route('contenido', 'USER-editar') }}">Editar Usuario
+                                    Existente</a></li>
                             <li>Gestion Contraseñas</li>
                         </ul>
                     </li>
@@ -91,7 +92,12 @@
                         @yield('USER-crear')
                     @break
 
-                    @case(2)
+                    @case('USER-editar')
+                        @yield('USER-editar')
+                    @break
+
+                    @case('USER-editar-formulario')
+                        @yield('USER-editar-formulario')
                     @break
 
                     @default

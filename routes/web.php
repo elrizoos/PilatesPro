@@ -177,10 +177,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/panel-control', [PanelController::class, 'index'])->name('panel-control');
-Route::get('/panel-control/{tipo}', [PanelController::class,'mostrarFormularioUsuario'])->name('contenido');
+Route::get('/panel-control/{tipo}', [PanelController::class,'mostrarContenido'])->name('contenido');
 Route::post('/panel-control/crearUsuario', [PanelController::class,'crearUsuario'])->name('crearUsuarioNuevo');
-
-
+Route::get('/panel-control/mostrarUsuarios', [PanelController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
+Route::get('/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
+Route::put('/panel-control/actualizarUsuario', [PanelController::class, 'actualizarUsuario'])->name('actualizarUsuario');
+Route::delete('/panel-control/eliminarUsuario/{usuario}', [UsuarioController::class, 'delete'])->name('eliminarUsuario');
 Auth::routes();
 
 Route::get('/home', function(){

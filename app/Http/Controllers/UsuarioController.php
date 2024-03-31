@@ -75,6 +75,8 @@ class UsuarioController extends Controller
                 break;
         }
     }
-
+    public function delete($id){
+        
+    }
     
 }

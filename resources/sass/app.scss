@@ -1638,6 +1638,16 @@ h3 {
     padding: 2% 5%;
 }
 
+.submenu li a {
+    color: #e6d5b3;
+    text-decoration: none;
+}
+
+.submenu li:hover a {
+    color: $colorSecundario;
+    text-decoration: underline;
+}
+
 .panel-contenedor .panel-contenido {
     position: relative;
     grid-area: 2 / 2 / 6 / 6;
@@ -1663,12 +1673,12 @@ h3 {
     justify-content: center;
 }
 
-.formulario-usuario-nuevo {
+.formulario-usuario-nuevo, .contenedor-formulario form {
     width: 97%;
     height: 97%;
 }
 
-.formulario-usuario-nuevo .grupo-formulario {
+.formulario-usuario-nuevo .grupo-formulario, .contenedor-formulario form .grupo-formulario {
     width: 100%;
     margin: 0 auto;
     padding: 2.5% 10%;
@@ -1678,14 +1688,14 @@ h3 {
     flex-direction: column;
 }
 
-.formulario-usuario-nuevo .grupo-input {
+.formulario-usuario-nuevo .grupo-input, .contenedor-formulario form .grupo-input {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.formulario-usuario-nuevo .grupo-error {
+.formulario-usuario-nuevo .grupo-error, .contenedor-formulario form .grupo-error {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -1693,12 +1703,12 @@ h3 {
     text-align: center;
 }
 
-.formulario-usuario-nuevo .grupo-error span {
+.formulario-usuario-nuevo .grupo-error span, .contenedor-formulario form .grupo-error span {
     display: inline-block;
     width: 40%;
 }
 
-.formulario-usuario-nuevo .estilo-formulario {
+.formulario-usuario-nuevo .estilo-formulario, .contenedor-formulario form .estilo-formulario {
     background: none;
     border: none;
     color: white;
@@ -1708,12 +1718,12 @@ h3 {
     color: #e6d5b3;
 }
 
-.formulario-usuario-nuevo .estilo-formulario::placeholder {
+.formulario-usuario-nuevo .estilo-formulario::placeholder, .contenedor-formulario form .estilo-formulario::placeholder {
     color: #8e6d45;
     text-align: center;
 }
 
-.formulario-usuario-nuevo select {
+.formulario-usuario-nuevo select, .contenedor-formulario form select {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1724,12 +1734,12 @@ h3 {
     border-radius: 9px;
 }
 
-.formulario-usuario-nuevo select option {
+.formulario-usuario-nuevo select option, .contenedor-formulario form select option {
     background: #8e6d45;
     color: white;
 }
 
-.formulario-usuario-nuevo input[type="submit"] {
+.formulario-usuario-nuevo input[type="submit"], .contenedor-formulario form input[type="submit"] , .formulario-eliminar .botones input {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1740,7 +1750,7 @@ h3 {
     border-radius: 9px;
 }
 
-.formulario-usuario-nuevo input[type="date"] {
+.formulario-usuario-nuevo input[type="date"], .contenedor-formulario form input[type="date"] {
     background: none;
     border: 0px;
     border-bottom: 2px solid #8e6d45;
@@ -1750,7 +1760,7 @@ h3 {
 }
 
 .formulario-usuario-nuevo
-    input[type="date"]::-webkit-calendar-picker-indicator {
+    input[type="date"]::-webkit-calendar-picker-indicator, .contenedor-formulario form input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
@@ -1781,6 +1791,87 @@ div#contenedor-reservasActivas,
 div#contenedor-sugerenciaReservas {
     flex-direction: column;
 }
+
+//USER EDITAR
+.formulario-eliminar {
+    position: absolute;
+    background-color: $colorPrincipal;
+    width: 60%;
+    top: 40%;
+    left: 20%;
+    right: 20%;
+    bottom: 40%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 6px 9px 29px 13px #000000;
+    border: 0.2em inset $colorSecundario;
+    padding: 1em;
+}
+.formulario-eliminar form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+.formulario-eliminar p {
+    font-size: 2em;
+    text-align: center;
+    color: $colorSecundario;
+    position: relative;
+}
+
+.formulario-eliminar .botones {
+    width: 90%;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contenedor-tabla {
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-tabla table {
+    width: 100%;
+    background: $colorFondo;
+    text-align: center;
+}
+
+.contenedor-tabla table tr td, .contenedor-tabla table * {
+    background: none;
+    border: none;
+}
+
+.contenedor-tabla table tr td, .contenedor-tabla table tr th {
+    border: 0.2em solid $colorNegro;
+
+}
+
+.contenedor-tabla table tr td {
+    color: #ebb472;
+}
+
+.contenedor-tabla table tr th {
+    color: white;
+}
+
+.contenedor-tabla table tr td .opciones {
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-tabla table tr td .opciones * {
+    color: $colorDorado;
+}
+
 @media (min-width: 250px) and (max-width: 800px) {
     body {
         font-size: 40%;
@@ -1878,7 +1969,7 @@ div#contenedor-sugerenciaReservas {
         height: 200vh;
     }
 
-    .seccion.facilidades{
+    .seccion.facilidades {
         height: max-content;
     }
     .contenedor-facilidades {
@@ -1891,11 +1982,12 @@ div#contenedor-sugerenciaReservas {
     .contenedor-grid {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(5, 1fr);
-        grid-template-areas: "uno"
-        "dos"
-        "tres"
-        "cuatro"
-        "cinco";
+        grid-template-areas:
+            "uno"
+            "dos"
+            "tres"
+            "cuatro"
+            "cinco";
     }
 
     .formulario-login {
