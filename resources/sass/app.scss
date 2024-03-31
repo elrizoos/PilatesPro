@@ -1599,7 +1599,7 @@ h3 {
     position: relative;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 60%;
     top: 0;
     height: 90%;
 }
@@ -1664,7 +1664,8 @@ h3 {
 }
 
 //PANEL DE CONTROL - USUARIOS
-.contenedor-formulario {
+.contenedor-formulario,
+.contenedor-contenido {
     position: relative;
     width: 97%;
     height: 97%;
@@ -1673,12 +1674,14 @@ h3 {
     justify-content: center;
 }
 
-.formulario-usuario-nuevo, .contenedor-formulario form {
+.formulario-usuario-nuevo,
+.contenedor-formulario form {
     width: 97%;
     height: 97%;
 }
 
-.formulario-usuario-nuevo .grupo-formulario, .contenedor-formulario form .grupo-formulario {
+.formulario-usuario-nuevo .grupo-formulario,
+.contenedor-formulario form .grupo-formulario {
     width: 100%;
     margin: 0 auto;
     padding: 2.5% 10%;
@@ -1688,14 +1691,16 @@ h3 {
     flex-direction: column;
 }
 
-.formulario-usuario-nuevo .grupo-input, .contenedor-formulario form .grupo-input {
+.formulario-usuario-nuevo .grupo-input,
+.contenedor-formulario form .grupo-input {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.formulario-usuario-nuevo .grupo-error, .contenedor-formulario form .grupo-error {
+.formulario-usuario-nuevo .grupo-error,
+.contenedor-formulario form .grupo-error {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
@@ -1703,12 +1708,14 @@ h3 {
     text-align: center;
 }
 
-.formulario-usuario-nuevo .grupo-error span, .contenedor-formulario form .grupo-error span {
+.formulario-usuario-nuevo .grupo-error span,
+.contenedor-formulario form .grupo-error span {
     display: inline-block;
     width: 40%;
 }
 
-.formulario-usuario-nuevo .estilo-formulario, .contenedor-formulario form .estilo-formulario {
+.formulario-usuario-nuevo .estilo-formulario,
+.contenedor-formulario form .estilo-formulario {
     background: none;
     border: none;
     color: white;
@@ -1718,12 +1725,14 @@ h3 {
     color: #e6d5b3;
 }
 
-.formulario-usuario-nuevo .estilo-formulario::placeholder, .contenedor-formulario form .estilo-formulario::placeholder {
+.formulario-usuario-nuevo .estilo-formulario::placeholder,
+.contenedor-formulario form .estilo-formulario::placeholder {
     color: #8e6d45;
     text-align: center;
 }
 
-.formulario-usuario-nuevo select, .contenedor-formulario form select {
+.formulario-usuario-nuevo select,
+.contenedor-formulario form select {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1734,12 +1743,15 @@ h3 {
     border-radius: 9px;
 }
 
-.formulario-usuario-nuevo select option, .contenedor-formulario form select option {
+.formulario-usuario-nuevo select option,
+.contenedor-formulario form select option {
     background: #8e6d45;
     color: white;
 }
 
-.formulario-usuario-nuevo input[type="submit"], .contenedor-formulario form input[type="submit"] , .formulario-eliminar .botones input {
+.formulario-usuario-nuevo input[type="submit"],
+.contenedor-formulario form input[type="submit"],
+.formulario-eliminar .botones input {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1750,7 +1762,8 @@ h3 {
     border-radius: 9px;
 }
 
-.formulario-usuario-nuevo input[type="date"], .contenedor-formulario form input[type="date"] {
+.formulario-usuario-nuevo input[type="date"],
+.contenedor-formulario form input[type="date"] {
     background: none;
     border: 0px;
     border-bottom: 2px solid #8e6d45;
@@ -1759,8 +1772,10 @@ h3 {
     text-align: center;
 }
 
-.formulario-usuario-nuevo
-    input[type="date"]::-webkit-calendar-picker-indicator, .contenedor-formulario form input[type="date"]::-webkit-calendar-picker-indicator {
+.formulario-usuario-nuevo input[type="date"]::-webkit-calendar-picker-indicator,
+.contenedor-formulario
+    form
+    input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
@@ -1845,14 +1860,15 @@ div#contenedor-sugerenciaReservas {
     text-align: center;
 }
 
-.contenedor-tabla table tr td, .contenedor-tabla table * {
+.contenedor-tabla table tr td,
+.contenedor-tabla table * {
     background: none;
     border: none;
 }
 
-.contenedor-tabla table tr td, .contenedor-tabla table tr th {
+.contenedor-tabla table tr td,
+.contenedor-tabla table tr th {
     border: 0.2em solid $colorNegro;
-
 }
 
 .contenedor-tabla table tr td {
@@ -1870,6 +1886,140 @@ div#contenedor-sugerenciaReservas {
 
 .contenedor-tabla table tr td .opciones * {
     color: $colorDorado;
+}
+
+.formulario-corto {
+    width: 100%;
+    height: max-content !important;
+}
+
+//Contenido crear pagina
+.seccion-elegir {
+    background-color: $colorFondo;
+    width: 70%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.seccion-elegir .opcion {
+    border: 0.2em inset #8e6d45;
+    position: relative;
+}
+
+.opcion-uno {
+    background-image: url($ruta + "/Imagen.png");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.opcion-dos {
+    background-image: url($ruta + "/Imagen2.png");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.opcion-tres {
+    background-image: url($ruta + "/Imagen3.png");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.opcion-cuatro {
+    background-image: url($ruta + "/Imagen4.png");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.opcion .capa {
+    position: absolute;
+    background-color: #1b1b1b80;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.opcion:hover .capa {
+    display: inline-block;
+}
+.opcion:hover .boton-eleccion {
+    display: flex;
+}
+.opcion .boton-eleccion {
+    background-color: $colorFondo;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 20%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.opcion .boton-eleccion a {
+    color: white;
+    text-decoration: none;
+}
+
+//Estructura nueva
+.seccion.seccion-nueva {
+    background: $colorPrincipal;
+    border: 0.2em inset $colorDorado;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+//Estructura uno
+
+.seccion.seccion-nueva.seccion-uno .titulo {
+    grid-area: 1 / 1 / 3 / 10;
+}
+.seccion.seccion-nueva.seccion-uno .imagen {
+    grid-area: 3 / 1 / 7 / 5;
+}
+.seccion.seccion-nueva.seccion-uno .parrafo {
+    grid-area: 3 / 5 / 7 / 9;
+}
+
+//Estructura dos
+
+.seccion.seccion-nueva.seccion-dos .titulo {
+    grid-area: 1 / 1 / 3 / 5;
+}
+.seccion.seccion-nueva.seccion-dos .imagen-uno {
+    grid-area: 3 / 1 / 7 / 5;
+}
+.seccion.seccion-nueva.seccion-dos .imagen-dos {
+    grid-area: 1 / 5 / 5 / 9;
+}
+.seccion.seccion-nueva.seccion-dos .parrafo {
+    grid-area: 5 / 5 / 7 / 9;
+}
+//Estructura tres
+
+.seccion.seccion-nueva.seccion-tres .titulo {
+    grid-area: 1 / 1 / 3 / 10;
+}
+.seccion.seccion-nueva.seccion-tres .imagen {
+    grid-area: 3 / 5 / 7 / 9;
+}
+.seccion.seccion-nueva.seccion-tres .parrafo {
+    grid-area: 3 / 1 / 7 / 5;
+}
+//Estructura cuatro
+
+.seccion.seccion-nueva.seccion-cuatro .titulo {
+    grid-area: 1 / 1 / 3 / 9;
+}
+.seccion.seccion-nueva.seccion-cuatro .parrafo {
+    grid-area: 3 / 1 / 7 / 9; 
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

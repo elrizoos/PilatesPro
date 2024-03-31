@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Reserva;
 use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -172,5 +173,35 @@ class PanelController extends Controller
         return redirect()->back()->with('success', 'Información actualizada correctamente.');
 
     }
-   
+
+    public function mostrarFormularioContrasena($usuarioId)
+    {
+        $usuario = User::find($usuarioId);
+        $tipo = 'USER-gestionContrasena-formulario';
+        return view('admin.USER-gestionContrasena-formulario', compact('usuario', 'tipo'));
+    }
+
+    public function modificarContrasena($usuarioId, Request $request)
+    {
+        //dd($request->password);
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'password.required' => 'El campo contraseña es obligatorio.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $usuario = User::find($usuarioId);
+        $usuario->update([
+            'password' => Hash::make($request->input('password')),
+        ]);
+        return redirect()->back()->with('success', 'Información actualizada correctamente.');
+
+    }
+
 }
