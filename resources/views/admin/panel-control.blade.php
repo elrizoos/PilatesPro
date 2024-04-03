@@ -88,45 +88,7 @@
         </div>
         <div class="panel-contenido">
             @if ($tipo)
-                @switch($tipo)
-                    @case('USER-crear')
-                        @yield('USER-crear')
-                    @break
-
-                    @case('USER-editar')
-                        @yield('USER-editar')
-                    @break
-
-                    @case('USER-editar-formulario')
-                        @yield('USER-editar-formulario')
-                    @break
-
-                    @case('USER-gestionContrasena')
-                        @yield('USER-gestionContrasena')
-                    @break
-
-                    @case('USER-gestionContrasena-formulario')
-                        @yield('USER-gestionContrasena-formulario')
-                    @break
-
-                    @case('CONT-crear')
-                        @yield('CONT-crear')
-                    @break
-
-                    @case('CONT-opcion-uno')
-                        @yield('CONT-opcion-uno')
-                    @break
-
-                    @case('CONT-opcion-dos')
-                        @yield('CONT-crear')
-                    @break
-
-                    @case('CONT-opcion-tres')
-                        @yield('CONT-crear')
-                    @break
-
-                    @default
-                @endswitch
+                @yield($tipo)
             @else
             @endif
         </div>

@@ -1,7 +1,6 @@
-@extends('panel-control')
+@extends('admin/panel-control')
 
 @section('USER-gestionContrasena')
-
     <div class="contenedor-tabla">
         <table class="table table-light">
             <thead class="thead-light">
@@ -13,16 +12,16 @@
             </thead>
             <tbody>
                 @foreach ($datos['usuarios'] as $usuario)
-                <tr>
-                    <td>{{ $usuario->nombre }}</td>
-                    <td>{{ $usuario->apellidos }}</td>
-                    <td>
-                        <form  action="{{ route('mostrarFormularioContrasena', ['usuario' => $usuario->id])}}">
-                            @csrf
-                            <input style="color: white" type="submit" value="Cambiar contraseña">
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->apellidos }}</td>
+                        <td>
+                            <form action="{{ route('mostrarFormularioContrasena', ['usuario' => $usuario->id]) }}">
+                                @csrf
+                                <input style="color: white" type="submit" value="Cambiar contraseña">
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

@@ -1,4 +1,4 @@
-@extends('panel-control')
+@extends('admin/panel-control')
 
 @section('USER-gestionContrasena-formulario')
     @if (session('success'))
@@ -30,8 +30,8 @@
                         </span>
                     @enderror
                 </div>
-                
-                
+
+
             </div>
             <div class="grupo-formulario">
                 <div class="grupo-input">

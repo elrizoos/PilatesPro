@@ -176,20 +176,23 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::get('/panel-control', [PanelController::class, 'index'])->name('panel-control');
-Route::get('/panel-control/{tipo}', [PanelController::class,'mostrarContenido'])->name('contenido');
-Route::post('/panel-control/crearUsuario', [PanelController::class,'crearUsuario'])->name('crearUsuarioNuevo');
-Route::get('/panel-control/mostrarUsuarios', [PanelController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
-Route::get('/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
-Route::put('/panel-control/actualizarUsuario', [PanelController::class, 'actualizarUsuario'])->name('actualizarUsuario');
-Route::delete('/panel-control/eliminarUsuario/{usuario}', [UsuarioController::class, 'delete'])->name('eliminarUsuario');
-Route::get('/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
-Route::put('/panel-control/modificarContrasena/{usuario}' , [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
+Route::get('/admin/panel-control', [PanelController::class, 'index'])->name('admin/panel-control');
+Route::get('/admin/panel-control/{tipo}', [PanelController::class, 'mostrarContenido'])->name('contenido');
+Route::post('/admin/panel-control/crearUsuario', [PanelController::class, 'crearUsuario'])->name('crearUsuarioNuevo');
+Route::get('/admin/panel-control/mostrarUsuarios', [PanelController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
+Route::get('/admin/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
+Route::put('/admin/panel-control/actualizarUsuario', [PanelController::class, 'actualizarUsuario'])->name('actualizarUsuario');
+Route::delete('/admin/panel-control/eliminarUsuario/{usuario}', [UsuarioController::class, 'delete'])->name('eliminarUsuario');
+Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
+Route::put('/admin/panel-control/modificarContrasena/{usuario}', [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
 
-Route::get('/panel-control/crearContenido/{opcion}', [PanelController::class, 'crearContenido'])->name('crearContenido');
-Route::post('/panel-control/crearContenidoGestionFormulario', [PanelController::class, 'crearContenidoGestionFormulario'])->name('crearContenidoGestionFormulario');
+Route::get('/admin/panel-control/crearContenido/{opcion}', [PanelController::class, 'crearContenido'])->name('crearContenido');
+Route::post('/admin/panel-control/crearContenidoGestionFormulario/{tipoSeccion}', [PanelController::class, 'crearContenidoGestionFormulario'])->name('crearContenidoGestionFormulario');
+Route::get('/admin/panel-control/contenido/vistaPrevia/{idContenido}', [PanelController::class, 'mostrarVistaPrevia'])->name('CONT-vistaPrevia');
+Route::get('/admin/panel-control/contenido/seleccionApartado', [PanelController::class, 'seleccionApartado'])->name('seleccionApartado');
+Route::delete('/admin/panel-control/contenido/cancelar/{seccion}', [PanelController::class, 'cancelarContenido'])->name('cancelarContenido');
 Auth::routes();
 
-Route::get('/home', function(){
+Route::get('/home', function () {
     return redirect('inicio');
 })->name('home');

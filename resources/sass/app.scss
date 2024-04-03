@@ -1903,8 +1903,6 @@ div#contenedor-sugerenciaReservas {
     grid-template-rows: 1fr 1fr;
 }
 
-
-
 .seccion-elegir .opcion {
     border: 0.2em inset #8e6d45;
     position: relative;
@@ -1971,6 +1969,7 @@ div#contenedor-sugerenciaReservas {
 .seccion.seccion-nueva {
     background: $colorPrincipal;
     border: 0.2em inset $dorado;
+    border-radius: 1em 0 0 1em;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -2006,7 +2005,7 @@ div#contenedor-sugerenciaReservas {
     justify-content: center;
     align-items: center;
 }
-.seccion-nueva .imagen input{
+.seccion-nueva .imagen input {
     display: none;
 }
 
@@ -2015,7 +2014,7 @@ div#contenedor-sugerenciaReservas {
     height: 90%;
     background: none;
     border: none;
-    font-size:2em;
+    font-size: 2em;
     color: $colorGris;
     text-align: center;
 }
@@ -2024,12 +2023,22 @@ div#contenedor-sugerenciaReservas {
 
 .seccion.seccion-nueva.seccion-uno .titulo {
     grid-area: 1 / 1 / 3 / 10;
+    color: $colorSecundario;
 }
 .seccion.seccion-nueva.seccion-uno .imagen {
     grid-area: 3 / 1 / 7 / 5;
 }
+
+.seccion.seccion-nueva.seccion-uno .imagen .imagen-seccion {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 85%;
+    height: 90%;
+    background-position: center;
+}
 .seccion.seccion-nueva.seccion-uno .parrafo {
     grid-area: 3 / 5 / 7 / 9;
+    color: $colorGris;
 }
 
 .formulario-creacion {
@@ -2071,6 +2080,56 @@ div#contenedor-sugerenciaReservas {
 }
 .seccion.seccion-nueva.seccion-cuatro .parrafo {
     grid-area: 3 / 1 / 7 / 9;
+}
+
+//Vista Previa
+.botones-vistaPrevia {
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.boton-siguiente,
+.boton-cancelar {
+    flex: 1;
+}
+
+.boton-siguiente {
+    background: $colorSecundario;
+    border-radius: 0em 1em 0em 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-siguiente form input {
+    background: none;
+    border: none;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    background-image: url($ruta + "/flecha-correcta.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.boton-cancelar {
+    background: $colorGris;
+    border-radius: 0em 0em 1em 0em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-cancelar form input {
+    background: none;
+    border: none;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    background-image: url($ruta + "/cancelar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

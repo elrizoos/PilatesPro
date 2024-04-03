@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Imagen;
+use App\Models\ImagenesSeccion;
+use App\Models\ImagenSeccion;
+use App\Models\ImagenSeccione;
 use App\Models\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Reserva;
+use App\Models\SeccionContenido;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -37,7 +42,7 @@ class PanelController extends Controller
         //dd('Profesores: ' . $profesores);
         //dd('Reservas: ' . $reservas);
 
-        return view('panel-control', compact(['alumnos', 'profesores', 'reservas', 'tipo']));
+        return view('admin/panel-control', compact(['alumnos', 'profesores', 'reservas', 'tipo']));
     }
 
     /**
@@ -204,8 +209,9 @@ class PanelController extends Controller
 
     }
 
-    public function crearContenido($opcion) {
-        switch($opcion) {
+    public function crearContenido($opcion)
+    {
+        switch ($opcion) {
             case 'uno':
                 $tipo = 'CONT-opcion-uno';
                 return view('formularios-contenido.uno', compact('tipo'));
@@ -219,7 +225,73 @@ class PanelController extends Controller
         }
     }
 
-    public function crearContenidoGestionFormulario(Request $request) {
-        dd($request->all());
+    public function crearContenidoGestionFormulario(Request $request, $tipoSeccion)
+    {
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|string|max:255',
+            'foto' => 'required|image|max:2048',
+            'parrafo' => 'required|string|max:1000',
+        ], [
+            'titulo.required' => 'El titulo es requerido',
+            'titulo.string' => 'El titulo debe ser un texto',
+            'titulo.max' => 'El titulo no puede superar 255 caracteres',
+
+            'foto.required' => 'La foto es obligatoria',
+            'foto.max' => 'El tamaño de la foto no puede superar 2mb',
+
+            'parrafo.required' => 'El parrafo es requerido',
+            'parrafo.string' => 'El contenido del parrafo es texto',
+            'parrafo.max' => 'El parrafo no puede superar los 1000 caracteres',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        //dd('hola');
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            $nombreArchivo = time() . '.' . $request->file('foto')->getClientOriginalExtension();
+            //dd('hola');
+
+            $ruta = $request->file('foto')->storeAs('imagenes_seccion', $nombreArchivo, 'public');
+
+            $imagen = new ImagenesSeccion;
+            $imagen->ruta_imagen = $ruta;
+            $imagen->descripcion = "Imagen de nueva Seccion";
+            $imagen->save();
+            $seccion = new SeccionContenido;
+            //dd($imagen->id);
+            $seccion->idSeccion = $tipoSeccion;
+            $seccion->titulo = $request->titulo;
+            $seccion->parrafo = $request->parrafo;
+            $seccion->idImagenUno = $imagen->id;
+            $seccion->idImagenDos = null;
+            $seccion->save();
+
+            $imagen->idSeccion = $seccion->id;
+
+            return redirect()->route('CONT-vistaPrevia', ['idContenido' => $seccion->id]);
+            //Guardar contenido
+
+        }
+    }
+
+    public function mostrarVistaPrevia($idSeccion)
+    {
+        $seccion = SeccionContenido::find($idSeccion);
+        $imagen = ImagenesSeccion::find($seccion->idImagenUno);
+        $tipo = 'CONT-vistaPrevia';
+
+        //dd($seccion, $imagen, $tipo);
+        return view('admin.CONT-vistaPrevia', compact('seccion', 'imagen', 'tipo'));
+    }
+
+    public function seleccionApartado()
+    {
+
+    }
+
+    public function cancelarContenido($idSeccion)
+    {
+
     }
 }
