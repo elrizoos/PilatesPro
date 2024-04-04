@@ -9,7 +9,7 @@ $(document).ready(function () {
     showSlidesMovil();
     function showSlides() {
         const slides = $("#appEscritorio .slider");
-        console.log(slides);
+        //console.log(slides);
         slides.removeClass("active");
         slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
         slides.eq(slideIndex++).addClass("active");
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     function showSlidesMovil() {
         const slides = $("#appMovil .slider");
-        console.log(slides);
+        //console.log(slides);
         slides.removeClass("active");
         slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
         slides.eq(slideIndex++).addClass("active");
@@ -35,7 +35,7 @@ $(document).ready(function () {
         toggleVideo(true);
     });
 
-    $(document).on('touchstart', '#botonPlay', function() {
+    $(document).on("touchstart", "#botonPlay", function () {
         $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
     });
 
@@ -46,27 +46,31 @@ $(document).ready(function () {
     $(document).on("touchstart", "#botonCerrar", function () {
         $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
     });
-function toggleVideo(play) {
-    $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
-    if (play) {
-        video.currentTime = tiempo;
-        video.play();
-    } else {
-        video.pause();
-        tiempo = video.currentTime;
+    function toggleVideo(play) {
+        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
+        if (play) {
+            video.currentTime = tiempo;
+            video.play();
+        } else {
+            video.pause();
+            tiempo = video.currentTime;
+        }
     }
-}
     // Redirección con Imagen del Logo
     $(".imagen-logo").on("click", function () {
         const url = $(this).data("url");
         window.location.href = url;
     });
 
-    $('#iconoMenu').on('click', function() {
-        $('.lista ul').toggle();
-    })
-
-    $('#listaMenu').on('click', function() {
-        $('#listaMenu ul').toggle();
+    $(".iconoMenu").on("click", function () {
+        console.log("hola");
+        if ($("#listaMenu ul").hasClass("active")) {
+            $("#listaMenu ul").addClass("no-active");
+            $("#listaMenu ul").removeClass("active");
+            
+        } else {
+            $("#listaMenu ul").addClass("active");
+            $("#listaMenu ul").removeClass("no-active");
+        }
     });
 });

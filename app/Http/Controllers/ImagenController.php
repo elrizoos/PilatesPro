@@ -30,7 +30,7 @@ class ImagenController extends Controller
     public function store(Request $request)
     {
         try {
-            //dd('hola');
+
             $request->validate([
                 'fotoPerfil' => 'required|image|max:2048',
             ]);

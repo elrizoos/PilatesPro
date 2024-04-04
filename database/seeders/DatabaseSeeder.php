@@ -2,26 +2,21 @@
 
 namespace Database\Seeders;
 
-
-use App\Models\Alumno;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+class DataBaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-
         $this->call([
-            ClaseTableSeeder::class,
-            GrupoTableSeeder::class,
-            EmpleadoTableSeeder::class,
-            AlumnoTableSeeder::class,
-            GrupoClaseCustomSeeder::class,
+            UsersTableSeeder::class,
+            GruposTableSeeder::class,
+            ClasesTableSeeder::class,
+            ReservasTableSeeder::class,
+            AsistenciasTableSeeder::class,
+            SeccionesTableSeeder::class,
         ]);
-
-
     }
 }

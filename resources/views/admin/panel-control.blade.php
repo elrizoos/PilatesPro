@@ -21,6 +21,7 @@
 
 <body>
     <div class="panel-contenedor">
+
         <div class="panel-logo">
             <div class="logo"></div>
         </div>
@@ -31,14 +32,15 @@
                     <li class="usuarios">Usuarios <span></span>
                         <ul class="submenu">
                             <li><a href="{{ route('contenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
-                            <li>Editar Usuario Existente</li>
-                            <li>Eliminar Usuario</li>
-                            <li>Gestion Contraseñas</li>
+                            <li><a href="{{ route('contenido', 'USER-editar') }}">Editar Usuario
+                                    Existente</a></li>
+                            <li><a href="{{ route('contenido', 'USER-gestionContrasena') }}">Gestion Contraseñas</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="contenido">Contenido <span></span>
                         <ul class="submenu">
-                            <li>Crear nueva pagina</li>
+                            <li><a href="{{ route('contenido', 'CONT-crear') }}">Crear nueva pagina</a></li>
                             <li>Crear nueva sección</li>
                             <li>Eliminar seccion o página</li>
                             <li>Galeria de imagenes y videos</li>
@@ -85,17 +87,13 @@
             </div>
         </div>
         <div class="panel-contenido">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             @if ($tipo)
-                @switch($tipo)
-                    @case('USER-crear')
-                        @yield('USER-crear')
-                    @break
-
-                    @case(2)
-                    @break
-
-                    @default
-                @endswitch
+                @yield($tipo)
             @else
             @endif
         </div>
