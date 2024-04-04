@@ -87,34 +87,13 @@
             </div>
         </div>
         <div class="panel-contenido">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             @if ($tipo)
-                @switch($tipo)
-                    @case('USER-crear')
-                        @yield('USER-crear')
-                    @break
-
-                    @case('USER-editar')
-                        @yield('USER-editar')
-                    @break
-
-                    @case('USER-editar-formulario')
-                        @yield('USER-editar-formulario')
-                    @break
-
-                    @case('USER-gestionContrasena')
-                        @yield('USER-gestionContrasena')
-                    @break
-
-                    @case('USER-gestionContrasena-formulario')
-                        @yield('USER-gestionContrasena-formulario')
-                    @break
-
-                    @case('CONT-crear')
-                        @yield('CONT-crear')
-                    @break
-
-                    @default
-                @endswitch
+                @yield($tipo)
             @else
             @endif
         </div>

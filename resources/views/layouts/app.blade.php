@@ -26,10 +26,10 @@
                 <div class="fixed grid">
                     <div class="grid-elemento elemento-uno">
                         <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
-                            
+
                         </div>
                     </div>
-                    
+
                     <div id="listaMenu" class="grid-elemento elemento-dos">
                         <span class="iconoMenu"></span>
                         <div class="lista">
@@ -42,6 +42,7 @@
                                 <li><a href="{{ route('reservas') }}">Reservas</a></li>
                                 <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
                                 <li><a href="{{ route('contacto') }}">Contacto</a></li>
+                                <li><a href="{{ route('foro') }}">Foro</a></li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                                 <ul class="botones-login">
                                     <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
                                     <li class="icono-ajustes"><a class="flex-center"
-                                            href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
+                                            href="{{ Auth::user()->nombre === 'admin' ? route('admin/panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
                                     </li>
                                     <li class="icono-suscripcion"><span></span>Suscripción</li>
                                     <li class="icono-logout">
@@ -85,7 +86,7 @@
             @yield('content')
         </main>
     </div>
-    
+
 </body>
 
 </html>

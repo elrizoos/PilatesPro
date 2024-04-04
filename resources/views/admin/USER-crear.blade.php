@@ -1,4 +1,4 @@
-@extends('panel-control')
+@extends('admin/panel-control')
 
 @section('USER-crear')
     @if (session('success'))
