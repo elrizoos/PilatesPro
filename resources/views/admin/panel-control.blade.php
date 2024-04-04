@@ -87,6 +87,11 @@
             </div>
         </div>
         <div class="panel-contenido">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             @if ($tipo)
                 @yield($tipo)
             @else

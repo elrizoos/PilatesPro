@@ -16,7 +16,7 @@
     </div>
     <div class="botones-vistaPrevia">
         <div id="botonSiguiente" class="boton-siguiente">
-            <form action="{{ route('seleccionApartado') }}" method="GET">
+            <form action="{{ $seccion->orden === 1 ? route('foro') : route('seleccionApartado') }}" method="GET">
                 @csrf
 
                 <input type="submit" name="Enviar" value="">

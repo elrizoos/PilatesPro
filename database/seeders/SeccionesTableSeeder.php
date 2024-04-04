@@ -14,10 +14,10 @@ class SeccionesTableSeeder extends Seeder
     public function run(): void
     {
         $secciones = [
-            ['titulo' => 'Sección uno', 'tipo' => '2cid'],
+            ['titulo' => 'Sección uno', 'tipo' => '2ciz'],
             ['titulo' => 'Sección dos', 'tipo' => '4cel2i'],
             ['titulo' => 'Sección tres', 'tipo' => '1c'],
-            ['titulo' => 'Sección cuatro', 'tipo' => '2ciz'],
+            ['titulo' => 'Sección cuatro', 'tipo' => '2cid'],
         ];
 
         DB::table('seccions')->insert($secciones);

@@ -1978,6 +1978,10 @@ div#contenedor-sugerenciaReservas {
     height: 100%;
     min-height: unset;
 }
+
+.seccion.seccion-nueva.window-height {
+    height: 100vh;
+}
 .seccion.seccion-nueva > div {
     display: flex;
     justify-content: center;
@@ -2130,6 +2134,24 @@ div#contenedor-sugerenciaReservas {
     background-image: url($ruta + "/cancelar.png");
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+//Seleccion Apartado
+
+.contenedor-seleccionApartado {
+    background: red;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    gap: 2em;
+}
+
+.vista-previa.vista-foro {
+    width: 20%;
+    height: 80%;
+    background-color: blue;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

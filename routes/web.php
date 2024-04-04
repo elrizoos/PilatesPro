@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ReservasController;
+use App\Http\Controllers\SeccionContenidoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -30,6 +31,7 @@ Route::get('/inicio', function () {
     return view('inicio');
 })->name('inicio');
 
+Route::get('/foro', [SeccionContenidoController::class, 'index'])->name('foro');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -191,6 +193,7 @@ Route::post('/admin/panel-control/crearContenidoGestionFormulario/{tipoSeccion}'
 Route::get('/admin/panel-control/contenido/vistaPrevia/{idContenido}', [PanelController::class, 'mostrarVistaPrevia'])->name('CONT-vistaPrevia');
 Route::get('/admin/panel-control/contenido/seleccionApartado', [PanelController::class, 'seleccionApartado'])->name('seleccionApartado');
 Route::delete('/admin/panel-control/contenido/cancelar/{seccion}', [PanelController::class, 'cancelarContenido'])->name('cancelarContenido');
+Route::post('/admin/panel-control/contenido/seleccionarOrden', [PanelController::class, 'seleccionarOrden'])->name('seleccionarOrden');
 Auth::routes();
 
 Route::get('/home', function () {

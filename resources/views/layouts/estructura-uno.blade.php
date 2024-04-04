@@ -1,5 +1,7 @@
 @extends('admin.CONT-vistaPrevia')
 
+
+
 @section('CONT-estructura-uno')
     <div class="seccion seccion-nueva seccion-uno">
         <div class="titulo">
@@ -7,7 +9,7 @@
         </div>
         <div class="imagen">
             <div class="imagen-seccion" style="background-image: url('../../public/imagenes/{{ $imagen->ruta_imagen }}')">
-                
+
             </div>
         </div>
         <div class="parrafo">

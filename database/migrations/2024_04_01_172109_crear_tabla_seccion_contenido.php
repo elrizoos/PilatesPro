@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('idSeccion');
             $table->string('titulo', 255);
             $table->string('parrafo', 255);
+            $table->integer('orden')->nullable();
             $table->unsignedBigInteger('idImagenUno');
             $table->unsignedBigInteger('idImagenDos')->nullable();
             $table->foreign('idSeccion')->references('id')->on('seccions')->onDelete('cascade');

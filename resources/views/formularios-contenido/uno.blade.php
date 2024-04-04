@@ -1,7 +1,7 @@
 @extends('admin/panel-control')
 
 @section('CONT-opcion-uno')
-    <form class="formulario-creacion" action="{{ route('crearContenidoGestionFormulario', ['tipoSeccion' => '4']) }}"
+    <form class="formulario-creacion" action="{{ route('crearContenidoGestionFormulario', ['tipoSeccion' => '1']) }}"
         method="POST" enctype="multipart/form-data">
         @csrf
         <div class="seccion seccion-nueva seccion-uno">

@@ -260,11 +260,21 @@ class PanelController extends Controller
             $imagen->save();
             $seccion = new SeccionContenido;
             //dd($imagen->id);
+            //dd(SeccionContenido::count());
             $seccion->idSeccion = $tipoSeccion;
             $seccion->titulo = $request->titulo;
             $seccion->parrafo = $request->parrafo;
             $seccion->idImagenUno = $imagen->id;
             $seccion->idImagenDos = null;
+            $orden = SeccionContenido::orderBy('orden', 'desc')->first()->orden;
+            
+            if ($orden === null) {
+                $orden = 1;
+            } else {
+                $orden = $orden + 1;
+            }
+            //dd($orden);
+            $seccion->orden = $orden;
             $seccion->save();
 
             $imagen->idSeccion = $seccion->id;
@@ -288,10 +298,54 @@ class PanelController extends Controller
     public function seleccionApartado()
     {
 
+        $secciones = SeccionContenido::all();
+        //dd($secciones);
+
+        $imagenes = [];
+        $tipo = 'CONT-seleccionarApartado';
+        foreach ($secciones as $seccion) {
+
+            $imagenes[$seccion->titulo] = [
+                'imagenUno' => ImagenesSeccion::find($seccion->idImagenUno),
+                'imagenDos' => ImagenesSeccion::find($seccion->idImagenDos) ?? null,
+            ];
+            //dd($imagenes);
+        }
+
+
+        return view('admin.CONT-seleccionarApartado', compact('tipo', 'secciones', 'imagenes'));
     }
 
     public function cancelarContenido($idSeccion)
     {
+        $seccion = SeccionContenido::find($idSeccion);
+        $seccion->delete();
 
+        return redirect()->route('admin/panel-control')->with('success', 'La seccion nueva ha sido descartada');
+    }
+
+    public function seleccionarOrden(Request $request)
+    {
+        $partes = explode(' ', $request->orden, 2);
+
+        if (count($partes) === 2) {
+            $posicion = $partes[0];
+            $tituloSeccion = $partes[1];
+            $seccion = SeccionContenido::where('titulo', '=', $tituloSeccion)->first();
+            if($seccion->orden === 1) {
+                $nuevoOrden = 1;
+            } else {
+                if ($posicion === 'encima') {
+                    $nuevoOrden = $seccion->orden;
+                } else {
+                    $nuevoOrden = $seccion->orden - 1;
+                }
+            }
+
+            SeccionContenido::where('orden', '>=', $nuevoOrden)->increment('orden');
+            $seccion->orden = $nuevoOrden;
+            $seccion->save();
+            return redirect()->route('foro');
+        }
     }
 }
