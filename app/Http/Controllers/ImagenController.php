@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Imagen;
 use App\Http\Controllers\Controller;
+use Egulias\EmailValidator\Parser\Comment;
 use Illuminate\Http\Request;
 
 class ImagenController extends Controller
@@ -88,6 +89,8 @@ class ImagenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+     
     public function destroy(Imagen $imagen)
     {
         $imagen = Imagen::find($imagen->id);

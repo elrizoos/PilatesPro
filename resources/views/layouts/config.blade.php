@@ -20,7 +20,7 @@
 
 <body>
     <div class="nav-perfil">
-        <div class="logo-perfil imagen-logo" data-url="{{ route('inicio') }}"></div>
+        <div id="imagen-logo" class="logo-perfil imagen-logo" data-url="{{ route('inicio') }}"></div>
     </div>
     <div id="app">
         @yield('content')

@@ -57,7 +57,7 @@ $(document).ready(function () {
         }
     }
     // Redirección con Imagen del Logo
-    $(".imagen-logo").on("click", function () {
+    $("#imagen-logo").on("click", function () {
         const url = $(this).data("url");
         window.location.href = url;
     });
@@ -73,4 +73,14 @@ $(document).ready(function () {
             $("#listaMenu ul").removeClass("no-active");
         }
     });
+
+    $('#paginasPersonalizadas').on('click', function() {
+        if ($("#listaPaginas").hasClass("listaPaginasTransicion")) {
+            $("#listaPaginas").addClass("no-active");
+            $("#listaPaginas").removeClass("listaPaginasTransicion");
+        } else {
+            $("#listaPaginas").addClass("listaPaginasTransicion");
+            $("#listaPaginas").removeClass("no-active");
+        }
+    })
 });

@@ -1,6 +1,6 @@
 @extends('admin/panel-control')
 
-@section('CONT-vistaPrevia')
+@section('CONT-vistaPrevia'){{'Mostrando pagina :' . $idPagina}}
     <div class="seccion seccion-nueva seccion-uno">
         <div class="titulo">
             <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
@@ -16,7 +16,7 @@
     </div>
     <div class="botones-vistaPrevia">
         <div id="botonSiguiente" class="boton-siguiente">
-            <form action="{{ $seccion->orden === 1 ? route('foro') : route('seleccionApartado') }}" method="GET">
+            <form action="{{ $seccion->orden == 1 && $seccion->idPagina == $idPagina ? route('mostrarPagina',['pagina' =>$slug]) : route('seleccionApartado', ['pagina' =>$slug, 'seccion' => $seccion->id]) }}" method="GET">
                 @csrf
 
                 <input type="submit" name="Enviar" value="">
