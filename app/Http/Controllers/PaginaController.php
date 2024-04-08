@@ -95,7 +95,9 @@ class PaginaController extends Controller
      */
     public function destroy(Pagina $pagina)
     {
-        //
+        $pagina->delete();
+
+        return redirect()->back()->with('success', 'La pagina ha sido borrada con exito');
     }
 
     public function mostrarPagina($slug)
@@ -133,5 +135,11 @@ class PaginaController extends Controller
         $pagina = $request->paginaElegida;
 
         return redirect()->route('crearSeccion', ['pagina' => $pagina]);
+    }
+    public function eliminarEditarPagina(){
+        $paginas = Pagina::all();
+        $tipo = 'CONT-eliminarEditar';
+        $secciones = SeccionContenido::orderBy('idPagina', 'asc')->get();
+        return view('admin.CONT-eliminarEditar', compact('paginas', 'tipo', 'secciones'));
     }
 }

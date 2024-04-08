@@ -67,14 +67,13 @@ $(document).ready(function () {
         if ($("#listaMenu ul").hasClass("active")) {
             $("#listaMenu ul").addClass("no-active");
             $("#listaMenu ul").removeClass("active");
-            
         } else {
             $("#listaMenu ul").addClass("active");
             $("#listaMenu ul").removeClass("no-active");
         }
     });
 
-    $('#paginasPersonalizadas').on('click', function() {
+    $("#paginasPersonalizadas").on("click", function () {
         if ($("#listaPaginas").hasClass("listaPaginasTransicion")) {
             $("#listaPaginas").addClass("no-active");
             $("#listaPaginas").removeClass("listaPaginasTransicion");
@@ -82,5 +81,48 @@ $(document).ready(function () {
             $("#listaPaginas").addClass("listaPaginasTransicion");
             $("#listaPaginas").removeClass("no-active");
         }
-    })
+    });
+
+    $("#contenedorSeleccion .opcion").on("click", function (e) {
+        var elemento = e.currentTarget.id;
+        var valorBoton;
+        valorBoton = elemento.replace(/([a-z])([A-Z])/g, "$1 $2");
+        console.log(valorBoton);
+        if (elemento === "eliminarPagina" || elemento === "editarPagina") {
+            ocultarContenedores();
+            mostrarContenedor("contenedor-paginas", valorBoton, elemento);
+        } else {
+            ocultarContenedores();
+            mostrarContenedor("contenedor-secciones", valorBoton, elemento);
+        }
+    });
+
+    function ocultarContenedores() {
+        $(".contenedor-opciones-pagina").toggle();
+        $(".contenedor-opciones-seccion").toggle();
+    }
+
+    function mostrarContenedor(clase, valorBoton, elemento) {
+        $("." + clase).toggle();
+        $("." + clase + " input[type=submit]").val(valorBoton);
+        $("." + clase + " input[type=submit]").attr("id", elemento);
+        $("#" + elemento).on("click", function (e) {
+            if (
+                elemento === "eliminarPagina" ||
+                elemento === "eliminarSeccion"
+            ) {
+                $("." + clase + " input[name=_method]").val("DELETE");
+                var ruta = $("." + clase + " input[name=dataUrl]").data(
+                    elemento
+                );
+                var pagina = $(
+                    "." + clase + " select[name=paginaEscogida"
+                ).val();
+                ruta = ruta.replace("INDEFINIDO", pagina);
+                $("." + clase + " form").attr("action", ruta);
+            } else {
+                $("." + clase + " input[name=_method]").attr("value", "POST");
+            }
+        });
+    }
 });

@@ -44,7 +44,7 @@
                             <li><a href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva pagina</a>
                             </li>
                             <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
-                            <li><a href="{{ route('mostrarContenido', 'CONT-eliminarEditar') }}">Eliminar o editar seccion/página</a></li>
+                            <li><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a></li>
                             <li>Galeria de imagenes y videos</li>
                         </ul>
                     </li>

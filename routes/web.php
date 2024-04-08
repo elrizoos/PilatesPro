@@ -194,6 +194,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/contenido/seleccionarPagina', [PaginaController::class, 'seleccionarPagina'])->name('seleccionarPagina');
     Route::get('/admin/panel-control/contenido/seleccionApartado/{pagina}/{seccion}', [SeccionContenidoController::class, 'seleccionApartado'])->name('seleccionApartado');
     Route::post('/admin/panel-control/contenido/seleccionarOrden/{seccion}', [SeccionContenidoController::class, 'seleccionarOrden'])->name('seleccionarOrden');
+    Route::get('/panel-control/contenido/eliminarEditarPagina', [PaginaController::class, 'eliminarEditarPagina'])->name('eliminarEditarPagina');
+    Route::delete('/panel-control/contenido/eliminarPagina', [PaginaController::class, 'destroy'])->name('eliminarPagina');
+    Route::post('/panel-control/contenido/editarPagina', [PaginaController::class, 'edit'])->name('editarPagina');
+    Route::delete('/panel-control/contenido/eliminarSeccion', [SeccionContenidoController::class, 'destroy'])->name('eliminarSeccion');
+    Route::post('/panel-control/contenido/editarSeccion', [SeccionContenidoController::class, 'edit'])->name('editarSeccion');
+
+
 
 });
 

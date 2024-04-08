@@ -2214,28 +2214,46 @@ div#contenedor-sugerenciaReservas {
 .contenedor-contenido.seleccion {
     gap: 1em;
 }
-.contenedor-opciones-pagina, .contenedor-opciones-seccion {
+.contenedor-opciones-pagina,
+.contenedor-opciones-seccion {
     width: 50%;
     height: 70%;
     position: relative;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     background-color: $colorFondoTransparente;
     padding: 1em;
     border-radius: 30%;
 }
 
-.contenedor-opciones-pagina .opcion, .contenedor-opciones-seccion .opcion{
-    width: 100%;
+.contenedor-opciones-pagina .opcion,
+.contenedor-opciones-seccion .opcion {
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1em;
+    border-radius: 10%;
+    cursor: pointer;
 }
 
-.opcion-eliminar span, .opcion-editar span {
+.contenedor-opciones-pagina .opcion:hover,
+.contenedor-opciones-seccion .opcion:hover {
+    background-color: $colorGrisClaro;
+    width: 75%;
+    transition: all 0.5s ease;
+}
+.contenedor-opciones-pagina .opcion:hover h3,
+.contenedor-opciones-seccion .opcion:hover h3 {
+    color: white;
+    transition: all 0.2s ease;
+}
+.opcion-eliminar span,
+.opcion-editar span {
     display: inline-block;
     width: 6em;
     height: 6em;
@@ -2243,12 +2261,14 @@ div#contenedor-sugerenciaReservas {
     background-repeat: no-repeat;
 }
 
-.contenedor-opciones-pagina .opcion h3, .contenedor-opciones-seccion .opcion h3 {
+.contenedor-opciones-pagina .opcion h3,
+.contenedor-opciones-seccion .opcion h3 {
     font-size: 2em;
     color: $colorSecundario;
 }
 
-.contenedor-opciones-pagina h2, .contenedor-opciones-seccion  h2 {
+.contenedor-opciones-pagina h2,
+.contenedor-opciones-seccion h2 {
     text-align: center;
     color: $colorDorado;
     width: 100%;
@@ -2256,13 +2276,19 @@ div#contenedor-sugerenciaReservas {
 }
 
 .opcion-eliminar span {
-    background-image: url($ruta + '/borrar.png');
+    background-image: url($ruta + "/borrar.png");
 }
 
 .opcion-editar span {
-    background-image: url($ruta + '/editar.png');
+    background-image: url($ruta + "/editar.png");
 }
 
+.contenedor-paginas, .contenedor-secciones {
+    display: none;
+}
+.contenedor-paginas input, .contenedor-secciones input{
+    text-transform: uppercase;
+}
 @media (min-width: 250px) and (max-width: 800px) {
     body {
         font-size: 40%;
