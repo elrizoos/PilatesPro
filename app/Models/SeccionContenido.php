@@ -17,4 +17,9 @@ class SeccionContenido extends Model
     {
         return $this->hasMany(ImagenesSeccion::class, 'idContenido');
     }
+
+    public function pagina() 
+    {
+        return $this->belongsTo(Pagina::class, 'idPagina');
+    }
 }

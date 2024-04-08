@@ -25,7 +25,7 @@
             <nav class="navbar">
                 <div class="fixed grid">
                     <div class="grid-elemento elemento-uno">
-                        <div class="logo imagen-logo" data-url="{{ route('inicio') }}">
+                        <div id="imagen-logo" class="logo imagen-logo" data-url="{{ route('inicio') }}">
 
                         </div>
                     </div>
@@ -42,8 +42,20 @@
                                 <li><a href="{{ route('reservas') }}">Reservas</a></li>
                                 <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
                                 <li><a href="{{ route('contacto') }}">Contacto</a></li>
-                                <li><a href="{{ route('foro') }}">Foro</a></li>
+                                <li id="paginasPersonalizadas" class="paginasPersonalizadas">
+                                    Más <span></span>
+                                </li>
                             </ul>
+                            <div id="listaPaginas" class="listaPaginas">
+                                <div class="hacia-atras"><span></span></div>
+                                <ul>
+                                    @foreach ($paginas as $pagina)
+                                        <li><a
+                                                href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="grid-elemento elemento-tres">
@@ -59,7 +71,7 @@
                                 <ul class="botones-login">
                                     <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
                                     <li class="icono-ajustes"><a class="flex-center"
-                                            href="{{ Auth::user()->nombre === 'admin' ? route('admin/panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
+                                            href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
                                     </li>
                                     <li class="icono-suscripcion"><span></span>Suscripción</li>
                                     <li class="icono-logout">

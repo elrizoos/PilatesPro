@@ -7,30 +7,33 @@
                 <div class="imagen-ejemplo"></div>
                 <div class="capa"></div>
                 <div class="boton-eleccion">
-                    <a href="{{ route('crearContenido', ['opcion' => 'uno']) }}">Elegir</a>
+                    <a href="{{ route('crearContenido', ['opcion' => 'uno', 'pagina' => $idPagina]) }}">Elegir</a>
                 </div>
             </div>
             <div class="opcion opcion-dos">
                 <div class="imagen-ejemplo"></div>
                 <div class="capa"></div>
                 <div class="boton-eleccion">
-                    <a href="{{ route('crearContenido', ['opcion' => 'dos']) }}">Elegir</a>
+                    <a href="{{ route('crearContenido', ['opcion' => 'dos', 'pagina' => $idPagina]) }}">Elegir</a>
                 </div>
             </div>
             <div class="opcion opcion-tres">
                 <div class="imagen-ejemplo"></div>
                 <div class="capa"></div>
                 <div class="boton-eleccion">
-                    <a href="{{ route('crearContenido', ['opcion' => 'tres']) }}">Elegir</a>
+                    <a href="{{ route('crearContenido', ['opcion' => 'tres', 'pagina' => $idPagina]) }}">Elegir</a>
                 </div>
             </div>
             <div class="opcion opcion-cuatro">
                 <div class="imagen-ejemplo"></div>
                 <div class="capa"></div>
                 <div class="boton-eleccion">
-                    <a href="{{ route('crearContenido', ['opcion' => 'cuatro']) }}">Elegir</a>
+                    <a href="{{ route('crearContenido', ['opcion' => 'cuatro', 'pagina' => $idPagina]) }}">Elegir</a>
                 </div>
             </div>
+        </div>
+        <div class="botonPagina">
+            <a href="{{ route('gestionPagina.create') }}">Crear nueva pagina</a>
         </div>
     </div>
 @endsection
