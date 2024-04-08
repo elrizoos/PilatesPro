@@ -51,7 +51,7 @@
         function eliminarUsuario(id) {
             // Establecer el valor del atributo "action" del formulario con la ruta correcta
 
-            var rutaEliminarUsuario = '{{ route('eliminarUsuario', ['usuario' => ':id']) }}';
+            var rutaEliminarUsuario = '{{ route('gestionUsuario.destroy', ['gestionUsuario' => ':id']) }}';
             rutaEliminarUsuario = rutaEliminarUsuario.replace(':id', id);
             console.log(rutaEliminarUsuario);
             $('#form-eliminar-usuario').attr('action', rutaEliminarUsuario);

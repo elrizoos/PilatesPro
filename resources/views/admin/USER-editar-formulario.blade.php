@@ -8,7 +8,7 @@
 
             </div>
         @endif
-        <form action="{{ route('actualizarUsuario') }}" method="post">
+        <form action="{{ route('gestionUsuario.update',['gestionUsuario' => $usuario->id]) }}" method="post">
             @csrf
             @method('PUT')
             <div class="grupo-formulario">

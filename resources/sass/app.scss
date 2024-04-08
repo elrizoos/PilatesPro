@@ -307,6 +307,7 @@ body {
 
 .lista {
     display: flex;
+    position: relative;
 }
 .lista,
 .lista ul {
@@ -323,6 +324,61 @@ body {
     color: $colorGris;
 }
 
+.paginasPersonalizadas {
+    text-decoration: none;
+    color: $colorGris;
+    position: relative;
+}
+
+.paginasPersonalizadas span {
+    display: inline-block;
+    background-image: url($ruta + "/flecha-hacia-abajo-para-navegar.png") !important;
+    background-size: 70%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+.listaPaginas {
+    opacity: 0; /* Inicia completamente transparente */
+    visibility: hidden; /* Hace el elemento no visible */
+    background-color: $colorFondo;
+    position: absolute;
+    left: 100%; /* Posición inicial fuera de la vista */
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s ease-in-out,
+        /* Anima la opacidad */ left 1s ease-in-out,
+        /* Anima la posición left */ visibility 0s 1s ease-in-out;
+    color: $colorGris; /* Retrasa la visibilidad para coincidir con la animación */
+}
+
+.listaPaginasTransicion {
+    display: flex; /* Este puede ser removido si se controla la visibilidad con visibility y opacity */
+    opacity: 1; /* Hace el elemento completamente opaco */
+    visibility: visible; /* Hace el elemento visible */
+    left: 0%; /* Mueve el elemento a su posición final */
+    transition-delay: 0s; /* Asegura que no haya retraso al hacer visible el elemento */
+}
+
+.hacia-atras {
+    width: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hacia-atras span {
+    display: inline-block;
+    background-image: url($ruta + "/hacia-atras.png") !important;
+    background-size: 70%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    width: 5em;
+    height: 5em;
+    position: relative;
+}
 .activeMenu {
     color: $colorSecundario !important;
 }
@@ -2144,7 +2200,7 @@ div#contenedor-sugerenciaReservas {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     gap: 2em;
 }
 
@@ -2154,6 +2210,85 @@ div#contenedor-sugerenciaReservas {
     background-color: blue;
 }
 
+//OPCIONES DE ELIMINAR O EDITAR
+.contenedor-contenido.seleccion {
+    gap: 1em;
+}
+.contenedor-opciones-pagina,
+.contenedor-opciones-seccion {
+    width: 50%;
+    height: 70%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $colorFondoTransparente;
+    padding: 1em;
+    border-radius: 30%;
+}
+
+.contenedor-opciones-pagina .opcion,
+.contenedor-opciones-seccion .opcion {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.contenedor-opciones-pagina .opcion:hover,
+.contenedor-opciones-seccion .opcion:hover {
+    background-color: $colorGrisClaro;
+    width: 75%;
+    transition: all 0.5s ease;
+}
+.contenedor-opciones-pagina .opcion:hover h3,
+.contenedor-opciones-seccion .opcion:hover h3 {
+    color: white;
+    transition: all 0.2s ease;
+}
+.opcion-eliminar span,
+.opcion-editar span {
+    display: inline-block;
+    width: 6em;
+    height: 6em;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.contenedor-opciones-pagina .opcion h3,
+.contenedor-opciones-seccion .opcion h3 {
+    font-size: 2em;
+    color: $colorSecundario;
+}
+
+.contenedor-opciones-pagina h2,
+.contenedor-opciones-seccion h2 {
+    text-align: center;
+    color: $colorDorado;
+    width: 100%;
+    font-size: 3em;
+}
+
+.opcion-eliminar span {
+    background-image: url($ruta + "/borrar.png");
+}
+
+.opcion-editar span {
+    background-image: url($ruta + "/editar.png");
+}
+
+.contenedor-paginas, .contenedor-secciones {
+    display: none;
+}
+.contenedor-paginas input, .contenedor-secciones input{
+    text-transform: uppercase;
+}
 @media (min-width: 250px) and (max-width: 800px) {
     body {
         font-size: 40%;

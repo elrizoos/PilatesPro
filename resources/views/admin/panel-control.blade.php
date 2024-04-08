@@ -23,7 +23,7 @@
     <div class="panel-contenedor">
 
         <div class="panel-logo">
-            <div class="logo"></div>
+            <div id="imagen-logo" class="logo" data-url="{{ route('inicio') }}"></div>
         </div>
         <div class="panel-nav">
             <div class="nav-menu">
@@ -31,18 +31,20 @@
                     <li>General</li>
                     <li class="usuarios">Usuarios <span></span>
                         <ul class="submenu">
-                            <li><a href="{{ route('contenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
-                            <li><a href="{{ route('contenido', 'USER-editar') }}">Editar Usuario
+                            <li><a href="{{ route('mostrarContenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
+                            <li><a href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
                                     Existente</a></li>
-                            <li><a href="{{ route('contenido', 'USER-gestionContrasena') }}">Gestion Contraseñas</a>
+                            <li><a href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                                    Contraseñas</a>
                             </li>
                         </ul>
                     </li>
                     <li class="contenido">Contenido <span></span>
                         <ul class="submenu">
-                            <li><a href="{{ route('contenido', 'CONT-crear') }}">Crear nueva pagina</a></li>
-                            <li>Crear nueva sección</li>
-                            <li>Eliminar seccion o página</li>
+                            <li><a href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva pagina</a>
+                            </li>
+                            <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
+                            <li><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a></li>
                             <li>Galeria de imagenes y videos</li>
                         </ul>
                     </li>
