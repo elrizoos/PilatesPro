@@ -1,4 +1,4 @@
-@extends('admin.CONT-vistaPrevia')
+@extends('admin.CONT-vistaPrevia-uno')
 
 
 

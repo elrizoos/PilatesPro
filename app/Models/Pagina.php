@@ -9,6 +9,11 @@ class Pagina extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'titulo',
+        'descripcion',
+    ];
+
     public function secciones() {
         return $this->hasMany(SeccionContenido::class, 'idSeccion');
     }

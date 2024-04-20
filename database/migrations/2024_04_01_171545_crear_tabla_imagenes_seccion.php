@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('ruta_imagen', 255);
             $table->string('descripcion')->nullable();
+            $table->string('hash', 255)->nullable();
             $table->timestamps();
         });
     }

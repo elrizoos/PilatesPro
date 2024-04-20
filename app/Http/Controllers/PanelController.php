@@ -101,9 +101,9 @@ class PanelController extends Controller
         return view($ruta, compact('tipo', 'datos'));
     }
 
-   
 
-   
+
+
 
     public function mostrarFormulario($usuario)
     {
@@ -114,7 +114,7 @@ class PanelController extends Controller
 
     }
 
-   
+
 
     public function mostrarFormularioContrasena($usuarioId)
     {
@@ -146,14 +146,22 @@ class PanelController extends Controller
 
     }
 
-  
+    public function mostrarGaleria()
+    {
+        //dd('hola');
+        $imagenesPerfil = Imagen::all();
+
+        $imagenesSeccion = ImagenesSeccion::all();
+        $tipo = 'galeria-inicio';
+        return view('admin.galeria.inicio', compact('imagenesPerfil', 'imagenesSeccion', 'tipo'));
+    }
 
 
 
- 
 
 
 
-   
+
+
 
 }

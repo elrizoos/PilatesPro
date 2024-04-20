@@ -39,22 +39,34 @@ class ImagenController extends Controller
 
             //dd('hola');
             if ($request->hasFile('fotoPerfil') && $request->file('fotoPerfil')->isValid()) {
-                $nombreArchivo = time() . '.' . $request->file('fotoPerfil')->getClientOriginalExtension();
-                //dd('hola');
+                $imagen = $request->file('fotoPerfil');
 
-                $ruta = $request->file('fotoPerfil')->storeAs('imagenes_perfil', $nombreArchivo, 'public');
+                $hash = md5_file($imagen->getRealPath());
 
-                $imagen = new Imagen;
-                $imagen->usuario_id = auth()->user()->id;
-                $imagen->ruta_imagen = $ruta;
-                $imagen->descripcion = 'Imagen de perfil de ' . auth()->user()->nombre;
-                $imagen->save();
+                $existe = Imagen::where('hash', $hash)->exists();
 
-                return redirect()->back()->with('success','foto subida con exito');
+                if (!$existe) {
+                    $nombreArchivo = time() . '.' . $request->file('fotoPerfil')->getClientOriginalExtension();
+                    //dd('hola');
+
+                    $ruta = $request->file('fotoPerfil')->storeAs('imagenes_perfil', $nombreArchivo, 'public');
+
+                    $imagen = new Imagen;
+                    $imagen->usuario_id = auth()->user()->id;
+                    $imagen->ruta_imagen = $ruta;
+                    $imagen->descripcion = 'Imagen de perfil de ' . auth()->user()->nombre;
+                    $imagen->hash = $hash;
+                    $imagen->save();
+
+                    return redirect()->back()->with('success', 'foto subida con exito');
+
+                } else {
+                    return redirect()->back()->with('error', 'La imagen ya esta en la base de datos');
+                }
 
             }
             //dd('hola');
-            
+
         } catch (\Throwable $th) {
             //dd('hola');
             return redirect()->back()->with('error', $th->getMessage());
@@ -90,11 +102,11 @@ class ImagenController extends Controller
      * Remove the specified resource from storage.
      */
 
-     
+
     public function destroy(Imagen $imagen)
     {
         $imagen = Imagen::find($imagen->id);
         $imagen->delete();
-        return redirect()->back()->with('success','Imagen borrada con exito');
+        return redirect()->back()->with('success', 'Imagen borrada con exito');
     }
 }
