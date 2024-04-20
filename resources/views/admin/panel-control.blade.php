@@ -45,7 +45,7 @@
                             </li>
                             <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
                             <li><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a></li>
-                            <li>Galeria de imagenes y videos</li>
+                            <li><a href="{{ route('galeriaImagenes')}}">Galeria de imagenes y videos</a></li>
                         </ul>
                     </li>
                     <li class="clases-horarios">Clases y Horarios <span></span>
@@ -92,6 +92,12 @@
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
                 </div>
             @endif
             @if ($tipo)

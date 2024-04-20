@@ -2,7 +2,10 @@
 
 @section('CONT-eliminarEditar')
     <div id="contenedorSeleccion" class="contenedor-contenido seleccion">
-        <input type="hidden" name="dataUrl" data-eliminarPagina="{{route('eliminarPagina', ['pagina' => 'INDEFINIDO'])}}" data-eliminarSeccion="{{route('eliminarSeccion', ['seccion' => 'INDEFINIDO'])}}" data-editarPagina="{{route('editarPagina', ['pagina' => 'INDEFINIDO'])}}" data-editarSeccion="{{route('editarSeccion', ['seccion' => 'INDEFINIDO'])}}" >
+        <input id="data-input" type="hidden" name="_dataUrl" data-eliminarPagina="{{ route('pagina.destroy', ['pagina' => 'INDEFINIDO']) }}"
+            data-eliminarSeccion="{{ route('seccion.destroy', ['seccion' => 'INDEFINIDO']) }}"
+            data-editarPagina="{{ route('pagina.edit', ['pagina' => 'INDEFINIDO']) }}"
+            data-editarSeccion="{{ route('seccion.edit', ['seccion' => 'INDEFINIDO']) }}">
         <div class="contenedor-opciones-pagina">
             <h2>PAGINAS</h2>
             <div id="eliminarPagina" class="opcion opcion-eliminar">
@@ -27,28 +30,30 @@
         </div>
 
         <div class="contenedor-paginas">
-            <form action="" method="POST">
+            <form class="formulario-contenedor formulario-pagina" action="" method="POST">
                 @csrf
                 @method('')
+
                 <select name="paginaEscogida" id="paginaEscogida">
                     @foreach ($paginas as $pagina)
                         <option value="{{ $pagina->id }}">{{ $pagina->titulo }}</option>
                     @endforeach
                 </select>
-                <input type="submit" value="">
+                <input id="boton-pagina" type="submit" value="">
             </form>
         </div>
         <div class="contenedor-secciones">
-            <form action="" method="POST">
+            <form class="formulario-contenedor formulario-seccion " action="" method="POST">
                 @csrf
                 @method('')
+
                 <select name="seccionEscogida" id="seccionEscogida">
                     @foreach ($secciones as $seccion)
                         <option value="{{ $seccion->id }}">
                             {{ 'Pagina: ' . $seccion->pagina->titulo . ' Seccion: ' . $seccion->titulo }}</option>
                     @endforeach
                 </select>
-                <input type="submit" value="">
+                <input id="boton-seccion" type="submit" value="">
             </form>
         </div>
     </div>

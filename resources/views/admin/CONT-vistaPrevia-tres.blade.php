@@ -1,7 +1,7 @@
 @extends('admin/panel-control')
 
-@section('CONT-vistaPrevia'){{'Mostrando pagina :' . $idPagina}}
-    <div class="seccion seccion-nueva seccion-uno">
+@section('CONT-vistaPrevia-tres'){{'Mostrando pagina :' . $idPagina}}
+    <div class="seccion seccion-nueva seccion-tres">
         <div class="titulo">
             <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
         </div>

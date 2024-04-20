@@ -8,14 +8,26 @@
         </div>
     @endif
     <div class="contenedor-formulario">
-        <form action="{{ route('gestionPagina.store') }}" class="formulario-pagina-nueva formulario-corto" method="POST">
+        <form action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) :  route('pagina.store') }}" class="formulario-pagina-nueva formulario-corto" method="POST">
             @csrf
+            @isset($pagina)
+                @method('PUT')
+            @endisset
             <div class="grupo-formulario">
                 <div class="grupo-input">
+                    @isset($pagina)
+                        <input class="estilo-formulario" type="text" name="titulo" id="titulo"
+                            placeholder="Título de la página" value="{{  $pagina->titulo  }}">
+                        <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
+                            placeholder="Descripción" value="{{  $pagina->descripcion }}">
+                    @else 
+                        
                     <input class="estilo-formulario" type="text" name="titulo" id="titulo"
-                        placeholder="Título de la página">
+                        placeholder="Título de la página" >
                     <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
-                        placeholder="Descripción">
+                        placeholder="Descripción" >
+               
+                    @endif
                 </div>
                 <div class="grupo-error">
                     @error('titulo')
