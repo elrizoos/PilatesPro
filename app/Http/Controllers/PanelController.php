@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grupo;
 use App\Models\Imagen;
 use App\Models\ImagenesSeccion;
 use App\Models\ImagenSeccion;
@@ -156,7 +157,26 @@ class PanelController extends Controller
         return view('admin.galeria.inicio', compact('imagenesPerfil', 'imagenesSeccion', 'tipo'));
     }
 
+    public function mostrarGrupos()
+    {
+        $grupos = Grupo::all();
+        $alumnos = [];
+        foreach ($grupos as $grupo) {
+            $idGrupo = $grupo->id;
 
+            $alumnosGrupo = User::where('tipo_usuario', '=', 'alumno')->where('grupo_id', '=', $idGrupo)->get();
+
+            $alumnos[] = [
+                'nombreGrupo' => $grupo->nombre,
+                'id' => $grupo->id,
+                'participantes' => $alumnosGrupo,
+            ];
+        }
+        $tipo = 'GRUP-inicio';
+        //dd($grupos, $alumnos);
+
+        return view('admin.GRUP-inicio', compact('alumnos', 'tipo'));
+    }
 
 
 
