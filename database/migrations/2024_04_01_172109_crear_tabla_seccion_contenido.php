@@ -16,11 +16,11 @@ return new class extends Migration {
             $table->string('titulo', 255);
             $table->string('parrafo', 255);
             $table->integer('orden')->nullable();
-            $table->unsignedBigInteger('idImagenUno');
+            $table->unsignedBigInteger('idImagenUno')->nullable();
             $table->unsignedBigInteger('idImagenDos')->nullable();
             $table->foreign('idSeccion')->references('id')->on('seccions')->onDelete('cascade');
-            $table->foreign('idImagenUno')->references('id')->on('imagenes_seccions')->onDelete('cascade');
-            $table->foreign('idImagenDos')->references('id')->on('imagenes_seccions')->onDelete('cascade');
+            $table->foreign('idImagenUno')->references('id')->on('imagenes_seccions')->onDelete('set null');
+            $table->foreign('idImagenDos')->references('id')->on('imagenes_seccions')->onDelete('set null');
 
             $table->timestamps();
         });

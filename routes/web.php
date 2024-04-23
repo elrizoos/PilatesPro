@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\ImagenesSeccionController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ReservasController;
@@ -165,24 +167,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/usuario/guardarCambios', [UsuarioController::class, 'guardarCambios'])->name('usuario-guardarCambios');
 
-    Route::resource('usuario/imagen', ImagenController::class);
 
 
 
     Route::get('/usuario/reservas/historialReservas', [ReservasController::class, 'index'])->name('reservas-historialReservas');
     Route::get('/usuario/reservas/reservasActivas', [ReservasController::class, 'obtenerClasesReservadas'])->name('reservas-reservasActivas');
 
+    Route::get('/admin/panel-control/galeria', [PanelController::class, 'mostrarGaleria'])->name('galeriaImagenes');
 
 
-    Route::resource('usuario/reservas', ReservasController::class);
-    Route::resource('/admin/panel-control', PanelController::class);
-    Route::resource('/admin/panel-control/gestionUsuario', UsuarioController::class);
-    Route::resource('/admin/panel-control/gestionContenido', SeccionContenidoController::class);
-    Route::resource('/admin/panel-control/gestionPagina', PaginaController::class);
     Route::get('/admin/panel-control/mostrarContenido/elegirPagina', [PaginaController::class, 'elegirPagina'])->name('elegirPagina');
 
     Route::get('/admin/panel-control/mostrarContenido/{tipo}', [PanelController::class, 'mostrarContenido'])->name('mostrarContenido');
-    Route::get('/admin/panel-control', [PanelController::class, 'index'])->name('panel-control');
+    Route::get('/admin/panel-control/inicio', [PanelController::class, 'index'])->name('panel-control');
     Route::get('/admin/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
     Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
     Route::put('/admin/panel-control/modificarContrasena/{usuario}', [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
@@ -194,14 +191,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/contenido/seleccionarPagina', [PaginaController::class, 'seleccionarPagina'])->name('seleccionarPagina');
     Route::get('/admin/panel-control/contenido/seleccionApartado/{pagina}/{seccion}', [SeccionContenidoController::class, 'seleccionApartado'])->name('seleccionApartado');
     Route::post('/admin/panel-control/contenido/seleccionarOrden/{seccion}', [SeccionContenidoController::class, 'seleccionarOrden'])->name('seleccionarOrden');
-    Route::get('/panel-control/contenido/eliminarEditarPagina', [PaginaController::class, 'eliminarEditarPagina'])->name('eliminarEditarPagina');
-    Route::delete('/panel-control/contenido/eliminarPagina', [PaginaController::class, 'destroy'])->name('eliminarPagina');
-    Route::post('/panel-control/contenido/editarPagina', [PaginaController::class, 'edit'])->name('editarPagina');
-    Route::delete('/panel-control/contenido/eliminarSeccion', [SeccionContenidoController::class, 'destroy'])->name('eliminarSeccion');
-    Route::post('/panel-control/contenido/editarSeccion', [SeccionContenidoController::class, 'edit'])->name('editarSeccion');
+    Route::get('/admin/panel-control/contenido/eliminarEditarPagina', [PaginaController::class, 'eliminarEditarPagina'])->name('eliminarEditarPagina');
+    Route::get('/admin/panel-control/seccion/{seccion}/edit', [SeccionContenidoController::class, 'edit'])->name('seccion.edit');
+    Route::get('/admin/panel-control/gestionGrupos/inicio', [PanelController::class, 'mostrarGrupos'])->name('gestionGrupos');
+    Route::get('/admin/panel-control/grupo/añadirParticipantes/{grupo}', [GrupoController::class, 'añadirParticipantes'])->name('añadirParticipantes');
+    Route::get('/admin/panel-control/grupo/mostrarUsuarios/{grupo}', [GrupoController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
+    Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
 
-
-
+    Route::resource('usuario/imagen', ImagenController::class);
+    Route::resource('usuario/reservas', ReservasController::class);
+    Route::resource('/admin/panel-control', PanelController::class);
+    Route::resource('/admin/panel-control/usuario', UsuarioController::class);
+    Route::resource('/admin/panel-control/seccion', SeccionContenidoController::class);
+    Route::resource('/admin/panel-control/pagina', PaginaController::class);
+    Route::resource('/admin/panel-control/imagenSeccion', ImagenesSeccionController::class);
+    Route::resource('/admin/panel-control/grupo', GrupoController::class);
 });
 
 

@@ -1361,6 +1361,10 @@ h3 {
     text-align: center;
 }
 
+p {
+    font-size: 3.5em;
+}
+
 /*██████████████████████████████████████████████████████████████████████████████████████████████████████████
 █░░░░░░██░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░███░░░░░░░░░░█░░░░░░░░░░░░░░█
 █░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
@@ -2056,6 +2060,7 @@ div#contenedor-sugerenciaReservas {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 .seccion-nueva .imagen .imagen-marco {
     background-color: orange;
@@ -2081,22 +2086,49 @@ div#contenedor-sugerenciaReservas {
 
 //Estructura uno
 
-.seccion.seccion-nueva.seccion-uno .titulo {
+.seccion.seccion-nueva .titulo {
     grid-area: 1 / 1 / 3 / 10;
     color: $colorSecundario;
 }
-.seccion.seccion-nueva.seccion-uno .imagen {
+.seccion.seccion-nueva .imagen {
     grid-area: 3 / 1 / 7 / 5;
 }
 
-.seccion.seccion-nueva.seccion-uno .imagen .imagen-seccion {
+
+.seccion.seccion-nueva .imagen .borrarImagen {
+    background-image: url($ruta + '/borrar.png');
+    background-size: 90%;
+    width: 5em;
+    height: 5em;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    cursor: pointer;
+}
+.seccion.seccion-nueva .imagen .imagen-seccion {
     background-size: contain;
     background-repeat: no-repeat;
     width: 85%;
     height: 90%;
     background-position: center;
 }
-.seccion.seccion-nueva.seccion-uno .parrafo {
+
+.seccion.seccion-nueva .imagen-seccion-editable {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 35;
+}
+.seccion.seccion-nueva .parrafo {
     grid-area: 3 / 5 / 7 / 9;
     color: $colorGris;
 }
@@ -2205,11 +2237,34 @@ div#contenedor-sugerenciaReservas {
 }
 
 .vista-previa.vista-foro {
-    width: 20%;
+    width: 90%;
     height: 80%;
     background-color: blue;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: minmax(100px, auto);
+    gap: 10px;
 }
 
+
+.vista-previa.vista-foro .seccion {
+    font-size: 0.5em;
+    flex: 4;
+}
+
+.vista-previa.vista-foro .gene {
+    display: flex;
+}
+
+.vista-previa.vista-foro span {
+    background-image: url($ruta + '/flecha-derecha.png');
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+}
 //OPCIONES DE ELIMINAR O EDITAR
 .contenedor-contenido.seleccion {
     gap: 1em;
@@ -2289,6 +2344,162 @@ div#contenedor-sugerenciaReservas {
 .contenedor-paginas input, .contenedor-secciones input{
     text-transform: uppercase;
 }
+
+.imagenes-galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em; /* Espacio entre imágenes */
+    justify-content: center;
+}
+
+
+
+.imagen-container {
+    display: flex;
+    flex: 1 ; /* Ajusta según necesidades para el tamaño de las imágenes */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+    justify-content: center;
+    align-items: center;
+    height: 3em; /* Altura fija para mantener consistencia */
+
+}
+
+.imagen-container img {
+    max-width: 100%; /* Máximo ancho dentro del contenedor */
+    max-height: 100%; /* Máximo altura dentro del contenedor */
+    display: block; /* Evita márgenes extra debajo de la imagen */
+    object-fit: contain; /* Mantiene la relación de aspecto sin recortar */
+    border: 1px solid white;
+}
+
+.contenedor-galeria {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.galeria {
+    height: 100%;
+}
+
+.galeria > * {
+    display: none;
+}
+
+.navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    padding: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    color: $colorSecundario;
+    background-color: $colorFondo;
+}
+
+//Cuadro de actualizaciones pagina de inicio
+.cuadro-actualizaciones {
+    position: absolute;
+    width: 70%;
+    height: 80vh;
+    z-index: 1000;
+    left: 15%;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1em;
+    overflow-y: scroll;
+    background: $colorFondo;
+}
+
+.cuadro-actualizaciones h5 {
+    font-size: 8em;
+    text-align: center;
+    color: $colorSecundario;
+    margin: 1em 0;
+    text-decoration: underline;
+}
+
+.cuadro-actualizaciones h3 {
+    font-size: 6em;
+    text-align: left;
+    color: white;
+    margin: 0.5em;
+    background-color: $colorGris;
+    padding: 0.5em;
+}
+
+.cuadro-actualizaciones p {
+    font-size: 3em;
+    color: white;
+    margin: 1em;
+}
+
+
+.cambio.cambio-principal {
+    padding: 0.2em;
+    font-size: 3em;
+    color: $colorGris ;
+}
+
+.lista-principal {
+    padding: 0.3em;
+}
+
+.apartado-principal {
+    padding: 0.5em;
+    color: $dorado;
+}
+
+.subapartado {
+    padding: 0.2em;
+    color: $colorGris;
+    margin-left: 1em;
+}
+
+#cerrarVentanaActualizacion {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url($ruta + '/cerrar-cruz.png');
+    background-size: contain;
+    width: 5em;
+    height: 5em;
+    margin: 1em;
+}
+
+
+.cuadro-actualizaciones
+.lista-cambios b {
+    color: white;
+}
+
+//Ajustes gestion de grupos 
+.combinacion.flex {
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+
+
+.contenedor-tabla.flex{
+    flex-direction: column;
+    color: white;
+}
+
+.contenedor-tabla.flex h2 {
+    color: white;
+    text-transform: uppercase;
+    padding: 1em;
+}
+
+.contenedor-tabla.flex h4 {
+    font-size: 3em;
+}
+
 @media (min-width: 250px) and (max-width: 800px) {
     body {
         font-size: 40%;

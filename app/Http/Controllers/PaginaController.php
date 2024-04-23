@@ -6,6 +6,7 @@ use App\Models\ImagenesSeccion;
 use App\Models\Pagina;
 use App\Http\Controllers\Controller;
 use App\Models\SeccionContenido;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -79,7 +80,10 @@ class PaginaController extends Controller
      */
     public function edit(Pagina $pagina)
     {
-        //
+        Log::debug('Pagina edit', ['pagina' => $pagina]);
+        dd($pagina);
+        $tipo = 'CONT-crearPagina';
+        return view('admin.CONT-crearPagina', compact('pagina', 'tipo'));
     }
 
     /**
@@ -87,7 +91,13 @@ class PaginaController extends Controller
      */
     public function update(Request $request, Pagina $pagina)
     {
-        //
+        //dd($pagina);
+        $pagina->update([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        return redirect()->back()->with('success', 'La Pagina ha sido actualizada con exito');
     }
 
     /**
@@ -105,7 +115,6 @@ class PaginaController extends Controller
         $paginas = Pagina::all();
         $pagina = Pagina::where('slug', '=', $slug)->first();
         $secciones = SeccionContenido::where('idPagina', '=', $pagina->id)->orderBy('orden', 'asc')->get();
-
         $tipo = $pagina->slug;
         $imagenes = [];
         foreach ($secciones as $seccion) {
@@ -114,6 +123,7 @@ class PaginaController extends Controller
                 'imagenDos' => ImagenesSeccion::find($seccion->idImagenDos) ?? null,
             ];
         }
+        //dd($imagenes);
 
         return view('pagina.show', [
             'paginas' => $paginas,

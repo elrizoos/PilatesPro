@@ -6,6 +6,13 @@
             {{ session('registro-exitoso') }}
         </div>
     @endif
+    <div id="cuadroActualizacion" class="cuadro-actualizaciones">
+        <h5>¡La página ha sido actualizada!</h5>
+        <h3>Version 0.0.1 (Primeras notas)</h3>
+       
+            @include('actualizacion.version_0_0_1')
+        
+    </div>
     <div class="seccion slider-seccion">
         <div class="slider slider-uno">
             <div class="contenedorSlider">
@@ -229,59 +236,59 @@
                     <span></span>
                 </div>
                 <h2>Chus Alvarez Pilates</h3>
-                <h3>Video de promoción</h4>
-                <span id="botonPlay" class="icono-play"></span>
+                    <h3>Video de promoción</h4>
+                        <span id="botonPlay" class="icono-play"></span>
             </div>
         </div>
     </div>
     <div class="seccion facilidades">
         <div class="contenedor-facilidades">
             <h2 class="facilidades-titulo">Nuestros servicios</h3>
-            <h3 class="facilidades-subtitulo">Facilidades del estudio</h4>
-            <div class="contenedor-facilidades-grid">
-                <div class="elemento-uno">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Sala de Relax</h4>
+                <h3 class="facilidades-subtitulo">Facilidades del estudio</h4>
+                    <div class="contenedor-facilidades-grid">
+                        <div class="elemento-uno">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Sala de Relax</h4>
+                            </div>
+                            <p>Sala dónde podrás recuperar energías despues de cada clase y recibir un poco de calma</p>
+                        </div>
+                        <div class="elemento-dos">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Duchas y Vestuarios</h4>
+                            </div>
+                            <p>Disponemos de vestuarios equipados completamente y duchas para cada usuario</p>
+                        </div>
+                        <div class="elemento-tres">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Tienda de Productos</h4>
+                            </div>
+                            <p>Disponemos de una tienda con productos propios del estudio</p>
+                        </div>
+                        <div class="elemento-cuatro">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Servicio de nutricion</h4>
+                            </div>
+                            <p>Podrás mejorar tu alimentación con nuestro servicio Aliméntate</p>
+                        </div>
+                        <div class="elemento-cinco">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Cafe o zona de snacks saludables</h4>
+                            </div>
+                            <p>Tomate tu cafe mañanero o cuando lo necesites</p>
+                        </div>
+                        <div class="elemento-seis">
+                            <div class="elemento-row">
+                                <span></span>
+                                <h4>Estacionamiento o facil transporte en la zona</h4>
+                            </div>
+                            <p>Disponemos de parquin privado, y zona de autobuses a menos de 100 metros</p>
+                        </div>
                     </div>
-                    <p>Sala dónde podrás recuperar energías despues de cada clase y recibir un poco de calma</p>
-                </div>
-                <div class="elemento-dos">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Duchas y Vestuarios</h4>
-                    </div>
-                    <p>Disponemos de vestuarios equipados completamente y duchas para cada usuario</p>
-                </div>
-                <div class="elemento-tres">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Tienda de Productos</h4>
-                    </div>
-                    <p>Disponemos de una tienda con productos propios del estudio</p>
-                </div>
-                <div class="elemento-cuatro">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Servicio de nutricion</h4>
-                    </div>
-                    <p>Podrás mejorar tu alimentación con nuestro servicio Aliméntate</p>
-                </div>
-                <div class="elemento-cinco">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Cafe o zona de snacks saludables</h4>
-                    </div>
-                    <p>Tomate tu cafe mañanero o cuando lo necesites</p>
-                </div>
-                <div class="elemento-seis">
-                    <div class="elemento-row">
-                        <span></span>
-                        <h4>Estacionamiento o facil transporte en la zona</h4>
-                    </div>
-                    <p>Disponemos de parquin privado, y zona de autobuses a menos de 100 metros</p>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

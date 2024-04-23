@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->string('ruta_imagen', 255);
             $table->string('descripcion')->nullable();
+            $table->string('hash', 255)->nullable();
             $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

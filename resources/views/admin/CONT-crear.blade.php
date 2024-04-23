@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="botonPagina">
-            <a href="{{ route('gestionPagina.create') }}">Crear nueva pagina</a>
+            <a href="{{ route('pagina.create') }}">Crear nueva pagina</a>
         </div>
     </div>
 @endsection
