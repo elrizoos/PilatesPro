@@ -37,6 +37,7 @@
                             <li><a href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
                                     Contraseñas</a>
                             </li>
+                            <li><a href="{{ route('gestionGrupos')}}">Gestión de grupos</a></li>
                         </ul>
                     </li>
                     <li class="contenido">Contenido <span></span>

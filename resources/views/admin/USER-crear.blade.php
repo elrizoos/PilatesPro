@@ -8,7 +8,7 @@
         </div>
     @endif
     <div class="contenedor-formulario">
-        <form class="formulario-usuario-nuevo" action="{{ route('gestionUsuario.create') }}" method="get">
+        <form class="formulario-usuario-nuevo" action="{{ route('usuario.create') }}" method="get">
             @csrf
 
             <div class="grupo-formulario">

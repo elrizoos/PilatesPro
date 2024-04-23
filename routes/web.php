@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
 use App\Http\Controllers\PaginaController;
@@ -192,8 +193,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/admin/panel-control/contenido/seleccionarOrden/{seccion}', [SeccionContenidoController::class, 'seleccionarOrden'])->name('seleccionarOrden');
     Route::get('/admin/panel-control/contenido/eliminarEditarPagina', [PaginaController::class, 'eliminarEditarPagina'])->name('eliminarEditarPagina');
     Route::get('/admin/panel-control/seccion/{seccion}/edit', [SeccionContenidoController::class, 'edit'])->name('seccion.edit');
-
-
+    Route::get('/admin/panel-control/gestionGrupos/inicio', [PanelController::class, 'mostrarGrupos'])->name('gestionGrupos');
+    Route::get('/admin/panel-control/grupo/añadirParticipantes/{grupo}', [GrupoController::class, 'añadirParticipantes'])->name('añadirParticipantes');
+    Route::get('/admin/panel-control/grupo/mostrarUsuarios/{grupo}', [GrupoController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
+    Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
@@ -202,6 +205,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/panel-control/seccion', SeccionContenidoController::class);
     Route::resource('/admin/panel-control/pagina', PaginaController::class);
     Route::resource('/admin/panel-control/imagenSeccion', ImagenesSeccionController::class);
+    Route::resource('/admin/panel-control/grupo', GrupoController::class);
 });
 
 

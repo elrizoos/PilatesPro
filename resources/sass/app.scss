@@ -2375,6 +2375,8 @@ div#contenedor-sugerenciaReservas {
 .contenedor-galeria {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .galeria {
     height: 100%;
@@ -2396,7 +2398,107 @@ div#contenedor-sugerenciaReservas {
     background-color: $colorFondo;
 }
 
+//Cuadro de actualizaciones pagina de inicio
+.cuadro-actualizaciones {
+    position: absolute;
+    width: 70%;
+    height: 80vh;
+    z-index: 1000;
+    left: 15%;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1em;
+    overflow-y: scroll;
+    background: $colorFondo;
+}
 
+.cuadro-actualizaciones h5 {
+    font-size: 8em;
+    text-align: center;
+    color: $colorSecundario;
+    margin: 1em 0;
+    text-decoration: underline;
+}
+
+.cuadro-actualizaciones h3 {
+    font-size: 6em;
+    text-align: left;
+    color: white;
+    margin: 0.5em;
+    background-color: $colorGris;
+    padding: 0.5em;
+}
+
+.cuadro-actualizaciones p {
+    font-size: 3em;
+    color: white;
+    margin: 1em;
+}
+
+
+.cambio.cambio-principal {
+    padding: 0.2em;
+    font-size: 3em;
+    color: $colorGris ;
+}
+
+.lista-principal {
+    padding: 0.3em;
+}
+
+.apartado-principal {
+    padding: 0.5em;
+    color: $dorado;
+}
+
+.subapartado {
+    padding: 0.2em;
+    color: $colorGris;
+    margin-left: 1em;
+}
+
+#cerrarVentanaActualizacion {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url($ruta + '/cerrar-cruz.png');
+    background-size: contain;
+    width: 5em;
+    height: 5em;
+    margin: 1em;
+}
+
+
+.cuadro-actualizaciones
+.lista-cambios b {
+    color: white;
+}
+
+//Ajustes gestion de grupos 
+.combinacion.flex {
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+
+
+.contenedor-tabla.flex{
+    flex-direction: column;
+    color: white;
+}
+
+.contenedor-tabla.flex h2 {
+    color: white;
+    text-transform: uppercase;
+    padding: 1em;
+}
+
+.contenedor-tabla.flex h4 {
+    font-size: 3em;
+}
 
 @media (min-width: 250px) and (max-width: 800px) {
     body {
