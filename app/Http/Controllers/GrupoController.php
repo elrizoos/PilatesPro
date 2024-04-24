@@ -58,9 +58,10 @@ class GrupoController extends Controller
     public function edit(Grupo $grupo)
     {
         $tipo = 'GRUP-editar';
+        $profesores = User::where('tipo_usuario', '=', 'Profesor')->get();
         $participantesGrupo = User::where('grupo_id', '=', $grupo->id)->get();
         //dd($participantesGrupo);
-        return view('admin.GRUP-editar', compact('grupo', 'tipo', 'participantesGrupo'));
+        return view('admin.GRUP-editar', compact('grupo', 'tipo', 'participantesGrupo', 'profesores'));
     }
 
     /**

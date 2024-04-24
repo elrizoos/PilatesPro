@@ -3,7 +3,7 @@
 @section('GRUP-editar')
     <div class="combinacion flex">
         <div class="contenedor-formulario">
-            
+
             <form action="{{ route('grupo.update', ['grupo' => $grupo->id]) }}" method="post">
                 @csrf
                 @method('PUT')
@@ -13,6 +13,11 @@
                             value="{{ $grupo->nombre ?? '' }}">
                         <input type="text" name="descripcion" id="descripcion" class="estilo-formulario"
                             placeholder="Descripcion" value="{{ $grupo->descripcion ?? '' }}">
+                        <select name="profesor" id="profesor-select">
+                            @foreach ($profesores as $profesor)
+                                <option value="{{ $profesor->id }}">Profesor: {{ $profesor->nombre }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="grupo-error">
                         @error('nombre')
@@ -60,8 +65,8 @@
                                         @csrf
                                         <input type="submit" value="Ver/Editar">
                                     </form>
-                                    <form
-                                        action="{{ route('eliminarParticipante', ['participante' => $usuario->id]) }}" method="POST">
+                                    <form action="{{ route('eliminarParticipante', ['participante' => $usuario->id]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" value="Eliminar participante">
