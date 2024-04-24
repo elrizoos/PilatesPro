@@ -37,7 +37,7 @@
                             <li><a href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
                                     Contraseñas</a>
                             </li>
-                            <li><a href="{{ route('gestionGrupos')}}">Gestión de grupos</a></li>
+                            <li><a href="{{ route('gestionGrupos') }}">Gestión de grupos</a></li>
                         </ul>
                     </li>
                     <li class="contenido">Contenido <span></span>
@@ -46,7 +46,7 @@
                             </li>
                             <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
                             <li><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a></li>
-                            <li><a href="{{ route('galeriaImagenes')}}">Galeria de imagenes y videos</a></li>
+                            <li><a href="{{ route('galeriaImagenes') }}">Galeria de imagenes y videos</a></li>
                         </ul>
                     </li>
                     <li class="clases-horarios">Clases y Horarios <span></span>
@@ -91,14 +91,16 @@
         </div>
         <div class="panel-contenido">
             @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+                <div class="alert alert-success ventana-emergente">
+                    <p>{{ session('success') }}</p>
+                    <span id=cerrarBoton></span>
                 </div>
             @endif
 
             @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
+                <div class="alert alert-danger ventana-emergente">
+                    <p>{{ session('error') }}</p>
+                    <span id=cerrarBoton></span>
                 </div>
             @endif
             @if ($tipo)
