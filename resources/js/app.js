@@ -146,4 +146,8 @@ $(document).ready(function () {
         ruta = ruta.replace(/\/\d+/, "/" + objetoId);
         $("." + formulario).attr("action", ruta);
     });
+
+    $("#cerrarBoton").on("click", function () {
+        $(".ventana-emergente").addClass("no-active");
+    });
 });

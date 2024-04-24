@@ -3,29 +3,24 @@
 @section('GRUP-editar')
     <div class="combinacion flex">
         <div class="contenedor-formulario">
-            @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-
-                </div>
-            @endif
+            
             <form action="{{ route('grupo.update', ['grupo' => $grupo->id]) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="grupo-formulario">
                     <div class="grupo-input">
-                        <input class="estilo-formulario" type="text" name="name" id="nombre" placeholder="Nombre"
+                        <input class="estilo-formulario" type="text" name="nombre" id="nombre" placeholder="Nombre"
                             value="{{ $grupo->nombre ?? '' }}">
-                        <input type="text" name="apellidos" id="apellidos" class="estilo-formulario"
-                            placeholder="Apellidos" value="{{ $grupo->descripcion ?? '' }}">
+                        <input type="text" name="descripcion" id="descripcion" class="estilo-formulario"
+                            placeholder="Descripcion" value="{{ $grupo->descripcion ?? '' }}">
                     </div>
                     <div class="grupo-error">
-                        @error('name')
+                        @error('nombre')
                             <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        @error('apellidos')
+                        @error('descripcion')
                             <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

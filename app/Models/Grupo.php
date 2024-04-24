@@ -9,6 +9,12 @@ class Grupo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'profesor_id',
+    ];
+
     public function clase() {
         return $this->hasMany(Clase::class);
     }

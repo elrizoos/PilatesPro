@@ -1,12 +1,7 @@
 @extends('admin/panel-control')
 
 @section('USER-gestionContrasena-formulario')
-    @if (session('success'))
-        <div class="alert alert-success ventana-emergente">
-            <p>{{ session('success') }}</p>
-            <span id=cerrarBoton></span>
-        </div>
-    @endif
+    
     <div class="contenedor-formulario">
         <form class="formulario-corto" action="{{ route('modificarContrasena', ['usuario' => $usuario->id]) }}" method="POST">
             @csrf
