@@ -51,12 +51,10 @@
                     </li>
                     <li class="clases-horarios">Clases y Horarios <span></span>
                         <ul class="submenu">
-                            <li>Crear nuevo registro horario</li>
-                            <li>Editar registro horario</li>
-                            <li>Crear nueva clase</li>
-                            <li>Editar clase</li>
-                            <li>Eliminar registro horario</li>
-                            <li>Eliminar clase</li>
+                            <li><a href="{{ route('horario.create')}}">Crear nuevo registro horario</a></li>
+                            <li><a href="{{ route('mostrarHorarios')}}">Editar registro horario</a></li>
+                            <li><a href="{{ route('clase.create')}}">Crear nueva clase</a></li>
+                            <li><a href="{{ route('mostrarClases')}}">Editar clase</a></li>
                         </ul>
                     </li>
                     <li class="pagos-facturacion">Pagos y Facturación <span></span>

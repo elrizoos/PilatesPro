@@ -16,9 +16,6 @@ class ClasesTableSeeder extends Seeder
         DB::table('clases')->insert([
             [
                 'nombre' => 'Clase 1',
-                'fecha' => '2024-02-26',
-                'hora_inicio' => '12:00:00',
-                'hora_fin' => '13:00:00',
                 'grupo_id' => 1,
             ],
         ]);

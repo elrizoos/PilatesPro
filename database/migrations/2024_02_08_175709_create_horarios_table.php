@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('clase_id');
-            $table->enum('dia_semana', ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])->nullable();
+            $table->enum('dia_semana', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'])->nullable();
             $table->date('fecha_especifica')->nullable();
             $table->time('hora_inicio');
             $table->time('hora_fin');

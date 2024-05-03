@@ -119,11 +119,12 @@ $(document).ready(function () {
 
         var esEliminar =
             elemento === "eliminarPagina" || elemento === "eliminarSeccion";
-        $("." + clase + " input[name=_method]").val(
-            esEliminar ? "DELETE" : ""
-        );
+        $("." + clase + " input[name=_method]").val(esEliminar ? "DELETE" : "");
 
-        $('.' + clase + ' .formulario-contenedor').attr('method', !esEliminar ? 'GET' : 'POST');
+        $("." + clase + " .formulario-contenedor").attr(
+            "method",
+            !esEliminar ? "GET" : "POST"
+        );
 
         var tipoObjeto =
             objeto === "pagina" ? "paginaEscogida" : "seccionEscogida";
@@ -139,10 +140,14 @@ $(document).ready(function () {
 
     $("#paginaEscogida, #seccionEscogida").on("change", function (e) {
         var objetoInicial = e.currentTarget.id;
-        var tipoObjeto = (objetoInicial === 'seccionEscogida') ? 'seccion' : 'pagina';
-        var formulario = (tipoObjeto === 'pagina') ? 'formulario-pagina' : 'formulario-seccion';
+        var tipoObjeto =
+            objetoInicial === "seccionEscogida" ? "seccion" : "pagina";
+        var formulario =
+            tipoObjeto === "pagina"
+                ? "formulario-pagina"
+                : "formulario-seccion";
         var objetoId = $("#" + objetoInicial).val();
-        var ruta = $('.formulario-contenedor.' + formulario).attr('action');
+        var ruta = $(".formulario-contenedor." + formulario).attr("action");
         ruta = ruta.replace(/\/\d+/, "/" + objetoId);
         $("." + formulario).attr("action", ruta);
     });
@@ -150,4 +155,174 @@ $(document).ready(function () {
     $("#cerrarBoton").on("click", function () {
         $(".ventana-emergente").addClass("no-active");
     });
+});
+
+$(".hora-inicio, .hora-fin").on("click", function () {
+    if ($(this).hasClass("hora-inicio")) {
+        $(".seleccion-horas").removeClass("no-active");
+        $("#inicioFin").text("Hora Inicio");
+    } else {
+        $(".seleccion-horas").removeClass("no-active");
+        $("#inicioFin").text("Hora Fin");
+    }
+});
+
+$("#seleccionarHora").on("click", function () {
+    const h3 = $("#inicioFin").text();
+    let minutos;
+    let horas;
+    switch (h3) {
+        case "Hora Inicio":
+            minutos = $("#minutosProvisional").val();
+            horas = $("#horaProvisional").val();
+            console.log(horas);
+            let inputInicio = $("#horaInicio");
+            inputInicio.val(horas + ":" + minutos);
+
+            $(".hora-inicio .hora").text(horas);
+            $(".hora-inicio .minutos").text(minutos);
+
+            console.log(inputInicio);
+            break;
+        case "Hora Fin":
+            minutos = $("#minutosProvisional").val();
+            horas = $("#horaProvisional").val();
+
+            let inputFin = $("#horaFin");
+            inputFin.val(horas + ":" + minutos);
+            $(".hora-fin .hora").text(horas);
+            $(".hora-fin .minutos").text(minutos);
+            console.log(inputFin);
+            break;
+    }
+    $(".seleccion-horas").addClass("no-active");
+});
+
+$("#sliderHoras").on("input", function () {
+    const minutos = $(this).val() * 5;
+    const horas = Math.floor(minutos / 60);
+    const minutosRestantes = minutos % 60;
+
+    const horasCeros = pad(horas);
+    const minutosCeros = pad(minutosRestantes);
+
+    $("#horaProvisional").val(horasCeros);
+    $("#minutosProvisional").val(minutosCeros);
+    setAgujas(horasCeros, minutosCeros);
+});
+
+function pad(num) {
+    return num.toString().padStart(2, "0");
+}
+
+function setAgujas(horas, minutos) {
+    const anguloHoras = ((horas % 12) / 12) * 360 + (minutos / 60) * 30;
+    const anguloMinutos = (minutos / 60) * 360;
+
+    $(".aguja-hora").css("transform", "rotate(" + anguloHoras + "deg)");
+    $(".aguja-minuto").css("transform", "rotate(" + anguloMinutos + "deg)");
+}
+
+//Funcion para el funcionamiento del calendario
+
+const mesAnno = $("#mesAnnoActual");
+const diasMes = $("#diasMes");
+const fechaActual = new Date();
+let mesActual = fechaActual.getMonth();
+console.log(mesActual);
+let annoActual = fechaActual.getFullYear();
+
+function calendario() {
+    const primerDia = new Date(annoActual, mesActual, 1);
+    const ultimoDia = new Date(annoActual, mesActual + 1, 0);
+    const fecha = primerDia.toLocaleDateString("es-ES", {
+        month: "long",
+        year: "numeric",
+    });
+    mesAnno.text(fecha);
+
+    diasMes.empty();
+    for (let i = 0; i < primerDia.getDay()-1; i++) {
+        diasMes.append("<div></div>");
+    }
+
+    for (let i = 1; i <= ultimoDia.getDate(); i++) {
+        const diaDiv = $("<div class='dia-calendario'></div>").text(i);
+        if (
+            i === fechaActual.getDate() &&
+            annoActual === fechaActual.getFullYear() &&
+            mesActual === fechaActual.getMonth()
+        ) {
+            diaDiv.addClass("today");
+        }
+        diasMes.append(diaDiv);
+    }
+    añadirEvento();
+}
+
+$(".mes-anterior").click(function () {
+    mesActual--;
+    if (mesActual < 0) {
+        mesActual = 11;
+        annoActual--;
+    }
+    calendario();
+});
+
+$(".mes-siguiente").click(function () {
+    mesActual++;
+    if (mesActual > 11) {
+        mesActual = 0;
+        annoActual++;
+    }
+    calendario();
+});
+
+$(".anno-anterior").click(function () {
+    annoActual--;
+    calendario();
+});
+
+$(".anno-siguiente").click(function () {
+    annoActual++;
+    calendario();
+});
+
+calendario();
+
+//Funcion para aparecer y desaparecer calendario y label de placeholder
+const label = $("#fechaPlaceholder");
+const contenedorCalendario = $("#contenedorCalendario");
+const fechaEspecifica = $("#fechaEspecifica");
+let dias = $(".dias-mes div");
+label.on("click", function () {
+    label.hide();
+    contenedorCalendario.addClass("flex");
+});
+fechaEspecifica.on("click", function () {
+    contenedorCalendario.removeClass("no-active");
+});
+
+function añadirEvento() {
+    const diasCalendario = $(".dia-calendario");
+    diasCalendario.on("click", function () {
+        contenedorCalendario.addClass("no-active");
+        fechaEspecifica.val(
+            annoActual + "-" + pad(mesActual+1) + "-" + pad($(this).text())
+        );
+    });
+}
+
+//Funcionalidad de boton repetir
+$("#repetir").on("change", function () {
+    console.log($(this).prop("checked"));
+
+    switch ($(this).prop("checked")) {
+        case true:
+            $(".opcionRepetir").addClass("flex");
+            break;
+        case false:
+            $(".opcionRepetir").removeClass("flex");
+            $(".listaDiasSemana li input").prop("checked", false);
+    }
 });
