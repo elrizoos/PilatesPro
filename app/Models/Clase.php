@@ -9,6 +9,11 @@ class Clase extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombre', 
+        'grupo_id'
+    ];
+
     public function profesor() {
         return $this->belongsTo(User::class);
     }

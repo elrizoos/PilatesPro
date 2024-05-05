@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
 use App\Http\Controllers\PaginaController;
@@ -197,7 +199,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/grupo/añadirParticipantes/{grupo}', [GrupoController::class, 'añadirParticipantes'])->name('añadirParticipantes');
     Route::get('/admin/panel-control/grupo/mostrarUsuarios/{grupo}', [GrupoController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
     Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
-    
+    Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
+    Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
+
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
     Route::resource('/admin/panel-control', PanelController::class);
@@ -206,6 +210,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/panel-control/pagina', PaginaController::class);
     Route::resource('/admin/panel-control/imagenSeccion', ImagenesSeccionController::class);
     Route::resource('/admin/panel-control/grupo', GrupoController::class);
+    Route::resource('/admin/panel-control/clase', ClaseController::class);
+    Route::resource('/admin/panel-control/horario', HorarioController::class);
 });
 
 

@@ -6,8 +6,8 @@
             @csrf
             <div class="grupo-formulario">
                 <div class="grupo-input">
-                    <input type="text" placeholder="Nombre" name="nombre">
-                    <input type="text" placeholder="Descripcion" name="descripcion">
+                    <input class="estilo-formulario" type="text" placeholder="Nombre" name="nombre">
+                    <input class="estilo-formulario" type="text" placeholder="Descripcion" name="descripcion">
                     <select name="profesor" id="profesor-select">
                         @foreach ($profesores as $profesor)
                             <option value="{{ $profesor->id }}">Profesor: {{ $profesor->nombre }}</option>
