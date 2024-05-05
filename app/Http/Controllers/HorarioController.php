@@ -25,8 +25,8 @@ class HorarioController extends Controller
             $horasDecimalFin = $this->convertirHoraADecimal($evento->hora_fin);
             //dd($horasDecimalFin, $horasDecimalStart);
             $diferenciaHoras = $horasDecimalFin - $horasDecimalStart;
-            $alturaDiv = $diferenciaHoras * 5; // Multiplicar por un factor para la altura visual
-            $posicionArriba = (($horasDecimalStart - 8 )* 5); // Ajustar según necesidades
+            $alturaDiv = $diferenciaHoras * (30 / 13); // Multiplicar por un factor para la altura visual
+            $posicionArriba = (($horasDecimalStart - 8 )* (30/13)); // Ajustar según necesidades
             return [
                 'numeroDia' => $numeroDia,
                 'alturaDiv' => number_format($alturaDiv, 2, '.', ''),
@@ -34,8 +34,10 @@ class HorarioController extends Controller
                 'evento' => $evento // Si necesitas más datos del evento en la vista
             ];
         });
+
+        $today = now()->dayOfYear();
         //dd($eventosFormateados);
-        return view('admin.HORARIO-inicio', ['tipo' => 'HORARIO-inicio','eventosFormateados' => $eventosFormateados]);
+        return view('admin.HORARIO-inicio', ['today' => $today, 'tipo' => 'HORARIO-inicio','eventosFormateados' => $eventosFormateados]);
 
     }
 

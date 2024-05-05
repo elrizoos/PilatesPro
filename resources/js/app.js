@@ -326,3 +326,9 @@ $("#repetir").on("change", function () {
             $(".listaDiasSemana li input").prop("checked", false);
     }
 });
+
+$(".timeline").scroll(function () {
+    console.log("moviendo");
+    $(".horas-timeline").css("left", $(".timeline").scrollLeft());
+    $(".fecha-timeline").css("top", $(".timeline").scrollTop());
+});
