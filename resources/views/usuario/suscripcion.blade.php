@@ -12,7 +12,7 @@
                 Historial de pagos</li>
         </ul>
     </div>
-    <div class="contendio-dinamico-interno">
+    <div class="contenido-dinamico-interno">
         <div class="estadoSuscripcion" id="contenedor-estadoSuscripcion">
             @yield('estadoSuscripcion')
         </div>

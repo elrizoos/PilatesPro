@@ -65,4 +65,20 @@ class User extends Authenticatable
     {
         return $this->imagen ? $this->imagen->ruta_imagen : 'ruta/a/imagen/por/defecto.png';
     }
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class);
+    }
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
+    }
+
+    public function membresias()
+    {
+        return $this->belongsToMany(Membresia::class)
+            ->withPivot('subscription_id', 'status')
+            ->withTimestamps();
+    }
 }

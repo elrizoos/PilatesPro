@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('clase_id');
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('clase_id')->references('id')->on('clases')->onDelete('cascade');
-            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('clase_id')->constrained('clases')->onDelete('cascade');
+            $table->foreignId('alumno_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

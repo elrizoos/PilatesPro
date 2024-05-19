@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
                 'direccion' => 'turon',
                 'fecha_nacimiento' => '1997-08-18',
                 'password' => Hash::make('admin_24_admin'), // Suponiendo que este sea el hash de 'password'
-                'tipo_usuario' => null,
+                'tipo_usuario' => 'admin',
             ],
             [
                 'nombre' => 'alumno',
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             [
                 'nombre' => 'profesor',
                 'apellidos' => 'profesor',
-                'dni' => '22222222C',
+                'dni' => '33333333C',
                 'telefono' => '611111141',
                 'email' => 'profesor@gmail.com',
                 'direccion' => 'turon',

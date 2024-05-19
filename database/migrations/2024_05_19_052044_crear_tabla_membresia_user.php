@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('membresia_user', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_emision');
-            $table->decimal('monto_total', 8, 2);
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('pdf');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('membresia_id')->constrained('membresias')->onDelete('cascade');
+            $table->string('subscription_id'); // ID de la suscripción en Stripe
+            $table->string('status'); // Estado de la suscripción
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        //
     }
 };

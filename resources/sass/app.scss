@@ -1272,6 +1272,7 @@ li.barra {
     background-image: url($ruta + "/logo.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     width: 65%;
     height: 95%;
 }
@@ -1522,9 +1523,10 @@ p {
     height: 100%;
 }
 
-#contenido-dinamico-interno > div {
+.contenido-dinamico-interno > div {
     width: 100%;
     height: 100%;
+    color: $colorGris;
 }
 
 //Perfil de usuario: Pestaña general
@@ -1723,6 +1725,19 @@ p {
     font-size: 2em;
 }
 
+.contenedor-suscripcion {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.membresias-opciones {
+    font-size: 2em;
+    
+}
+
 //PANEL DE CONTROL - USUARIOS
 .contenedor-formulario,
 .contenedor-contenido {
@@ -1775,7 +1790,8 @@ p {
 }
 
 .formulario-usuario-nuevo .estilo-formulario,
-.contenedor-formulario form .estilo-formulario {
+.contenedor-formulario form .estilo-formulario,
+form .estilo-formulario {
     background: none;
     border: none;
     color: white;
@@ -1786,13 +1802,15 @@ p {
 }
 
 .formulario-usuario-nuevo .estilo-formulario::placeholder,
-.contenedor-formulario form .estilo-formulario::placeholder {
+.contenedor-formulario form .estilo-formulario::placeholder,
+form .estilo-formulario::placeholder {
     color: #8e6d45;
     text-align: center;
 }
 
 .formulario-usuario-nuevo select,
-.contenedor-formulario form select {
+.contenedor-formulario form select,
+form select {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1805,7 +1823,8 @@ p {
 }
 
 .formulario-usuario-nuevo select option,
-.contenedor-formulario form select option {
+.contenedor-formulario form select option,
+form select option {
     background: #8e6d45;
     color: white;
 }
@@ -1813,7 +1832,9 @@ p {
 .formulario-usuario-nuevo input[type="submit"],
 .contenedor-formulario form input[type="submit"],
 .formulario-eliminar .botones input,
-.botonSeleccion {
+form input[type="submit"],
+.botonSeleccion,
+.input-mas-detalles-pago {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1825,7 +1846,8 @@ p {
 }
 
 .formulario-usuario-nuevo input[type="date"],
-.contenedor-formulario form input[type="date"] {
+.contenedor-formulario form input[type="date"],
+form input[type="date"] {
     background: none;
     border: 0px;
     border-bottom: 2px solid #8e6d45;
@@ -1837,7 +1859,8 @@ p {
 .formulario-usuario-nuevo input[type="date"]::-webkit-calendar-picker-indicator,
 .contenedor-formulario
     form
-    input[type="date"]::-webkit-calendar-picker-indicator {
+    input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
@@ -2894,22 +2917,13 @@ input[type="range"] {
     background: transparent;
 }
 
-::-webkit-scrollbar {
-    background: $colorGrisClaro !important;
-    position: relative;
-    height: 0.5em;
-}
-
-input[type="range"]::-webkit-slider-runnable-track,
-::-webkit-scrollbar {
+input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 0.5em;
     background: #ddd;
     border-radius: 4px;
 }
 
-input[type="range"]::-webkit-slider-thumb,
-::-webkit-scrollbar-thumb {
+input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 20px;
     width: 20px;
@@ -3076,7 +3090,7 @@ input[type="checkbox"]:checked::before {
     width: 30em;
     background-color: black;
     outline: 10px groove $colorSecundario;
-    top: 100%0;
+    top: -5em;
     left: 11em;
     height: auto !important;
     padding: 2em;
@@ -3112,8 +3126,6 @@ input[type="checkbox"]:checked::before {
 .horaInicio {
     grid-area: horaInicio;
 }
-
-
 
 .horaFin {
     grid-area: horaFin;
@@ -3157,6 +3169,216 @@ input[type="checkbox"]:checked::before {
 .day div {
     position: relative;
     height: 2em;
+}
+
+//Formulario pago
+.contenedor-pago {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.contenedor-pago .div-logo {
+    flex: 1;
+}
+.formulario-pago {
+    width: 95%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+    background-color: $colorPrincipal;
+}
+
+.contenedor-detalles-pago {
+    width: 45%;
+    min-height: 10em;
+    padding: 5em 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedor-detalles-pago h6 {
+    font-size: 3em;
+    padding: 0.2em;
+    color: $colorSecundario;
+}
+
+.contenedor-detalles-pago input {
+    background: none;
+    margin: 0 auto;
+    margin-top: 1em;
+    font-size: 4em;
+    border: none;
+    border-bottom: inset $colorDorado;
+    color: $colorDorado;
+    width: 50%;
+}
+
+.mas-detalles-pago {
+    display: none;
+    flex-direction: column;
+    color: $colorGris;
+    padding: 0.2em;
+    margin-top: 1.5em;
+}
+
+.mas-detalles-pago ul {
+    font-size: 4em;
+    text-wrap: nowrap;
+}
+
+.contenedor-datos-pago {
+    width: 70%;
+}
+
+.contenedor-datos-pago form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap: 1em;
+}
+
+.contenedor-inputs-pago {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    font-size: 3em;
+    gap: 0.5em;
+    color: $colorGris;
+}
+
+.contenedor-datos-pago .contenedor-inputs-pago input.estilo-formulario{
+    width: 100%;
+    color: $colorDorado;
+}
+
+.contenedor-datos-pago .contenedor-inputs-pago input.estilo-formulario::placeholder {
+    color: $colorGris;
+}
+
+.botonera-pago {
+    font-size: 3em;
+    margin: 0 auto;
+}
+
+.contenedor-datos-pago form .grupo-formulario input[type="submit"] {
+    text-align: center;
+    width: 50%;
+    font-size: 4em;
+    border: inset;
+    background-color: $colorPrincipal;
+}
+#card-element input {
+    color: $colorSecundario;
+}
+
+//estilos apartado gestion membresias
+.contenedor-membresia {
+    color: $colorGris;
+}
+
+.contenedor-listado-membresia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    max-height: 30em;
+    overflow: auto;
+}
+.contenedor-listado-membresia::-webkit-scrollbar {
+    appearance: initial;
+}
+::-webkit-scrollbar {
+    width: 1em; /* Ancho del scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: $colorPrincipal; /* Color de la pista */
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorSecundario; /* Color del control deslizante */
+    width: 1em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del control deslizante al pasar el mouse */
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 1.5em; /* Altura del scrollbar */
+}
+
+::-webkit-scrollbar-track-horizontal {
+    background: #f1f1f1; /* Color de la pista */
+}
+
+::-webkit-scrollbar-thumb-horizontal {
+    background: #888; /* Color del control deslizante */
+}
+
+::-webkit-scrollbar-thumb-horizontal:hover {
+    background: #555; /* Color del control deslizante al pasar el mouse */
+}
+.membresia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-left: 0.1em solid $colorSecundario;
+    border-bottom: 0.1em solid $colorSecundario;
+    padding: 1em;
+    gap: 0.5em;
+    background-color: $colorNegroClaro;
+    border-radius: 15px;
+    min-width: 15em;
+}
+
+.membresias-opciones .membresia {
+    min-width: unset;
+}
+
+.membresia.editable {
+    background-color: #000000;
+}
+
+.botones-membresia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.membresia .membresia-formulario {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.membresia .membresia-formulario input {
+    width: 100%;
+}
+
+.contenedor-membresia-nueva form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2em;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

@@ -21,7 +21,9 @@
 
 <body>
     <div id="appEscritorio">
-        @if (Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register')
+        @if (Route::currentRouteName() !== 'formularioPago' &&
+                Route::currentRouteName() !== 'login' &&
+                Route::currentRouteName() !== 'register')
             <nav class="navbar">
                 <div class="fixed grid">
                     <div class="grid-elemento elemento-uno">
@@ -73,7 +75,9 @@
                                     <li class="icono-ajustes"><a class="flex-center"
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
                                     </li>
-                                    <li class="icono-suscripcion"><span></span>Suscripción</li>
+                                    @if (Auth::user()->nombre !== 'admin')
+                                        <li class="icono-suscripcion"><span></span>Suscripción</li>
+                                    @endif
                                     <li class="icono-logout">
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -94,7 +98,7 @@
 
 
         <main
-            class="{{ Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register' ? 'py-4' : 'main-auth' }}">
+            class="{{ Route::currentRouteName() !== 'formularioPago' && Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register' ? 'py-4' : 'main-auth' }}">
             @yield('content')
         </main>
     </div>

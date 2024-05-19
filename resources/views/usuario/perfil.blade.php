@@ -24,7 +24,7 @@
                     </li>
                     <li class="contenido-cargable" id="contenidoReservas" data-url="{{ route('reservas-historialReservas') }}">Reservas
                     </li>
-                    <li class="contenido-cargable" id="contenidoSuscripcion" data-url="{{ route('suscripcion-cambioPlan') }}">
+                    <li class="contenido-cargable" id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
                         Suscripcion</li>
                     <li class="contenido-cargable" id="contenidoContraseña" data-url="{{ route('contrasena-cambiarContraseña') }}">
                         Cambiar contraseña</li>

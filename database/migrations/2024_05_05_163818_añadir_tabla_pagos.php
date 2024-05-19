@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_emision');
+            $table->foreignId('alumno_id')->constrained('users')->onDelete('cascade');
             $table->decimal('monto_total', 8, 2);
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('pdf');
+            $table->enum('estado', ['Pagada', 'Pendiente', 'Vencida']);
+            $table->string('metodo');
+            $table->date('fecha');
             $table->timestamps();
+
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        //
     }
 };
