@@ -8,7 +8,7 @@
         <li class="contenido-cargable-interno" id="eliminar" data-url="{{ route('otros-eliminar')}}">Eliminar cuenta</li>
     </ul>
 </div>
-<div class="contendio-dinamico-interno">
+<div class="contendio-dinamico-interno" id="contenido-dinamico-interno">
     <div class="notificaciones" id="contenedor-notificaciones">
         @yield('notificaciones')
     </div>

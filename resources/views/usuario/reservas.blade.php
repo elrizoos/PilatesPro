@@ -10,7 +10,7 @@
                 data-url="{{ route('reservas-sugerenciasReservas') }}">Sugerencias de reservas</li>
         </ul>
     </div>
-    <div class="contendio-dinamico-interno">
+    <div class="contendio-dinamico-interno" id="contenido-dinamico-interno">
         <div class="historialReservas" id="contenedor-historialReservas">
             @yield('historialReservas')
         </div>

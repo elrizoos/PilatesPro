@@ -10,7 +10,7 @@
                 recuperación de cuenta</li>
         </ul>
     </div>
-    <div class="contendio-dinamico-interno">
+    <div class="contendio-dinamico-interno" id="contenido-dinamico-interno">
         <div class="cambiarContraseña" id="contenedor-cambiarContraseña">
             @yield('cambiarContraseña')
         </div>

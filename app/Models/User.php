@@ -78,7 +78,7 @@ class User extends Authenticatable
     public function membresias()
     {
         return $this->belongsToMany(Membresia::class)
-            ->withPivot('subscription_id', 'status')
+            ->withPivot('subscription_id', 'status','fecha_pago', 'fecha_fin')
             ->withTimestamps();
     }
 }

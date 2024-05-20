@@ -20,7 +20,7 @@ class Membresia extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)
-            ->withPivot('subscription_id', 'status')
+            ->withPivot('subscription_id', 'status','fecha_pago', 'fecha_fin')
             ->withTimestamps();
     }
 }

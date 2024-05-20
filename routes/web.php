@@ -117,15 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.submenu.SUS-cambioPlan');
     })->name('suscripcion-cambioPlan');
 
-    Route::get('/usuario/suscripcion/detallesPlan', function () {
-        
-        return view('usuario.submenu.SUS-detallesPlan');
-    })->name('suscripcion-detallesPlan');
+    Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
 
-    Route::get('/usuario/suscripcion/estadoSuscripcion', function () {
-        $membresias = Membresia::all();
-        return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresias'));
-    })->name('suscripcion-estadoSuscripcion');
+    Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
 
     Route::get('/usuario/suscripcion/historialPago', function () {
         return view('usuario.submenu.SUS-historialPago');

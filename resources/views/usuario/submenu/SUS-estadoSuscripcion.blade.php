@@ -2,11 +2,11 @@
 @section('estadoSuscripcion')
     <div class="contenedor-suscripcion">
         <div class="encabezado-suscripcion">
-            @if (isset($membresia))
+            @if (isset($membresiaUsuario))
                 <p>Su suscripción esta activa</p>
             @else
                 <p>Aún no dispones de una suscripción activa. Por favor escoge una de las siguientes:</p>
-            @endif
+
 
         </div>
         <div class="contenedor-listado-membresia membresias-opciones">
@@ -24,6 +24,7 @@
                 </div>
             @endforeach
         </div>
+        @endif
     </div>
 
     @vite(['resources/js/contenidoInterno.js'])
