@@ -12,6 +12,7 @@ use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
 use Stripe\Subscription;
+use Stripe\SubscriptionItem;
 
 class PagoController extends Controller
 {
@@ -109,7 +110,7 @@ class PagoController extends Controller
                 ],
             ]);
             //dd($customer, $subscription);
-            $this->registrarPago(Auth::user(), $membresia, $subscription);
+            $this->registrarPago(Auth::user(), $membresia, $subscription, false);
             //echo 'registrrado el pago?)';
             return redirect()->route('suscripcion-detallesPlan')->with('success', 'Te has suscrito correctamente');
 
@@ -118,7 +119,7 @@ class PagoController extends Controller
         }
     }
 
-    public function registrarPago($usuario, $membresia, $subscription)
+    public function registrarPago($usuario, $membresia, $subscription, $update)
     {
         try {
             //dd('trycatch');
@@ -126,13 +127,29 @@ class PagoController extends Controller
             $fecha_pago = clone $fecha_actual;
             $fecha_fin = clone $fecha_actual;
             $fecha_fin->modify('+30 days');
+            if ($update === true) {
+                $membresiaId = $usuario->membresias[0]->id;
+                $usuario->membresias()->updateExistingPivot($membresiaId, [
+                    'subscription_id' => $subscription->id,
+                    'membresia_id' => $membresia->id,
+                    'status' => $subscription->status,
+                    'fecha_pago' => $fecha_pago,
+                    'fecha_fin' => $fecha_fin,
+                ]);
+            } else {
+                $usuario->membresias()->attach($membresia->id, [
+                    
+                    'subscription_id' => $subscription->id,
+                    'status' => $subscription->status,
+                    'fecha_pago' => $fecha_pago,
+                    'fecha_fin' => $fecha_fin,
+                ]);
+            }
 
-            $usuario->membresias()->attach($membresia->id, [
-                'subscription_id' => $subscription->id,
-                'status' => $subscription->status,
-                'fecha_pago' => $fecha_pago,
-                'fecha_fin' => $fecha_fin,
-            ]);
+            $usuario->stripe_id = $subscription->customer;
+
+            $usuario->save();
+
         } catch (\Throwable $th) {
             //dd('catch');
             return redirect()->back()->withErrors(['message' => 'Hubo un problema al registrar el pago: ' . $th->getMessage()]);
@@ -183,10 +200,65 @@ class PagoController extends Controller
         $membresias = Membresia::all();
 
         if (isset($membresiaUsuario)) {
-            
+
             return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresiaUsuario', 'membresias'));
         } else {
             return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresias'));
+        }
+    }
+
+    public function cambioPlan()
+    {
+        $usuario = Auth::user();
+
+        if (isset($usuario->membresias[0])) {
+            $membresiaUsuario = $usuario->membresias[0];
+            $suscripcionId = $membresiaUsuario->pivot->subscription_id;
+        }
+        //dd($suscripcionId);
+        $membresias = Membresia::where('id', '!=', $membresiaUsuario->id)->get();
+        //dd($membresias);
+        return view('usuario.submenu.SUS-cambioPlan', compact('membresias', 'suscripcionId'));
+
+    }
+
+    public function cambiar($membresia, $suscripcion)
+    {
+        //dd($membresia, $suscripcion);
+
+        $membresiaPivot = Membresia::find($membresia);
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        try {
+            $suscripcion = Subscription::retrieve($suscripcion);
+            $suscripcionItem = $suscripcion->items->data[0]->id;
+            SubscriptionItem::update($suscripcionItem, [
+                'price' => $membresiaPivot->price_id,
+            ]);
+            //dd($suscripcionItem);
+
+            $suscripcion->save();
+            $usuario = Auth::user();
+            $this->registrarPago($usuario, $membresiaPivot, $suscripcion, true);
+            return redirect()->route('suscripcion-detallesPlan');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function obtenerHistorialPagos() {
+        $usuario = Auth::user();
+
+        try {
+            Stripe::setApiKey(config('services.stripe.secret'));
+            if (!$usuario->stripe_id) {
+                return redirect()->back()->withErrors(['message' => 'El usuario no tiene un cliente de Stripe asociado.']);
+            }
+            $charges = Charge::all(['customer' => $usuario->stripe_id]);
+            //dd($charges);
+            return view('usuario.submenu.SUS-historialPago', compact('charges'));
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }

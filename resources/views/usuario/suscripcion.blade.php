@@ -22,8 +22,8 @@
         <div class="cambioPlan" id="contenedor-cambioPlan">
             @yield('cambioPlan')
         </div>
-        <div class="historialPagos" id="contenedor-historialPagos">
-            @yield('historialPagos')
+        <div class="historialPago" id="contenedor-historialPago">
+            @yield('historialPago')
         </div>
     </div>
 @endsection

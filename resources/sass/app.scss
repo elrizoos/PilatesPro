@@ -3392,7 +3392,7 @@ input[type="checkbox"]:checked::before {
 .contenedor-detalles-plan h2 {
     text-transform: uppercase;   
     display: inline-block;
-    border-bottom: 0.1em solid white;
+    border-bottom: 0.1em solid $colorSecundario;
     width: max-content;
     margin: 0 auto;
     border-radius: 0.3em;
@@ -3504,6 +3504,30 @@ input[type="checkbox"]:checked::before {
 
 .boton-cancelar:hover {
     background-color: #cc0000;
+}
+
+.width-complete {
+    width: 100%;
+}
+.contenedor-membresia.width-complete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+.contenedor-membresia.width-complete .membresia {
+    font-size: 2.5em;
+}
+
+.contenedor-membresia.width-complete h2 {
+    text-transform: uppercase;   
+    display: inline-block;
+    border-bottom: 0.1em solid $colorSecundario;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    padding: 0.3em;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

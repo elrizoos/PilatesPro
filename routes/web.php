@@ -112,19 +112,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion', function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');
+    Route::get('/usuario/suscripcion/cambiar/{membresia}/{suscripcion}', [PagoController::class, 'cambiar'])->name('suscripcion-cambiar');
 
-    Route::get('/usuario/suscripcion/cambioPlan', function () {
-        return view('usuario.submenu.SUS-cambioPlan');
-    })->name('suscripcion-cambioPlan');
+    Route::get('/usuario/suscripcion/cambioPlan', [PagoController::class, 'cambioPlan'])->name('suscripcion-cambioPlan');
 
     Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
 
     Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
+    Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'obtenerHistorialPagos'])->name('suscripcion-historialPago');
 
-    Route::get('/usuario/suscripcion/historialPago', function () {
-        return view('usuario.submenu.SUS-historialPago');
-    })->name('suscripcion-historialPago');
-
+   
 
 
     Route::get('/usuario/contrasena', function () {
