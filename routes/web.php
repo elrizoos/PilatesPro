@@ -31,6 +31,10 @@ use App\Http\Controllers;
 |
 */
 
+
+Route::get('/vista-factura', [FacturaController::class, 'mostrarFactura'])->name('vista.factura');
+
+
 Route::get('/', [PaginaController::class, 'index']);
 Route::get('/acercaDe', function () {
     return view('acercaDe');
@@ -113,13 +117,11 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');
     Route::get('/usuario/suscripcion/cambiar/{membresia}/{suscripcion}', [PagoController::class, 'cambiar'])->name('suscripcion-cambiar');
-
     Route::get('/usuario/suscripcion/cambioPlan', [PagoController::class, 'cambioPlan'])->name('suscripcion-cambioPlan');
-
     Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
-
     Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
     Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'obtenerHistorialPagos'])->name('suscripcion-historialPago');
+    
 
    
 
@@ -205,6 +207,8 @@ Route::group(['middleware' => 'auth'], function () {
     //Rutas de facturacion 
     Route::get('/facturacion/pago/formularioPago/{membresia}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
+    Route::get('/facturacion/descargarFactura')->name('generarFactura');
+    Route::get('/facturacion/mostrarFactura-vistaPrevia', [PagoController::class, 'mostrarFactura'])->name('mostrarFactura');
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Factura;
 use App\Models\Membresia;
 use App\Models\Pago;
 use App\Http\Controllers\Controller;
@@ -110,9 +111,9 @@ class PagoController extends Controller
                 ],
             ]);
             //dd($customer, $subscription);
-            $this->registrarPago(Auth::user(), $membresia, $subscription, false);
+           $factura = $this->registrarPago(Auth::user(), $membresia, $subscription, false);
             //echo 'registrrado el pago?)';
-            return redirect()->route('suscripcion-detallesPlan')->with('success', 'Te has suscrito correctamente');
+            return $factura;
 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['message' => 'Hubo un problema con su pago: ' . $e->getMessage()]);
@@ -150,6 +151,9 @@ class PagoController extends Controller
 
             $usuario->save();
 
+
+            $factura = $this->generarFactura($subscription->id);
+            return $factura;
         } catch (\Throwable $th) {
             //dd('catch');
             return redirect()->back()->withErrors(['message' => 'Hubo un problema al registrar el pago: ' . $th->getMessage()]);
@@ -260,5 +264,18 @@ class PagoController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function generarFactura($suscripcionId) {
+        $factura = new FacturaController;
+
+        $facturaCliente = $factura->generarFactura($suscripcionId);
+
+        return $facturaCliente;
+
+    }
+
+    public function mostrarFactura() {
+        return view('facturaciones.factura');
     }
 }

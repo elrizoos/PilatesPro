@@ -12,6 +12,7 @@
                         <th>Fecha</th>
                         <th>Monto</th>
                         <th>Estado</th>
+                        <th>Factura</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,6 +22,7 @@
                             <td>{{ \Carbon\Carbon::createFromTimestamp($charge->created)->toFormattedDateString() }}</td>
                             <td>${{ number_format($charge->amount / 100, 2) }}</td>
                             <td>{{ $charge->status }}</td>
+                            <td><a href="{{ route('generarFactura') }}">Descargar Factura</a></td>
                         </tr>
                     @endforeach
                 </tbody>
