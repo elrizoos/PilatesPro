@@ -60,6 +60,7 @@
                     <li class="pagos-facturacion">Pagos y Facturación <span></span>
                         <ul class="submenu">
                             <li><a href="{{ route('membresias') }}">Gestionar Membresias</a></li>
+                            <li><a href="{{ route('clasePaquete-inicio')}}">Gestionar Paquetes de Clases</a></li>
                             <li>Registrar pagos</li>
                             <li>Generar facturacion</li>
                             <li>Seguimiento de alumnos</li>

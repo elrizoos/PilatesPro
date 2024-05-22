@@ -3285,18 +3285,18 @@ input[type="checkbox"]:checked::before {
 }
 
 //estilos apartado gestion membresias
-.contenedor-membresia {
+.contenedor-membresia, .contenedor-paquete {
     color: $colorGris;
 }
 
-.contenedor-listado-membresia {
+.contenedor-listado-membresia, .contenedor-listado-paquete {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5em;
     max-height: 30em;
     overflow: auto;
 }
-.contenedor-listado-membresia::-webkit-scrollbar {
+.contenedor-listado-membresia::-webkit-scrollbar, .contenedor-listado-paquete::-webkit-scrollbar {
     appearance: initial;
 }
 ::-webkit-scrollbar {
@@ -3331,7 +3331,7 @@ input[type="checkbox"]:checked::before {
 ::-webkit-scrollbar-thumb-horizontal:hover {
     background: #555; /* Color del control deslizante al pasar el mouse */
 }
-.membresia {
+.membresia, .paquete {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3346,33 +3346,33 @@ input[type="checkbox"]:checked::before {
     min-width: 15em;
 }
 
-.membresias-opciones .membresia {
+.membresias-opciones .membresia, .paquetes-opciones .paquete {
     min-width: unset;
 }
 
-.membresia.editable {
+.membresia.editable, .paquete-editable {
     background-color: #000000;
 }
 
-.botones-membresia {
+.botones-membresia, .botones-paquete{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1em;
 }
 
-.membresia .membresia-formulario {
+.membresia .membresia-formulario , .paquete .paquete-formulario{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.membresia .membresia-formulario input {
+.membresia .membresia-formulario input, .paquete .paquete-formulario input {
     width: 100%;
 }
 
-.contenedor-membresia-nueva form {
+.contenedor-membresia-nueva form, .contenedor-paquete-nueva form {
     width: 100%;
     height: 100%;
     display: flex;

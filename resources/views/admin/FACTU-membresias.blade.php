@@ -4,14 +4,19 @@
     <div class="contenedor-membresia">
         <div class="contenedor-listado-membresia">
             @foreach ($membresias as $membresia)
-                <div class="membresia {{ $membresia->id == session('editable') ? 'editable' : '' }}" id="{{ $membresia->id }}">
+                <div class="membresia {{ $membresia->id == session('editable') ? 'editable' : '' }}"
+                    id="{{ $membresia->id }}">
                     @if ($membresia->id == session('editable'))
-                        <form class="membresia-formulario" action="{{ route('membresia.update', $membresia->id) }}" method="POST">
+                        <form class="membresia-formulario" action="{{ route('membresia.update', $membresia->id) }}"
+                            method="POST">
                             @csrf
                             @method('PUT')
-                            <input class="estilo-formulario" type="text" name="nombre_editable" value="{{ old('nombre-editable', $membresia->nombre) }}">
-                            <input class="estilo-formulario" type="number" name="precio_editable" value="{{ old('precio-editable', $membresia->precio) }}">
-                            <input class="estilo-formulario" type="text" name="descripcion_editable" value="{{ old('descripcion-editable', $membresia->descripcion) }}">
+                            <input class="estilo-formulario" type="text" name="nombre_editable"
+                                value="{{ old('nombre-editable', $membresia->nombre) }}">
+                            <input class="estilo-formulario" type="number" name="precio_editable"
+                                value="{{ old('precio-editable', $membresia->precio) }}">
+                            <input class="estilo-formulario" type="text" name="descripcion_editable"
+                                value="{{ old('descripcion-editable', $membresia->descripcion) }}">
                             <input class="estilo-formulario" type="submit" value="Editar Membresía">
                         </form>
                     @else

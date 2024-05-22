@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\ClasePaqueteController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\FacturaDetallesController;
 use App\Http\Controllers\GrupoController;
@@ -125,7 +126,7 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect()->route('suscripcion-cambioPlan');
     })->name('cancelarOperacion');
     Route::get('/usuario/suscripcion/cambiarPlan/nuevoPago/{suscripcion}/{membresia}', [PagoController::class, 'calcularPrecioPagar'])->name('calcularNuevoPlan');
-   
+    
 
 
     Route::get('/usuario/contrasena', function () {
@@ -204,7 +205,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/membresia', [MembresiaController::class, 'index'])->name('membresias');
-
+    Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
 
     //Rutas de facturacion 
     Route::get('/facturacion/pago/formularioPago/{membresia}', [PagoController::class, 'index'])->name('formularioPago');
@@ -226,6 +227,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/facturacion/facturaDetalle', FacturaDetallesController::class);
     Route::resource('/facturacion/pago', PagoController::class);
     Route::resource('/facturacion/membresia', MembresiaController::class);
+    Route::resource('/admin/panel-control/clasePaquete',ClasePaqueteController::class);
 });
 
 
