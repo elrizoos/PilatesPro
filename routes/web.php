@@ -121,8 +121,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
     Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'obtenerHistorialPagos'])->name('suscripcion-historialPago');
-    
-
+    Route::get('/usuario/suscripcion/cancelarOperacion', function() {
+        return redirect()->route('suscripcion-cambioPlan');
+    })->name('cancelarOperacion');
+    Route::get('/usuario/suscripcion/cambiarPlan/nuevoPago/{suscripcion}/{membresia}', [PagoController::class, 'calcularPrecioPagar'])->name('calcularNuevoPlan');
    
 
 

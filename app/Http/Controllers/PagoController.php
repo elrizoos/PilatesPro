@@ -9,8 +9,12 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Stripe\Charge;
 use Stripe\Customer;
+use Stripe\Invoice;
+use Stripe\InvoiceItem;
+use Stripe\Plan;
 use Stripe\Stripe;
 use Stripe\Subscription;
 use Stripe\SubscriptionItem;
@@ -111,7 +115,7 @@ class PagoController extends Controller
                 ],
             ]);
             //dd($customer, $subscription);
-           $factura = $this->registrarPago(Auth::user(), $membresia, $subscription, false);
+            $factura = $this->registrarPago(Auth::user(), $membresia, $subscription, false);
             //echo 'registrrado el pago?)';
             return $factura;
 
@@ -139,7 +143,7 @@ class PagoController extends Controller
                 ]);
             } else {
                 $usuario->membresias()->attach($membresia->id, [
-                    
+
                     'subscription_id' => $subscription->id,
                     'status' => $subscription->status,
                     'fecha_pago' => $fecha_pago,
@@ -218,6 +222,8 @@ class PagoController extends Controller
         if (isset($usuario->membresias[0])) {
             $membresiaUsuario = $usuario->membresias[0];
             $suscripcionId = $membresiaUsuario->pivot->subscription_id;
+        } else {
+            return redirect()->route('suscripcion-estadoSuscripcion');
         }
         //dd($suscripcionId);
         $membresias = Membresia::where('id', '!=', $membresiaUsuario->id)->get();
@@ -244,13 +250,55 @@ class PagoController extends Controller
             $suscripcion->save();
             $usuario = Auth::user();
             $this->registrarPago($usuario, $membresiaPivot, $suscripcion, true);
+            Log::debug("Pago registrado");
             return redirect()->route('suscripcion-detallesPlan');
         } catch (\Throwable $th) {
-            //throw $th;
+            Log::alert("Error" . $th->getMessage());
         }
     }
 
-    public function obtenerHistorialPagos() {
+    //calcularNuevoPlan
+    public function calcularPrecioPagar($suscripcionId, $membresiaId)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $suscripcionActual = Subscription::retrieve($suscripcionId);
+        $tiempoActual = time();
+        $tiempoFinSuscripcionActual = $suscripcionActual->current_period_end;
+
+        $tiempoPeriodoPlan = ($suscripcionActual->current_period_end - $suscripcionActual->current_period_start) / 86400;
+
+        $tiempoRestante = ($tiempoFinSuscripcionActual - $tiempoActual) / 86400;
+
+        $precioPlanActual = $suscripcionActual->items->data[0]->plan->amount / 100;
+        $precioDiaPlanActual = $precioPlanActual / $tiempoPeriodoPlan;
+
+        $membresiaNueva = Membresia::find($membresiaId);
+
+        $planNuevo = Plan::retrieve($membresiaNueva->price_id);
+
+        $precioPlanNuevo = $planNuevo->amount / 100;
+        $precioDiaPlanNuevo = $precioPlanNuevo / $tiempoPeriodoPlan;
+
+        $precioNoDisfrutadoPlanActual = round($precioDiaPlanActual * $tiempoRestante);
+        $precioDisfrutarPlanNuevo = round($precioDiaPlanNuevo * $tiempoRestante);
+
+        $precioPagarCambio = $precioDisfrutarPlanNuevo - $precioNoDisfrutadoPlanActual;
+
+
+
+
+        dd($tiempoPeriodoPlan, $suscripcionActual, $precioDiaPlanActual, $precioPagarCambio);
+
+        /*
+            30.962048611111 // app\Http\Controllers\PagoController.php:286
+            0.66666666666667 // app\Http\Controllers\PagoController.php:286
+            619.24097222222 // app\Http\Controllers\PagoController.php:286
+        */
+    }
+
+    public function obtenerHistorialPagos()
+    {
         $usuario = Auth::user();
 
         try {
@@ -266,7 +314,8 @@ class PagoController extends Controller
         }
     }
 
-    public function generarFactura($suscripcionId) {
+    public function generarFactura($suscripcionId)
+    {
         $factura = new FacturaController;
 
         $facturaCliente = $factura->generarFactura($suscripcionId);
@@ -275,7 +324,8 @@ class PagoController extends Controller
 
     }
 
-    public function mostrarFactura() {
+    public function mostrarFactura()
+    {
         return view('facturaciones.factura');
     }
 }
