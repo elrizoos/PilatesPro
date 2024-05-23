@@ -1,41 +1,41 @@
 @extends('admin/panel-control')
 
 @section('CONT-opcion-dos')
-    <form action="{{ route('crearContenidoGestionFormulario', ['tipoSeccion' => '2', 'pagina' => $idPagina]) }}" class="formulario-creacion" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('crearContenidoGestionFormulario', ['tipoSeccion' => '2', 'pagina' => $idPagina]) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="seccion seccion-nueva seccion-dos">
-            <div class="titulo">
-                <input type="text" name="titulo" class="titulo-seccion" placeholder="Escribe el titulo">
+        <div>
+            <div>
+                <input type="text" name="titulo" placeholder="Escribe el titulo">
                 @error('titulo')
-                    <span class="invalid-feedback active-block" role="alert">
+                    <span role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
-            <div class="imagen imagen-uno">
-                <div id="imagen-upload-imagenUno" class="imagen-marco">
+            <div>
+                <div id="imagen-upload-imagenUno">
                     <p>Haz click para añadir la imagen</p>
-                    <input name="imagenUno" id="input-imagenUno" type="file" class="imagen-seccion"></input>
+                    <input name="imagenUno" id="input-imagenUno" type="file"></input>
                     @error('imagenUno')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="imagen imagen-dos">
-                <div id="imagen-upload-imagenDos" class="imagen-marco">
+            <div>
+                <div id="imagen-upload-imagenDos">
                     <p>Haz click para añadir la imagen</p>
-                    <input name="imagenDos" id="input-imagenDos" type="file" class="imagen-seccion"></input>
+                    <input name="imagenDos" id="input-imagenDos" type="file"></input>
                     @error('imagenDos')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="parrafo">
-                <textarea name="parrafo" class="parrafo-seccion" placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : 'Escriba el parrafo' }}</textarea>
+            <div>
+                <textarea name="parrafo" placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : 'Escriba el parrafo' }}</textarea>
             </div>
         </div>
         <input type="submit" value="{{ isset($seccion) ? 'Editar Seccion' : 'aGuardar Seccion' }}">

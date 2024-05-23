@@ -1,56 +1,56 @@
 @extends('layouts.config')
 
 @section('content')
-    <div class="contenedor-ajustes">
-        <div class="nav-ajustes">
-            <div class="logo-ajustes">
-                <div class="imagen-logo"></div>
+    <div>
+        <div>
+            <div>
+                <div></div>
             </div>
             @if (session('success'))
-                <div class="alert alert-success" role="alert">
+                <div role="alert">
                     {{ session('success') }}
 
                 </div>
             @endif
             @if (session('error'))
-                <div class="alert alert-danger" role="alert">
+                <div role="alert">
                     {{ session('error') }}
 
                 </div>
             @endif
-            <div class="botones-ajustes">
-                <ul class="nav-ajustes-botones">
-                    <li class="contenido-cargable" id="contenidoGeneral" data-url="{{ route('general-informacion') }}">
+            <div>
+                <ul>
+                    <li id="contenidoGeneral" data-url="{{ route('general-informacion') }}">
                         General
                     </li>
-                    <li class="contenido-cargable" id="contenidoReservas"
+                    <li id="contenidoReservas"
                         data-url="{{ route('reservas-historialReservas') }}">Reservas
                     </li>
-                    <li class="contenido-cargable" id="contenidoSuscripcion"
+                    <li id="contenidoSuscripcion"
                         data-url="{{ route('suscripcion-estadoSuscripcion') }}">
                         Suscripcion</li>
-                    <li class="contenido-cargable" id="contenidoContraseña"
+                    <li id="contenidoContraseña"
                         data-url="{{ route('contrasena-cambiarContraseña') }}">
                         Cambiar contraseña</li>
-                    <li class="contenido-cargable" id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">Otros
+                    <li id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">Otros
                         ajustes
                     </li>
                 </ul>
-                <div class="nombre-ajustes">
-                    <span></span>{{ Auth::user()->nombre }} <span class="cerrar-icono"></span>
+                <div>
+                    <span></span>{{ Auth::user()->nombre }} <span></span>
                 </div>
             </div>
-            <div id="contenido-dinamico" class="contenido-ajustes">
-                <div class="contenidoGeneral" id="contenedor-contenidoGeneral">
+            <div id="contenido-dinamico">
+                <div id="contenedor-contenidoGeneral">
                     @yield('contenidoGeneral')
                 </div>
-                <div class="contenidoReservas" id="contenedor-contenidoReservas">
+                <div id="contenedor-contenidoReservas">
                     @yield('contenidoReservas')</div>
-                <div class="contenidoSuscripcion" id="contenedor-contenidoSuscripcion">
+                <div id="contenedor-contenidoSuscripcion">
                     @yield('contenidoSuscripcion')</div>
-                <div class="contenidoContraseña" id="contenedor-contenidoContraseña">
+                <div id="contenedor-contenidoContraseña">
                     @yield('contenidoContraseña')</div>
-                <div class="contenidoOtros" id="contenedor-contenidoOtros">
+                <div id="contenedor-contenidoOtros">
                     @yield('contenidoOtros')</div>
             </div>
         </div>

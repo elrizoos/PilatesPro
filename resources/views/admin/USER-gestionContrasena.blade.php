@@ -1,9 +1,9 @@
 @extends('admin/panel-control')
 
 @section('USER-gestionContrasena')
-    <div class="contenedor-tabla">
-        <table class="table table-light">
-            <thead class="thead-light">
+    <div>
+        <table>
+            <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Apellidos</th>

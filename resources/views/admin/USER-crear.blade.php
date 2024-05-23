@@ -2,95 +2,95 @@
 
 @section('USER-crear')
     
-    <div class="contenedor-formulario">
-        <form class="formulario-usuario-nuevo" action="{{ route('usuario.create') }}" method="get">
+    <div>
+        <form action="{{ route('usuario.create') }}" method="get">
             @csrf
 
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input class="estilo-formulario" type="text" name="name" id="nombre" placeholder="Nombre">
-                    <input type="text" name="apellidos" id="apellidos" class="estilo-formulario" placeholder="Apellidos">
+            <div>
+                <div>
+                    <input type="text" name="name" id="nombre" placeholder="Nombre">
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('name')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('apellidos')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input type="text" name="dni" id="dni" class="estilo-formulario" placeholder="DNI">
-                    <input type="tel" name="telefono" id="telefono" class="estilo-formulario" placeholder="Telefono">
+            <div>
+                <div>
+                    <input type="text" name="dni" id="dni" placeholder="DNI">
+                    <input type="tel" name="telefono" id="telefono" placeholder="Telefono">
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('dni')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('telefono')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input type="text" name="direccion" id="direccion" class="estilo-formulario" placeholder="Direccion">
-                    <input type="email" name="email" id="email" class="estilo-formulario" placeholder="Email">
+            <div>
+                <div>
+                    <input type="text" name="direccion" id="direccion" placeholder="Direccion">
+                    <input type="email" name="email" id="email" placeholder="Email">
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('direccion')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('email')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input type="password" name="password" id="contraseña" class="estilo-formulario"
+            <div>
+                <div>
+                    <input type="password" name="password" id="contraseña"
                         placeholder="Contraseña">
                     <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('password')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('fecha_nacimiento')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
+            <div>
                 <select name="tipo_usuario" id="tipo-usuario">
-                    <option class="optionvalue" value="Alumno">Alumno</option>
+                    <option value="Alumno">Alumno</option>
                     <option value="Profesor">Profesor</option>
                 </select>
                 @error('tipo-usuario')
-                    <span class="invalid-feedback active-block" role="alert">
+                    <span role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
-            <div class="grupo-formulario">
+            <div>
                 <input type="submit" value="Enviar">
             </div>
         </form>

@@ -1,9 +1,9 @@
 @extends('admin/panel-control')
 
 @section('CLASE-inicio')
-    <div class="contenedor-tabla">
-        <table class="table table-light">
-            <thead class="thead-light">
+    <div>
+        <table>
+            <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Grupo</th>

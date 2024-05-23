@@ -1,11 +1,11 @@
 @extends('admin/panel-control')
 
 @section('GRUP-mostrarUsuarios')
-    <div class="contenedor-tabla flex">
+    <div>
         <h4>Añadir usuarios al grupo {{ $grupo->nombre }} (Grupo_{{ $grupo->id}})</h4>
         <form action="{{ route('añadirParticipantes', ['grupo' => $grupo->id]) }}">
-            <table class="table table-light">
-                <thead class="thead-light">
+            <table>
+                <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>

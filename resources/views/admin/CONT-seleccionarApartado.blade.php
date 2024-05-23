@@ -1,7 +1,7 @@
 @extends('admin.panel-control')
 
 @section('CONT-seleccionarApartado')
-    <div class="contenedor contenedor-seleccionApartado">
+    <div>
         <form action="{{ route('seleccionarOrden', ['seccion' => $idSeccion]) }}" method="POST">
             @csrf
             <select name="orden">
@@ -12,26 +12,26 @@
             </select>
             <input type="submit" value="Finalizar">
         </form>
-        <div class="vista-previa vista-foro">
+        <div>
             @foreach ($secciones as $seccion)
                 @php
                     $imagen = $imagenes['Seccion: ' . $seccion->id . ': ' . $seccion->titulo]['imagenUno'];
                 @endphp
                 @switch($seccion->seccion->tipo)
                     @case('2ciz')
-                        <div class="gene">
-                            <div class="seccion seccion-nueva seccion-uno">
-                                <div class="titulo">
-                                    <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
+                        <div>
+                            <div>
+                                <div>
+                                    <h2>{{ $seccion->titulo }}</h2>
                                 </div>
-                                <div class="imagen">
-                                    <div class="imagen-seccion"
+                                <div>
+                                    <div
                                         style="background-image: url( {{ asset('storage/' . $imagen->ruta_imagen) }})">
 
                                     </div>
                                 </div>
-                                <div class="parrafo">
-                                    <p class="parrafo-seccion">{{ $seccion->parrafo }}</p>
+                                <div>
+                                    <p>{{ $seccion->parrafo }}</p>
                                 </div>
 
                             </div>

@@ -8,18 +8,18 @@
                     @php
                         $imagen = $imagenes[$seccion->titulo]['imagenUno'];
                     @endphp
-                    <div class="seccion seccion-nueva seccion-uno window-height">
-                        <div class="titulo">
-                            <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
+                    <div>
+                        <div>
+                            <h2>{{ $seccion->titulo }}</h2>
                         </div>
-                        <div class="imagen">
-                            <div class="imagen-seccion"
+                        <div>
+                            <div
                                 style="background-image: url( {{ asset('storage/' . $imagen->ruta_imagen) }})">
 
                             </div>
                         </div>
-                        <div class="parrafo">
-                            <p class="parrafo-seccion">{{ $seccion->parrafo }}</p>
+                        <div>
+                            <p>{{ $seccion->parrafo }}</p>
                         </div>
                     </div>
                 @break

@@ -1,7 +1,7 @@
 @extends('usuario.reservas')
 @section('reservasActivas')
     <p>En esta seccion podras ver las reservas que tienes activas en este momento.</p>
-    <table class="table tabla-dorada">
+    <table>
         <thead>
             <tr>
                 <th>Nº Reserva</th>

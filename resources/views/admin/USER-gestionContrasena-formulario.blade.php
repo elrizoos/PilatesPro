@@ -2,25 +2,25 @@
 
 @section('USER-gestionContrasena-formulario')
     
-    <div class="contenedor-formulario">
-        <form class="formulario-corto" action="{{ route('modificarContrasena', ['usuario' => $usuario->id]) }}" method="POST">
+    <div>
+        <form action="{{ route('modificarContrasena', ['usuario' => $usuario->id]) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input class="estilo-formulario" type="password" name="password" placeholder="Contraseña nueva">
+            <div>
+                <div>
+                    <input type="password" name="password" placeholder="Contraseña nueva">
 
-                    <input class="estilo-formulario" type="password" name="password_confirmation"
+                    <input type="password" name="password_confirmation"
                         placeholder="Repite Contraseña nueva">
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('password')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('password_confirmation')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -28,8 +28,8 @@
 
 
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
+            <div>
+                <div>
                     <input type="submit" value="Cambiar contraseña">
                 </div>
             </div>

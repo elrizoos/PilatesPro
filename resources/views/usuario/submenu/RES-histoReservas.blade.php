@@ -4,7 +4,7 @@
     @if (session('reservas'))
         {{ $reservas = session('reservas') }}
     @endif
-    <table class="table tabla-dorada">
+    <table>
         <thead>
             <tr>
                 <th>Nº Reserva</th>

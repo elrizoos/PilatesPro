@@ -19,37 +19,37 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
-    <div id="appEscritorio">
+<body class="bg-color-fondo texto-color-principal overflow-x-hidden">
+    <div class="d-flex flex-row" id="appEscritorio">
         @if (Route::currentRouteName() !== 'formularioPago' &&
                 Route::currentRouteName() !== 'login' &&
                 Route::currentRouteName() !== 'register')
-            <nav class="navbar">
-                <div class="fixed grid">
-                    <div class="grid-elemento elemento-uno">
-                        <div id="imagen-logo" class="logo imagen-logo" data-url="{{ route('inicio') }}">
+            <nav class="bg-color-principal col-3 position-relative">
+                <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-3">
+                    <div class="w-100 h-25">
+                        <div class="imagen-logo w-100 h-100 img" id="imagen-logo" data-url="{{ route('inicio') }}">
 
                         </div>
                     </div>
 
-                    <div id="listaMenu" class="grid-elemento elemento-dos">
-                        <span class="iconoMenu"></span>
-                        <div class="lista">
-                            <ul>
-                                <li><a class="activeMenu" href="{{ route('inicio') }}">Inicio</a></li>
-                                <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
-                                <li><a href="{{ route('clases') }}">Clases</a></li>
-                                <li><a href="{{ route('horarios') }}">Horario</a></li>
-                                <li><a href="{{ route('instructores') }}">Instructores</a></li>
-                                <li><a href="{{ route('reservas') }}">Reservas</a></li>
-                                <li><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
-                                <li><a href="{{ route('contacto') }}">Contacto</a></li>
-                                <li id="paginasPersonalizadas" class="paginasPersonalizadas">
+                    <div class="d-flex flex-column" id="listaMenu">
+                        <span></span>
+                        <div>
+                            <ul class="p-2 text-uppercase">
+                                <li class="p-2"><a href="{{ route('inicio') }}">Inicio</a></li>
+                                <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
+                                <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
+                                <li class="p-2"><a href="{{ route('horarios') }}">Horario</a></li>
+                                <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
+                                <li class="p-2"><a href="{{ route('reservas') }}">Reservas</a></li>
+                                <li class="p-2"><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
+                                <li class="p-2"><a href="{{ route('contacto') }}">Contacto</a></li>
+                                <li class="p-2" id="paginasPersonalizadas">
                                     Más <span></span>
                                 </li>
                             </ul>
-                            <div id="listaPaginas" class="listaPaginas">
-                                <div class="hacia-atras"><span></span></div>
+                            <div class="d-none" id="listaPaginas">
+                                <div><span></span></div>
                                 <ul>
                                     @foreach ($paginas as $pagina)
                                         <li><a
@@ -60,29 +60,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid-elemento elemento-tres">
-                        <div class="botones">
+                    <div class="w-100 p-2">
+                        <div>
                             @guest
-                                <ul class="botones-auth">
-                                    <li class="inicioSesion"><a href="{{ route('login') }}">Inicio Sesión</a></li>
-                                    <li class="registroSesion"><a href="{{ route('register') }}">Registro</a></li>
+                                <ul class="w-100 d-flex flex-column gap-2">
+                                    <li class="p-4 text-center bg-color-principal rounded-circle border border-warning "><a class="texto-color-secundario text-uppercase" href="{{ route('login') }}">Inicio Sesión</a></li>
+                                    <li class="p-4 text-center bg-color-principal rounded-circle border border-warning"><a class="texto-color-secundario text-uppercase" href="{{ route('register') }}">Registro</a></li>
                                 </ul>
                             @endguest
 
                             @auth
-                                <ul class="botones-login">
-                                    <li>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
-                                    <li class="icono-ajustes"><a class="flex-center"
+                                <ul class="w-100 d-flex flex-column">
+                                    <li class="p-2 text-center">{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</li>
+                                    <li class="p-2 text-center"><a
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}"><span></span>Ajustes</a>
                                     </li>
                                     @if (Auth::user()->nombre !== 'admin')
-                                        <li class="icono-suscripcion"><span></span>Suscripción</li>
+                                        <li><span></span>Suscripción</li>
                                     @endif
-                                    <li class="icono-logout">
+                                    <li class="p-2 text-center">
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
-                                            <button class="boton-logout flex-center"
-                                                type="submit"><span></span>Salir</button>
+                                            <button type="submit"><span></span>Salir</button>
                                         </form></a>
                                     </li>
                                 </ul>
@@ -97,8 +96,7 @@
 
 
 
-        <main
-            class="{{ Route::currentRouteName() !== 'formularioPago' && Route::currentRouteName() !== 'login' && Route::currentRouteName() !== 'register' ? 'py-4' : 'main-auth' }}">
+        <main class="col-9">
             @yield('content')
         </main>
     </div>

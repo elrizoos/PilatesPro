@@ -18,44 +18,44 @@
             </form>
         @endif
     @endisset
-    <form class="formulario-creacion"
+    <form
         action="{{ isset($seccion) ? route('seccion.update', ['seccion' => $seccion->id]) : route('crearContenidoGestionFormulario', ['tipoSeccion' => '1', 'pagina' => $idPagina]) }}"
         method="POST" enctype="multipart/form-data">
         @csrf
         @isset($seccion)
             @method('PUT')
         @endisset
-        <div class="seccion seccion-nueva seccion-uno">
-            <div class="titulo">
-                <input name="titulo" type="text" class="titulo-seccion" placeholder="Escribe el título"
+        <div>
+            <div>
+                <input name="titulo" type="text" placeholder="Escribe el título"
                     value="{{ isset($seccion) ? $seccion->titulo : '' }}"></input>
                 @error('titulo')
-                    <span class="invalid-feedback active-block" role="alert">
+                    <span role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
-            <div class="imagen">
+            <div>
                 @isset($seccion)
                     @if ($seccion->idSeccion === 1 && $seccion->idImagenUno !== null)
-                        <img class="imagen-seccion-editable" src="{{ asset('storage/' . $seccion->imagenUno->ruta_imagen) }}"
+                        <img src="{{ asset('storage/' . $seccion->imagenUno->ruta_imagen) }}"
                             alt="">
                     @endif
                 @endisset
-                <div id="imagen-upload" class="imagen-marco">
+                <div id="imagen-upload">
                     <p>Haz click para añadir la imagen</p>
-                    <input name="imagenUno" id="input-upload" type="file" class="imagen-seccion"></input>
+                    <input name="imagenUno" id="input-upload" type="file"></input>
                     @error('imagenUno')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="parrafo">
-                <textarea name="parrafo" class="parrafo-seccion" placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : '' }}</textarea>
+            <div>
+                <textarea name="parrafo" placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : '' }}</textarea>
                 @error('parrafo')
-                    <span class="invalid-feedback active-block" role="alert">
+                    <span role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror

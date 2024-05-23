@@ -20,17 +20,17 @@
 </head>
 
 <body>
-    <div class="panel-contenedor">
+    <div>
 
-        <div class="panel-logo">
-            <div id="imagen-logo" class="logo" data-url="{{ route('inicio') }}"></div>
+        <div>
+            <div id="imagen-logo" data-url="{{ route('inicio') }}"></div>
         </div>
-        <div class="panel-nav">
-            <div class="nav-menu">
-                <ul class="menu-general">
+        <div>
+            <div>
+                <ul>
                     <li>General</li>
-                    <li class="usuarios">Usuarios <span></span>
-                        <ul class="submenu">
+                    <li>Usuarios <span></span>
+                        <ul>
                             <li><a href="{{ route('mostrarContenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
                             <li><a href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
                                     Existente</a></li>
@@ -40,8 +40,8 @@
                             <li><a href="{{ route('gestionGrupos') }}">Gestión de grupos</a></li>
                         </ul>
                     </li>
-                    <li class="contenido">Contenido <span></span>
-                        <ul class="submenu">
+                    <li>Contenido <span></span>
+                        <ul>
                             <li><a href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva pagina</a>
                             </li>
                             <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
@@ -49,36 +49,36 @@
                             <li><a href="{{ route('galeriaImagenes') }}">Galeria de imagenes y videos</a></li>
                         </ul>
                     </li>
-                    <li class="clases-horarios">Clases y Horarios <span></span>
-                        <ul class="submenu">
+                    <li>Clases y Horarios <span></span>
+                        <ul>
                             <li><a href="{{ route('horario.create') }}">Crear nuevo registro horario</a></li>
                             <li><a href="{{ route('mostrarHorarios') }}">Editar registro horario</a></li>
                             <li><a href="{{ route('clase.create') }}">Crear nueva clase</a></li>
                             <li><a href="{{ route('mostrarClases') }}">Editar clase</a></li>
                         </ul>
                     </li>
-                    <li class="pagos-facturacion">Pagos y Facturación <span></span>
-                        <ul class="submenu">
+                    <li>Pagos y Facturación <span></span>
+                        <ul>
                             <li><a href="{{ route('mostrarProductos') }}">Gestionar Productos</a></li>
                             <li>Registrar pagos</li>
                             <li>Generar facturacion</li>
                             <li>Seguimiento de alumnos</li>
-                        </ul class="submenu">
+                        </ul>
                     </li>
-                    <li class="comunicacion-notificaciones">Comunicacion y Notificaciones <span></span>
-                        <ul class="submenu">
+                    <li>Comunicacion y Notificaciones <span></span>
+                        <ul>
                             <li>Enviar correo o notificacion</li>
                             <li>Mensajeria interna</li>
                         </ul>
                     </li>
-                    <li class="analisis-reportes">Analisis y Reportes <span></span>
-                        <ul class="submenu">
+                    <li>Analisis y Reportes <span></span>
+                        <ul>
                             <li>Informes generales</li>
                             <li>Encuestas alumnos</li>
                         </ul>
                     </li>
-                    <li class="configuracion">Configuracion del sitio <span></span>
-                        <ul class="submenu">
+                    <li>Configuracion del sitio <span></span>
+                        <ul>
                             <li>Ajustes generales</li>
                             <li>Opciones de seguridad</li>
                             <li>Herramientas externas</li>
@@ -88,16 +88,16 @@
                 </ul>
             </div>
         </div>
-        <div class="panel-contenido">
+        <div>
             @if (session('success'))
-                <div class="alert alert-success ventana-emergente">
+                <div>
                     <p>{{ session('success') }}</p>
                     <span id=cerrarBoton></span>
                 </div>
             @endif
 
             @if (session('error'))
-                <div class="alert alert-danger ventana-emergente">
+                <div>
                     <p>{{ session('error') }}</p>
                     <span id=cerrarBoton></span>
                 </div>

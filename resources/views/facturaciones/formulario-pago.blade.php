@@ -1,34 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="contenedor-pago">
-            <div class="div-logo">
-                <div id="imagen-logo" class="imagen-logo" data-url="{{ route('inicio') }}"></div>
+    <div>
+        <div>
+            <div>
+                <div id="imagen-logo" data-url="{{ route('inicio') }}"></div>
             </div>
-            <div class="formulario-pago">
-                <div class="contenedor-detalles-pago">
+            <div>
+                <div>
                     <h6>Membresia: {{ isset($membresia->nombre) ? $membresia->nombre : 'Error' }}</h6>
                     <h6>Precio: {{ isset($membresia->precio) ? $membresia->precio . '€' : 'Error' }}</h6>
                     <h6>Fecha compra: {{ now()->format('d/m/y') }}</h6>
                     <h6>Usuario: {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</h6>
 
-                    <input id="input-mas-detalles-pago" class="input-mas-detalles-pago" type="button" value="Más detalles">
-                    <div class="mas-detalles-pago">
+                    <input id="input-mas-detalles-pago" type="button" value="Más detalles">
+                    <div>
                         <p>Características de la membresía</p>
                         <p>{{ $membresia->descripcion }}</p>
                     </div>
                 </div>
-                <div class="contenedor-datos-pago">
+                <div>
                     <form action="{{ route('pagar', ['usuario' => Auth::user()->id, 'membresia' => $membresia->id]) }}" method="POST" id="payment-form">
                         @csrf
-                        <div class="contenedor-inputs-pago">
-                            <input class="estilo-formulario" type="text" name="name" placeholder="Nombre y Apellidos" required  value="{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}">
+                        <div>
+                            <input type="text" name="name" placeholder="Nombre y Apellidos" required  value="{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}">
                             <div id="card-element">
 
                             </div>
                         </div>
-                        <div class="grupo-formulario">
+                        <div>
                             <input type="submit" value="Comprar">
                         </div>
                     </form>

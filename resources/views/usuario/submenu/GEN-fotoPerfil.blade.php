@@ -1,21 +1,21 @@
 @extends('usuario.general')
 @section('fotoPerfil')
-<form id="formularioFotoPerfil" class="formulario-informacion-general" action="{{ route('imagen.store') }}" method="POST"
+<form id="formularioFotoPerfil" action="{{ route('imagen.store') }}" method="POST"
     enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="tipo_informacion" value="informacionContacto">
     <input type="hidden" name="usuario" value="{{ Auth::user()->email }}">
-    <div class="grupo-formulario">
+    <div>
         <label for="fotoPerfil">Foto de perfil actual:</label>
         @if (auth()->user()->imagen)
-            <img class="imagenPerfil" src="{{ asset('storage/' . auth()->user()->imagen->ruta_imagen) }}" alt="Imagen de perfil">
+            <img src="{{ asset('storage/' . auth()->user()->imagen->ruta_imagen) }}" alt="Imagen de perfil">
         @else
             <p>No hay imagen de perfil</p>
         @endif
 
-        <input class="subir-imagen" type="file" name="fotoPerfil" id="fotoperfil">
+        <input type="file" name="fotoPerfil" id="fotoperfil">
     </div>
-    <div class="grupo-formulario submit">
+    <div>
             <input type="submit" value="Guardar cambios">
         </div>
 </form>

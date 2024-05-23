@@ -1,28 +1,28 @@
 @extends('usuario.perfil')
 @section('contenidoSuscripcion')
-    <div class="botonera">
+    <div>
         <ul>
-            <li class="contenido-cargable-interno" id="estadoSuscripcion"
+            <li id="estadoSuscripcion"
                 data-url="{{ route('suscripcion-estadoSuscripcion') }}">Estado de suscripcion</li>
-            <li class="contenido-cargable-interno" id="detallesPlan" data-url="{{ route('suscripcion-detallesPlan') }}">
+            <li id="detallesPlan" data-url="{{ route('suscripcion-detallesPlan') }}">
                 Detalles del plan</li>
-            <li class="contenido-cargable-interno" id="cambioPlan" data-url="{{ route('suscripcion-cambioPlan') }}">Cambio del
+            <li id="cambioPlan" data-url="{{ route('suscripcion-cambioPlan') }}">Cambio del
                 plan</li>
-            <li class="contenido-cargable-interno" id="historialPago" data-url="{{ route('suscripcion-historialPago') }}">
+            <li id="historialPago" data-url="{{ route('suscripcion-historialPago') }}">
                 Historial de pagos</li>
         </ul>
     </div>
-    <div class="contenido-dinamico-interno" id="contenido-dinamico-interno">
-        <div class="estadoSuscripcion" id="contenedor-estadoSuscripcion">
+    <div id="contenido-dinamico-interno">
+        <div id="contenedor-estadoSuscripcion">
             @yield('estadoSuscripcion')
         </div>
-        <div class="detallesPlan" id="contenedor-detallesPlan">
+        <div id="contenedor-detallesPlan">
             @yield('detallesPlan')
         </div>
-        <div class="cambioPlan" id="contenedor-cambioPlan">
+        <div id="contenedor-cambioPlan">
             @yield('cambioPlan')
         </div>
-        <div class="historialPago" id="contenedor-historialPago">
+        <div id="contenedor-historialPago">
             @yield('historialPago')
         </div>
     </div>

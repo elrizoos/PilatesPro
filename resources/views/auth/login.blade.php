@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="formulario-login">
-        <div class="div-logo">
-            <div class="imagen-logo" data-url="{{ route('inicio') }}"></div>
+<div>
+    <div>
+        <div>
+            <div data-url="{{ route('inicio') }}"></div>
         </div>
         @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -15,14 +15,14 @@
                         </ul>
                     </div>
                 @endif
-        <div class="div-formulario">
+        <div>
             <form action="{{route('login')}}" method="post">
                 @csrf
                 <input type="email" name="email" id="email" placeholder="Email">
-                <hr class="linea-auth">
+                <hr>
                 <input type="password" name="password" id="password" placeholder="Contraseña">
-                <hr class="linea-auth">
-                <input class="boton-enviar" type="submit" value="Entrar">
+                <hr>
+                <input type="submit" value="Entrar">
             </form>
         </div>
     </div>

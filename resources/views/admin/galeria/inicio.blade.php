@@ -1,26 +1,26 @@
 @extends('admin/panel-control')
 
 @section('galeria-inicio')
-    <div class="contenedor-galeria">
+    <div>
 
-        <ul class="navegacion">
+        <ul>
             <li id="botonPerfil">Imagenes Perfil</li>
             <li id="botonSeccion">Imagenes Seccion</li>
         </ul>
-        <div class="galeria">
+        <div>
             <h2 id="tituloImagenesPerfil">Imágenes de Perfil</h2>
-            <div id="galeriaPerfil" class="imagenes-galeria">
+            <div id="galeriaPerfil">
                 @foreach ($imagenesPerfil as $imagen)
-                    <div class="imagen-container">
+                    <div>
                         <img src="{{ asset('storage/' . $imagen->ruta_imagen) }}" alt="Imagen de perfil">
                     </div>
                 @endforeach
             </div>
 
             <h2 id="tituloImagenesSeccion">Imágenes de Sección</h2>
-            <div id="galeriaSeccion" class="imagenes-galeria">
+            <div id="galeriaSeccion">
                 @foreach ($imagenesSeccion as $imagen)
-                    <div class="imagen-container">
+                    <div>
                         <img src="{{ asset('storage/' . $imagen->ruta_imagen) }}" alt="Imagen de sección">
                     </div>
                 @endforeach

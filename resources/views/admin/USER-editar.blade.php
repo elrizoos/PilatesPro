@@ -1,9 +1,9 @@
 @extends('admin/panel-control')
 
 @section('USER-editar')
-    <div class="contenedor-tabla">
-        <table class="table table-light">
-            <thead class="thead-light">
+    <div>
+        <table>
+            <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -18,7 +18,7 @@
                         <td>{{ $usuario->apellidos }}</td>
                         <td>{{ $usuario->tipo_usuario ?? 'S/A' }}</td>
                         <td>
-                            <div class="opciones">
+                            <div>
                                 <form
                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
                                     method="get">
@@ -35,12 +35,12 @@
     </div>
 
     <!-- Formulario de eliminación (fuera del bucle foreach) -->
-    <div class="formulario-eliminar" id="formulario-eliminar" style="display: none">
+    <div id="formulario-eliminar" style="display: none">
         <form id="form-eliminar-usuario" method="POST">
             @csrf
             @method('DELETE')
             <p>¿Desea eliminar el usuario?</p>
-            <div class="botones">
+            <div>
                 <input id="botonEnviar" type="submit" value="Eliminar">
                 <input id="botonCancelar" type="button" value="Cancelar" onclick="cancelarEliminar()">
             </div>

@@ -2,43 +2,43 @@
 
 @section('CONT-crearPagina')
     
-    <div class="contenedor-formulario">
-        <form action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) :  route('pagina.store') }}" class="formulario-pagina-nueva formulario-corto" method="POST">
+    <div>
+        <form action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) :  route('pagina.store') }}" method="POST">
             @csrf
             @isset($pagina)
                 @method('PUT')
             @endisset
-            <div class="grupo-formulario">
-                <div class="grupo-input">
+            <div>
+                <div>
                     @isset($pagina)
-                        <input class="estilo-formulario" type="text" name="titulo" id="titulo"
+                        <input type="text" name="titulo" id="titulo"
                             placeholder="Título de la página" value="{{  $pagina->titulo  }}">
-                        <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
+                        <input type="text" name="descripcion" id="descripcion"
                             placeholder="Descripción" value="{{  $pagina->descripcion }}">
                     @else 
                         
-                    <input class="estilo-formulario" type="text" name="titulo" id="titulo"
+                    <input type="text" name="titulo" id="titulo"
                         placeholder="Título de la página" >
-                    <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
+                    <input type="text" name="descripcion" id="descripcion"
                         placeholder="Descripción" >
                
                     @endif
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('titulo')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                     @error('descripcion')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
+            <div>
+                <div>
                     <input type="submit" value="Crear Pagina Nueva">
                 </div>
             </div>

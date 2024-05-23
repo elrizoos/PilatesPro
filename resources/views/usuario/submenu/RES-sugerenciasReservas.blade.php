@@ -1,7 +1,7 @@
 @extends('usuario.reservas')
 @section('sugerenciasReservas')
     <p>Seccion para ver futuras clases a reservar.</p>
-    <table class="table tabla-dorada">
+    <table>
     <thead>
         <tr>
             <th>Lunes</th>

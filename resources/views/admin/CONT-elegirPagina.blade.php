@@ -1,19 +1,19 @@
 @extends('admin/panel-control')
 
 @section('CONT-elegirPagina')
-    <div class="contenedor-contenido">
+    <div>
          <form action="{{ route('seleccionarPagina') }}" method="get">
-        <div class="grupo-formulario">
-                <div class="grupo-input">
+        <div>
+                <div>
                     <select name="paginaElegida" id="paginaElegida">
                         @foreach ($paginas as $pagina)
                             <option value="{{$pagina->id}}">Pagina: {{ $pagina->titulo }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="grupo-error">
+                <div>
                     @error('paginaElegida')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -22,8 +22,8 @@
 
 
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
+            <div>
+                <div>
                     <input type="submit" value="Elegir esta página">
                 </div>
             </div>

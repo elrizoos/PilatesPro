@@ -1,36 +1,36 @@
 @extends('admin.panel-control')
 
 @section('CONT-eliminarEditar')
-    <div id="contenedorSeleccion" class="contenedor-contenido seleccion">
+    <div id="contenedorSeleccion">
         <input id="data-input" type="hidden" name="_dataUrl" data-eliminarPagina="{{ route('pagina.destroy', ['pagina' => 'INDEFINIDO']) }}"
             data-eliminarSeccion="{{ route('seccion.destroy', ['seccion' => 'INDEFINIDO']) }}"
             data-editarPagina="{{ route('pagina.edit', ['pagina' => 'INDEFINIDO']) }}"
             data-editarSeccion="{{ route('seccion.edit', ['seccion' => 'INDEFINIDO']) }}">
-        <div class="contenedor-opciones-pagina">
+        <div>
             <h2>PAGINAS</h2>
-            <div id="eliminarPagina" class="opcion opcion-eliminar">
+            <div id="eliminarPagina">
                 <span></span>
                 <h3>ELIMINAR</h3>
             </div>
-            <div id="editarPagina" class="opcion opcion-editar">
+            <div id="editarPagina">
                 <span></span>
                 <h3>EDITAR</h3>
             </div>
         </div>
-        <div class="contenedor-opciones-seccion">
+        <div>
             <h2>SECCIONES</h2>
-            <div id="eliminarSeccion" class="opcion opcion-eliminar">
+            <div id="eliminarSeccion">
                 <span></span>
                 <h3>ELIMINAR</h3>
             </div>
-            <div id="editarSeccion" class="opcion opcion-editar">
+            <div id="editarSeccion">
                 <span></span>
                 <h3>EDITAR</h3>
             </div>
         </div>
 
-        <div class="contenedor-paginas">
-            <form class="formulario-contenedor formulario-pagina" action="" method="POST">
+        <div>
+            <form action="" method="POST">
                 @csrf
                 @method('')
 
@@ -42,8 +42,8 @@
                 <input id="boton-pagina" type="submit" value="">
             </form>
         </div>
-        <div class="contenedor-secciones">
-            <form class="formulario-contenedor formulario-seccion " action="" method="POST">
+        <div>
+            <form action="" method="POST">
                 @csrf
                 @method('')
 
