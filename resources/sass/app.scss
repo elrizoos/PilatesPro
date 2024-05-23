@@ -3285,6 +3285,24 @@ input[type="checkbox"]:checked::before {
 }
 
 //estilos apartado gestion membresias
+.contenedor-productos {
+    width: 100%;
+}
+
+.opciones-mostrar {
+    width: 100%;
+}
+
+.boton-mostrar {
+    padding: 1em;
+    background-color: $colorNegroClaro;
+    color: $colorSecundario;
+}
+
+.boton-mostrar:hover {
+    cursor: pointer;
+    background-color: $colorNegro;
+}
 .contenedor-membresia, .contenedor-paquete {
     color: $colorGris;
 }

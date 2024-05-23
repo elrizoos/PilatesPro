@@ -15,6 +15,7 @@ use Stripe\Customer;
 use Stripe\Invoice;
 use Stripe\InvoiceItem;
 use Stripe\Plan;
+use Stripe\Product;
 use Stripe\Stripe;
 use Stripe\Subscription;
 use Stripe\SubscriptionItem;
@@ -24,10 +25,10 @@ class PagoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Membresia $membresia)
+    public function index(Membresia $producto)
     {
         //dd($membresia);
-        return view('facturaciones.formulario-pago', compact('membresia'));
+        return view('facturaciones.formulario-pago', compact('producto'));
     }
 
     /**
@@ -199,6 +200,10 @@ class PagoController extends Controller
 
     public function mostrarEstadoSuscripcion()
     {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $productos = Product::all();
+
         $usuario = Auth::user();
 
         if (isset($usuario->membresias[0])) {
@@ -206,12 +211,14 @@ class PagoController extends Controller
         }
 
         $membresias = Membresia::all();
+        
+        
 
         if (isset($membresiaUsuario)) {
 
-            return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresiaUsuario', 'membresias'));
+            return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresiaUsuario', 'productos'));
         } else {
-            return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresias'));
+            return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresias', 'productos'));
         }
     }
 

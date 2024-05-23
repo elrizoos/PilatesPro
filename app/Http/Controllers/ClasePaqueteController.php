@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClasePaquete;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Stripe\Price;
 use Stripe\Product;
 use Stripe\Stripe;
@@ -123,6 +124,9 @@ class ClasePaqueteController extends Controller
 
             $producto = Product::update($clasePaquete->producto_id, [
                 'name' => $request->nombre_editable,
+                'metadata' => [
+                    'tipo' => 'paquete',
+                ],
             ]);
 
             $price = Price::create([
@@ -132,13 +136,13 @@ class ClasePaqueteController extends Controller
             ]);
 
             $clasePaquete->numero_clases = $request->numero_clases_editable;
-            $clasePaquete->precio = $request->precio_editable;
+            $clasePaquete->precio = $price->unit_amount;
             $clasePaquete->save();
 
             return redirect()->route('clasePaquete-inicio')->with('success', 'Paquete de ' . $clasePaquete->numero_clases . ' clases');
 
         } catch (\Throwable $th) {
-            \Log::error('Mensaje de error: ' . $th->getMessage());
+            Log::error('Mensaje de error: ' . $th->getMessage());
         }
     }
 

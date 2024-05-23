@@ -108,13 +108,16 @@ class MembresiaController extends Controller
         $producto = Product::create([
             'name' => $membresia->nombre,
             'description' => $membresia->descripcion,
+            'metadata' => [
+                'tipo' => 'suscripcion',
+            ],
         ]);
 
         $precio = Price::create([
             'unit_amount' => $membresia->precio * 100,
             'currency' => 'eur',
             'recurring' => ['interval' => 'month'],
-            'product' => $producto->id,
+            'product_data' => $producto->name,
         ]);
 
         return $precio;

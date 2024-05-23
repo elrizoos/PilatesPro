@@ -12,6 +12,7 @@ use App\Http\Controllers\MembresiaController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\SeccionContenidoController;
 use App\Http\Controllers\UsuarioController;
@@ -208,7 +209,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
 
     //Rutas de facturacion 
-    Route::get('/facturacion/pago/formularioPago/{membresia}', [PagoController::class, 'index'])->name('formularioPago');
+
+    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('mostrarProductos');
+    Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');
     Route::get('/facturacion/mostrarFactura-vistaPrevia', [PagoController::class, 'mostrarFactura'])->name('mostrarFactura');
