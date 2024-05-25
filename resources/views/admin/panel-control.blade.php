@@ -19,93 +19,96 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
-    <div>
+<body class="bg-color-principal">
+    <div class="container-fluid vw-100 vh-100">
 
-        <div>
-            <div id="imagen-logo" data-url="{{ route('inicio') }}"></div>
+        <div class="row w-100 h-25">
+            <div class="w-100 h-auto img-fluid imagen-logo" id="imagen-logo" data-url="{{ route('inicio') }}"></div>
         </div>
-        <div>
-            <div>
-                <ul>
-                    <li>General</li>
-                    <li>Usuarios <span></span>
-                        <ul>
-                            <li><a href="{{ route('mostrarContenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
-                            <li><a href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
-                                    Existente</a></li>
-                            <li><a href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
-                                    Contraseñas</a>
-                            </li>
-                            <li><a href="{{ route('gestionGrupos') }}">Gestión de grupos</a></li>
-                        </ul>
-                    </li>
-                    <li>Contenido <span></span>
-                        <ul>
-                            <li><a href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva pagina</a>
-                            </li>
-                            <li><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
-                            <li><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a></li>
-                            <li><a href="{{ route('galeriaImagenes') }}">Galeria de imagenes y videos</a></li>
-                        </ul>
-                    </li>
-                    <li>Clases y Horarios <span></span>
-                        <ul>
-                            <li><a href="{{ route('horario.create') }}">Crear nuevo registro horario</a></li>
-                            <li><a href="{{ route('mostrarHorarios') }}">Editar registro horario</a></li>
-                            <li><a href="{{ route('clase.create') }}">Crear nueva clase</a></li>
-                            <li><a href="{{ route('mostrarClases') }}">Editar clase</a></li>
-                        </ul>
-                    </li>
-                    <li>Pagos y Facturación <span></span>
-                        <ul>
-                            <li><a href="{{ route('mostrarProductos') }}">Gestionar Productos</a></li>
-                            <li>Registrar pagos</li>
-                            <li>Generar facturacion</li>
-                            <li>Seguimiento de alumnos</li>
-                        </ul>
-                    </li>
-                    <li>Comunicacion y Notificaciones <span></span>
-                        <ul>
-                            <li>Enviar correo o notificacion</li>
-                            <li>Mensajeria interna</li>
-                        </ul>
-                    </li>
-                    <li>Analisis y Reportes <span></span>
-                        <ul>
-                            <li>Informes generales</li>
-                            <li>Encuestas alumnos</li>
-                        </ul>
-                    </li>
-                    <li>Configuracion del sitio <span></span>
-                        <ul>
-                            <li>Ajustes generales</li>
-                            <li>Opciones de seguridad</li>
-                            <li>Herramientas externas</li>
-                        </ul>
-                    </li>
+        <div class="row vw-100 h-75">
+            <div class="col-3">
+                <div class="w-100 h-100 m-auto fs-5 text-nowrap ">
+                    <ul class="menu-general">
+                        <li class="p-2 texto-color-secundario">General</li>
+                        <li class="p-2 texto-color-secundario">Usuarios <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a href="{{ route('mostrarContenido', 'USER-crear') }}">Crear Usuario Nuevo</a></li>
+                                <li class="p-1"><a href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
+                                        Existente</a></li>
+                                <li class="p-1"><a href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                                        Contraseñas</a>
+                                </li>
+                                <li class="p-1"><a href="{{ route('gestionGrupos') }}">Gestión de grupos</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Contenido <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva pagina</a>
+                                </li>
+                                <li class="p-1"><a href="{{ route('elegirPagina') }}">Crear nueva seccion</a></li>
+                                <li class="p-1"><a href="{{ route('eliminarEditarPagina') }}">Eliminar o editar seccion/página</a>
+                                </li>
+                                <li class="p-1"><a href="{{ route('galeriaImagenes') }}">Galeria de imagenes y videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Clases y Horarios <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a href="{{ route('horario.create') }}">Crear nuevo registro horario</a></li>
+                                <li class="p-1"><a href="{{ route('mostrarHorarios') }}">Editar registro horario</a></li>
+                                <li class="p-1"><a href="{{ route('clase.create') }}">Crear nueva clase</a></li>
+                                <li class="p-1"><a href="{{ route('mostrarClases') }}">Editar clase</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Pagos y Facturación <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a href="{{ route('mostrarProductos') }}">Gestionar Productos</a></li>
+                                <li class="p-1">Registrar pagos</li>
+                                <li class="p-1">Generar facturacion</li>
+                                <li class="p-1">Seguimiento de alumnos</li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Comunicacion y Notificaciones <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1">Enviar correo o notificacion</li>
+                                <li class="p-1">Mensajeria interna</li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Analisis y Reportes <span></span>
+                            <ul class="submenu fs-6">
+                                <li class="p-1">Informes generales</li>
+                                <li class="p-1">Encuestas alumnos</li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Configuracion del sitio <span></span>
+                            <ul class="submenu fs-6 p-2">
+                                <li class="p-1">Ajustes generales</li>
+                                <li class="p-1">Opciones de seguridad</li>
+                                <li class="p-1">Herramientas externas</li>
+                            </ul>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div>
-            @if (session('success'))
-                <div>
-                    <p>{{ session('success') }}</p>
-                    <span id=cerrarBoton></span>
-                </div>
-            @endif
+            <div class="col bg-color-fondo-principal h-100 w-100 p-3">
+                @if (session('success'))
+                    <div>
+                        <p>{{ session('success') }}</p>
+                        <span id=cerrarBoton></span>
+                    </div>
+                @endif
 
-            @if (session('error'))
-                <div>
-                    <p>{{ session('error') }}</p>
-                    <span id=cerrarBoton></span>
-                </div>
-            @endif
-            @if ($tipo)
-                @yield($tipo)
-            @else
-            @endif
+                @if (session('error'))
+                    <div>
+                        <p>{{ session('error') }}</p>
+                        <span id=cerrarBoton></span>
+                    </div>
+                @endif
+                @if ($tipo)
+                    @yield($tipo)
+                @else
+                @endif
+            </div>
         </div>
     </div>
     <script>

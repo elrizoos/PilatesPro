@@ -2,7 +2,7 @@
 
 @section('USER-gestionContrasena-formulario')
     
-    <div>
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100 w-100 border border-2 border-warning-subtle rounded bg-color-negro">
         <form action="{{ route('modificarContrasena', ['usuario' => $usuario->id]) }}" method="POST">
             @csrf
             @method('PUT')

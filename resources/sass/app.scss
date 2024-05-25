@@ -7,6 +7,10 @@
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
 
+//Iconos CSS
+@import url("https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
+
+@import "flaticon";
 //RESET CSS
 html,
 body,
@@ -134,21 +138,74 @@ table {
     border-spacing: 0;
 }
 
+input:focus-visible {
+    outline: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 50px rgb(27, 27, 27) inset !important;
+    -webkit-box-shadow: 0 0 0 50px #292929 inset !important;
     -webkit-text-fill-color: rgba(255, 255, 255, 0.4) !important;
-    color: rgba(255, 255, 255, 0.5);
+    color: #ffffff80;
+    background: none;
+}
+
+table, table *, table td {
+    background: none;
 }
 //ESTILOS DESARROLLO
 .colorRojo {
-    background-color: red;
-    color: white;
+    background-color: red !important;
+    color: white !important;
 }
 
 //ESTILOS PROYECTO
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+//Ancho del scrollbar
+::-webkit-scrollbar-track {
+    background: $colorPrincipal;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorSecundario;
+    width: 1em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 1.5em;
+}
+
+::-webkit-scrollbar-track-horizontal {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb-horizontal {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb-horizontal:hover {
+    background: #555;
+}
+
+.no-scrollbar {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.no-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 a {
     text-decoration: none;
     color: $colorGris;
@@ -166,6 +223,32 @@ a {
     background-color: $colorFondoClaro;
 }
 
+.bg-color-fondo-oscuro {
+    background-color: $colorFondoOscuro;
+}
+
+.bg-color-fondo-muy-oscuro {
+    background-color: $colorPrincipalOscuro;
+}
+
+.bg-color-fondo-claro {
+    background-color: $colorPrincipalClaro;
+}
+.bg-color-fondo-oscuro-transparente {
+    background-color: $colorPrincipalTransparente;
+}
+.bg-color-fondo-oscuro-transparente-0 {
+    background-color: $colorPrincipalTransparenteCero;
+}
+
+.bg-color-negro{
+    background-color: $colorNegro !important;
+}
+
+.bg-none {
+    background: none !important;
+}
+
 .texto-color-principal {
     color: $colorGris;
 }
@@ -174,9 +257,171 @@ a {
     color: $colorSecundario;
 }
 
+.texto-color-importante {
+    color: $colorDorado;
+}
+
+.texto-color-dorado-claro {
+    color: $colorDoradoClaro !important;
+}
+
+.texto-color-dorado {
+    color: $colorDorado !important;
+}
+
+.sombra {
+    box-shadow: 6px 9px 26px 6px rgba(255, 255, 255, 0.5);
+}
+
 .imagen-logo {
     background-image: url($ruta + "/logo.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.centrado {
+    left: 9.5%;
+    top: 3.5%;
+}
+
+.bottom-40 {
+    bottom: 40% !important;
+}
+
+.h-10 {
+    height: 10% !important;
+}
+
+.h-30 {
+    height: 30% !important;
+}
+
+.top-40 {
+    top: 40% !important;
+}
+
+.border-fondo {
+    border-color: $colorFondoOscuro !important;
+}
+.max-width-70 {
+    max-width: 70%;
+}
+
+.min-height-40 {
+    min-height: 5em;
+}
+
+.transition-up:hover .transition-up-from-bottom {
+    top: 0% !important;
+}
+
+.transition-up-from-bottom {
+    transition: top 1s ease;
+}
+
+.icono-normal {
+    width: 1em;
+    height: 1em;
+}
+
+.icono-grande {
+    width: 3em;
+    height: 3em;
+}
+
+.icono-muy-grande {
+    width: 5em;
+    height: 5em;
+}
+
+.service-box {
+    background-color: #333333; /* Fondo de los cuadros de servicios */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.service-title {
+    color: #c39b6a; /* Color del título de los servicios */
+}
+
+.estilo-formulario {
+    border: 0;
+    background: none;
+    width: max-content;
+    height: 2em;
+    position: relative;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.estilo-formulario-dorado {
+}
+
+.estilo-formulario-enviar {
+    font-size: 2em;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    border: 0;
+    color: #8e6d45;
+    font-weight: bold;
+}
+
+.estilo-formulario-dorado-enviar {
+}
+
+.estilo-formulario-select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: $colorGris;
+    padding: 4px;
+    text-align: center;
+}
+
+form select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 4px;
+    border: 1px solid #8e6d45;
+    border-radius: 9px;
+    text-align: center;
+}
+.estilo-formulario-dorado-select {
+}
+.estilo-formulario-select option {
+    background: none;
+    background: #585858;
+    color: white;
+}
+
+input[type="date"] {
+    color: #ffffff59;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+input:focus + .linea-transition-rigth {
+    border: 2px solid #ffe69c !important;
+    width: 100% !important;
+    transition: all 0.6s ease-in;
+}
+
+input:focus + .linea-transition-weigth {
+    border: 2px solid #ffe69c !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabla-dorada {
+    width: 100% !important;
+    font-size: 1vw !important;
+}
+
+.tabla-dorada thead tr th, .tabla-dorada tbody tr td  {
+    background: none !important;
+}
+
