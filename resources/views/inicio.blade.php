@@ -8,9 +8,9 @@
     @endif
     <div id="cuadroActualizacion" class="cuadro-actualizaciones">
         <h5>¡La página ha sido actualizada!</h5>
-        <h3>Version 0.0.1 (Primeras notas)</h3>
+        <h3>Version 0.1.1 (Nuevas funcionalidades)</h3>
        
-            @include('actualizacion.version_0_0_1')
+            @include('actualizacion.version_0_1_1')
         
     </div>
     <div class="seccion slider-seccion">
