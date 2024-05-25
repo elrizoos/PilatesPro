@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reserva_id');
+            $table->foreignId('reserva_id')->constrained('reservas')->onDelete('cascade');
             $table->date('fecha');
-            $table->boolean('asistio');
-            $table->foreign('reserva_id')->references('id')->on('reservas')->onDelete('cascade');
+            $table->boolean('asistio')->default(false);
             $table->timestamps();
         });
     }

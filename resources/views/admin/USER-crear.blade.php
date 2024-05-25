@@ -1,12 +1,7 @@
 @extends('admin/panel-control')
 
 @section('USER-crear')
-    @if (session('success'))
-        <div class="alert alert-success ventana-emergente">
-            <p>{{ session('success') }}</p>
-            <span id=cerrarBoton></span>
-        </div>
-    @endif
+    
     <div class="contenedor-formulario">
         <form class="formulario-usuario-nuevo" action="{{ route('usuario.create') }}" method="get">
             @csrf
@@ -101,11 +96,4 @@
         </form>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('#cerrarBoton').on('click', function() {
-                $('.ventana-emergente').addClass('no-active');
-            })
-        });
-    </script>
 @endsection

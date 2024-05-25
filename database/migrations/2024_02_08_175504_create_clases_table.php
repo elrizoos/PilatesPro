@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('clases', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 255);
-            $table->date('fecha');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
             $table->unsignedBigInteger('grupo_id');
             $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
             $table->timestamps();

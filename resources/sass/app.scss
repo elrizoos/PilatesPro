@@ -1272,6 +1272,7 @@ li.barra {
     background-image: url($ruta + "/logo.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     width: 65%;
     height: 95%;
 }
@@ -1522,9 +1523,10 @@ p {
     height: 100%;
 }
 
-#contenido-dinamico-interno > div {
+.contenido-dinamico-interno > div {
     width: 100%;
     height: 100%;
+    color: $colorGris;
 }
 
 //Perfil de usuario: Pestaña general
@@ -1723,6 +1725,19 @@ p {
     font-size: 2em;
 }
 
+.contenedor-suscripcion {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+.membresias-opciones {
+    font-size: 2em;
+    
+}
+
 //PANEL DE CONTROL - USUARIOS
 .contenedor-formulario,
 .contenedor-contenido {
@@ -1775,7 +1790,8 @@ p {
 }
 
 .formulario-usuario-nuevo .estilo-formulario,
-.contenedor-formulario form .estilo-formulario {
+.contenedor-formulario form .estilo-formulario,
+form .estilo-formulario {
     background: none;
     border: none;
     color: white;
@@ -1786,13 +1802,15 @@ p {
 }
 
 .formulario-usuario-nuevo .estilo-formulario::placeholder,
-.contenedor-formulario form .estilo-formulario::placeholder {
+.contenedor-formulario form .estilo-formulario::placeholder,
+form .estilo-formulario::placeholder {
     color: #8e6d45;
     text-align: center;
 }
 
 .formulario-usuario-nuevo select,
-.contenedor-formulario form select {
+.contenedor-formulario form select,
+form select {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1801,17 +1819,22 @@ p {
     padding: 4px;
     border: 1px solid #8e6d45;
     border-radius: 9px;
+    text-align: center;
 }
 
 .formulario-usuario-nuevo select option,
-.contenedor-formulario form select option {
+.contenedor-formulario form select option,
+form select option {
     background: #8e6d45;
     color: white;
 }
 
 .formulario-usuario-nuevo input[type="submit"],
 .contenedor-formulario form input[type="submit"],
-.formulario-eliminar .botones input {
+.formulario-eliminar .botones input,
+form input[type="submit"],
+.botonSeleccion,
+.input-mas-detalles-pago {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -1823,7 +1846,8 @@ p {
 }
 
 .formulario-usuario-nuevo input[type="date"],
-.contenedor-formulario form input[type="date"] {
+.contenedor-formulario form input[type="date"],
+form input[type="date"] {
     background: none;
     border: 0px;
     border-bottom: 2px solid #8e6d45;
@@ -1835,7 +1859,8 @@ p {
 .formulario-usuario-nuevo input[type="date"]::-webkit-calendar-picker-indicator,
 .contenedor-formulario
     form
-    input[type="date"]::-webkit-calendar-picker-indicator {
+    input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
@@ -1911,7 +1936,8 @@ div#contenedor-sugerenciaReservas {
     height: 100%;
     padding: 2em;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    overflow-y: scroll;
 }
 
 .contenedor-tabla table {
@@ -2094,9 +2120,8 @@ div#contenedor-sugerenciaReservas {
     grid-area: 3 / 1 / 7 / 5;
 }
 
-
 .seccion.seccion-nueva .imagen .borrarImagen {
-    background-image: url($ruta + '/borrar.png');
+    background-image: url($ruta + "/borrar.png");
     background-size: 90%;
     width: 5em;
     height: 5em;
@@ -2246,7 +2271,6 @@ div#contenedor-sugerenciaReservas {
     gap: 10px;
 }
 
-
 .vista-previa.vista-foro .seccion {
     font-size: 0.5em;
     flex: 4;
@@ -2257,7 +2281,7 @@ div#contenedor-sugerenciaReservas {
 }
 
 .vista-previa.vista-foro span {
-    background-image: url($ruta + '/flecha-derecha.png');
+    background-image: url($ruta + "/flecha-derecha.png");
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: center;
@@ -2338,10 +2362,12 @@ div#contenedor-sugerenciaReservas {
     background-image: url($ruta + "/editar.png");
 }
 
-.contenedor-paginas, .contenedor-secciones {
+.contenedor-paginas,
+.contenedor-secciones {
     display: none;
 }
-.contenedor-paginas input, .contenedor-secciones input{
+.contenedor-paginas input,
+.contenedor-secciones input {
     text-transform: uppercase;
 }
 
@@ -2352,16 +2378,13 @@ div#contenedor-sugerenciaReservas {
     justify-content: center;
 }
 
-
-
 .imagen-container {
     display: flex;
-    flex: 1 ; /* Ajusta según necesidades para el tamaño de las imágenes */
+    flex: 1; /* Ajusta según necesidades para el tamaño de las imágenes */
     overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
     justify-content: center;
     align-items: center;
     height: 3em; /* Altura fija para mantener consistencia */
-
 }
 
 .imagen-container img {
@@ -2437,11 +2460,10 @@ div#contenedor-sugerenciaReservas {
     margin: 1em;
 }
 
-
 .cambio.cambio-principal {
     padding: 0.2em;
     font-size: 3em;
-    color: $colorGris ;
+    color: $colorGris;
 }
 
 .lista-principal {
@@ -2464,28 +2486,24 @@ div#contenedor-sugerenciaReservas {
     position: absolute;
     top: 0;
     right: 0;
-    background-image: url($ruta + '/cerrar-cruz.png');
+    background-image: url($ruta + "/cerrar-cruz.png");
     background-size: contain;
     width: 5em;
     height: 5em;
     margin: 1em;
 }
 
-
-.cuadro-actualizaciones
-.lista-cambios b {
+.cuadro-actualizaciones .lista-cambios b {
     color: white;
 }
 
-//Ajustes gestion de grupos 
+//Ajustes gestion de grupos
 .combinacion.flex {
     flex-direction: column;
     overflow-y: scroll;
 }
 
-
-
-.contenedor-tabla.flex{
+.contenedor-tabla.flex {
     flex-direction: column;
     color: white;
 }
@@ -2498,6 +2516,1043 @@ div#contenedor-sugerenciaReservas {
 
 .contenedor-tabla.flex h4 {
     font-size: 3em;
+}
+
+.contenedor-formulario .formulario-horario {
+    display: flex;
+    flex-direction: column;
+}
+.contenedor-formulario .formulario-horario .central {
+    width: 100%;
+    display: flex;
+    height: 70%;
+}
+
+.contenedor-fecha-placeholder {
+    position: relative;
+}
+
+.contenedor-fecha-placeholder input {
+    width: 100% !important;
+}
+
+.contenedor-fecha-placeholder label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $colorNegro;
+    width: 100%;
+    text-align: center;
+    font-size: 1em !important;
+}
+
+.contenedor-formulario .formulario-horario .central .fecha-placeholder {
+    color: $colorSecundario;
+    font-size: 1.2em;
+}
+
+.contenedor-formulario .formulario-horario .central > div {
+    flex: 1;
+}
+
+.contenedor-formulario .formulario-horario .central .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.contenedor-formulario .formulario-horario .central .inputs > * {
+    width: 100%;
+}
+
+.contenedor-formulario
+    .formulario-horario
+    .grupo-formulario
+    input[type="time"] {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 4px;
+    border: 1px solid #8e6d45;
+    border-radius: 9px;
+}
+input[type="time"] {
+    background-color: $colorSecundario;
+}
+input[type="time" i]::-webkit-calendar-picker-indicator {
+    background-image: url($ruta + "/reloj.png");
+}
+//Estilos para personalizar el calendario propio
+.contenedor-calendario {
+    border-radius: 5%;
+    font-size: 50%;
+    position: absolute;
+    top: 0;
+    background: $colorPrincipal;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    border: 1px solid $colorSecundario;
+    display: none;
+    flex-direction: column;
+    z-index: 20;
+}
+
+.encabezado-calendario {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4em;
+}
+
+.encabezado-calendario span {
+    display: flex;
+    width: 3em;
+    margin: 5px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.encabezado-calendario span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $colorPrincipalTransparente;
+}
+
+.encabezado-calendario span#mesAnnoActual {
+    color: #e6d5b3;
+}
+
+.encabezado-calendario span:hover::before {
+    background: $colorPrincipalTransparenteCero;
+}
+
+.anno-anterior {
+    background-image: url($ruta + "/flecha-derecha-doble.png");
+    transform: rotate(180deg);
+}
+
+.mes-anterior {
+    background-image: url($ruta + "/flecha-derecha-sencilla.png");
+    transform: rotate(180deg);
+}
+
+.anno-siguiente {
+    background-image: url($ruta + "/flecha-derecha-doble.png");
+}
+
+.mes-siguiente {
+    background-image: url($ruta + "/flecha-derecha-sencilla.png");
+}
+
+.mes-anno-actual {
+    font-size: 2em;
+    text-wrap: nowrap;
+    text-align: center;
+    flex: 4;
+    cursor: auto !important;
+}
+
+.mes-anno-actual:hover::before {
+    background: $colorPrincipalTransparente !important;
+}
+
+.cuerpo-calendario {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+}
+
+.nombres-dias {
+    display: flex;
+    background-color: $colorSecundario;
+    color: $colorPrincipal;
+}
+
+.nombres-dias div {
+    flex: 1;
+    padding: 0.5em;
+    font-size: 3em;
+}
+
+.dias-mes {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 5;
+}
+
+.dias-mes div {
+    width: calc(100% / 7);
+    padding: 10px 0;
+    cursor: pointer;
+    border-right: 1px solid $colorPrincipal;
+    border-bottom: 1px solid $colorPrincipal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: $colorSecundario;
+}
+
+.dias-mes div:hover {
+    background-color: $colorFondoTransparente;
+    color: white;
+}
+
+.dias-mes div.today {
+    background-color: $colorPrincipal;
+    color: $dorado;
+}
+
+//Estilos para la seleccion de hora personalizada
+
+.contenedor-horas {
+    color: $colorSecundario;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor-horas .horas {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-horas .horas > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-horas .horas > div > div {
+    flex: 1;
+}
+
+.contenedor-horas .horas > div .titulo-hora {
+    font-size: 1.2em;
+    text-align: center;
+    color: $colorSecundario;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-hora-minuto {
+    border: 0.02em solid $colorSecundario;
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+    display: flex;
+    gap: 0.1em;
+}
+.hora-minuto > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+.contenedor-horas .seleccion-horas {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background-color: $colorNegro;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion > div {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.casillaReloj {
+    flex: 1;
+    width: 20%;
+    max-height: 2em;
+    background: none;
+    outline: none;
+    border: none;
+    color: $colorSecundario;
+    padding-left: 0.5em;
+    overflow-y: hidden;
+}
+.casillaReloj:hover {
+    overflow: hidden;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+.casillaReloj::placeholder {
+    color: $colorSecundario;
+}
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj {
+    position: relative;
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo {
+    width: 6em;
+    height: 6em;
+    background-color: $colorFondo;
+    border-radius: 50%;
+    position: relative;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo > div {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    display: flex;
+    color: $colorSecundario;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-horas
+    .seleccion-horas
+    .contenedor-seleccion
+    .reloj
+    .circulo
+    .norte {
+    top: 0;
+    left: 40%;
+}
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .este {
+    right: 0;
+    top: 40%;
+}
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .sur {
+    bottom: 0;
+    left: 40%;
+}
+.contenedor-horas
+    .seleccion-horas
+    .contenedor-seleccion
+    .reloj
+    .circulo
+    .oeste {
+    left: 0;
+    top: 40%;
+}
+
+.contenedor-horas
+    .seleccion-horas
+    .contenedor-seleccion
+    .reloj
+    .circulo
+    .punto-centro {
+    top: 47.5%;
+    left: 47.5%;
+    width: 5%;
+    height: 5%;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.contenedor-horas
+    .seleccion-horas
+    .contenedor-seleccion
+    .reloj
+    .circulo
+    .aguja-hora {
+    position: absolute;
+    width: 2%;
+    height: 30%;
+    background-color: $colorDorado;
+    top: 20%;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+.contenedor-horas
+    .seleccion-horas
+    .contenedor-seleccion
+    .reloj
+    .circulo
+    .aguja-minuto {
+    position: absolute;
+    width: 2%;
+    height: 40%;
+    background-color: $dorado;
+    top: 10%;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    background: #ddd;
+    border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: $colorSecundario;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: $colorFondo;
+}
+
+#inicioFin {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: $colorSecundario;
+}
+#inicioFinContenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.opcionRepetir {
+    flex-direction: column;
+
+    position: absolute;
+    top: 15em;
+    left: -2em;
+    height: 5em;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: $colorPrincipal;
+    width: 1em;
+    height: 1em;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    background-image: url($ruta + "/check.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.listaDiasSemana {
+    display: flex;
+}
+
+.listaDiasSemana li {
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    flex-direction: column;
+}
+
+.repeticion {
+    color: $colorSecundario;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.repeticion div.opcionRepetir {
+    display: none;
+}
+
+.botonEnviar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+//Estilos para mostrar la linea temporal de registros horarios
+.timeline {
+    position: relative;
+    width: 90%;
+    height: 95%;
+    padding: 2em 4em;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.contenedor-horario {
+    display: flex;
+}
+
+.horas-timeline {
+    position: absolute;
+    height: 32em;
+    width: 4em;
+    left: -2em;
+    top: 0;
+    z-index: 35;
+    background-color: rgba(0, 0, 0, 0.644);
+}
+
+.horas-timeline div {
+    flex: 1;
+    height: 2.3em;
+    position: relative;
+    color: $colorSecundario;
+    border-top: 0.01em solid $colorSecundario;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horas-timeline div:nth-child(1) {
+    height: 2em;
+}
+.dia-timeline {
+    flex: 1;
+    min-width: 10em;
+    display: flex;
+    flex-direction: column;
+    min-height: 30em;
+}
+
+.par {
+    background-color: $colorNegro;
+}
+
+.impar {
+    background-color: $colorFondo;
+}
+
+.dia-timeline div {
+    min-height: 1em;
+}
+
+.evento {
+    background-color: $colorGrisClaro;
+    color: $dorado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border: 0.2em outset $white;
+}
+
+.evento:hover .informacion-evento {
+    display: grid;
+}
+
+.informacion-evento {
+    padding: 1%;
+    position: absolute !important;
+    width: 30em;
+    background-color: black;
+    outline: 10px groove $colorSecundario;
+    top: -5em;
+    left: 11em;
+    height: auto !important;
+    padding: 2em;
+    display: -block;
+    z-index: 40;
+    border-radius: 50px 50px 50px 0;
+    display: none;
+    grid-template-areas:
+        "clase clase clase clase"
+        "profesor profesor grupo grupo"
+        "horaInicio horaInicio horaInicio horaInicio"
+        "horaFin horaFin horaFin horaFin"
+        "dia dia dia dia"
+        "fecha fecha fecha fecha";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.informacion-evento > h6 {
+    color: $colorGris;
+    padding: 1em;
+}
+
+.informacion-evento > h6 span {
+    color: $colorSecundario;
+}
+.clase {
+    grid-area: clase;
+    font-size: 3em;
+    color: $colorSecundario;
+}
+
+.horaInicio {
+    grid-area: horaInicio;
+}
+
+.horaFin {
+    grid-area: horaFin;
+}
+
+.profesor {
+    grid-area: profesor;
+}
+
+.dia {
+    grid-area: dia;
+}
+
+.fecha {
+    grid-area: fecha;
+}
+.grupo {
+    grid-area: grupo;
+}
+
+.informacion-evento > * {
+    display: inline-block;
+}
+
+.fecha-timeline {
+    color: $colorGris;
+    font-size: 1em;
+    position: absolute;
+    width: 10em;
+    height: 2em;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.day {
+}
+
+.day div {
+    position: relative;
+    height: 2em;
+}
+
+//Formulario pago
+.contenedor-pago {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.contenedor-pago .div-logo {
+    flex: 1;
+}
+.formulario-pago {
+    width: 95%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+    background-color: $colorPrincipal;
+}
+
+.contenedor-detalles-pago {
+    width: 45%;
+    min-height: 10em;
+    padding: 5em 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedor-detalles-pago h6 {
+    font-size: 3em;
+    padding: 0.2em;
+    color: $colorSecundario;
+}
+
+.contenedor-detalles-pago input {
+    background: none;
+    margin: 0 auto;
+    margin-top: 1em;
+    font-size: 4em;
+    border: none;
+    border-bottom: inset $colorDorado;
+    color: $colorDorado;
+    width: 50%;
+}
+
+.mas-detalles-pago {
+    display: none;
+    flex-direction: column;
+    color: $colorGris;
+    padding: 0.2em;
+    margin-top: 1.5em;
+}
+
+.mas-detalles-pago ul {
+    font-size: 4em;
+    text-wrap: nowrap;
+}
+
+.contenedor-datos-pago {
+    width: 70%;
+}
+
+.contenedor-datos-pago form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap: 1em;
+}
+
+.contenedor-inputs-pago {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    font-size: 3em;
+    gap: 0.5em;
+    color: $colorGris;
+}
+
+.contenedor-datos-pago .contenedor-inputs-pago input.estilo-formulario{
+    width: 100%;
+    color: $colorDorado;
+}
+
+.contenedor-datos-pago .contenedor-inputs-pago input.estilo-formulario::placeholder {
+    color: $colorGris;
+}
+
+.botonera-pago {
+    font-size: 3em;
+    margin: 0 auto;
+}
+
+.contenedor-datos-pago form .grupo-formulario input[type="submit"] {
+    text-align: center;
+    width: 50%;
+    font-size: 4em;
+    border: inset;
+    background-color: $colorPrincipal;
+}
+#card-element input {
+    color: $colorSecundario;
+}
+
+//estilos apartado gestion membresias
+.contenedor-productos {
+    width: 100%;
+}
+
+.opciones-mostrar {
+    width: 100%;
+}
+
+.boton-mostrar {
+    padding: 1em;
+    background-color: $colorNegroClaro;
+    color: $colorSecundario;
+}
+
+.boton-mostrar:hover {
+    cursor: pointer;
+    background-color: $colorNegro;
+}
+.contenedor-membresia, .contenedor-paquete {
+    color: $colorGris;
+}
+
+.contenedor-listado-membresia, .contenedor-listado-paquete {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    max-height: 30em;
+    overflow: auto;
+}
+.contenedor-listado-membresia::-webkit-scrollbar, .contenedor-listado-paquete::-webkit-scrollbar {
+    appearance: initial;
+}
+::-webkit-scrollbar {
+    width: 1em; /* Ancho del scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: $colorPrincipal; /* Color de la pista */
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorSecundario; /* Color del control deslizante */
+    width: 1em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del control deslizante al pasar el mouse */
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 1.5em; /* Altura del scrollbar */
+}
+
+::-webkit-scrollbar-track-horizontal {
+    background: #f1f1f1; /* Color de la pista */
+}
+
+::-webkit-scrollbar-thumb-horizontal {
+    background: #888; /* Color del control deslizante */
+}
+
+::-webkit-scrollbar-thumb-horizontal:hover {
+    background: #555; /* Color del control deslizante al pasar el mouse */
+}
+.membresia, .paquete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border-left: 0.1em solid $colorSecundario;
+    border-bottom: 0.1em solid $colorSecundario;
+    padding: 1em;
+    gap: 0.5em;
+    background-color: $colorNegroClaro;
+    border-radius: 15px;
+    min-width: 15em;
+}
+
+.membresias-opciones .membresia, .paquetes-opciones .paquete {
+    min-width: unset;
+}
+
+.membresia.editable, .paquete-editable {
+    background-color: #000000;
+}
+
+.botones-membresia, .botones-paquete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.membresia .membresia-formulario , .paquete .paquete-formulario{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.membresia .membresia-formulario input, .paquete .paquete-formulario input {
+    width: 100%;
+}
+
+.contenedor-membresia-nueva form, .contenedor-paquete-nueva form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2em;
+}
+
+//Estilos para detalles del plan
+.contenedor-detalles-plan {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.contenedor-detalles-plan h2 {
+    text-transform: uppercase;   
+    display: inline-block;
+    border-bottom: 0.1em solid $colorSecundario;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    padding: 0.3em;
+}
+
+.plan-contratado {
+    width: 90%;
+}
+
+.plan-contratado h3,
+.plan-contratado h4 {
+    margin: 10px 0;
+    text-wrap: nowrap;
+}
+.estado-plan {
+    width: 10%;
+    height: 100%;
+}
+
+.estado-activo, .estado-inactivo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.estado-activo {
+    color: green;
+
+}
+
+.estado-inactivo {
+    color: red;
+}
+.plan-contratado h3, .plan-contratado h4 {
+    font-size: 3em;
+}
+
+.plan-contratado > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.plan-contratado > div > * {
+    flex: 1;
+    text-align: center;
+}
+
+.plan-contratado .flecha {
+    height: 3em;
+    display: inline-block;
+    background-size: 90% 200%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url($ruta + '/flecha-larga-apuntando-hacia-la-derecha.png');
+}
+
+.info-pago {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 3em;
+}
+
+.info-pago h4 {
+    font-size: 3em;
+}
+
+.fecha-pago,
+.fecha-proximo-pago {
+    text-align: center;
+    min-width: 35em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-fecha {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-top: 10px;
+    width: 50%;
+    background-color: $colorNegroClaro
+}
+
+.caja-fecha p {
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+.boton-cancelar {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.boton-cancelar:hover {
+    background-color: #cc0000;
+}
+
+.width-complete {
+    width: 100%;
+}
+.contenedor-membresia.width-complete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+.contenedor-membresia.width-complete .membresia {
+    font-size: 2.5em;
+}
+
+.contenedor-membresia.width-complete h2 {
+    text-transform: uppercase;   
+    display: inline-block;
+    border-bottom: 0.1em solid $colorSecundario;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    padding: 0.3em;
+}
+
+.contenedor-historialPago {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 @media (min-width: 250px) and (max-width: 800px) {

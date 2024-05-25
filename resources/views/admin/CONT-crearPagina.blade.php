@@ -1,12 +1,7 @@
 @extends('admin/panel-control')
 
 @section('CONT-crearPagina')
-    @if (session('success'))
-        <div class="alert alert-success ventana-emergente">
-            <p>{{ session('success') }}</p>
-            <span id=cerrarBoton></span>
-        </div>
-    @endif
+    
     <div class="contenedor-formulario">
         <form action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) :  route('pagina.store') }}" class="formulario-pagina-nueva formulario-corto" method="POST">
             @csrf

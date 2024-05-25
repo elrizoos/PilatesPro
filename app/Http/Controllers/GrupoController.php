@@ -22,7 +22,9 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        //
+        $tipo = 'GRUP-nuevo';
+        $profesores = User::where('tipo_usuario', '=', 'Profesor')->get();
+        return view('admin.GRUP-nuevo', compact('tipo', 'profesores'));
     }
 
     /**
@@ -30,7 +32,16 @@ class GrupoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $grupo = new Grupo;
+
+        $grupo->nombre = $request->nombre;
+        $grupo->descripcion = $request->descripcion;
+        $grupo->profesor_id = $request->profesor;
+
+        $grupo->save();
+
+        //dd($grupo);
+        return redirect()->back()->with('success', 'El grupo se ha creado con exito');
     }
 
     /**
@@ -47,9 +58,10 @@ class GrupoController extends Controller
     public function edit(Grupo $grupo)
     {
         $tipo = 'GRUP-editar';
+        $profesores = User::where('tipo_usuario', '=', 'Profesor')->get();
         $participantesGrupo = User::where('grupo_id', '=', $grupo->id)->get();
         //dd($participantesGrupo);
-        return view('admin.GRUP-editar', compact('grupo', 'tipo', 'participantesGrupo'));
+        return view('admin.GRUP-editar', compact('grupo', 'tipo', 'participantesGrupo', 'profesores'));
     }
 
     /**
@@ -57,7 +69,15 @@ class GrupoController extends Controller
      */
     public function update(Request $request, Grupo $grupo)
     {
-        //
+        //dd($request, $grupo);
+        $grupo->update([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        $grupo->save();
+
+        return redirect()->back()->with('success', 'Grupo actualizado con exito');
     }
 
     /**

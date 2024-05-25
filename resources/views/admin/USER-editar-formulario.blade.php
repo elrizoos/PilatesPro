@@ -2,12 +2,7 @@
 
 @section('USER-editar-formulario')
     <div class="contenedor-formulario">
-        @if (session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-
-            </div>
-        @endif
+       
         <form action="{{ route('usuario.update',['usuario' => $usuario->id]) }}" method="post">
             @csrf
             @method('PUT')

@@ -35,5 +35,6 @@
                 @endforeach
             </tbody>
         </table>
+        <a href="{{ route('grupo.create') }}">Crear nuevo grupo</a>
     </div>
 @endsection

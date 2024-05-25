@@ -1,13 +1,22 @@
 <?php
 
+use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\ClasePaqueteController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\FacturaDetallesController;
 use App\Http\Controllers\GrupoController;
+use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
+use App\Http\Controllers\MembresiaController;
 use App\Http\Controllers\PaginaController;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\SeccionContenidoController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\Membresia;
 use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -23,6 +32,10 @@ use App\Http\Controllers;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/vista-factura', [FacturaController::class, 'mostrarFactura'])->name('vista.factura');
+
 
 Route::get('/', [PaginaController::class, 'index']);
 Route::get('/acercaDe', function () {
@@ -105,23 +118,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion', function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');
-
-    Route::get('/usuario/suscripcion/cambioPlan', function () {
-        return view('usuario.submenu.SUS-cambioPlan');
-    })->name('suscripcion-cambioPlan');
-
-    Route::get('/usuario/suscripcion/detallesPlan', function () {
-        return view('usuario.submenu.SUS-detallesPlan');
-    })->name('suscripcion-detallesPlan');
-
-    Route::get('/usuario/suscripcion/estadoSuscripcion', function () {
-        return view('usuario.submenu.SUS-estadoSuscripcion');
-    })->name('suscripcion-estadoSuscripcion');
-
-    Route::get('/usuario/suscripcion/historialPago', function () {
-        return view('usuario.submenu.SUS-historialPago');
-    })->name('suscripcion-historialPago');
-
+    Route::get('/usuario/suscripcion/cambiar/{membresia}/{suscripcion}', [PagoController::class, 'cambiar'])->name('suscripcion-cambiar');
+    Route::get('/usuario/suscripcion/cambioPlan', [PagoController::class, 'cambioPlan'])->name('suscripcion-cambioPlan');
+    Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
+    Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
+    Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'obtenerHistorialPagos'])->name('suscripcion-historialPago');
+    Route::get('/usuario/suscripcion/cancelarOperacion', function() {
+        return redirect()->route('suscripcion-cambioPlan');
+    })->name('cancelarOperacion');
+    Route::get('/usuario/suscripcion/cambiarPlan/nuevoPago/{suscripcion}/{membresia}', [PagoController::class, 'calcularPrecioPagar'])->name('calcularNuevoPlan');
+    
 
 
     Route::get('/usuario/contrasena', function () {
@@ -197,6 +203,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/grupo/añadirParticipantes/{grupo}', [GrupoController::class, 'añadirParticipantes'])->name('añadirParticipantes');
     Route::get('/admin/panel-control/grupo/mostrarUsuarios/{grupo}', [GrupoController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
     Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
+    Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
+    Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
+    Route::get('/admin/panel-control/membresia', [MembresiaController::class, 'index'])->name('membresias');
+    Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
+
+    //Rutas de facturacion 
+
+    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('mostrarProductos');
+    Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
+    Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
+    Route::get('/facturacion/descargarFactura')->name('generarFactura');
+    Route::get('/facturacion/mostrarFactura-vistaPrevia', [PagoController::class, 'mostrarFactura'])->name('mostrarFactura');
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
@@ -206,6 +224,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/panel-control/pagina', PaginaController::class);
     Route::resource('/admin/panel-control/imagenSeccion', ImagenesSeccionController::class);
     Route::resource('/admin/panel-control/grupo', GrupoController::class);
+    Route::resource('/admin/panel-control/clase', ClaseController::class);
+    Route::resource('/admin/panel-control/horario', HorarioController::class);
+    Route::resource('/facturacion/factura', FacturaController::class);
+    Route::resource('/facturacion/facturaDetalle', FacturaDetallesController::class);
+    Route::resource('/facturacion/pago', PagoController::class);
+    Route::resource('/facturacion/membresia', MembresiaController::class);
+    Route::resource('/admin/panel-control/clasePaquete',ClasePaqueteController::class);
 });
 
 

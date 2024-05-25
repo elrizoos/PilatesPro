@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_emision');
             $table->decimal('monto_total', 8, 2);
-            $table->enum('estado', ['Pagada', 'Pendiente', 'Vencida']);
             $table->unsignedBigInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('pdf');
             $table->timestamps();
         });
     }
