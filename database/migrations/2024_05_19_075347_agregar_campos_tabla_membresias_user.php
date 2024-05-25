@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('clase_id')->constrained('clases')->onDelete('cascade');
-            $table->foreignId('alumno_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('membresia_user', function(Blueprint $table){
+            $table->date('fecha_pago')->nullable();
+            $table->date('fecha_fin')->nullable();
         });
     }
 
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservas');
+        //
     }
 };

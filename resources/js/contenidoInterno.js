@@ -1,9 +1,12 @@
 function establecerClaseSelected(elementoDinamico, elementoDinamicoInterno) {
-    console.log(elementoDinamico.attr('id'),elementoDinamicoInterno.attr('id'));
+    console.log(
+        elementoDinamico.attr("id"),
+        elementoDinamicoInterno.attr("id")
+    );
     borrarClaseSelected();
     desactivarDivs();
-    $('#' + elementoDinamico.attr('id')).addClass("selected");
-    $('.' + elementoDinamico.attr('id')).addClass("selected");
+    $("#" + elementoDinamico.attr("id")).addClass("selected");
+    $("." + elementoDinamico.attr("id")).addClass("selected");
 
     $("#" + elementoDinamicoInterno.attr("id")).addClass("selected");
 

@@ -332,3 +332,9 @@ $(".timeline").scroll(function () {
     $(".horas-timeline").css("left", $(".timeline").scrollLeft());
     $(".fecha-timeline").css("top", $(".timeline").scrollTop());
 });
+
+//Funcionalidad pagos
+$('#input-mas-detalles-pago').on('click', function() {
+    $('.mas-detalles-pago').addClass('flex');
+    $(this).hide();
+});

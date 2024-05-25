@@ -17,7 +17,7 @@ class ReservasController extends Controller
         $idAlumno = Auth()->user()->id;
         $reservas = Reserva::where('alumno_id', '=', $idAlumno)->get();
         //dd($reservas);
-        $clases = Clase::all();
+        $clases = Clase::with('reserva');
         $clasesAlumno = [];
         foreach ($clases as $clase) {
             $idAlumnoClase = $clase->reserva->alumno_id;

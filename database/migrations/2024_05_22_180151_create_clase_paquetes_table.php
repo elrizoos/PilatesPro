@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('facturas', function (Blueprint $table) {
+        Schema::create('clase_paquetes', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_emision');
-            $table->decimal('monto_total', 8, 2);
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('pdf');
+            $table->integer('numero_clases');
+            $table->decimal('precio', 8,2);
+            $table->string('producto_id')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('clase_paquetes');
     }
 };

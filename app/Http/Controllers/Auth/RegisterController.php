@@ -103,7 +103,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+       $user = User::create([
             'nombre' => $data['name'],
             'apellidos' => $data['apellidos'],
             'dni' => $data['dni'],
@@ -112,9 +112,10 @@ class RegisterController extends Controller
             'direccion' => $data['direccion'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
-            'tipo_usuario' => $data['tipo_usuario'] ?? null,
+            'tipo_usuario' => $data['tipo_usuario'] ?? 'Alumno',
         ]);
-
+        $user->createAsStripeCustomer();
+        return $user;
     }
 
     protected function redirectTo()

@@ -51,14 +51,15 @@
                     </li>
                     <li class="clases-horarios">Clases y Horarios <span></span>
                         <ul class="submenu">
-                            <li><a href="{{ route('horario.create')}}">Crear nuevo registro horario</a></li>
-                            <li><a href="{{ route('mostrarHorarios')}}">Editar registro horario</a></li>
-                            <li><a href="{{ route('clase.create')}}">Crear nueva clase</a></li>
-                            <li><a href="{{ route('mostrarClases')}}">Editar clase</a></li>
+                            <li><a href="{{ route('horario.create') }}">Crear nuevo registro horario</a></li>
+                            <li><a href="{{ route('mostrarHorarios') }}">Editar registro horario</a></li>
+                            <li><a href="{{ route('clase.create') }}">Crear nueva clase</a></li>
+                            <li><a href="{{ route('mostrarClases') }}">Editar clase</a></li>
                         </ul>
                     </li>
                     <li class="pagos-facturacion">Pagos y Facturación <span></span>
                         <ul class="submenu">
+                            <li><a href="{{ route('mostrarProductos') }}">Gestionar Productos</a></li>
                             <li>Registrar pagos</li>
                             <li>Generar facturacion</li>
                             <li>Seguimiento de alumnos</li>

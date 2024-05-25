@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Imagen;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -64,5 +65,21 @@ class User extends Authenticatable
     public function getRutaImagenAttribute()
     {
         return $this->imagen ? $this->imagen->ruta_imagen : 'ruta/a/imagen/por/defecto.png';
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class);
+    }
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
+    }
+
+    public function membresias()
+    {
+        return $this->belongsToMany(Membresia::class)
+            ->withPivot('subscription_id', 'status','fecha_pago', 'fecha_fin')
+            ->withTimestamps();
     }
 }
