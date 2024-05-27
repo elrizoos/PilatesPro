@@ -1,21 +1,21 @@
 @extends('admin/panel-control')
 
 @section('HORARIO-crear')
-    <div>
-        <form action="{{ route('horario.store') }}" method="POST">
+    <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
+        <form class="formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}" method="POST">
             @csrf
-            <div>
-                <div>
-                    <div id="contenedorCalendario">
-                        <div>
-                            <span></span>
-                            <span></span>
-                            <span id="mesAnnoActual"></span>
-                            <span></span>
-                            <span></span>
+            <div class="central">
+                <div class="inputs">
+                    <div class="contenedor-calendario" id="contenedorCalendario">
+                        <div class="encabezado-calendario">
+                            <span class="anno-anterior"></span>
+                            <span class="mes-anterior"></span>
+                            <span class="mes-anno-actual" id="mesAnnoActual"></span>
+                            <span class="mes-siguiente"></span>
+                            <span class="anno-siguiente"></span>
                         </div>
-                        <div>
-                            <div>
+                        <div class="cuerpo-calendario">
+                            <div class="nombres-dias">
                                 <div>L</div>
                                 <div>M</div>
                                 <div>X</div>
@@ -24,7 +24,7 @@
                                 <div>S</div>
                                 <div>D</div>
                             </div>
-                            <div id="diasMes">
+                            <div class="dias-mes" id="diasMes">
 
                             </div>
                         </div>
@@ -38,11 +38,11 @@
                     </select>
 
 
-                    <div>
+                    <div class="contenedor-fecha-placeholder">
                         <input id="fechaEspecifica" type="date" name="fechaEspecifica"
                             value="{{ isset($horario) ? $horario->fecha_especifica : '' }}">
-                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder" for="fecha_placeholder">---
-                            Selecciona una
+                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder" class="fecha-placeholder"
+                            for="fecha_placeholder">--- Selecciona una
                             fecha concreta
                             ---</label>
                     </div>
@@ -50,103 +50,106 @@
                         value="{{ isset($horario) ? $horario->hora_inicio : '' }}">
                     <input type="time" name="horaFin" id="horaFin" hidden
                         value="{{ isset($horario) ? $horario->hora_fin : '' }}">
-                    <div>
+                    <div class="grupo-error">
                         @error('clase')
-                            <span role="alert">
+                            <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         @error('diaSemana')
-                            <span role="alert">
+                            <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         @error('fechaEspecifica')
-                            <span role="alert">
+                            <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         @error('horaIncio')
-                            <span role="alert">
+                            <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         @error('horaFin')
-                            <span role="alert">
+                            <span class="invalid-feedback active-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                 </div>
 
-                <div id="inicioFinContenedor">
+                <div id="inicioFinContenedor" class="inicioFin">
 
-                    <div>
+                    <div class="contenedor-horas">
 
-                        <div>
-                            <div>
-                                <div>Hora Inicio</div>
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div>00</div>
-                                            <div>:</div>
-                                            <div>00</div>
+                        <div class="horas">
+                            <div class="hora-inicio">
+                                <div class="titulo-hora">Hora Inicio</div>
+                                <div class="muestreo-hora">
+                                    <div class="hora-minuto">
+                                        <div class="contenedor-hora-minuto">
+                                            <div class="hora">00</div>
+                                            <div class="puntos">:</div>
+                                            <div class="minutos">00</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div>Hora Fin</div>
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div>00</div>
-                                            <div>:</div>
-                                            <div>00</div>
+                            <div class="hora-fin">
+                                <div class="titulo-hora">Hora Fin</div>
+                                <div class="muestreo-hora">
+                                    <div class="hora-minuto">
+                                        <div class="contenedor-hora-minuto">
+                                            <div class="hora">00</div>
+                                            <div class="puntos">:</div>
+                                            <div class="minutos">00</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div>
+                        <div class="seleccion-horas d-none">
+                            <div class="contenedor-seleccion">
                                 <h2 id="inicioFin"></h2>
-                                <div>
-                                    <div>
-                                        <input placeholder="00" type="number" id="horaProvisional">
-                                        <div>:</div>
-                                        <input placeholder="00" type="number" id="minutosProvisional">
+                                <div class="hora-minuto">
+                                    <div class="contenedor-hora-minuto">
+                                        <input placeholder="00" class="casillaReloj" type="number" id="horaProvisional">
+                                        <div class="puntos">:</div>
+                                        <input placeholder="00" class="casillaReloj" type="number" id="minutosProvisional">
                                     </div>
                                 </div>
-                                <div>
-                                    <div>
-                                        <div>12</div>
-                                        <div>3</div>
-                                        <div>6</div>
-                                        <div>9</div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
+                                <div class="reloj">
+                                    <div class="circulo">
+                                        <div class="norte">12</div>
+                                        <div class="este">3</div>
+                                        <div class="sur">6</div>
+                                        <div class="oeste">9</div>
+                                        <div class="punto-centro"></div>
+                                        <div class="aguja-minuto aguja-minuto-cero"></div>
+                                        <div class="aguja-hora"></div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="barra-seleccion">
                                     <input id="sliderHoras" type="range" id="horaMinuto" min="0" max="287"
                                         value="0">
                                 </div>
-                                <input id="seleccionarHora" type="button" value="Seleccionar">
+                                <input class="botonSeleccion" id="seleccionarHora" type="button" value="Seleccionar">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div class="repeticion">
+                    <div class="grupo-input">
                         <label for="repetir">¿Quieres que esta clase se repita algun dia mas?</label>
                         <input type="checkbox" name="repetir" id="repetir">
                     </div>
-                    <div>
-                        <input type="number" name="numeroSemanas" placeholder="Numero de semanas">
-                        <ul>
+                    <div class="grupo-input opcionRepetir">
+                        <input class="estilo-formulario" type="number" name="numeroSemanas"
+                            placeholder="Numero de semanas">
+                        <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
+                        <ul class="listaDiasSemana">
                             <li>
                                 <label for="lunes">Lunes</label>
                                 <input type="checkbox" name="diasSemana[]" id="lunes" value="0">
@@ -178,8 +181,8 @@
 
             </div>
 
-            <div>
-                <input type="submit" value="Crear clase nueva">
+            <div class="botonEnviar mt-5">
+                <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Crear clase nueva">
             </div>
 
         </form>

@@ -166,10 +166,10 @@ $(document).ready(function () {
 
 $(".hora-inicio, .hora-fin").on("click", function () {
     if ($(this).hasClass("hora-inicio")) {
-        $(".seleccion-horas").removeClass("no-active");
+        $(".seleccion-horas").removeClass("d-none");
         $("#inicioFin").text("Hora Inicio");
     } else {
-        $(".seleccion-horas").removeClass("no-active");
+        $(".seleccion-horas").removeClass("d-none");
         $("#inicioFin").text("Hora Fin");
     }
 });
@@ -202,7 +202,7 @@ $("#seleccionarHora").on("click", function () {
             console.log(inputFin);
             break;
     }
-    $(".seleccion-horas").addClass("no-active");
+    $(".seleccion-horas").addClass("d-none");
 });
 
 $("#sliderHoras").on("input", function () {
@@ -304,16 +304,16 @@ const fechaEspecifica = $("#fechaEspecifica");
 let dias = $(".dias-mes div");
 label.on("click", function () {
     label.hide();
-    contenedorCalendario.addClass("flex");
+    contenedorCalendario.addClass("d-flex");
 });
 fechaEspecifica.on("click", function () {
-    contenedorCalendario.removeClass("no-active");
+    contenedorCalendario.removeClass("d-none");
 });
 
 function añadirEvento() {
     const diasCalendario = $(".dia-calendario");
     diasCalendario.on("click", function () {
-        contenedorCalendario.addClass("no-active");
+        contenedorCalendario.addClass("d-none");
         fechaEspecifica.val(
             annoActual + "-" + pad(mesActual+1) + "-" + pad($(this).text())
         );
@@ -326,10 +326,10 @@ $("#repetir").on("change", function () {
 
     switch ($(this).prop("checked")) {
         case true:
-            $(".opcionRepetir").addClass("flex");
+            $(".opcionRepetir").addClass("d-flex");
             break;
         case false:
-            $(".opcionRepetir").removeClass("flex");
+            $(".opcionRepetir").removeClass("d-flex");
             $(".listaDiasSemana li input").prop("checked", false);
     }
 });
@@ -342,6 +342,6 @@ $(".timeline").scroll(function () {
 
 //Funcionalidad pagos
 $('#input-mas-detalles-pago').on('click', function() {
-    $('.mas-detalles-pago').addClass('flex');
+    $('.mas-detalles-pago').addClass('d-flex');
     $(this).hide();
 });
