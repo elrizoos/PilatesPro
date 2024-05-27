@@ -1,40 +1,43 @@
 @extends('admin/panel-control')
 
 @section('CONT-vistaPrevia-dos')
-    {{ 'Mostrando pagina :' . $idPagina }}
-    <div>
-        <div>
-            <h2>{{ $seccion->titulo }}</h2>
+    <h2 class="text-light w-100 text-center mb-2">{{ 'Mostrando pagina :' . $idPagina }}</h2>
+
+    <div class="contenedor-grid-seccion-dos w-75 h-100 border ">
+        <div class="titulo  d-flex justify-content-center align-items-center fs-3">
+            <h1 class="fs-1 text-light text-uppercase text-center">{{ $seccion->titulo }}</h1>
         </div>
-        <div>
-            <div style="background-image: url( {{ asset('storage/' . $seccion->imagenUno->ruta_imagen) }})"">
+        <div class="imagen-uno p-2">
+            <div id="imagen-upload-imagenUno" class=" w-100 h-100">
+                <div class="img-fluid imagen w-100 h-100 p-4"
+                    style="background-image: url( {{ asset('storage/' . $imagenUno->ruta_imagen) }})">
+                </div>
             </div>
         </div>
-        <div>
-            <div style="background-image: url( {{ asset('storage/' . $seccion->imagenDos->ruta_imagen) }})">
+        <div class="imagen-dos p-2">
+            <div id="imagen-upload-imagenDos" class=" w-100 h-100">
+                <div class="img-fluid imagen w-100 h-100 p-4"
+                    style="background-image: url( {{ asset('storage/' . $imagenDos->ruta_imagen) }})">
+                </div>
             </div>
         </div>
-        <div>
-            <p>{{$seccion->parrafo}}</p>
+        <div class="parrafo d-flex justify-content-center align-items-center">
+            <p class="w-100 h-100 fs-4 texto-color-principal text-center p-4">{{ $seccion->parrafo }}</p>
         </div>
     </div>
-    <div>
-        <div id="botonSiguiente">
-            <form
-                action="{{ $seccion->orden == 1 && $seccion->idPagina == $idPagina ? route('mostrarPagina', ['pagina' => $slug]) : route('seleccionApartado', ['pagina' => $slug, 'seccion' => $seccion->id]) }}"
-                method="GET">
-                @csrf
+    <form class="position-absolute end-0 "
+        action="{{ $seccion->orden == 1 && $seccion->idPagina == $idPagina ? route('mostrarPagina', ['pagina' => $slug]) : route('seleccionApartado', ['pagina' => $slug, 'seccion' => $seccion->id]) }}"
+        method="GET">
+        @csrf
 
-                <input type="submit" name="Enviar" value="">
-            </form>
-        </div>
-        <div id="botonCancelar">
-            <form action="{{ route('cancelarContenido', ['seccion' => $seccion->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
+        <input class="estilo-formulario estilo-formulario-enviar" type="submit" name="Enviar" value="Siguiente">
+    </form>
 
-                <input type="submit" name="Enviar" value="">
-            </form>
-        </div>
-    </div>
+    <form class="position-absolute start-0" action="{{ route('cancelarContenido', ['seccion' => $seccion->id]) }}"
+        method="POST">
+        @csrf
+        @method('DELETE')
+
+        <input class="estilo-formulario estilo-formulario-enviar" type="submit" name="Enviar" value="Cancelar">
+    </form>
 @endsection

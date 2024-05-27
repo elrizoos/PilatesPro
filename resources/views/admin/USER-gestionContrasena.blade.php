@@ -1,7 +1,8 @@
 @extends('admin/panel-control')
 
 @section('USER-gestionContrasena')
-    <div class="container-fluid d-flex justify-content-center align-items-center h-100 w-100 border border-1 border-warning-subtle bg-color-negro">
+    <div
+        class="container-fluid d-flex justify-content-center align-items-center h-100 w-100 bg-color-negro rounded-5">
         <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
             <thead>
                 <tr>
@@ -13,12 +14,13 @@
             <tbody>
                 @foreach ($datos['usuarios'] as $usuario)
                     <tr>
-                        <td class="texto-color-dorado-claro border border-2 border-fondo">{{ $usuario->nombre }}</td>
-                        <td class="texto-color-dorado-claro border border-2 border-fondo">{{ $usuario->apellidos }}</td>
-                        <td class="texto-color-dorado-claro border border-2 border-fondo">
+                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->nombre }}</td>
+                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->apellidos }}</td>
+                        <td class="texto-color-dorado border border-2 border-fondo">
                             <form action="{{ route('mostrarFormularioContrasena', ['usuario' => $usuario->id]) }}">
                                 @csrf
-                                <input class="texto-color-dorado-claro estilo-formulario" type="submit" value="Cambiar contraseña">
+                                <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                    value="Cambiar contraseña">
                             </form>
                         </td>
                     </tr>

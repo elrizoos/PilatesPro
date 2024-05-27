@@ -152,7 +152,9 @@ input:-webkit-autofill:active {
     background: none;
 }
 
-table, table *, table td {
+table,
+table *,
+table td {
     background: none;
 }
 //ESTILOS DESARROLLO
@@ -241,7 +243,7 @@ a {
     background-color: $colorPrincipalTransparenteCero;
 }
 
-.bg-color-negro{
+.bg-color-negro {
     background-color: $colorNegro !important;
 }
 
@@ -280,6 +282,12 @@ a {
     background-position: center;
 }
 
+.imagen {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .centrado {
     left: 9.5%;
     top: 3.5%;
@@ -297,19 +305,41 @@ a {
     height: 30% !important;
 }
 
+.h-40 {
+    height: 40% !important;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
 .top-40 {
     top: 40% !important;
 }
 
 .border-fondo {
     border-color: $colorFondoOscuro !important;
+    border-style: inset;
 }
+
 .max-width-70 {
-    max-width: 70%;
+    max-width: 70% !important;
+}
+
+.max-heigth-10em {
+    max-height: 10em;
+}
+
+.max-heigth-60 {
+    max-height: 60% !important;
 }
 
 .min-height-40 {
-    min-height: 5em;
+    min-height: 5em !important;
 }
 
 .transition-up:hover .transition-up-from-bottom {
@@ -354,9 +384,6 @@ a {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.estilo-formulario-dorado {
-}
-
 .estilo-formulario-enviar {
     font-size: 2em;
     width: 100%;
@@ -366,7 +393,8 @@ a {
     font-weight: bold;
 }
 
-.estilo-formulario-dorado-enviar {
+.estilo-formulario-enviar:hover {
+    color: $colorDorado;
 }
 
 .estilo-formulario-select {
@@ -390,12 +418,14 @@ form select {
     border-radius: 9px;
     text-align: center;
 }
-.estilo-formulario-dorado-select {
-}
 .estilo-formulario-select option {
     background: none;
     background: #585858;
     color: white;
+}
+
+.estilo-formulario-select option:hover {
+    background: none;
 }
 
 input[type="date"] {
@@ -421,7 +451,68 @@ input:focus + .linea-transition-weigth {
     font-size: 1vw !important;
 }
 
-.tabla-dorada thead tr th, .tabla-dorada tbody tr td  {
+.tabla-dorada thead tr th,
+.tabla-dorada tbody tr td {
     background: none !important;
 }
 
+.enlace {
+    color: #e6d5b3;
+    text-decoration: none;
+}
+
+.enlace:hover {
+    color: #8e6d45;
+    text-decoration: underline;
+}
+
+.menu-general li:hover {
+    color: $colorDorado;
+    cursor: pointer;
+}
+
+.seccion-elegir:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.seccion-elegir:hover:before {
+    width: 100%;
+    height: 100%;
+    background-color: $colorPrincipalTransparente;
+}
+
+.seccion-elegir:hover a {
+    display: block !important;
+}
+
+.contenedor-grid-seccion-dos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+    grid-template-areas:
+        "titulo titulo imagen-uno imagen-uno"
+        "imagen-dos imagen-dos imagen-uno imagen-uno"
+        "imagen-dos imagen-dos parrafo parrafo";
+}
+
+.contenedor-grid-seccion-dos .titulo {
+    grid-area: titulo;
+}
+.contenedor-grid-seccion-dos .imagen-uno {
+    grid-area: imagen-uno;
+}
+.contenedor-grid-seccion-dos .imagen-dos {
+    grid-area: imagen-dos;
+}
+.contenedor-grid-seccion-dos .parrafo {
+    grid-area: parrafo;
+}

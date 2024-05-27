@@ -86,7 +86,7 @@
             </div>
             <div>
                 <select name="tipo_usuario" id="tipo-usuario">
-                    <option value="no-valor"></option>
+                    <option value="Admin">Admin</option>
                     <option value="Alumno" {{ $usuario->tipo_usuario === 'Alumno' ? 'selected' : '' }}>
                         Alumno</option>
                     <option value="Profesor" {{ $usuario->tipo_usuario === 'Profesor' ? 'selected' : '' }}>Profesor

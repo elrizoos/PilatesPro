@@ -190,7 +190,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
     Route::put('/admin/panel-control/modificarContrasena/{usuario}', [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
     Route::get('/admin/panel-control/crearSeccion/{pagina}', [SeccionContenidoController::class, 'create'])->name('crearSeccion');
-    Route::get('/admin/panel-control/crearContenido/{opcion}/{pagina}', [SeccionContenidoController::class, 'crearContenido'])->name('crearContenido');
+    Route::get('/admin/panel-control/crearContenido/{opcion}/{pagina}/{vistaPrevia}', [SeccionContenidoController::class, 'crearContenido'])->name('crearContenido');
     Route::post('/admin/panel-control/crearContenidoGestionFormulario/{tipoSeccion}/{pagina}', [SeccionContenidoController::class, 'store'])->name('crearContenidoGestionFormulario');
     Route::get('/admin/panel-control/contenido/vistaPrevia/{idContenido}/{pagina}', [SeccionContenidoController::class, 'show'])->name('CONT-vistaPrevia');
     Route::delete('/admin/panel-control/contenido/cancelar/{seccion}', [SeccionContenidoController::class, 'destroy'])->name('cancelarContenido');

@@ -2,7 +2,7 @@
 
 @section('USER-editar')
     <div
-        class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 border border-2 border-warning-subtle rounded  bg-color-negro">
+        class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 rounded-5 ">
         <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
             <thead>
                 <tr>

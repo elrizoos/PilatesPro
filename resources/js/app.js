@@ -83,6 +83,12 @@ $(document).ready(function () {
         }
     });
 
+
+
+
+
+
+
     $("#contenedorSeleccion .opcion").on("click", function (e) {
         var elemento = e.currentTarget.id;
         var valorBoton;
@@ -108,14 +114,15 @@ $(document).ready(function () {
     });
 
     function ocultarContenedores() {
-        $(".contenedor-opciones-pagina").toggle();
-        $(".contenedor-opciones-seccion").toggle();
+        $("#contenedorSeleccion").addClass('d-none'); 
     }
 
     function mostrarContenedor(clase, valorBoton, elemento, objeto) {
-        $("." + clase).toggle();
+        $("." + clase).removeClass("d-none");
+
+        $("." + clase).addClass('d-flex');
         var botonEnviar = $("." + clase + " input[type=submit]");
-        botonEnviar.val(valorBoton).attr("class", elemento);
+        botonEnviar.val(valorBoton).addClass(elemento);
 
         var esEliminar =
             elemento === "eliminarPagina" || elemento === "eliminarSeccion";
@@ -135,7 +142,7 @@ $(document).ready(function () {
         ruta = ruta.replace("INDEFINIDO", objetoId);
         console.log(ruta);
 
-        $("." + clase + " .formulario-contenedor").attr("action", ruta);
+        $("." + clase + " form").attr("action", ruta);
     }
 
     $("#paginaEscogida, #seccionEscogida").on("change", function (e) {
@@ -147,7 +154,7 @@ $(document).ready(function () {
                 ? "formulario-pagina"
                 : "formulario-seccion";
         var objetoId = $("#" + objetoInicial).val();
-        var ruta = $(".formulario-contenedor." + formulario).attr("action");
+        var ruta = $("form." + formulario).attr("action");
         ruta = ruta.replace(/\/\d+/, "/" + objetoId);
         $("." + formulario).attr("action", ruta);
     });

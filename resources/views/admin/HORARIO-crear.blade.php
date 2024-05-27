@@ -41,8 +41,8 @@
                     <div>
                         <input id="fechaEspecifica" type="date" name="fechaEspecifica"
                             value="{{ isset($horario) ? $horario->fecha_especifica : '' }}">
-                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder"
-                            for="fecha_placeholder">--- Selecciona una
+                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder" for="fecha_placeholder">---
+                            Selecciona una
                             fecha concreta
                             ---</label>
                     </div>
@@ -145,8 +145,7 @@
                         <input type="checkbox" name="repetir" id="repetir">
                     </div>
                     <div>
-                        <input type="number" name="numeroSemanas"
-                            placeholder="Numero de semanas">
+                        <input type="number" name="numeroSemanas" placeholder="Numero de semanas">
                         <ul>
                             <li>
                                 <label for="lunes">Lunes</label>
