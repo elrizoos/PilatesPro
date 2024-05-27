@@ -1,18 +1,18 @@
 @extends('admin/panel-control')
 
 @section('HORARIO-inicio')
-    <div>
-        <div>
+    <div class="timeline">
+        <div class="horas-timeline">
             <div></div>
             @for ($i = 8; $i < 21; $i++)
                 @if ($i < 10)
-                    <div>0{{ $i * 01.0 }}:00</div>
+                    <div class="numeroHora">0{{ $i * 01.0 }}:00</div>
                 @else
-                    <div>{{ $i * 01.0 }}:00</div>
+                    <div class="numeroHora">{{ $i * 01.0 }}:00</div>
                 @endif
             @endfor
         </div>
-        <div>
+        <div class="contenedor-horario">
             @for ($day = 1; $day <= 365; $day++)
                 @php
                     $diaTimeline = new DateTime();
@@ -20,11 +20,11 @@
                     $diaTimeline->modify('+' . ($day - 1) . ' days');
                     $par = $day % 2 === 0 ? true : false;
                 @endphp
-                <div>
+                <div class="dia-timeline {{ $par == true ? 'par' : 'impar' }}">
 
-                    <div">{{ $diaTimeline->format('y-m-d') }}
+                    <div class="fecha-timeline {{ $par == true ? 'par' : 'impar' }}"">{{ $diaTimeline->format('y-m-d') }}
                     </div>
-                    <div data-day="{{ $day }}" id="{{ $day === $today ? 'today' : '' }}">
+                    <div class="day" data-day="{{ $day }}" id="{{ $day === $today ? 'today' : '' }}">
                         @for ($i = 8; $i < 20; $i++)
                             @foreach ($eventosFormateados as $evento)
                                 @php
@@ -37,17 +37,22 @@
                                     @php
                                         $vacio = false;
                                     @endphp
-                                    <div
+                                    <div class="evento evento-{{ $evento['evento']->clase_id }} "
                                         style="top: {{ $evento['posicionArriba'] }}em; height: {{ $evento['alturaDiv'] }}em;">
                                         {{ $evento['evento']->clase->nombre }}
-                                        <div>
-                                            <h5>{{ $evento['evento']->clase->nombre}}</h5>
-                                            <h6>Profesor: <span>{{ $evento['evento']->clase->grupo->profesor->nombre}}</span></h6>
-                                            <h6>Grupo: <span>{{ $evento['evento']->clase->grupo->nombre}}</span></h6>
-                                            <h6>Hora Inicio: <span>{{$evento['evento']->hora_inicio}}</span></h6>
-                                            <h6>Hora Fin: <span>{{$evento['evento']->hora_fin}}</span></h6>
-                                            <h6>Día: <span>{{$evento['evento']->dia_semana}}</span></h6>
-                                            <h6>Fecha: <span>{{$evento['evento']->fecha_especifica}}</span></h6>
+                                        <div class="informacion-evento">
+                                            <h5 class="clase">{{ $evento['evento']->clase->nombre }}</h5>
+                                            <h6 class="profesor">Profesor:
+                                                <span>{{ $evento['evento']->clase->grupo->profesor->nombre }}</span></h6>
+                                            <h6 class="grupo">Grupo:
+                                                <span>{{ $evento['evento']->clase->grupo->nombre }}</span></h6>
+                                            <h6 class="horaInicio">Hora Inicio:
+                                                <span>{{ $evento['evento']->hora_inicio }}</span></h6>
+                                            <h6 class="horaFin">Hora Fin: <span>{{ $evento['evento']->hora_fin }}</span>
+                                            </h6>
+                                            <h6 class="dia">Día: <span>{{ $evento['evento']->dia_semana }}</span></h6>
+                                            <h6 class="fecha">Fecha:
+                                                <span>{{ $evento['evento']->fecha_especifica }}</span></h6>
 
                                         </div>
                                     </div>

@@ -339,7 +339,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col h-100 w-100 p-0 pe-5 pb-3">
+            <div class="col h-100 w-80 p-0 pe-5 pb-3">
                 <div
                     class="bg-color-fondo-claro w-100 h-100 border border-4 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
                     @if (session('success'))

@@ -1031,3 +1031,160 @@ input[type="checkbox"]:checked::before {
     justify-content: center;
     align-items: center;
 }
+//Estilos para mostrar la linea temporal de registros horarios
+.timeline {
+    position: relative;
+    width: 90%;
+    height: 95%;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.contenedor-horario {
+    display: flex;
+}
+
+.horas-timeline {
+    position: absolute;
+    height: 32em;
+    width: 4em;
+    left: -2em;
+    top: 0;
+    z-index: 35;
+    background-color: rgb(0, 0, 0);
+}
+
+.horas-timeline div {
+    flex: 1;
+    height: 2.3em;
+    position: relative;
+    color: $colorSecundario;
+    border-top: 0.01em solid $colorSecundario;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horas-timeline div:nth-child(1) {
+    height: 2em;
+}
+.dia-timeline {
+    flex: 1;
+    min-width: 10em;
+    display: flex;
+    flex-direction: column;
+    min-height: 30em;
+}
+
+.par {
+    background-color: $colorNegro;
+}
+
+.impar {
+    background-color: $colorFondoOscuro;
+}
+
+.dia-timeline div {
+    min-height: 1em;
+}
+
+.evento {
+    background-color: $colorGrisClaro;
+    color: $colorDorado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border: 0.2em outset $white;
+}
+
+.evento:hover .informacion-evento {
+    display: grid;
+}
+
+.informacion-evento {
+    padding: 1%;
+    position: absolute !important;
+    width: 30em;
+    background-color: black;
+    outline: 10px groove $colorSecundario;
+    top: -5em;
+    left: 11em;
+    height: auto !important;
+    padding: 2em;
+    display: -block;
+    z-index: 40;
+    border-radius: 50px 50px 50px 0;
+    display: none;
+    grid-template-areas:
+        "clase clase clase clase"
+        "profesor profesor grupo grupo"
+        "horaInicio horaInicio horaInicio horaInicio"
+        "horaFin horaFin horaFin horaFin"
+        "dia dia dia dia"
+        "fecha fecha fecha fecha";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.informacion-evento > h6 {
+    color: $colorGris;
+    padding: 1em;
+}
+
+.informacion-evento > h6 span {
+    color: $colorSecundario;
+}
+.clase {
+    grid-area: clase;
+    font-size: 3em;
+    color: $colorSecundario;
+}
+
+.horaInicio {
+    grid-area: horaInicio;
+}
+
+.horaFin {
+    grid-area: horaFin;
+}
+
+.profesor {
+    grid-area: profesor;
+}
+
+.dia {
+    grid-area: dia;
+}
+
+.fecha {
+    grid-area: fecha;
+}
+.grupo {
+    grid-area: grupo;
+}
+
+.informacion-evento > * {
+    display: inline-block;
+}
+
+.fecha-timeline {
+    color: $colorGris;
+    font-size: 1em;
+    position: absolute;
+    width: 10em;
+    height: 2em;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.day {
+}
+
+.day div {
+    position: relative;
+    height: 2em;
+}
