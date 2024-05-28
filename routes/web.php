@@ -207,10 +207,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/membresia', [MembresiaController::class, 'index'])->name('membresias');
     Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
+    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('productos');
+    Route::post('/limpiarSession', [UsuarioController::class, 'limpiarSesion'])->name('limpiarSesion');
+
 
     //Rutas de facturacion 
 
-    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('mostrarProductos');
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');

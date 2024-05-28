@@ -345,3 +345,6 @@ $('#input-mas-detalles-pago').on('click', function() {
     $('.mas-detalles-pago').addClass('d-flex');
     $(this).hide();
 });
+
+
+

@@ -300,7 +300,7 @@
                             </svg>
                             <ul class="submenu fs-6">
                                 <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarProductos') }}">Gestionar Productos</a>
+                                        href="{{ route('productos') }}">Gestionar Productos</a>
                                 </li>
                                 <li class="p-1">Registrar pagos</li>
                                 <li class="p-1">Generar facturacion</li>

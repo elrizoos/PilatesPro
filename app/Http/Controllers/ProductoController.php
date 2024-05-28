@@ -29,7 +29,6 @@ class ProductoController extends Controller
         $membresias = Membresia::all();
 
         $tipo = 'FACTU-productos';
-
         return view('admin.FACTU-productos', compact('datos', 'membresias', 'tipo'));
         
     }
