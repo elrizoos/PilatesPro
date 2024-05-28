@@ -1,15 +1,13 @@
-@extends('usuario.perfil')
+@extends('layouts.config')
 @section('contenidoGeneral')
     <div>
         <ul>
             <li id="informacionGeneral" data-url="{{ route('general-informacion') }}">
                 Información de usuario</li>
-            <li id="informacionContacto"
-                data-url="{{ route('general-informacion-contacto') }}">Información de contacto</li>
+            <li id="informacionContacto" data-url="{{ route('general-informacion-contacto') }}">Información de contacto</li>
             <li id="fotoPerfil" data-url="{{ route('general-fotoPerfil') }}">Foto de perfil
             </li>
-            <li id="preferenciasIdioma"
-                data-url="{{ route('general-preferenciasIdioma') }}">Preferencias de idioma</li>
+            <li id="preferenciasIdioma" data-url="{{ route('general-preferenciasIdioma') }}">Preferencias de idioma</li>
         </ul>
     </div>
 

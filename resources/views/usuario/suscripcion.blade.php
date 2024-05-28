@@ -1,9 +1,8 @@
-@extends('usuario.perfil')
+@extends('layouts.config')
 @section('contenidoSuscripcion')
     <div>
         <ul>
-            <li id="estadoSuscripcion"
-                data-url="{{ route('suscripcion-estadoSuscripcion') }}">Estado de suscripcion</li>
+            <li id="estadoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">Estado de suscripcion</li>
             <li id="detallesPlan" data-url="{{ route('suscripcion-detallesPlan') }}">
                 Detalles del plan</li>
             <li id="cambioPlan" data-url="{{ route('suscripcion-cambioPlan') }}">Cambio del

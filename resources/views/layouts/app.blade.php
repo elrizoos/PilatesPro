@@ -221,7 +221,6 @@
                     <div class="w-100 h-25 p-2">
                         <div class="img-fluid imagen-logo w-100 h-100 img" id="imagen-logo"
                             data-url="{{ route('inicio') }}">
-
                         </div>
                     </div>
 
