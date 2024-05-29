@@ -117,14 +117,14 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="contenedor-header">
-            <div class="header">
+    <div>
+        <div>
+            <div>
                 <img src="{{ asset('imagenes/logo.png') }}" alt="Logo Pilates">
             </div>
 
-            <div class="vendor-info">
-                <table class="no-border">
+            <div>
+                <table>
                     <tr>
                         <td><span>Nombre de la empresa:</span> Estudio Pilates</td>
                     </tr>
@@ -144,9 +144,9 @@
             </div>
         </div>
 
-        <div class="cliente-factura">
-            <div class="client-info">
-                <table class="no-border">
+        <div>
+            <div>
+                <table>
                     <tr>
                         <th>CLIENTE</th>
                     </tr>
@@ -167,7 +167,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="details">
+            <div>
                 <table>
                     <tr>
                         <th>Factura Nº</th>
@@ -186,7 +186,7 @@
         </div>
 
         <h2>Detalles de la Suscripción</h2>
-        <table class="details">
+        <table>
             <thead>
                 <tr>
                     <th>Descripción</th>
@@ -207,7 +207,7 @@
             </tbody>
         </table>
 
-        <div class="details">
+        <div>
             <table>
                 <tr>
                     <th>Subtotal</th>
@@ -224,13 +224,13 @@
             </table>
         </div>
 
-        <div class="footer">
+        <div>
             <p><strong>Método de Pago:</strong> Tarjeta de crédito</p>
             <p><strong>Número de pedido:</strong> 12345</p>
             <p>Gracias por su compra.</p>
         </div>
 
-        <div class="bienvenido">
+        <div>
             <p>BIENVENIDO A PILATES STUDIO</p>
         </div>
     </div>

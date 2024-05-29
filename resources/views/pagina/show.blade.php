@@ -14,39 +14,39 @@
             @endphp
             @switch($seccion->idSeccion)
                 @case(1)
-                    <div id="seccion-{{ $seccion->id }}" class="seccion seccion-nueva seccion-uno window-height">
-                        <div class="titulo">
-                            <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
+                    <div id="seccion-{{ $seccion->id }}">
+                        <div>
+                            <h2>{{ $seccion->titulo }}</h2>
                         </div>
-                        <div class="imagen">
-                            <div class="imagen-seccion"
+                        <div>
+                            <div
                                 style="background-image: url( {{ asset('storage/' . $imagenUno->ruta_imagen) }})">
 
                             </div>
                         </div>
-                        <div class="parrafo">
-                            <p class="parrafo-seccion">{{ $seccion->parrafo }}</p>
+                        <div>
+                            <p>{{ $seccion->parrafo }}</p>
                         </div>
                     </div>
                 @break
 
                 @case(2)
-                    <div id="seccion-{{ $seccion->id }}" class="seccion seccion-nueva seccion-dos window-height">
-                        <div class="titulo">
-                            <h2 class="titulo-seccion">{{ $seccion->titulo }}</h2>
+                    <div id="seccion-{{ $seccion->id }}">
+                        <div>
+                            <h2>{{ $seccion->titulo }}</h2>
                         </div>
-                        <div class="imagen imagen-uno">
-                            <div class="imagen-seccion "
+                        <div>
+                            <div
                                 style="background-image: url( {{ asset('storage/' . $imagenUno->ruta_imagen) }})"">
                             </div>
                         </div>
-                        <div class="imagen imagen-dos">
-                            <div class="imagen-seccion "
+                        <div>
+                            <div
                                 style="background-image: url( {{ asset('storage/' . $imagenDos->ruta_imagen) }})">
                             </div>
                         </div>
-                        <div class="parrafo">
-                            <p class="parrafo-seccion">{{ $seccion->parrafo }}</p>
+                        <div>
+                            <p>{{ $seccion->parrafo }}</p>
                         </div>
                     </div>
                 @break

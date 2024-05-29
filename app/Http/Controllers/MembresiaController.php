@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClasePaquete;
 use App\Models\Membresia;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,9 +18,19 @@ class MembresiaController extends Controller
     public function index()
     {
         $membresias = Membresia::all();
-        $tipo = 'FACTU-membresias';
+        $tipo = 'FACTU-productos';
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $datos = [];
+        $paquetes = ClasePaquete::all();
+        foreach ($paquetes as $paquete) {
+            $producto = Product::retrieve($paquete->producto_id);
 
-        return view('admin.FACTU-membresias', compact('tipo', 'membresias'));
+            $datos[] = [
+                'paquete' => $paquete,
+                'producto' => $producto,
+            ];
+        }
+        return view('admin.FACTU-productos', compact('tipo', 'membresias'));
     }
 
     /**
@@ -67,10 +78,22 @@ class MembresiaController extends Controller
     {
         //dd($membresium);
         $membresias = Membresia::all();
-        session()->flash('editable', $membresium->id);
-        $tipo = 'FACTU-membresias';
+        $tipo = 'FACTU-productos';
+        $editable = $membresium->id;
 
-        return view('admin.FACTU-membresias', compact('tipo', 'membresium', 'membresias'));
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $datos = [];
+        $paquetes = ClasePaquete::all();
+        foreach ($paquetes as $paquete) {
+            $producto = Product::retrieve($paquete->producto_id);
+
+            $datos[] = [
+                'paquete' => $paquete,
+                'producto' => $producto,
+            ];
+        }
+        $edicion = 'suscripcion';
+        return view('admin.FACTU-productos', compact('tipo', 'membresium', 'membresias', 'datos', 'edicion', 'editable'));
     }
 
     /**
@@ -88,9 +111,21 @@ class MembresiaController extends Controller
         $editable = null;
 
         $membresias = Membresia::all();
-        $tipo = 'FACTU-membresias';
-        session()->forget('editable');
-        return view('admin.FACTU-membresias', compact('tipo', 'editable', 'membresias'));
+        $tipo = 'FACTU-productos';
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $datos = [];
+        $paquetes = ClasePaquete::all();
+        foreach ($paquetes as $paquete) {
+            $producto = Product::retrieve($paquete->producto_id);
+
+            $datos[] = [
+                'paquete' => $paquete,
+                'producto' => $producto,
+            ];
+        }
+
+        return view('admin.FACTU-productos', compact('tipo', 'editable', 'membresias'));
     }
 
     /**
@@ -117,7 +152,7 @@ class MembresiaController extends Controller
             'unit_amount' => $membresia->precio * 100,
             'currency' => 'eur',
             'recurring' => ['interval' => 'month'],
-            'product_data' => $producto->name,
+            'product' => $producto->id,
         ]);
 
         return $precio;

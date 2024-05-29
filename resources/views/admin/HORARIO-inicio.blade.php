@@ -41,13 +41,18 @@
                                         style="top: {{ $evento['posicionArriba'] }}em; height: {{ $evento['alturaDiv'] }}em;">
                                         {{ $evento['evento']->clase->nombre }}
                                         <div class="informacion-evento">
-                                            <h5 class="clase">{{ $evento['evento']->clase->nombre}}</h5>
-                                            <h6 class="profesor">Profesor: <span>{{ $evento['evento']->clase->grupo->profesor->nombre}}</span></h6>
-                                            <h6 class="grupo">Grupo: <span>{{ $evento['evento']->clase->grupo->nombre}}</span></h6>
-                                            <h6 class="horaInicio">Hora Inicio: <span>{{$evento['evento']->hora_inicio}}</span></h6>
-                                            <h6 class="horaFin">Hora Fin: <span>{{$evento['evento']->hora_fin}}</span></h6>
-                                            <h6 class="dia">Día: <span>{{$evento['evento']->dia_semana}}</span></h6>
-                                            <h6 class="fecha">Fecha: <span>{{$evento['evento']->fecha_especifica}}</span></h6>
+                                            <h5 class="clase">{{ $evento['evento']->clase->nombre }}</h5>
+                                            <h6 class="profesor">Profesor:
+                                                <span>{{ $evento['evento']->clase->grupo->profesor->nombre }}</span></h6>
+                                            <h6 class="grupo">Grupo:
+                                                <span>{{ $evento['evento']->clase->grupo->nombre }}</span></h6>
+                                            <h6 class="horaInicio">Hora Inicio:
+                                                <span>{{ $evento['evento']->hora_inicio }}</span></h6>
+                                            <h6 class="horaFin">Hora Fin: <span>{{ $evento['evento']->hora_fin }}</span>
+                                            </h6>
+                                            <h6 class="dia">Día: <span>{{ $evento['evento']->dia_semana }}</span></h6>
+                                            <h6 class="fecha">Fecha:
+                                                <span>{{ $evento['evento']->fecha_especifica }}</span></h6>
 
                                         </div>
                                     </div>

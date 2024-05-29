@@ -1,31 +1,20 @@
-// Body
-$bodyColor: #000000;
-
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
-
-
-// NavBar
-$navbarColor: #001020;
-
-
-//Colores
-$white: #ffffff;
-$blueLogin: #0062ff;
-$orangeRegister: #ffd900;
-$dorado: #ffab04;
-$colorPrincipal: #1b1b1b;
 $colorPrincipalTransparente: #1b1b1b98;
 $colorPrincipalTransparenteCero: #1b1b1b00;
-
-$colorSecundario: #8e6d45;
-$colorDorado: #e6d5b3;
-$colorNegro:#222121;
-$colorNegroClaro: #292929;
-$colorGris: #ffffff80;
 $colorGrisClaro: #ffffff2f;
-$colorFondo: #181818;
 $colorFondoTransparente: #18181893;
-$ruta: '../../public/imagenes'
+$ruta: "../../public/imagenes";
+
+//Colores
+$colorPrincipalClaro: #222121;
+$colorPrincipal: #1b1b1b;
+$colorPrincipalOscuro: #181818;
+$colorPrincipalTransparenteCero: #1b1b1b00;
+
+$colorFondoClaro: #3b3b3b;
+$colorFondoOscuro: #292929;
+$colorPrincipalTransparente: #0000008e;
+$colorSecundario: #8e6d45;
+$colorGris: #ffffff80;
+$colorDoradoClaro: #e6d5b3;
+$colorDorado: #ebb472;
+$colorNegro :#222121;
