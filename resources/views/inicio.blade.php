@@ -6,7 +6,6 @@
             {{ session('registro-exitoso') }}
         </div>
     @endif
-
     <?php 
         for ($i=1; $i < 6; $i++) { 
             ?>
