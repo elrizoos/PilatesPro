@@ -2,13 +2,15 @@
 
 @section('USER-gestionContrasena-formulario')
     <div class="d-flex align-items-center justify-content-center h-100">
-        <form class="w-100 h-100 container-fluid  fs-5  p-5 d-md-flex flex-column align-items-center justify-content-center"
+        <form class="formulario"
+            class="formulario w-100 h-100 container-fluid  fs-5  p-5 d-md-flex flex-column align-items-center justify-content-center"
             action="{{ route('modificarContrasena', ['usuario' => $usuario->id]) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col">
-                    <input class="p-1 estilo-formulario w-100 text-center" type="password" name="password" placeholder="Contraseña nueva">
+                    <input class="p-1 estilo-formulario w-100 text-center" type="password" name="password"
+                        placeholder="Contraseña nueva">
                     @error('password')
                         <span role="alert">
                             <strong>{{ $message }}</strong>

@@ -7,7 +7,7 @@
             <div class="col">
                 @isset($seccion)
                     @if ($seccion->idSeccion === 1 && $seccion->idImagenUno !== null)
-                        <form id="delete-form"
+                        <form class="formulario" id="delete-form"
                             action="{{ route('imagenSeccion.destroy', ['imagenSeccion' => $seccion->imagenUno->id]) }}"
                             method="POST">
                             @csrf
@@ -18,7 +18,7 @@
                     @endif
 
                     @if ($seccion->orden !== 1 || $numeroSecciones !== 1)
-                        <form
+                        <form class="formulario"
                             action="{{ route('seleccionApartado', ['pagina' => $seccion->pagina->slug, 'seccion' => $seccion->id]) }}">
                             <input class="estilo-formulario" type="submit" value="Cambiar Orden">
                         </form>
@@ -26,7 +26,7 @@
                 @endisset
             </div>
         </div>
-        <form class=" w-75 h-75"
+        <form class="formulario" class="formulario  w-75 h-75"
             action="{{ isset($seccion) ? route('seccion.update', ['seccion' => $seccion->id]) : route('crearContenidoGestionFormulario', ['tipoSeccion' => '1', 'pagina' => $idPagina]) }}"
             method="POST" enctype="multipart/form-data">
             @csrf
@@ -62,7 +62,8 @@
                         @endif
                     @endisset
                     <div id="imagen-upload" class="w-100 h-100">
-                        <div id="fondo-gris-imagen1" class="w-100 h-100 bg-light-subtle d-flex justify-content-center align-items-center fs-3">
+                        <div id="fondo-gris-imagen1"
+                            class="w-100 h-100 bg-light-subtle d-flex justify-content-center align-items-center fs-3">
                             <p>Haz click para añadir la imagen</p>
                         </div>
                         <input hidden class="estilo-formulario" name="imagenUno" id="input-upload" type="file"></input>

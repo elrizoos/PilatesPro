@@ -2,8 +2,8 @@
 
 @section('USER-editar-formulario')
     <div>
-       
-        <form action="{{ route('usuario.update',['usuario' => $usuario->id]) }}" method="post">
+
+        <form class="formulario" action="{{ route('usuario.update', ['usuario' => $usuario->id]) }}" method="post">
             @csrf
             @method('PUT')
             <div>
@@ -28,8 +28,8 @@
             </div>
             <div>
                 <div>
-                    <input type="text" name="dni" id="dni" placeholder="DNI"
-                        value="{{ $usuario->dni ?? '' }}" readonly>
+                    <input type="text" name="dni" id="dni" placeholder="DNI" value="{{ $usuario->dni ?? '' }}"
+                        readonly>
                     <input type="tel" name="telefono" id="telefono" placeholder="Telefono"
                         value="{{ $usuario->telefono ?? '' }}">
                 </div>

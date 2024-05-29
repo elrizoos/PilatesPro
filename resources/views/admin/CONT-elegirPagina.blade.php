@@ -2,7 +2,9 @@
 
 @section('CONT-elegirPagina')
     <div class="h-100 d-flex flex-column justify-content-center align-items-center">
-        <form class=" h-75 w-75 container-fluid d-flex flex-column justify-content-center align-items-center" action="{{ route('seleccionarPagina') }}" method="get">
+        <form class="formulario"
+            class="formulario  h-75 w-75 container-fluid d-flex flex-column justify-content-center align-items-center"
+            action="{{ route('seleccionarPagina') }}" method="get">
             <div class="row">
                 <div class="col">
                     <select class="estilo-formulario estilo-formulario-select" name="paginaElegida" id="paginaElegida">
@@ -29,7 +31,4 @@
             </div>
         </form>
     </div>
-
-
-    
 @endsection

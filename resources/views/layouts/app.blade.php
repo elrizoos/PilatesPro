@@ -201,6 +201,14 @@
                 d="M320.898 113.548a25.047 25.047 0 0 0-16.631 20.842h143.932v-24.932c0-17.119-16.845-29.167-33.022-23.682l-93.968 27.672c-.101.029-.211.069-.311.1z"
                 fill="#8e6d45" opacity="1" data-original="#000000" class="" />
         </symbol>
+        <symbol id="subir" viewBox="0 0 512 512">
+            <title>subir</title>
+            <path
+                d="m380.032 133.472-112-128C264.992 2.016 260.608 0 256 0s-8.992 2.016-12.032 5.472l-112 128c-4.128 4.736-5.152 11.424-2.528 17.152A16.013 16.013 0 0 0 144 160h64v208c0 8.832 7.168 16 16 16h64c8.832 0 16-7.168 16-16V160h64a15.96 15.96 0 0 0 14.56-9.376c2.592-5.728 1.632-12.448-2.528-17.152z"
+                fill="#8e6d45" opacity="1" data-original="#000000" />
+            <path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                fill="#8e6d45" opacity="1" data-original="#000000" />
+        </symbol>
     </svg>
 </div>
 
@@ -291,7 +299,7 @@
                                             </svg></i>Suscripción</li>
                                     @endif
                                     <li class="w-100 p-3 text-center">
-                                        <form action="{{ route('logout') }}" method="POST">
+                                        <form class="formulario" action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button class="ms-1 estilo-formulario" type="submit"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"

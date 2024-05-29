@@ -1,8 +1,7 @@
 @extends('admin/panel-control')
 
 @section('USER-editar')
-    <div
-        class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 rounded-5 ">
+    <div class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 rounded-5 ">
         <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
             <thead>
                 <tr>
@@ -21,7 +20,7 @@
                             {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
                         <td class="texto-color-dorado border border-2 border-fondo">
                             <div class=" d-flex flex-row justify-content-center align-items-center">
-                                <form
+                                <form class="formulario"
                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
                                     method="get">
                                     @csrf
@@ -39,7 +38,7 @@
 
     <!-- Formulario de eliminación (fuera del bucle foreach) -->
     <div id="formulario-eliminar" style="display: none">
-        <form id="form-eliminar-usuario" method="POST">
+        <form class="formulario" id="form-eliminar-usuario" method="POST">
             @csrf
             @method('DELETE')
             <p>¿Desea eliminar el usuario?</p>

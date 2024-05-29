@@ -2,7 +2,8 @@
 
 @section('HORARIO-crear')
     <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
-        <form class="formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}" method="POST">
+        <form class="formulario" class="formulario formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}"
+            method="POST">
             @csrf
             <div class="central">
                 <div class="inputs">

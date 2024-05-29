@@ -3,7 +3,7 @@
 @section('GRUP-editar')
     <div class="container-fluid w-100 h-100 ">
         <div class="row p-5 h-40 d-flex align-items-center justify-content-center">
-            <form
+            <form class="formulario"
                 class="w-100 h-100 container-fluid  fs-5  p-2 d-md-flex flex-column align-items-center justify-content-center"
                 action="{{ route('grupo.update', ['grupo' => $grupo->id]) }}" method="post">
                 @csrf
@@ -61,13 +61,14 @@
                     <div class="col p-3">
                         <h2 class="text-center fs-3 text-uppercase">Participantes del grupo</h2>
                     </div>
-                
+
                 </div>
                 <div class="row h-75 overflow-y-scroll  max-heigth-10em">
                     <div class="col h-100 ">
                         <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
                             <thead class="">
-                                <tr class="text-uppercase sticky-top bg-color-fondo-muy-oscuro border border-2 border-fondo">
+                                <tr
+                                    class="text-uppercase sticky-top bg-color-fondo-muy-oscuro border border-2 border-fondo">
                                     <th class="text-light border border-2 border-fondo">Nombre</th>
                                     <th class="text-light border border-2 border-fondo">Apellido</th>
                                     <th class="text-light border border-2 border-fondo">Tipo Usuario</th>
@@ -77,23 +78,28 @@
                             <tbody>
                                 @foreach ($participantesGrupo as $usuario)
                                     <tr>
-                                        <td class="texto-color-dorado border border-2 border-fondo" >{{ $usuario->nombre }}</td>
-                                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->apellidos }}</td>
-                                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->tipo_usuario ?? 'S/A' }}</td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->nombre }}
+                                        </td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                            {{ $usuario->apellidos }}</td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                            {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
                                         <td class="texto-color-dorado border border-2 border-fondo">
                                             <div>
-                                                <form
+                                                <form class="formulario"
                                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
                                                     method="get">
                                                     @csrf
-                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit" value="Ver/Editar">
+                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                        value="Ver/Editar">
                                                 </form>
-                                                <form
+                                                <form class="formulario"
                                                     action="{{ route('eliminarParticipante', ['participante' => $usuario->id]) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit" value="Eliminar participante">
+                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                        value="Eliminar participante">
 
                                                 </form>
                                             </div>
@@ -106,8 +112,9 @@
                 </div>
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                        <form action="{{ route('mostrarUsuarios', ['grupo' => $grupo->id]) }}">
-                            <input class="texto-color-dorado-claro estilo-formulario fs-4" type="submit" value="Añadir Participantes">
+                        <form class="formulario" action="{{ route('mostrarUsuarios', ['grupo' => $grupo->id]) }}">
+                            <input class="texto-color-dorado-claro estilo-formulario fs-4" type="submit"
+                                value="Añadir Participantes">
                         </form>
                     </div>
                 </div>

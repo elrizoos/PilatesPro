@@ -26,11 +26,11 @@
                         </td>
                         <td class="texto-color-dorado border border-2 border-fondo ">
                             <div class="d-flex justify-content-center align-items-center">
-                                <form action="{{ route('grupo.edit', ['grupo' => $grupo['id']]) }}">
+                                <form class="formulario" action="{{ route('grupo.edit', ['grupo' => $grupo['id']]) }}">
                                     <input class="texto-color-dorado-claro estilo-formulario" type="submit" value="Editar">
                                 </form>
 
-                                <form action="{{ route('grupo.destroy', ['grupo' => $grupo['id']]) }}">
+                                <form class="formulario" action="{{ route('grupo.destroy', ['grupo' => $grupo['id']]) }}">
                                     <input class="texto-color-dorado-claro estilo-formulario" type="submit"
                                         value="Eliminar">
                                 </form>

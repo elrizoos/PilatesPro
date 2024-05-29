@@ -17,11 +17,11 @@
         </div>
         <div id="ventana-emergente">
             <p>¿Estás seguro que desea cambiar el plan?</p>
-            <form action="{{ route('cancelarOperacion') }}">
+            <form class="formulario" action="{{ route('cancelarOperacion') }}">
                 <input type="submit" value="Cancelar">
             </form>
 
-            <form id="form-cambioPlan" action="" method="GET">
+            <form class="formulario" id="form-cambioPlan" action="" method="GET">
                 @csrf
                 <input type="submit" value="Cambiar plan">
             </form>

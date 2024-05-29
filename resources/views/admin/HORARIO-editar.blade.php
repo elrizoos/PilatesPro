@@ -1,8 +1,8 @@
 @extends('admin/panel-control')
 
 @section('HORARIO-editar')
-     <div>
-        <form action="{{ route('clase.update', ['horario' => $horario->id])}}" method="POST">
+    <div>
+        <form class="formulario" action="{{ route('clase.update', ['horario' => $horario->id]) }}" method="POST">
             @csrf
             @method('PUT')
             <div>

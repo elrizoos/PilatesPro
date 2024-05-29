@@ -32,8 +32,8 @@
                                 class="container-fluid w-100  d-flex flex-column justify-content-center align-items-center">
                                 <div class="row">
                                     <div class="col p-4">
-                                        <form class="container-fluid" action="{{ route('clasePaquete.store') }}"
-                                            method="POST">
+                                        <form class="formulario" class="formulario container-fluid"
+                                            action="{{ route('clasePaquete.store') }}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 <div class="col d-flex gap-2">
@@ -79,7 +79,7 @@
                                             @foreach ($datos as $dato)
                                                 <div class="col pt-2 pb-2" id="{{ $dato['paquete']->id }}">
                                                     @if (isset($editable) && $edicion == 'paquete' && $dato['paquete']->id == $editable)
-                                                        <form
+                                                        <form class="formulario"
                                                             class="col  bg-color-fondo-muy-oscuro border border-2 border-light"
                                                             action="{{ route('clasePaquete.update', $dato['paquete']->id) }}"
                                                             method="POST">
@@ -97,7 +97,8 @@
                                                             <input class="estilo-formulario estilo-formulario-enviar"
                                                                 type="submit" value="Editar Paquete">
                                                         </form>
-                                                        <form action="{{ route('productos') }}" method="GET">
+                                                        <form class="formulario" action="{{ route('productos') }}"
+                                                            method="GET">
                                                             <input type="submit" value="Cancelar"
                                                                 class="estilo-formulario estilo-formulario-enviar text-danger-emphasis">
 
@@ -112,14 +113,14 @@
                                                             <h6 class="text-danger text-center fs-4 p-1">
                                                                 {{ $dato['paquete']->precio }}€</h6>
                                                             <div class="d-flex justify-content-center align-items-center">
-                                                                <form
+                                                                <form class="formulario"
                                                                     action="{{ route('clasePaquete.edit', $dato['paquete']->id) }}"
                                                                     method="GET">
                                                                     @csrf
                                                                     <input class="text-bg-success fs-5" type="submit"
                                                                         value="Editar">
                                                                 </form>
-                                                                <form
+                                                                <form class="formulario"
                                                                     action="{{ route('clasePaquete.destroy', $dato['paquete']->id) }}"
                                                                     method="POST">
                                                                     @csrf
@@ -146,8 +147,8 @@
 
                                 <div class="row w-100">
                                     <div class="col p-4">
-                                        <form class="container-fluid" action="{{ route('membresia.store') }}"
-                                            method="POST">
+                                        <form class="formulario" class="formulario container-fluid"
+                                            action="{{ route('membresia.store') }}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 <div class="col d-flex gap-2">
@@ -186,7 +187,7 @@
                                             @foreach ($membresias as $membresia)
                                                 <div class="col pt-2 pb-2" id="{{ $membresia->id }}">
                                                     @if (isset($editable) && $edicion == 'suscripcion' && $membresia->id == $editable)
-                                                        <form
+                                                        <form class="formulario"
                                                             class="col  bg-color-fondo-muy-oscuro border border-2 border-light"
                                                             action="{{ route('membresia.update', $membresia->id) }}"
                                                             method="POST">
@@ -204,7 +205,8 @@
                                                             <input class="estilo-formulario estilo-formulario-enviar"
                                                                 type="submit" value="Editar Membresía">
                                                         </form>
-                                                        <form action="{{ route('productos') }}" method="GET">
+                                                        <form class="formulario" action="{{ route('productos') }}"
+                                                            method="GET">
                                                             <input type="submit" value="Cancelar"
                                                                 class="estilo-formulario estilo-formulario-enviar text-danger-emphasis">
 
@@ -219,18 +221,20 @@
                                                             <h6 class="text-danger text-center fs-4 p-1">
                                                                 {{ $membresia->precio }}€</h6>
                                                             <div class="d-flex justify-content-center align-items-center">
-                                                                <form
+                                                                <form class="formulario"
                                                                     action="{{ route('membresia.edit', $membresia->id) }}"
                                                                     method="GET">
                                                                     @csrf
-                                                                    <input class="text-bg-success fs-5" type="submit" value="Editar">
+                                                                    <input class="text-bg-success fs-5" type="submit"
+                                                                        value="Editar">
                                                                 </form>
-                                                                <form
+                                                                <form class="formulario"
                                                                     action="{{ route('membresia.destroy', $membresia->id) }}"
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <input class="text-bg-danger text-uppercase fs-5" type="submit" value="Borrar">
+                                                                    <input class="text-bg-danger text-uppercase fs-5"
+                                                                        type="submit" value="Borrar">
                                                                 </form>
                                                             </div>
                                                         </div>

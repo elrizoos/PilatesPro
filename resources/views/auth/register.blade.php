@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('register') }}" method="post">
+                <form class="formulario" action="{{ route('register') }}" method="post">
                     @csrf
                     <div>
                         <div>

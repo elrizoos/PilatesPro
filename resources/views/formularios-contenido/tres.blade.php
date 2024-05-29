@@ -6,7 +6,7 @@
             <div class="col">
                 @isset($seccion)
                     @if ($seccion->idSeccion === 1 && $seccion->idImagenUno !== null)
-                        <form id="delete-form"
+                        <form class="formulario" id="delete-form"
                             action="{{ route('imagenSeccion.destroy', ['imagenSeccion' => $seccion->imagenUno->id]) }}"
                             method="POST">
                             @csrf
@@ -17,7 +17,7 @@
                     @endif
 
                     @if ($seccion->orden !== 1 || $numeroSecciones !== 1)
-                        <form
+                        <form class="formulario"
                             action="{{ route('seleccionApartado', ['pagina' => $seccion->pagina->slug, 'seccion' => $seccion->id]) }}">
                             <input class="estilo-formulario" type="submit" value="Cambiar Orden">
                         </form>
@@ -25,7 +25,7 @@
                 @endisset
             </div>
         </div>
-        <form class=" w-75 h-75"
+        <form class="formulario" class="formulario  w-75 h-75"
             action="{{ isset($seccion) ? route('seccion.update', ['seccion' => $seccion->id]) : route('crearContenidoGestionFormulario', ['tipoSeccion' => '1', 'pagina' => $idPagina]) }}"
             method="POST" enctype="multipart/form-data">
             @csrf
@@ -34,18 +34,18 @@
             @endisset
             <div class="row h-25  fs-3 w-100 text-center">
                 <div class="col d-flex justify-content-center align-items-center">
-                    <input class="estilo-formulario text-center text-uppercase" name="titulo" type="text" placeholder="Escribe el título"
-                        value="{{ isset($seccion) ? $seccion->titulo : '' }}"></input>
+                    <input class="estilo-formulario text-center text-uppercase" name="titulo" type="text"
+                        placeholder="Escribe el título" value="{{ isset($seccion) ? $seccion->titulo : '' }}"></input>
                     @error('titulo')
                         <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-                
+
             </div>
             <div class="row h-75">
-                
+
                 <div class="col">
                     @isset($seccion)
                         @if ($seccion->idSeccion === 1 && $seccion->idImagenUno !== null)
@@ -53,7 +53,8 @@
                         @endif
                     @endisset
                     <div id="imagen-upload" class="w-100 h-100">
-                        <div id="fondo-gris-imagen1" class="w-100 h-100 bg-light-subtle d-flex justify-content-center align-items-center fs-3">
+                        <div id="fondo-gris-imagen1"
+                            class="w-100 h-100 bg-light-subtle d-flex justify-content-center align-items-center fs-3">
                             <p>Haz click para añadir la imagen</p>
                         </div>
                         <input hidden class="estilo-formulario" name="imagenUno" id="input-upload" type="file"></input>
@@ -65,7 +66,8 @@
                     </div>
                 </div>
                 <div class="col  d-flex justify-content-center align-items-center">
-                    <textarea class="estilo-formulario fs-4  h-75 text-center d-flex border border-1 border-secondary" name="parrafo" placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : '' }}</textarea>
+                    <textarea class="estilo-formulario fs-4  h-75 text-center d-flex border border-1 border-secondary" name="parrafo"
+                        placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : '' }}</textarea>
                     @error('parrafo')
                         <span role="alert">
                             <strong>{{ $message }}</strong>
@@ -75,12 +77,13 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center align-items-center">
-                    <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="{{ isset($seccion) ? 'Editar Seccion' : 'Guardar Seccion' }}">
+                    <input class="estilo-formulario estilo-formulario-enviar" type="submit"
+                        value="{{ isset($seccion) ? 'Editar Seccion' : 'Guardar Seccion' }}">
                 </div>
             </div>
         </form>
     </div>
- 
+
 
 
     <script>
@@ -96,7 +99,8 @@
 
                     reader.onload = function(e) {
                         $('#imagen-upload').css('background-image', 'url(' + e.target.result + ')').css(
-                            'background-size', 'contain').css('background-repeat', 'no-repeat').css('background-position', 'center');
+                            'background-size', 'contain').css('background-repeat', 'no-repeat').css(
+                            'background-position', 'center');
                         $('#fondo-gris-imagen1').addClass('d-none');
                     };
 

@@ -2,7 +2,7 @@
 
 @section('CONT-seleccionarApartado')
     <div class="position-relative container-fluid w-100 h-100 d-flex justify-content-center align-items-center">
-        <form action="{{ route('seleccionarOrden', ['seccion' => $idSeccion]) }}" method="POST">
+        <form class="formulario" action="{{ route('seleccionarOrden', ['seccion' => $idSeccion]) }}" method="POST">
             @csrf
             <select class="estilo-formulario estilo-formulario-select" name="orden">
                 @foreach ($secciones as $seccion)

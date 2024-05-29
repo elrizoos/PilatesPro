@@ -20,10 +20,13 @@
                     </div>
                 </div>
                 <div>
-                    <form action="{{ route('pagar', ['usuario' => Auth::user()->id, 'membresia' => $membresia->id]) }}" method="POST" id="payment-form">
+                    <form class="formulario"
+                        action="{{ route('pagar', ['usuario' => Auth::user()->id, 'membresia' => $membresia->id]) }}"
+                        method="POST" id="payment-form">
                         @csrf
                         <div>
-                            <input type="text" name="name" placeholder="Nombre y Apellidos" required  value="{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}">
+                            <input type="text" name="name" placeholder="Nombre y Apellidos" required
+                                value="{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}">
                             <div id="card-element">
 
                             </div>
@@ -59,7 +62,9 @@
         };
 
 
-        var card = elements.create('card', { style: style });
+        var card = elements.create('card', {
+            style: style
+        });
         card.mount('#card-element');
 
         var form = document.getElementById('payment-form');

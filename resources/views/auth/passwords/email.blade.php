@@ -1,47 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
     <div>
         <div>
             <div>
-                <div>{{ __('Reset Password') }}</div>
-
                 <div>
-                    @if (session('status'))
-                        <div role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div>{{ __('Reset Password') }}</div>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                    <div>
+                        @if (session('status'))
+                            <div role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                        <div>
-                            <label for="email">{{ __('Email Address') }}</label>
+                        <form class="formulario" method="POST" action="{{ route('password.email') }}">
+                            @csrf
 
                             <div>
-                                <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <label for="email">{{ __('Email Address') }}</label>
 
-                                @error('email')
-                                    <span role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div>
+                                    <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                                        autocomplete="email" autofocus>
+
+                                    @error('email')
+                                        <span role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <div>
                             <div>
-                                <button type="submit">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+                                <div>
+                                    <button type="submit">
+                                        {{ __('Send Password Reset Link') }}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -2,8 +2,8 @@
 
 @section('GRUP-mostrarUsuarios')
     <div>
-        <h4>Añadir usuarios al grupo {{ $grupo->nombre }} (Grupo_{{ $grupo->id}})</h4>
-        <form action="{{ route('añadirParticipantes', ['grupo' => $grupo->id]) }}">
+        <h4>Añadir usuarios al grupo {{ $grupo->nombre }} (Grupo_{{ $grupo->id }})</h4>
+        <form class="formulario" action="{{ route('añadirParticipantes', ['grupo' => $grupo->id]) }}">
             <table>
                 <thead>
                     <tr>

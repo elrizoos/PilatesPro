@@ -25,7 +25,7 @@
             <p class="w-100 h-100 fs-4 texto-color-principal text-center p-4">{{ $seccion->parrafo }}</p>
         </div>
     </div>
-    <form class="position-absolute end-0 "
+    <form class="formulario" class="formulario position-absolute end-0 "
         action="{{ $seccion->orden == 1 && $seccion->idPagina == $idPagina ? route('mostrarPagina', ['pagina' => $slug]) : route('seleccionApartado', ['pagina' => $slug, 'seccion' => $seccion->id]) }}"
         method="GET">
         @csrf
@@ -33,8 +33,8 @@
         <input class="estilo-formulario estilo-formulario-enviar" type="submit" name="Enviar" value="Siguiente">
     </form>
 
-    <form class="position-absolute start-0" action="{{ route('cancelarContenido', ['seccion' => $seccion->id]) }}"
-        method="POST">
+    <form class="formulario" class="formulario position-absolute start-0"
+        action="{{ route('cancelarContenido', ['seccion' => $seccion->id]) }}" method="POST">
         @csrf
         @method('DELETE')
 
