@@ -1,8 +1,9 @@
 @extends('admin/panel-control')
 
 @section('HORARIO-crear')
-    <div class="contenedor-formulario">
-        <form class="formulario-horario" action="{{ route('horario.store') }}" method="POST">
+    <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
+        <form class="formulario" class="formulario formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}"
+            method="POST">
             @csrf
             <div class="central">
                 <div class="inputs">
@@ -109,7 +110,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="seleccion-horas no-active">
+                        <div class="seleccion-horas d-none">
                             <div class="contenedor-seleccion">
                                 <h2 id="inicioFin"></h2>
                                 <div class="hora-minuto">
@@ -147,6 +148,8 @@
                     <div class="grupo-input opcionRepetir">
                         <input class="estilo-formulario" type="number" name="numeroSemanas"
                             placeholder="Numero de semanas">
+                        <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
                         <ul class="listaDiasSemana">
                             <li>
                                 <label for="lunes">Lunes</label>
@@ -179,8 +182,8 @@
 
             </div>
 
-            <div class="botonEnviar">
-                <input type="submit" value="Crear clase nueva">
+            <div class="botonEnviar mt-5">
+                <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Crear clase nueva">
             </div>
 
         </form>

@@ -109,9 +109,9 @@ class PanelController extends Controller
     public function mostrarFormulario($usuario)
     {
         $usuario = User::where('id', '=', $usuario)->first();
-        $tipo = 'USER-editar-formulario';
+        $tipo = 'USER-formulario';
         // *  dd($usuario);
-        return view('admin.USER-editar-formulario', compact('usuario', 'tipo'));
+        return view('admin.USER-formulario', compact('usuario', 'tipo'));
 
     }
 

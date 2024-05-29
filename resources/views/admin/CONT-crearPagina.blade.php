@@ -1,45 +1,43 @@
 @extends('admin/panel-control')
 
 @section('CONT-crearPagina')
-    
-    <div class="contenedor-formulario">
-        <form action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) :  route('pagina.store') }}" class="formulario-pagina-nueva formulario-corto" method="POST">
+    <div class="container-fluid w-100 h-100">
+        <form class="formulario"
+            class="formulario w-100 h-100 container-fluid  fs-5  p-2 d-md-flex flex-column align-items-center justify-content-center"
+            action="{{ isset($pagina) ? route('pagina.update', ['pagina' => $pagina->id]) : route('pagina.store') }}"
+            method="POST">
             @csrf
             @isset($pagina)
                 @method('PUT')
             @endisset
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    @isset($pagina)
-                        <input class="estilo-formulario" type="text" name="titulo" id="titulo"
-                            placeholder="Título de la página" value="{{  $pagina->titulo  }}">
-                        <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
-                            placeholder="Descripción" value="{{  $pagina->descripcion }}">
-                    @else 
-                        
-                    <input class="estilo-formulario" type="text" name="titulo" id="titulo"
-                        placeholder="Título de la página" >
-                    <input class="estilo-formulario" type="text" name="descripcion" id="descripcion"
-                        placeholder="Descripción" >
-               
-                    @endif
-                </div>
-                <div class="grupo-error">
+
+            <div class="row">
+                <div class="col">
+                    <input class="p-1 estilo-formulario w-100 text-center" type="text" name="titulo" id="titulo"
+                        placeholder="Título de la página">
+                    <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
                     @error('titulo')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                </div>
+                <div class="col">
+                    <input class="p-1 estilo-formulario w-100 text-center" type="text" name="descripcion"
+                        id="descripcion" placeholder="Descripción">
+                    <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
                     @error('descripcion')
-                        <span class="invalid-feedback active-block" role="alert">
+                        <span role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
             </div>
-            <div class="grupo-formulario">
-                <div class="grupo-input">
-                    <input type="submit" value="Crear Pagina Nueva">
+            <div class="row">
+                <div class="col">
+                    <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Crear Pagina Nueva">
                 </div>
             </div>
         </form>

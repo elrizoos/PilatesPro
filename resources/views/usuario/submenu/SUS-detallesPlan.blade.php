@@ -1,44 +1,44 @@
 @extends('usuario.suscripcion')
 @section('detallesPlan')
-    <div class="contenedor-detalles-plan">
+    <div>
         <h2>Detalles del Plan</h2>
-        <div class="d-flex flex-row">
-            <div class="plan-contratado">
-                <div class="datos-plan">
+        <div>
+            <div>
+                <div>
                     <h3>Plan Contratado</h3>
-                    <span class="flecha"></span>
+                    <span></span>
                     <h3>{{ $membresiaUsuario->nombre }}</h3>
                 </div>
-                <div class="contenido-plan">
+                <div>
                     <h4>¿Qué incluye?</h4>
-                    <span class="flecha"></span>
+                    <span></span>
                     <h4>{{ $membresiaUsuario->descripcion }}</h4>
                 </div>
             </div>
-            <div class="estado-plan">
-                <div class="{{ $membresiaUsuario->pivot->status == 'active' ? 'estado-activo' : 'estado-inactivo' }}">
+            <div>
+                <div>
                     {{ $membresiaUsuario->pivot->status == 'active' ? 'Activo' : 'Desactivado'}}
                 </div>
             </div>
         </div>
-        <div class="info-pago">
-            <div class="fecha-pago">
+        <div>
+            <div>
                 <h4>Fecha Pago</h4>
-                <div class="caja-fecha">
+                <div>
                     <p>{{ $arrayFechaPago['dia'] }}</p>
                     <p>{{ $arrayFechaPago['mes'] }}</p>
                     <p>{{ $arrayFechaPago['año'] }}</p>
                 </div>
             </div>
-            <div class="fecha-proximo-pago">
+            <div>
                 <h4>Fecha Próximo Pago</h4>
-                <div class="caja-fecha">
+                <div>
                     <p>{{ $arrayFechaFin['dia'] }}</p>
                     <p>{{ $arrayFechaFin['mes'] }}</p>
                     <p>{{ $arrayFechaFin['año'] }}</p>
                 </div>
             </div>
-            <button class="boton-cancelar">Cancelar Suscripción</button>
+            <button>Cancelar Suscripción</button>
 
         </div>
     </div>

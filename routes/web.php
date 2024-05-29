@@ -190,7 +190,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
     Route::put('/admin/panel-control/modificarContrasena/{usuario}', [PanelController::class, 'modificarContrasena'])->name('modificarContrasena');
     Route::get('/admin/panel-control/crearSeccion/{pagina}', [SeccionContenidoController::class, 'create'])->name('crearSeccion');
-    Route::get('/admin/panel-control/crearContenido/{opcion}/{pagina}', [SeccionContenidoController::class, 'crearContenido'])->name('crearContenido');
+    Route::get('/admin/panel-control/crearContenido/{opcion}/{pagina}/{vistaPrevia}', [SeccionContenidoController::class, 'crearContenido'])->name('crearContenido');
     Route::post('/admin/panel-control/crearContenidoGestionFormulario/{tipoSeccion}/{pagina}', [SeccionContenidoController::class, 'store'])->name('crearContenidoGestionFormulario');
     Route::get('/admin/panel-control/contenido/vistaPrevia/{idContenido}/{pagina}', [SeccionContenidoController::class, 'show'])->name('CONT-vistaPrevia');
     Route::delete('/admin/panel-control/contenido/cancelar/{seccion}', [SeccionContenidoController::class, 'destroy'])->name('cancelarContenido');
@@ -207,10 +207,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/membresia', [MembresiaController::class, 'index'])->name('membresias');
     Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
+    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('productos');
+    Route::post('/limpiarSession', [UsuarioController::class, 'limpiarSesion'])->name('limpiarSesion');
+
 
     //Rutas de facturacion 
 
-    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('mostrarProductos');
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');

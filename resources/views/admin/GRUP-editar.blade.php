@@ -1,86 +1,124 @@
 @extends('admin/panel-control')
 
 @section('GRUP-editar')
-    <div class="combinacion flex">
-        <div class="contenedor-formulario">
-
-            <form action="{{ route('grupo.update', ['grupo' => $grupo->id]) }}" method="post">
+    <div class="container-fluid w-100 h-100 ">
+        <div class="row p-5 h-40 d-flex align-items-center justify-content-center">
+            <form class="formulario"
+                class="w-100 h-100 container-fluid  fs-5  p-2 d-md-flex flex-column align-items-center justify-content-center"
+                action="{{ route('grupo.update', ['grupo' => $grupo->id]) }}" method="post">
                 @csrf
                 @method('PUT')
-                <div class="grupo-formulario">
-                    <div class="grupo-input">
-                        <input class="estilo-formulario" type="text" name="nombre" id="nombre" placeholder="Nombre"
-                            value="{{ $grupo->nombre ?? '' }}">
-                        <input type="text" name="descripcion" id="descripcion" class="estilo-formulario"
-                            placeholder="Descripcion" value="{{ $grupo->descripcion ?? '' }}">
-                        <select name="profesor" id="profesor-select">
-                            @foreach ($profesores as $profesor)
-                                <option value="{{ $profesor->id }}">Profesor: {{ $profesor->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="grupo-error">
+
+                <div class="row">
+                    <div class="col d-flex flex-column justify-content-center align-items-center">
+                        <input class="p-1 estilo-formulario w-100 text-center" type="text" name="nombre" id="nombre"
+                            placeholder="Nombre" value="{{ $grupo->nombre ?? '' }}">
+                        <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
                         @error('nombre')
-                            <span class="invalid-feedback active-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        @error('descripcion')
-                            <span class="invalid-feedback active-block" role="alert">
+                            <span role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                    <div class="col d-flex flex-column justify-content-center align-items-center">
+                        <input class="p-1 estilo-formulario w-100 text-center" type="text" name="descripcion"
+                            id="descripcion" placeholder="Descripcion" value="{{ $grupo->descripcion ?? '' }}">
+                        <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
+
+                        @error('descripcion')
+                            <span role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col d-flex flex-column justify-content-center align-items-center">
+                        <div class="row">
+                            <select class="estilo-formulario-select" name="profesor" id="profesor-select">
+                                @foreach ($profesores as $profesor)
+                                    <option value="{{ $profesor->id }}">Profesor: {{ $profesor->nombre }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex flex-column justify-content-center align-items-center">
+                        <div>
+                            <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Enviar">
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="grupo-formulario">
-                    <input type="submit" value="Enviar">
-                </div>
+
             </form>
-
-
         </div>
-        <div class="contenedor-tabla flex">
-            <h2>Participantes del grupo</h2>
-            <table class="table table-light">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Tipo Usuario</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($participantesGrupo as $usuario)
-                        <tr>
-                            <td>{{ $usuario->nombre }}</td>
-                            <td>{{ $usuario->apellidos }}</td>
-                            <td>{{ $usuario->tipo_usuario ?? 'S/A' }}</td>
-                            <td>
-                                <div class="opciones">
-                                    <form
-                                        action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
-                                        method="get">
-                                        @csrf
-                                        <input type="submit" value="Ver/Editar">
-                                    </form>
-                                    <form action="{{ route('eliminarParticipante', ['participante' => $usuario->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="submit" value="Eliminar participante">
+        <div class="row max-heigth-60 text-light d-flex flex-column justify-content-center align-items-center">
+            <div class="col mh-100">
+                <div class="row">
+                    <div class="col p-3">
+                        <h2 class="text-center fs-3 text-uppercase">Participantes del grupo</h2>
+                    </div>
 
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <form action="{{ route('mostrarUsuarios', ['grupo' => $grupo->id]) }}">
-                <input type="submit" value="Añadir Participantes">
-            </form>
+                </div>
+                <div class="row h-75 overflow-y-scroll  max-heigth-10em">
+                    <div class="col h-100 ">
+                        <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
+                            <thead class="">
+                                <tr
+                                    class="text-uppercase sticky-top bg-color-fondo-muy-oscuro border border-2 border-fondo">
+                                    <th class="text-light border border-2 border-fondo">Nombre</th>
+                                    <th class="text-light border border-2 border-fondo">Apellido</th>
+                                    <th class="text-light border border-2 border-fondo">Tipo Usuario</th>
+                                    <th class="text-light border border-2 border-fondo">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($participantesGrupo as $usuario)
+                                    <tr>
+                                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->nombre }}
+                                        </td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                            {{ $usuario->apellidos }}</td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                            {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
+                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                            <div>
+                                                <form class="formulario"
+                                                    action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
+                                                    method="get">
+                                                    @csrf
+                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                        value="Ver/Editar">
+                                                </form>
+                                                <form class="formulario"
+                                                    action="{{ route('eliminarParticipante', ['participante' => $usuario->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                        value="Eliminar participante">
+
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <form class="formulario" action="{{ route('mostrarUsuarios', ['grupo' => $grupo->id]) }}">
+                            <input class="texto-color-dorado-claro estilo-formulario fs-4" type="submit"
+                                value="Añadir Participantes">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

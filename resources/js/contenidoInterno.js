@@ -11,11 +11,11 @@ function establecerClaseSelected(elementoDinamico, elementoDinamicoInterno) {
     $("#" + elementoDinamicoInterno.attr("id")).addClass("selected");
 
     $("." + elementoDinamico.attr("id"))
-        .removeClass("no-active")
-        .addClass("active");
+        .removeClass("d-none")
+        .addClass("d-flex");
     $("." + elementoDinamicoInterno.attr("id"))
-        .removeClass("no-active")
-        .addClass("active");
+        .removeClass("d-none")
+        .addClass("d-flex");
 
     establecerEventosClick();
 }
@@ -25,8 +25,8 @@ function borrarClaseSelected() {
 }
 
 function desactivarDivs() {
-    $("#contenido-dinamico > div").addClass("no-active");
-    $("#contenido-dinamico-interno > div").addClass("no-active");
+    $("#contenido-dinamico > div").addClass("d-none");
+    $("#contenido-dinamico-interno > div").addClass("d-none");
 }
 
 function establecerEventosClick() {

@@ -202,7 +202,7 @@ class PagoController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $productos = Product::all();
+        $productos = Product::all(['active' => true]);
 
         $usuario = Auth::user();
 
@@ -213,7 +213,7 @@ class PagoController extends Controller
         $membresias = Membresia::all();
         
         
-
+        dd($productos, $membresias);
         if (isset($membresiaUsuario)) {
 
             return view('usuario.submenu.SUS-estadoSuscripcion', compact('membresiaUsuario', 'productos'));

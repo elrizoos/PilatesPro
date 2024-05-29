@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ClasePaquete;
 use App\Http\Controllers\Controller;
+use App\Models\Membresia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Stripe\Price;
 use Stripe\Product;
 use Stripe\Stripe;
@@ -30,8 +32,8 @@ class ClasePaqueteController extends Controller
             ];
         }
         //dd($datos);
-        $tipo = 'clasePaquete-inicio';
-        return view('admin.FACTU-clasePaquete', compact('datos', 'tipo'));
+        $tipo = 'FACTU-productos';
+        return view('admin.FACTU-productos', compact('datos', 'tipo'));
     }
 
     /**
@@ -39,7 +41,7 @@ class ClasePaqueteController extends Controller
      */
     public function create()
     {
-        return view('admin.FACTU-clasePaquete');
+        return view('admin.FACTU-productos');
     }
 
     /**
@@ -71,7 +73,7 @@ class ClasePaqueteController extends Controller
         $paquete->producto_id = $producto->id;
         $paquete->save();
 
-        return redirect()->route('clasePaquete-inicio')->with('success', 'Paquete de clases creado con exito');
+        return redirect()->route('productos')->with('success', 'Paquete de clases creado con exito');
     }
 
     /**
@@ -89,10 +91,10 @@ class ClasePaqueteController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
         $paquetes = ClasePaquete::all();
-        session()->flash('editable', $clasePaquete->id);
+        $editable = $clasePaquete->id;
         //dd($clasePaquete->id);
-        $tipo = 'clasePaquete-inicio';
-
+        $tipo = 'FACTU-productos';
+        $membresias = Membresia::all();
         $datos  = [];
         foreach ($paquetes as $paquete) {
             $producto = Product::retrieve($paquete->producto_id);
@@ -102,8 +104,9 @@ class ClasePaqueteController extends Controller
                 'producto' => $producto,
             ];
         }
-        //dd($datos);
-        return view('admin.FACTU-clasePaquete', compact('tipo', 'datos'));
+        $edicion = 'paquete';
+        //dd($datos, $membresias);
+        return view('admin.FACTU-productos', compact('tipo', 'datos', 'membresias', 'edicion','editable'));
     }
 
     /**
@@ -139,7 +142,7 @@ class ClasePaqueteController extends Controller
             $clasePaquete->precio = $price->unit_amount;
             $clasePaquete->save();
 
-            return redirect()->route('clasePaquete-inicio')->with('success', 'Paquete de ' . $clasePaquete->numero_clases . ' clases');
+            return redirect()->route('productos')->with('success', 'Paquete de ' . $clasePaquete->numero_clases . ' clases');
 
         } catch (\Throwable $th) {
             Log::error('Mensaje de error: ' . $th->getMessage());
@@ -160,7 +163,7 @@ class ClasePaqueteController extends Controller
 
         $paquete->delete();
 
-        return redirect()->route('clasePaquete-inicio')->with('success', 'El paquete de clases se ha borrado con exito');
+        return redirect()->route('productos')->with('success', 'El paquete de clases se ha borrado con exito');
 
     }
 }
