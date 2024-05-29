@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Validator;
 
 class UsuarioController extends Controller
@@ -165,5 +166,9 @@ class UsuarioController extends Controller
         ]);
         return redirect()->back()->with('success', 'Información actualizada correctamente.');
 
+    }
+
+    public function limpiarSesion() {
+        return view('admin.FACTU-productos', compact(['editable' => null]));
     }
 }

@@ -1,11 +1,11 @@
 @extends('usuario.suscripcion')
 @section('historialPago')
-    <div class="contenedor-historialPago">
+    <div>
         <h2>Historial de Pagos</h2>
         @if ($charges->isEmpty())
             <p>No hay pagos registrados.</p>
         @else
-            <table class="table tabla-dorada">
+            <table>
                 <thead>
                     <tr>
                         <th>ID del Pago</th>

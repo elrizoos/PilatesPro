@@ -1,28 +1,27 @@
-@extends('usuario.perfil')
+@extends('layouts.config')
 @section('contenidoSuscripcion')
-    <div class="botonera">
-        <ul>
-            <li class="contenido-cargable-interno" id="estadoSuscripcion"
-                data-url="{{ route('suscripcion-estadoSuscripcion') }}">Estado de suscripcion</li>
-            <li class="contenido-cargable-interno" id="detallesPlan" data-url="{{ route('suscripcion-detallesPlan') }}">
+    <div class="col col-3  d-flex justify-content-center align-items-center">
+        <ul class="p-2 fs-5">
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="estadoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">Estado de suscripcion</li>
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="detallesPlan" data-url="{{ route('suscripcion-detallesPlan') }}">
                 Detalles del plan</li>
-            <li class="contenido-cargable-interno" id="cambioPlan" data-url="{{ route('suscripcion-cambioPlan') }}">Cambio del
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="cambioPlan" data-url="{{ route('suscripcion-cambioPlan') }}">Cambio del
                 plan</li>
-            <li class="contenido-cargable-interno" id="historialPago" data-url="{{ route('suscripcion-historialPago') }}">
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="historialPago" data-url="{{ route('suscripcion-historialPago') }}">
                 Historial de pagos</li>
         </ul>
     </div>
-    <div class="contenido-dinamico-interno" id="contenido-dinamico-interno">
-        <div class="estadoSuscripcion" id="contenedor-estadoSuscripcion">
+    <div class="col contenido-dinamico-interno" id="contenido-dinamico-interno">
+        <div class="row h-100 contenedor-interno estadoSuscripcion" id="contenedor-estadoSuscripcion">
             @yield('estadoSuscripcion')
         </div>
-        <div class="detallesPlan" id="contenedor-detallesPlan">
+        <div class="row h-100 contenedor-interno detallesPlan" id="contenedor-detallesPlan">
             @yield('detallesPlan')
         </div>
-        <div class="cambioPlan" id="contenedor-cambioPlan">
+        <div class="row h-100 contenedor-interno cambioPlan" id="contenedor-cambioPlan">
             @yield('cambioPlan')
         </div>
-        <div class="historialPago" id="contenedor-historialPago">
+        <div class="row h-100 contenedor-interno historialPago" id="contenedor-historialPago">
             @yield('historialPago')
         </div>
     </div>

@@ -42,27 +42,27 @@ class SeccionContenidoController extends Controller
         return view('admin.CONT-crear', compact('idPagina', 'tipo'));
     }
 
-    public function crearContenido($opcion, $idPagina)
+    public function crearContenido($opcion, $idPagina, $vistaPrevia)
     {
         switch ($opcion) {
             case 'uno':
                 $tipo = 'CONT-opcion-uno';
-                return view('formularios-contenido.uno', compact('tipo', 'idPagina'));
+                return view('formularios-contenido.uno', compact('tipo', 'idPagina', 'vistaPrevia'));
                 break;
             case 'dos':
                 $tipo = 'CONT-opcion-dos';
-                return view('formularios-contenido.dos', compact('tipo', 'idPagina'));
+                return view('formularios-contenido.dos', compact('tipo', 'idPagina', 'vistaPrevia'));
 
 
                 break;
             case 'tres':
                 $tipo = 'CONT-opcion-tres';
-                return view('formularios-contenido.tres', compact('tipo', 'idPagina'));
+                return view('formularios-contenido.tres', compact('tipo', 'idPagina', 'vistaPrevia'));
 
                 break;
             case 'cuatro':
                 $tipo = 'CONT-opcion-cuatro';
-                return view('formularios-contenido.cuatro', compact('tipo', 'idPagina'));
+                return view('formularios-contenido.cuatro', compact('tipo', 'idPagina', 'vistaPrevia'));
 
                 break;
         }
@@ -81,6 +81,13 @@ class SeccionContenidoController extends Controller
 
         if ($tipoSeccion === '2') {
             $rules['imagenDos'] = 'required|image|max:2048';
+        }
+
+        if ($tipoSeccion === '4') {
+            $rules = [
+                'titulo' => 'required|string|max:255',
+                'parrafo' => 'required|string|max:1000',
+            ];
         }
         //dd($rules);
         $validator = Validator::make($request->all(), $rules, [
@@ -137,7 +144,16 @@ class SeccionContenidoController extends Controller
                 return redirect()->back()->with('error', 'La imagen ya existe en bd');
             }
         } else {
-            return redirect()->back();
+            $seccion = new SeccionContenido;
+            //dd($imagenUno);
+            //dd(SeccionContenido::count());
+            $seccion->idSeccion = $tipoSeccion;
+            $seccion->titulo = $request->titulo;
+            $seccion->parrafo = $request->parrafo;
+            $seccion->idPagina = $idPagina;
+            $seccion->save();
+            return redirect()->route('CONT-vistaPrevia', ['idContenido' => $seccion->id, 'pagina' => $idPagina]);
+
         }
     }
 
@@ -148,32 +164,33 @@ class SeccionContenidoController extends Controller
     {
         //dd($idSeccion, $idPagina);
         $seccion = SeccionContenido::with(['imagenUno', 'imagenDos', 'pagina'])->find($idSeccion);
-        $imagenUno = ImagenesSeccion::find($seccion->imagenUno->id);
+        //dd($seccion);
         $tipo = 'CONT-vistaPrevia';
         $slug = Pagina::find($idPagina)->slug;
         switch ($seccion->idSeccion) {
             case 1:
                 $ruta = 'admin.CONT-vistaPrevia-uno';
                 $tipo = 'CONT-vistaPrevia-uno';
-                break;
+                $imagen = 'der';
+                $imagenUno = ImagenesSeccion::find($seccion->imagenUno->id);
+                return view($ruta, compact('tipo', 'seccion', 'imagenUno', 'slug', 'idPagina', 'imagen' ));
             case 2:
                 $ruta = 'admin.CONT-vistaPrevia-dos';
+                $imagenUno = ImagenesSeccion::find($seccion->imagenUno->id);
                 $imagenDos = ImagenesSeccion::find($seccion->imagenDos->id);
                 $tipo = 'CONT-vistaPrevia-dos';
                 return view($ruta, compact('seccion', 'imagenUno', 'imagenDos', 'tipo', 'slug', 'idPagina'));
-                break;
             case 3:
                 $ruta = 'admin.CONT-vistaPrevia-uno';
                 $tipo = 'CONT-vistaPrevia-uno';
-                break;
+                $imagen = 'izq';
+                $imagenUno = ImagenesSeccion::find($seccion->imagenUno->id);
+                return view($ruta, compact('tipo', 'seccion', 'imagenUno', 'slug', 'idPagina', 'imagen'));
             case 4:
                 $ruta = 'admin.CONT-vistaPrevia-tres';
                 $tipo = 'CONT-vistaPrevia-tres';
-                break;
+                return view($ruta, compact('tipo', 'seccion', 'slug', 'idPagina'));
         }
-        //dd($seccion, $imagen, $tipo);
-        return view($ruta, compact('seccion', 'imagenUno', 'tipo', 'slug', 'idPagina'));
-
     }
 
     /**

@@ -1,23 +1,25 @@
-@extends('usuario.perfil')
+@extends('layouts.config')
 @section('contenidoReservas')
-    <div class="botonera">
-        <ul>
-            <li class="contenido-cargable-interno" id="historialReservas" data-url="{{ route('reservas-historialReservas') }}">
+    <div class="col col-3  d-flex justify-content-center align-items-center">
+        <ul class="p-2 fs-5">
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="historialReservas"
+                data-url="{{ route('reservas-historialReservas') }}">
                 Historial de reservas</li>
-            <li class="contenido-cargable-interno" id="reservasActivas" data-url="{{ route('reservas-reservasActivas') }}">
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="reservasActivas"
+                data-url="{{ route('reservas-reservasActivas') }}">
                 Reservas activas</li>
-            <li class="contenido-cargable-interno" id="sugerenciasReservas"
+            <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="sugerenciasReservas"
                 data-url="{{ route('reservas-sugerenciasReservas') }}">Sugerencias de reservas</li>
         </ul>
     </div>
-    <div class="contendio-dinamico-interno" id="contenido-dinamico-interno">
-        <div class="historialReservas" id="contenedor-historialReservas">
+    <div class="col contenido-dinamico-interno" id="contenido-dinamico-interno">
+        <div class="row h-100 contenedor-interno historialReservas" id="contenedor-historialReservas">
             @yield('historialReservas')
         </div>
-        <div class="reservasActivas" id="contenedor-reservasActivas">
+        <div class="row h-100 contenedor-interno reservasActivas" id="contenedor-reservasActivas">
             @yield('reservasActivas')
         </div>
-        <div class="sugerenciasReservas" id="contenedor-sugerenciaReservas">
+        <div class="row h-100 contenedor-interno sugerenciasReservas" id="contenedor-sugerenciasReservas">
             @yield('sugerenciasReservas')
         </div>
     </div>
