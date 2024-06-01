@@ -1,22 +1,21 @@
 <?php
 
 use App\Http\Controllers\ClaseController;
-use App\Http\Controllers\ClasePaqueteController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\FacturaDetallesController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
-use App\Http\Controllers\MembresiaController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\SeccionContenidoController;
+use App\Http\Controllers\StripeSyncController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Membresia;
 use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -36,8 +35,9 @@ use App\Http\Controllers;
 
 Route::get('/vista-factura', [FacturaController::class, 'mostrarFactura'])->name('vista.factura');
 
-
-Route::get('/', [PaginaController::class, 'index']);
+Route::get('/', function () {
+    return redirect()->route('inicio');
+});
 Route::get('/acercaDe', function () {
     return view('acercaDe');
 })->name('acercaDe');
@@ -118,17 +118,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion', function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');
-    Route::get('/usuario/suscripcion/cambiar/{membresia}/{suscripcion}', [PagoController::class, 'cambiar'])->name('suscripcion-cambiar');
-    Route::get('/usuario/suscripcion/cambioPlan', [PagoController::class, 'cambioPlan'])->name('suscripcion-cambioPlan');
-    Route::get('/usuario/suscripcion/detallesPlan', [PagoController::class, 'mostrarDetallesPlan'])->name('suscripcion-detallesPlan');
-    Route::get('/usuario/suscripcion/estadoSuscripcion', [PagoController::class, 'mostrarEstadoSuscripcion'])->name('suscripcion-estadoSuscripcion');
-    Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'obtenerHistorialPagos'])->name('suscripcion-historialPago');
-    Route::get('/usuario/suscripcion/cancelarOperacion', function() {
-        return redirect()->route('suscripcion-cambioPlan');
-    })->name('cancelarOperacion');
-    Route::get('/usuario/suscripcion/cambiarPlan/nuevoPago/{suscripcion}/{membresia}', [PagoController::class, 'calcularPrecioPagar'])->name('calcularNuevoPlan');
-    
 
+    Route::get('/usuario/suscripcion/estadoSuscripcion', [ProductoController::class, 'index'])->name('suscripcion-estadoSuscripcion');
+    Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetalles'])->name('suscripcion-detallesPlan');
+    Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
+    Route::get('/usuario/suscripcion/historialPago', [ProductoController::class, 'historialPago'])->name('suscripcion-historialPago');
 
     Route::get('/usuario/contrasena', function () {
         return view('usuario.contrasena');
@@ -205,18 +199,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
     Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
-    Route::get('/admin/panel-control/membresia', [MembresiaController::class, 'index'])->name('membresias');
-    Route::get('/admin/panel-control/clasePaquete/inicio', [ClasePaqueteController::class, 'index'])->name('clasePaquete-inicio');
-    Route::get('/admin/panel-control/productos', [ProductoController::class, 'index'])->name('productos');
-    Route::post('/limpiarSession', [UsuarioController::class, 'limpiarSesion'])->name('limpiarSesion');
-
-
+    Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
+    Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
+    Route::get('/admin/panel-control/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+    Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
     //Rutas de facturacion 
+    Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
+    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'pagar'])->name('pagar');
 
-    Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
-    Route::post('/facturacion/pago/pagar/{usuario}/{membresia}', [PagoController::class, 'pagar'])->name('pagar');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');
-    Route::get('/facturacion/mostrarFactura-vistaPrevia', [PagoController::class, 'mostrarFactura'])->name('mostrarFactura');
+
+    //Ruta de sincronizacion de productos con stripe y bd local
+    Route::get('/sincronizar-productos', [StripeSyncController::class, 'syncProductos']);
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
@@ -230,9 +225,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/panel-control/horario', HorarioController::class);
     Route::resource('/facturacion/factura', FacturaController::class);
     Route::resource('/facturacion/facturaDetalle', FacturaDetallesController::class);
-    Route::resource('/facturacion/pago', PagoController::class);
-    Route::resource('/facturacion/membresia', MembresiaController::class);
-    Route::resource('/admin/panel-control/clasePaquete',ClasePaqueteController::class);
 });
 
 
