@@ -76,10 +76,4 @@ class User extends Authenticatable
         return $this->hasMany(Factura::class);
     }
 
-    public function membresias()
-    {
-        return $this->belongsToMany(Membresia::class)
-            ->withPivot('subscription_id', 'status','fecha_pago', 'fecha_fin')
-            ->withTimestamps();
-    }
 }

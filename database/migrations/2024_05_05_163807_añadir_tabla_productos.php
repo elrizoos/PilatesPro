@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('membresias', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion')->nullable();
+            $table->string('stripe_id');
+            $table->string('name');
+            $table->string('description');
+            $table->enum('type', ['membership', 'package']);
             $table->decimal('precio', 8, 2);
-            $table->string('price_id')->nullable();
+            $table->string('precio_stripe_id');
+            $table->integer('quantity')->default(null);
+
             $table->timestamps();
         });
     }
