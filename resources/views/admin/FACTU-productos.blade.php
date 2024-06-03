@@ -1,11 +1,11 @@
 @extends('admin/panel-control')
 
 @section('FACTU-productos')
-@if (session()->has('producto'))
-    @php
-        $productoEditar = session('producto');
-    @endphp
-@endif
+    @if (session()->has('producto'))
+        @php
+            $productoEditar = session('producto');
+        @endphp
+    @endif
     <div class="container-fluid  w-100 h-100">
         <div class="row h-100">
             <div class="col h-100 d-flex justify-content-center align-items-center flex-column">
@@ -47,7 +47,8 @@
                                                             <li class="p-2 text-center text-uppercase">{{ $producto->name }}
                                                             </li>
                                                             <li class="p-2 text-center">{{ $producto->description }}</li>
-                                                            <li class="p-2 text-center">{{ $producto->quantity }} clases</li>
+                                                            <li class="p-2 text-center">{{ $producto->quantity }} clases
+                                                            </li>
                                                             <li class="p-2 text-center text-danger fs-4">
                                                                 {{ $producto->precio }}€</li>
                                                         </ul>
@@ -58,18 +59,20 @@
                                                             class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                                             <form
                                                                 class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}">
+                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}" method="POST">
+                                                                @csrf
                                                                 <input class="estilo-formulario bg-success" type="submit"
                                                                     value="Editar">
                                                             </form>
                                                             <form
                                                                 class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}">
+                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
                                                                 <input class="estilo-formulario bg-danger" type="submit"
                                                                     value="Eliminar">
                                                             </form>
                                                         </div>
-
                                                     </div>
                                                 @endif
                                             @endforeach
@@ -105,28 +108,28 @@
                                                             class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                                             <form
                                                                 class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}" method="get">
+                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}"
+                                                                method="get">
                                                                 @csrf
                                                                 <input class="estilo-formulario bg-success" type="submit"
                                                                     value="Editar">
                                                             </form>
                                                             <form
                                                                 class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}" method="post">
+                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}"
+                                                                method="post">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <input class="estilo-formulario bg-danger" type="submit"
                                                                     value="Eliminar">
                                                             </form>
                                                         </div>
-
                                                     </div>
                                                 @endif
                                             @endforeach
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="tab-pane fade container-fluid w-100 h-100 {{ session()->has('editable') ? 'active show' : '' }}"
@@ -141,74 +144,171 @@
                                             @csrf
                                             @if (session()->has('editable'))
                                                 @method('PUT')
-                                            @else 
+                                            @else
                                                 @method('GET')
                                             @endif
-                                            <div class="row">
-                                                <div class="col d-flex flex-column gap-2">
-                                                    <input type="text" name="name"
-                                                        class="estilo-formulario w-100 text-center"
-                                                        placeholder="Nombre Producto" required
-                                                        value="{{ session()->has('editable') ? $productoEditar->name : '' }}">
-                                                    <hr
-                                                        class="linea-transition-weigth border border-warning-subtle  border-1 ">
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex flex-column gap-2">
-                                                    <textarea name="description" class="estilo-formulario w-100 "
-                                                        placeholder="Escribe aqui una descripcion del producto">
-                                                    {{ session()->has('editable') ? $productoEditar->description : '' }}</textarea>
-                                                    <hr
-                                                        class="linea-transition-weigth border border-warning-subtle  border-1 ">
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex flex-column gap-2">
-                                                    <select name="type" class="estilo-formulario w-100 text-center"
-                                                        placeholder="" required>
-                                                        <option value="#"> --- Selecciona un tipo de producto ---
-                                                        </option>
-                                                        <option value="membership"
-                                                            {{ session('tipoProducto') == 'membership' ? 'selected' : '' }}>
-                                                            Suscripcion</option>
-                                                        <option value="package"
-                                                            {{ session('tipoProducto') == 'package' ? 'selected' : '' }}>
-                                                            Paquete de clases</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex flex-column gap-2">
-                                                    <input type="number" name="price"
-                                                        class="estilo-formulario w-100 text-center"
-                                                        placeholder="Precio del producto" step="0.01" required
-                                                        value="{{ session()->has('editable') ? $productoEditar->precio : '' }}">
-                                                    <hr
-                                                        class="linea-transition-weigth border border-warning-subtle  border-1 ">
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col d-flex flex-column gap-2">
-                                                    <input type="number" name="quantity"
-                                                        class="estilo-formulario w-100 text-center"
-                                                        placeholder="Cantidad de clases en el paquete"
-                                                        value="{{ session()->has('editable') ? $productoEditar->quantity : '' }}">
-                                                    <hr
-                                                        class="linea-transition-weigth border border-warning-subtle  border-1 ">
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
+                                            <input id="nombreInput" type="hidden" name="name">
+                                            <input id="precioInput" type="hidden" name="price">
+                                            <input id="descripcionInput" type="hidden" name="description">
+                                            <input id="tipo_productoInput" type="hidden" name="type">
+                                            <div class="row" id="seccion-general">
                                                 <div class="col">
-                                                    <input class="estilo-formulario estilo-formulario-enviar"
-                                                        type="submit" value="Crear Producto">
+                                                    <div class="row">
+                                                        <div class="col d-flex flex-column gap-2">
+                                                            <input id="name" type="text"
+                                                                class="estilo-formulario w-100 text-center"
+                                                                placeholder="Nombre Producto"
+                                                                value="{{ session()->has('editable') ? $productoEditar->name : '' }}">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex flex-column gap-2">
+                                                            <textarea id="description" class="estilo-formulario w-100 " placeholder="Escribe aqui una descripcion del producto">
+                                                    {{ session()->has('editable') ? $productoEditar->description : '' }}</textarea>
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex flex-column gap-2">
+                                                            <input id="price" type="number"
+                                                                class="estilo-formulario w-100 text-center"
+                                                                placeholder="Precio del producto" step="0.01"
+                                                                value="{{ session()->has('editable') ? $productoEditar->precio : '' }}">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col d-flex flex-column gap-2">
+                                                            <select id="tipo_producto"
+                                                                class="estilo-formulario w-100 text-center">
+                                                                <option value="#"> --- Selecciona un tipo de producto
+                                                                    ---
+                                                                </option>
+                                                                <option value="membership"
+                                                                    {{ session('tipoProducto') == 'membership' ? 'selected' : '' }}>
+                                                                    Suscripcion</option>
+                                                                <option value="package"
+                                                                    {{ session('tipoProducto') == 'package' ? 'selected' : '' }}>
+                                                                    Paquete de clases</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="row d-none fs-5" id="seccionSuscripcion">
+                                                <div class="col p-4">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h4
+                                                                class="fs-2 text-center p-2 texto-color-secundario text-uppercase">
+                                                                Estás editando una Suscripción</h4>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row p-4">
+                                                        <div class="col">
+                                                            <input class="estilo-formulario"
+                                                                placeholder="Numero clases semanales" type="number"
+                                                                name="numero_clases_semanal" id="numero_clases_semanal">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                        <div class="col">
+                                                            <input class="estilo-formulario"
+                                                                placeholder="Duracion de las clases" type="number"
+                                                                name="tiempo_clase_sus" id="tiempo_clase">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div
+                                                            class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
+                                                            <label class=""
+                                                                for="asesoramiento">Asesoramiento:</label>
+                                                            <input class="" type="radio" name="asesoramiento"
+                                                                value="inicial" id="inicial"><span>Inicio</span>
+                                                            <input class="" type="radio" name="asesoramiento"
+                                                                value="mensual" id="mensual"><span>Mensual</span>
+                                                            <input class="" type="radio" name="asesoramiento"
+                                                                value="semanal" id="semanal"><span>Semanal</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row p-4">
+                                                        <div class="col">
+                                                            <input class="estilo-formulario"
+                                                                placeholder="Dias para cancelacion" type="number"
+                                                                name="dias_cancelacion" id="dias_cancelacion">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label for="beneficios">Beneficios:</label>
+                                                                <input type="checkbox" name="beneficios" id="beneficios">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input class="estilo-formulario estilo-formulario-enviar"
+                                                                    type="submit" value="Crear Producto">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row d-none" id="seccionPaquete">
+                                                    <div class="col p-4">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h4
+                                                                    class="fs-2 text-center p-2 texto-color-secundario text-uppercase">
+                                                                    Estás editando un Paquete de clases</h4>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-4">
+                                                            <div class="col">
+                                                                <input class="estilo-formulario"
+                                                                    placeholder="Numero clases paquete" type="number"
+                                                                    name="numero_clases_paquete"
+                                                                    id="numero_clases_paquete">
+                                                                <hr
+                                                                    class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                            </div>
+                                                            <div class="col">
+                                                                <input class="estilo-formulario"
+                                                                    placeholder="Duracion de las clases" type="number"
+                                                                    name="tiempo_clase_paq" id="tiempo_clase">
+                                                                <hr
+                                                                    class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div
+                                                                class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
+                                                                <label for="descuento">Descuento para proximo
+                                                                    paquete:</label>
+                                                                <input
+                                                                    class="estilo-formulario  border-bottom border-dorado"
+                                                                    type="number" name="descuento" id="descuento">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input class="estilo-formulario estilo-formulario-enviar"
+                                                                    type="submit" value="Crear Producto">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                         </form>
                                     </div>
                                 </div>
@@ -227,6 +327,37 @@
                 idProducto = $(this).data('id');
                 $('#formulario-producto-' + idProducto).removeClass('d-none').addClass('d-flex');
                 $(this).removeClass('d-flex').addClass('d-none');
+            });
+
+            $('#tipo_producto').change(function() {
+                var name = $('#name').val();
+                var description = $('#description').val();
+                var tipo_producto = $(this).val();
+                var precio = $('#price').val();
+
+                switch (tipo_producto) {
+                    case 'package':
+                        console.log('HOLA');
+                        $('#seccionPaquete').removeClass('d-none');
+                        $('#seccion-general').addClass('d-none');
+                        break;
+                    case 'membership':
+                        $('#seccionSuscripcion').removeClass('d-none');
+                        $('#seccion-general').addClass('d-none');
+                }
+
+                var inputName = $('#nombreInput');
+                var inputPrice = $('#precioInput');
+                var inputDescription = $('#descripcionInput');
+                var inputType = $('#tipo_productoInput');
+
+                inputName.val(name);
+                inputPrice.val(precio);
+                inputDescription.val(description),
+                    inputType.val(tipo_producto);
+
+
+
             });
         });
     </script>

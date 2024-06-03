@@ -206,7 +206,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
     //Rutas de facturacion 
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
-    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'pagar'])->name('pagar');
+    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
 
     Route::get('/facturacion/descargarFactura')->name('generarFactura');
 

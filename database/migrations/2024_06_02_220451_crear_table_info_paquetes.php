@@ -4,23 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('info_paquetes', function (Blueprint $table) {
             $table->id();
-            $table->string('stripe_id');
-            $table->string('name');
-            $table->string('description');
-            $table->enum('type', ['membership', 'package']);
-            $table->decimal('precio', 8, 2);
-            $table->string('precio_stripe_id');
 
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
+            $table->integer('numero_clases')->nullable();
+            $table->integer('tiempo_clase')->nullable();
+            $table->integer('tiempo_valided')->nullable();
             $table->timestamps();
+
         });
     }
 

@@ -17,4 +17,8 @@ class Producto extends Model
         'quantity',
         'precio_stripe_id',
     ];
+    public function subscription()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

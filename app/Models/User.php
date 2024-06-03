@@ -75,5 +75,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Factura::class);
     }
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
 
+    public function suscripcion()
+    {
+        return $this->hasOne(Subscription::class);
+    }
 }

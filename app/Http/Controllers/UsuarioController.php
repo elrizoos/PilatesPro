@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Models\Producto;
 use App\Models\User;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -168,7 +170,12 @@ class UsuarioController extends Controller
 
     }
 
-    public function limpiarSesion() {
-        return view('admin.FACTU-productos', compact(['editable' => null]));
+
+    public function sumatorioClases(Producto $producto){
+        $usuario = Auth::user();
+        $usuario->numero_clases += $producto->quantity;
+        $usuario->save();
+
+        return $usuario->numero_clases;
     }
 }
