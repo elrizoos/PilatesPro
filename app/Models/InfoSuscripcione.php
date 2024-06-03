@@ -17,4 +17,8 @@ class InfoSuscripcione extends Model
         'beneficios',
         
     ];
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
 }

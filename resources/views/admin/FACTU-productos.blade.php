@@ -10,15 +10,15 @@
         <div class="row h-100">
             <div class="col h-100 d-flex justify-content-center align-items-center flex-column">
                 <div class="row">
-                    <ul class="nav nav-tabs" id="tabImagenes" role="tablist">
+                    <ul class="nav nav-tabs" id="tabProductos" role="tablist">
                         <li class="nav-item " role="presentation">
-                            <a class="nav-link " href="" id="perfil-tab" data-bs-toggle="tab"
-                                data-bs-target="#imagenes-perfil" role="tab" aria-controls="imagenes-perfil"
+                            <a class="nav-link " href="" id="paquetes-tab" data-bs-toggle="tab"
+                                data-bs-target="#productos-paquetes" role="tab" aria-controls="productos-paquetes"
                                 aria-selected="false">Paquetes de clases</a>
                         </li>
                         <li class="nav-item " role="presentation">
-                            <a class="nav-link" href="" id="seccion-tab" data-bs-toggle="tab"
-                                data-bs-target="#imagenes-seccion" role="tab" aria-controls="imagenes-seccion"
+                            <a class="nav-link" href="" id="suscripcion-tab" data-bs-toggle="tab"
+                                data-bs-target="#productos-suscripcion" role="tab" aria-controls="productos-suscripcion"
                                 aria-selected="false">Suscripciones</a>
                         </li>
                         <li class="nav-item {{ session()->has('editable') ? 'active' : '' }}" role="presentation">
@@ -30,59 +30,83 @@
                     </ul>
                 </div>
                 <div class="row w-100 flex-grow-1 overflow-y-auto   h-auto">
-                    <div class="tab-content w-100 h-100" id="tabImagenesContent">
-                        <div class="tab-pane fade container-fluid w-100 h-100" id="imagenes-perfil" role="tabpanel"
-                            aria-labelledby="imagenes-perfil" tabindex="0">
+                    <div class="tab-content w-100 h-100" id="tabProductosContent">
+                        <div class="tab-pane fade container-fluid w-100 h-100" id="productos-paquetes" role="tabpanel"
+                            aria-labelledby="productos-paquetes" tabindex="0">
                             <div
                                 class="container-fluid  overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
                                 <div class="row w-100 h-100 ">
                                     <div class="col">
                                         <div class="row h-100 row-cols-3 ">
-                                            @foreach ($productos as $producto)
-                                                @if ($producto->type == 'package')
-                                                    <div data-id="{{ $producto->id }}"
-                                                        class="producto-click col text-light  d-flex justify-content-center align-items-center ">
-                                                        <ul
-                                                            class=" h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
-                                                            <li class="p-2 text-center text-uppercase">{{ $producto->name }}
-                                                            </li>
-                                                            <li class="p-2 text-center">{{ $producto->description }}</li>
-                                                            <li class="p-2 text-center">{{ $producto->quantity }} clases
-                                                            </li>
-                                                            <li class="p-2 text-center text-danger fs-4">
-                                                                {{ $producto->precio }}€</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div id="formulario-producto-{{ $producto->id }}"
-                                                        class="d-none col text-light d-flex justify-content-center align-items-center }">
-                                                        <div
-                                                            class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
-                                                            <form
-                                                                class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}" method="POST">
-                                                                @csrf
-                                                                <input class="estilo-formulario bg-success" type="submit"
-                                                                    value="Editar">
-                                                            </form>
-                                                            <form
-                                                                class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <input class="estilo-formulario bg-danger" type="submit"
-                                                                    value="Eliminar">
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+                                            <table
+                                                class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-light border border-2 border-fondo">ID</th>
+                                                        <th class="text-light border border-2 border-fondo">Nombre</th>
+                                                        <th class="text-light border border-2 border-fondo">Descripcion</th>
+                                                        <th class="text-light border border-2 border-fondo">Precio</th>
+                                                        <th class="text-light border border-2 border-fondo">Nº Clases</th>
+                                                        <th class="text-light border border-2 border-fondo">Tiempo Clase
+                                                        </th>
+                                                        <th class="text-light border border-2 border-fondo">Tiempo validez
+                                                        </th>
+                                                        <th class="text-light border border-2 border-fondo">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($productos as $producto)
+                                                        @if ($producto->type == 'package')
+                                                            <tr>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->id }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->name }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->description }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->precio }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoPaquete->numero_clases }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoPaquete->tiempo_clase }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoPaquete->tiempo_validez }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    <div
+                                                                        class=" d-flex flex-row justify-content-center align-items-center">
+                                                                        <form
+                                                                            action="{{ route('productos.edit', $producto->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            <input
+                                                                                class="texto-color-dorado-claro estilo-formulario"
+                                                                                type="submit" value="Editar">
+                                                                        </form>
+                                                                        <form
+                                                                            action="{{ route('productos.destroy', $producto->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <input
+                                                                                class="texto-color-dorado-claro estilo-formulario"
+                                                                                type="submit" value="Eliminar">
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade container-fluid w-100 h-100" id="imagenes-seccion" role="tabpanel"
-                            aria-labelledby="imagenes-seccion" tabindex="0">
+                        <div class="tab-pane fade container-fluid w-100 h-100" id="productos-suscripcion" role="tabpanel"
+                            aria-labelledby="productos-suscripcion" tabindex="0">
                             <div
                                 class="container-fluid overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
                                 <div class="row w-100 h-100 ">
@@ -133,7 +157,8 @@
                             </div>
                         </div>
                         <div class="tab-pane fade container-fluid w-100 h-100 {{ session()->has('editable') ? 'active show' : '' }}"
-                            id="formularioProducto" role="tabpanel" aria-labelledby="imagenes-seccion" tabindex="0">
+                            id="formularioProducto" role="tabpanel" aria-labelledby="productos-suscripcion"
+                            tabindex="0">
                             <div
                                 class="container-fluid w-100 d-flex flex-column justify-content-center align-items-center">
                                 <div class="row w-100">
@@ -260,53 +285,59 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row d-none" id="seccionPaquete">
-                                                    <div class="col p-4">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <h4
-                                                                    class="fs-2 text-center p-2 texto-color-secundario text-uppercase">
-                                                                    Estás editando un Paquete de clases</h4>
+                                            </div>
+                                            <div class="row d-none" id="seccionPaquete">
+                                                <div class="col p-4">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h4
+                                                                class="fs-2 text-center p-2 texto-color-secundario text-uppercase">
+                                                                Estás editando un Paquete de clases</h4>
 
-                                                            </div>
                                                         </div>
-                                                        <div class="row p-4">
-                                                            <div class="col">
-                                                                <input class="estilo-formulario"
-                                                                    placeholder="Numero clases paquete" type="number"
-                                                                    name="numero_clases_paquete"
-                                                                    id="numero_clases_paquete">
-                                                                <hr
-                                                                    class="linea-transition-weigth border border-warning-subtle  border-1 ">
-                                                            </div>
-                                                            <div class="col">
-                                                                <input class="estilo-formulario"
-                                                                    placeholder="Duracion de las clases" type="number"
-                                                                    name="tiempo_clase_paq" id="tiempo_clase">
-                                                                <hr
-                                                                    class="linea-transition-weigth border border-warning-subtle  border-1 ">
-                                                            </div>
+                                                    </div>
+                                                    <div class="row p-4">
+                                                        <div class="col">
+                                                            <input class="estilo-formulario"
+                                                                placeholder="Numero clases paquete" type="number"
+                                                                name="numero_clases_paquete" id="numero_clases_paquete">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
+                                                        <div class="col">
+                                                            <input class="estilo-formulario"
+                                                                placeholder="Duracion de las clases" type="number"
+                                                                name="tiempo_clase_paq" id="tiempo_clase">
+                                                            <hr
+                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                        </div>
+                                                    </div>
 
-                                                        <div class="row">
-                                                            <div
-                                                                class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
-                                                                <label for="descuento">Descuento para proximo
-                                                                    paquete:</label>
-                                                                <input
-                                                                    class="estilo-formulario  border-bottom border-dorado"
-                                                                    type="number" name="descuento" id="descuento">
+                                                    <div class="row">
+                                                        <div
+                                                            class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
+                                                            <label for="descuento">Descuento para proximo
+                                                                paquete:</label>
+                                                            <input class="estilo-formulario  border-bottom border-dorado"
+                                                                type="number" name="descuento" id="descuento">
 
-                                                            </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <input class="estilo-formulario estilo-formulario-enviar"
-                                                                    type="submit" value="Crear Producto">
-                                                            </div>
+                                                        <div
+                                                            class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
+                                                            <label for="validez">Tiempo de validez en dias:</label>
+                                                            <input class="estilo-formulario  border-bottom border-dorado"
+                                                                type="number" name="validez" id="validez">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input class="estilo-formulario estilo-formulario-enviar"
+                                                                type="submit" value="Crear Producto">
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
 
                                         </form>

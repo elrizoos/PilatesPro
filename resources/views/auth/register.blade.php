@@ -16,7 +16,7 @@
                     </ul>
                 </div>
             @endif
-            <form class="formulario" class="formulario d-flex flex-column fs-5 container-fluid" action="{{ route('register') }}" method="post">
+            <form class="formulario" class="formulario d-flex flex-column fs-5 container-fluid" action="{{ route('registroUsuario') }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col">

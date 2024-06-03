@@ -46,7 +46,7 @@ Route::get(
     '/inicio',
     [PaginaController::class, 'index']
 )->name('inicio');
-
+Route::post('/registrarUsuario', [UsuarioController::class, 'create'])->name('registroUsuario');
 Route::get('/foro/{pagina}', [PaginaController::class, 'mostrarPagina'])->name('mostrarPagina');
 Route::group(['middleware' => 'auth'], function () {
 
@@ -79,9 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth.login');
     })->name('login');
 
-    Route::get('/registro', function () {
-        return view('auth.register');
-    })->name('registro');
+    
 
     Route::get('/configuracion', function () {
         return view('usuario.perfil');

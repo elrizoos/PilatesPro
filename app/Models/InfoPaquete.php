@@ -15,4 +15,8 @@ class InfoPaquete extends Model
         'tiempo_clase',
         'tiempo_validez'
     ];
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
 }

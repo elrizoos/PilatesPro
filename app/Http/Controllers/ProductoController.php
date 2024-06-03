@@ -92,7 +92,7 @@ class ProductoController extends Controller
             'price.numeric' => 'El campo precio es un campo numerico entero',
             'price.min' => 'El campo precio debe contener al menos 0',
 
-         ]);
+        ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -196,7 +196,7 @@ class ProductoController extends Controller
                         'producto_id' => $productoBD->id,
                         'numero_clases' => $request->numero_clases_paquete,
                         'tiempo_clase' => $request->tiempo_clase_paq,
-                        'tiempo_valided' => now()->addMonth(),
+                        'tiempo_validez' => now()->addMonth(),
                     ]);
                     break;
 
@@ -221,7 +221,7 @@ class ProductoController extends Controller
     }
 
 
-   
+
     /**
      * Display the specified resource.
      */
@@ -247,57 +247,155 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         try {
-            $request->validate([
+            //dd($request->all());
+            $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
+                'type' => 'required|in:membership,package',
                 'price' => 'required|numeric|min:0',
-                'quantity' => 'nullable|integer|min:1',
+            ], [
+                'name.required' => 'El campo nombre es requerido',
+                'name.string' => 'El campo nombre debe contener texto',
+                'name.max' => 'El campo nombre solo puede contener 255 caracteres',
+
+                'description.string' => 'El campo descripcion debe contener texto',
+
+                'type.required' => 'El campo tipo de producto es requerido',
+                'type.in' => 'El campo tipo debe ser o paquete de clases o suscripcion',
+
+                'price' => 'El campo precio es requerido',
+                'price.numeric' => 'El campo precio es un campo numerico entero',
+                'price.min' => 'El campo precio debe contener al menos 0',
+
             ]);
 
-            try {
-
-                Stripe::setApiKey(config('services.stripe.secret'));
-
-                $stripeProducto = Product::update($producto->stripe_id, [
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'metadata' => [
-                        'type' => $request->type,
-                        'quantity' => $request->quantity,
-                    ],
-                ]);
-
-
-                Price::update($producto->precio_stripe_id, [
-                    'active' => false,
-                ]);
-
-
-                $stripePrice = Price::create([
-                    'unit_amount' => $request->price * 100,
-                    'currency' => 'eur',
-                    'recurring' => $request->type == 'membership' ? ['interval' => 'month'] : null,
-                    'product' => $stripeProducto->id,
-                ]);
-
-                $producto->update([
-                    'stripe_id' => $producto->stripe_id,
-                    'name' => $request->name,
-                    'description' => $request->description,
-                    'type' => $request->type,
-                    'precio' => $request->price,
-                    'quantity' => $request->quantity,
-                    'precio_stripe_id' => $stripePrice->id,
-                ]);
-
-                return redirect()->back()->with('success', 'El producto se ha actualizado con éxito');
-            } catch (\Exception $e) {
-                \Log::error('Error Stripe: ' . $e->getMessage());
-                return redirect()->back()->with('error', 'Hubo un problema al actualizar el producto en Stripe.');
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
             }
+
+
+            //dd($request->type);
+            switch ($request->type) {
+                case 'package':
+                    $validatorPaquete = Validator::make($request->all(), [
+                        'numero_clases_paquete' => 'required|integer|min:1',
+                        'tiempo_clase_paq' => 'required|integer|min:30',
+                        'descuento' => 'required|integer',
+                    ], [
+                        'numero_clases_paquete.required' => 'El campo numero de clases es requerido',
+                        'numero_clases_paquete.integer' => 'El campo numero de clases es un numero',
+                        'numero_clases_paquete.min' => 'El campo numero de clases debe contener al menos 1',
+
+                        'tiempo_clase_paq.required' => 'El campo de tiempo de clase es requerido',
+                        'tiempo_clase_paq.integer' => 'El campo tiempo de clase debe ser un numero en minutos',
+                        'tiempo_clase_paq.min' => 'El campo tiempo de clase debe ser al menos 30',
+
+                        'descuento.required' => 'El campo descuento es requerido',
+                        'descuento.integer' => 'El campo descuento debe ser un numero',
+
+                    ]);
+
+                    if ($validatorPaquete->fails()) {
+                        return redirect()->back()->withErrors($validatorPaquete)->withInput();
+                    }
+
+                    $actualizadoProducto = $this->actualizarProductoStripe($request, 'paquete', $producto);
+                    return $actualizadoProducto;
+
+                case 'membership':
+                    $validatorSuscripcion = Validator::make($request->all(), [
+                        'numero_clases_semanal' => 'required|integer|min:1',
+                        'tiempo_clase_sus' => 'required|integer|min:30',
+                        'asesoramiento' => 'required|in:inicial,mensual,semanal',
+                        'dias_cancelacion' => 'required|integer',
+
+                    ], [
+                        'numero_clases_semanal.required' => 'El campo numero de clases es requerido',
+                        'numero_clases_semanal.integer' => 'El campo numero de clases es un numero',
+                        'numero_clases_semanal.min' => 'El campo numero de clases debe contener al menos 1',
+
+                        'tiempo_clase_sus.required' => 'El campo de tiempo de clase es requerido',
+                        'tiempo_clase_sus.integer' => 'El campo tiempo de clase debe ser un numero en minutos',
+                        'tiempo_clase_sus.min' => 'El campo tiempo de clase debe ser al menos 30',
+
+                        'asesoramiento.required' => 'El campo descuento es requerido',
+                        'asesoramiento.in' => 'El campo descuento debe ser inicial mensual o semanal',
+
+                    ]);
+
+                    if ($validatorSuscripcion->fails()) {
+                        return redirect()->back()->withErrors($validatorSuscripcion)->withInput();
+                    }
+                    $actualizadoProducto = $this->actualizarProductoStripe($request, 'suscripcion', $producto);
+
+                    return $actualizadoProducto;
+            }
+
         } catch (\Throwable $th) {
             \Log::error('Error Validación: ' . $th->getMessage());
             return redirect()->back()->with('error', 'Hubo un problema con la validación de los datos.');
+        }
+    }
+
+    public function actualizarProductoStripe(Request $request, $tipo, Producto $producto)
+    {
+        try {
+            Stripe::setApiKey(config('services.stripe.secret'));
+
+            $stripeProducto = Product::update($producto->stripe_id, [
+                'name' => $request->name,
+                'description' => $request->description,
+                'metadata' => [
+                    'type' => $request->type,
+                    'quantity' => $request->quantity,
+                ],
+            ]);
+
+            Price::update($producto->precio_stripe_id, [
+                'active' => false,
+            ]);
+
+            $stripePrice = Price::create([
+                'unit_amount' => $request->price * 100,
+                'currency' => 'eur',
+                'recurring' => $request->type == 'membership' ? ['interval' => 'month'] : null,
+                'product' => $stripeProducto->id,
+            ]);
+
+            $producto->name = $request->name;
+            $producto->description = $request->description;
+            $producto->type = $request->type;
+            $producto->precio = $request->price;
+            $producto->precio_stripe_id = $stripePrice->id;
+
+            $producto->save();
+
+            switch ($tipo) {
+                case 'paquete':
+                    $paqueteInfo = InfoPaquete::where('producto_id', $producto->id);
+                    $paqueteInfo->numero_clases = $request->numero_clases_paquete;
+                    $paqueteInfo->tiempo_clase = $request->tiempo_clase_paq;
+                    $paqueteInfo->tiempo_validez = $request->validez;
+                    $paqueteInfo->descuento = $request->decuento;
+                    $paqueteInfo->save();
+                    break;
+
+                case 'suscripcion':
+                    $suscripcionInfo = InfoSuscripcione::where('producto_id', $producto->id);
+                    $suscripcionInfo->clases_semana = $request->numero_clases_semanal;
+                    $suscripcionInfo->tiempo_clase = $request->tiempo_clase_sus;
+                    $suscripcionInfo->asesoramiento = $request->asesoramiento;
+                    $suscripcionInfo->dias_cancelacion = $request->dias_cancelacion;
+                    $suscripcionInfo->beneficios = $request->beneficios;
+                    $suscripcionInfo->save();
+                    break;
+            }
+
+            return redirect()->back()->with('success', 'El producto ' . $producto->name . ' se ha actualizado exitosamente');
+
+        } catch (\Throwable $th) {
+            \Log::error('Error: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Hubo un problema al actualizar el producto. Error: ' . $th->getMessage());
         }
     }
 
@@ -333,7 +431,7 @@ class ProductoController extends Controller
 
     public function gestionarProductos()
     {
-        $productos = Producto::all();
+        $productos = Producto::with(['infoPaquete', 'infoSuscripcion'])->get();
 
 
         $tipo = 'FACTU-productos';
