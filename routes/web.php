@@ -199,7 +199,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
     Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
-    Route::get('/admin/panel-control/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
     //Rutas de facturacion 

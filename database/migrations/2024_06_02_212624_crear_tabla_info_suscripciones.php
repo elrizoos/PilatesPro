@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('tiempo_clase')->nullable();
             $table->enum('asesoramiento', ['inicial', 'mensual', 'semanal'])->nullable();
             $table->integer('dias_cancelacion')->nullable();
-            $table->boolean('beneficios')->nullable();
+            $table->boolean('beneficios')->default(false);
             $table->timestamps();
         });
     }

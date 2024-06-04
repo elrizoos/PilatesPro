@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->integer('numero_clases')->nullable();
             $table->integer('tiempo_clase')->nullable();
             $table->integer('tiempo_validez')->nullable();
+            $table->integer('descuento')->nullable();
             $table->timestamps();
 
         });

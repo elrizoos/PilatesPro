@@ -26,7 +26,10 @@ class UsuarioController extends Controller
         }
         //dd('funciona: ' . var_dump($data));
         $usuario = $registerController->crearUsuario($data);
-        return route('inicio');
+        if(!empty($usuario)){
+            Auth::login($usuario);
+            return redirect()->route('inicio')->with('success', 'Te has registrado con exito');
+        };
 
     }
     protected function guardarCambios(Request $request)

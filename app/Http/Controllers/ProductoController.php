@@ -105,7 +105,6 @@ class ProductoController extends Controller
                 $validatorPaquete = Validator::make($request->all(), [
                     'numero_clases_paquete' => 'required|integer|min:1',
                     'tiempo_clase_paq' => 'required|integer|min:30',
-                    'descuento' => 'required|integer',
                 ], [
                     'numero_clases_paquete.required' => 'El campo numero de clases es requerido',
                     'numero_clases_paquete.integer' => 'El campo numero de clases es un numero',
@@ -115,8 +114,6 @@ class ProductoController extends Controller
                     'tiempo_clase_paq.integer' => 'El campo tiempo de clase debe ser un numero en minutos',
                     'tiempo_clase_paq.min' => 'El campo tiempo de clase debe ser al menos 30',
 
-                    'descuento.required' => 'El campo descuento es requerido',
-                    'descuento.integer' => 'El campo descuento debe ser un numero',
 
                 ]);
 
@@ -162,6 +159,7 @@ class ProductoController extends Controller
 
     public function crearProductoStripe(Request $request, $tipo)
     {
+       // dd($request->all());
         try {
             Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -189,27 +187,35 @@ class ProductoController extends Controller
                 'precio' => $request->price,
                 'precio_stripe_id' => $stripePrice->id,
             ]);
+            try {
 
-            switch ($tipo) {
-                case 'paquete':
-                    InfoPaquete::create([
-                        'producto_id' => $productoBD->id,
-                        'numero_clases' => $request->numero_clases_paquete,
-                        'tiempo_clase' => $request->tiempo_clase_paq,
-                        'tiempo_validez' => now()->addMonth(),
-                    ]);
-                    break;
+                switch ($tipo) {
+                    
+                    case 'paquete':
+                        InfoPaquete::create([
+                            'producto_id' => $productoBD->id,
+                            'numero_clases' => $request->numero_clases_paquete,
+                            'tiempo_clase' => $request->tiempo_clase_paq,
+                            'tiempo_validez' => $request->validez,
+                        ]);
+                        break;
 
-                case 'suscripcion':
-                    InfoSuscripcione::create([
-                        'producto_id' => $productoBD->id,
-                        'clases_semanales' => $request->numero_clases_semanal,
-                        'tiempo_clase' => $request->tiempo_clase_sus,
-                        'asesoramiento' => $request->asesoramiento,
-                        'dias_cancelacion' => $request->dias_cancelacion,
-                        'beneficios' => $request->beneficios,
-                    ]);
-                    break;
+                    case 'suscripcion':
+                        //dd($tipo);
+                        InfoSuscripcione::create([
+                            'producto_id' => $productoBD->id,
+                            'clases_semanales' => $request->numero_clases_semanal,
+                            'tiempo_clase' => $request->tiempo_clase_sus,
+                            'asesoramiento' => $request->asesoramiento,
+                            'dias_cancelacion' => $request->dias_cancelacion,
+                            'beneficios' => $request->beneficios == 'true' ? true : false,
+                        ]);
+                        break;
+                }
+            } catch (\Throwable $th) {
+                \Log::error('Error: ' . $th->getMessage());
+                return redirect()->back()->with('error', 'Hubo un problema al crear el producto.');
+
             }
 
             return redirect()->back()->with('success', 'El producto ' . $productoBD->name . ' se ha creado exitosamente');
@@ -233,12 +239,12 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Producto $producto)
+    public function edit(Producto $producto, $info)
     {
-        //dd($producto);
+        //dd($producto::with(['infoPaquete'])->get());
         $productoEditable = $producto->id;
         $tipoProducto = $producto->type;
-        return redirect()->back()->with(['editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto]);
+        return redirect()->back()->with(['editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto::with([$info])->get()]);
     }
 
     /**
@@ -280,7 +286,6 @@ class ProductoController extends Controller
                     $validatorPaquete = Validator::make($request->all(), [
                         'numero_clases_paquete' => 'required|integer|min:1',
                         'tiempo_clase_paq' => 'required|integer|min:30',
-                        'descuento' => 'required|integer',
                     ], [
                         'numero_clases_paquete.required' => 'El campo numero de clases es requerido',
                         'numero_clases_paquete.integer' => 'El campo numero de clases es un numero',
@@ -290,8 +295,6 @@ class ProductoController extends Controller
                         'tiempo_clase_paq.integer' => 'El campo tiempo de clase debe ser un numero en minutos',
                         'tiempo_clase_paq.min' => 'El campo tiempo de clase debe ser al menos 30',
 
-                        'descuento.required' => 'El campo descuento es requerido',
-                        'descuento.integer' => 'El campo descuento debe ser un numero',
 
                     ]);
 
@@ -339,6 +342,7 @@ class ProductoController extends Controller
 
     public function actualizarProductoStripe(Request $request, $tipo, Producto $producto)
     {
+        //dd($request->all());
         try {
             Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -376,17 +380,16 @@ class ProductoController extends Controller
                     $paqueteInfo->numero_clases = $request->numero_clases_paquete;
                     $paqueteInfo->tiempo_clase = $request->tiempo_clase_paq;
                     $paqueteInfo->tiempo_validez = $request->validez;
-                    $paqueteInfo->descuento = $request->decuento;
                     $paqueteInfo->save();
                     break;
 
                 case 'suscripcion':
                     $suscripcionInfo = InfoSuscripcione::where('producto_id', $producto->id);
-                    $suscripcionInfo->clases_semana = $request->numero_clases_semanal;
+                    $suscripcionInfo->clases_semanales = $request->numero_clases_semanal;
                     $suscripcionInfo->tiempo_clase = $request->tiempo_clase_sus;
                     $suscripcionInfo->asesoramiento = $request->asesoramiento;
                     $suscripcionInfo->dias_cancelacion = $request->dias_cancelacion;
-                    $suscripcionInfo->beneficios = $request->beneficios;
+                    $suscripcionInfo->beneficios = $request->beneficios == 'off' ? 'false' : 'true';
                     $suscripcionInfo->save();
                     break;
             }
@@ -432,7 +435,7 @@ class ProductoController extends Controller
     public function gestionarProductos()
     {
         $productos = Producto::with(['infoPaquete', 'infoSuscripcion'])->get();
-
+        //dd($productos);
 
         $tipo = 'FACTU-productos';
         return view('admin.FACTU-productos', compact('tipo', 'productos'));

@@ -18,15 +18,12 @@ class StripeSyncController extends Controller
         // Obtener productos de Stripe
         $stripeProductos = Product::all(['limit' => 100, 'active' => 'true'])->data;
         //dd($stripeProductos);
-        if($stripeProductos == null){
-            return response()->json(['message' => 'PRODUCTOS SINCRONIZADOS CON EXITO. NO HAY PRODUCTOS ACTIVOS EN STRIPE']);
-
-        }
+        
         // Obtener todos los IDs de los productos de Stripe
         $stripeProductoIds = array_map(function ($product) {
             return $product->id;
         }, $stripeProductos);
-
+        //dd($stripeProductoIds);
         // Obtener los productos de la base de datos que ya no están en Stripe y eliminarlos
         Producto::whereNotIn('stripe_id', $stripeProductoIds)->delete();
 

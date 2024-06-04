@@ -13,7 +13,7 @@ class InfoPaquete extends Model
         'producto_id',
         'numero_clases',
         'tiempo_clase',
-        'tiempo_validez'
+        'tiempo_validez',
     ];
     public function producto()
     {

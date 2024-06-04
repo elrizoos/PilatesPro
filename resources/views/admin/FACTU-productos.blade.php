@@ -3,7 +3,7 @@
 @section('FACTU-productos')
     @if (session()->has('producto'))
         @php
-            $productoEditar = session('producto');
+            $producto = session('producto');
         @endphp
     @endif
     <div class="container-fluid  w-100 h-100">
@@ -34,7 +34,7 @@
                         <div class="tab-pane fade container-fluid w-100 h-100" id="productos-paquetes" role="tabpanel"
                             aria-labelledby="productos-paquetes" tabindex="0">
                             <div
-                                class="container-fluid  overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
+                                class="container-fluid p-2  overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
                                 <div class="row w-100 h-100 ">
                                     <div class="col">
                                         <div class="row h-100 row-cols-3 ">
@@ -72,11 +72,12 @@
                                                                     {{ $producto->infoPaquete->tiempo_clase }}</td>
                                                                 <td class="texto-color-dorado border border-2 border-fondo">
                                                                     {{ $producto->infoPaquete->tiempo_validez }}</td>
+                                                               
                                                                 <td class="texto-color-dorado border border-2 border-fondo">
                                                                     <div
                                                                         class=" d-flex flex-row justify-content-center align-items-center">
                                                                         <form
-                                                                            action="{{ route('productos.edit', $producto->id) }}"
+                                                                            action="{{ route('productos.edit', ['producto' => $producto->id, 'infoPaquete']) }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             <input
@@ -108,49 +109,88 @@
                         <div class="tab-pane fade container-fluid w-100 h-100" id="productos-suscripcion" role="tabpanel"
                             aria-labelledby="productos-suscripcion" tabindex="0">
                             <div
-                                class="container-fluid overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
+                                class="container-fluid p-2 overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
                                 <div class="row w-100 h-100 ">
                                     <div class="col">
                                         <div class="row h-100 row-cols-3 ">
-                                            @foreach ($productos as $producto)
-                                                @if ($producto->type == 'membership')
-                                                    <div data-id="{{ $producto->id }}"
-                                                        class="producto-click col text-light d-flex justify-content-center align-items-center ">
-                                                        <ul
-                                                            class=" h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
-                                                            <li class="p-2 text-center text-uppercase">
-                                                                {{ $producto->name }}
-                                                            </li>
-                                                            <li class="p-2 text-center">{{ $producto->description }}</li>
-                                                            <li class="p-2 text-center text-danger fs-4">
-                                                                {{ $producto->precio }}€</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div id="formulario-producto-{{ $producto->id }}"
-                                                        class="d-none col text-light d-flex justify-content-center align-items-center ">
-                                                        <div
-                                                            class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
-                                                            <form
-                                                                class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.edit', ['producto' => $producto->id]) }}"
-                                                                method="get">
-                                                                @csrf
-                                                                <input class="estilo-formulario bg-success" type="submit"
-                                                                    value="Editar">
-                                                            </form>
-                                                            <form
-                                                                class="w-50 h-100  d-flex justify-content-center align-items-center "
-                                                                action="{{ route('productos.destroy', ['producto' => $producto->id]) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <input class="estilo-formulario bg-danger" type="submit"
-                                                                    value="Eliminar">
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
+
+                                            <table
+                                                class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-light border border-2 border-fondo">ID</th>
+                                                        <th class="text-light border border-2 border-fondo">Nombre</th>
+                                                        <th class="text-light border border-2 border-fondo">Descripcion</th>
+                                                        <th class="text-light border border-2 border-fondo">Precio</th>
+                                                        <th class="text-light border border-2 border-fondo">Nº Clases
+                                                            Semanales</th>
+                                                        <th class="text-light border border-2 border-fondo">Tiempo Clase
+                                                        </th>
+                                                        <th class="text-light border border-2 border-fondo">Asesoramiento
+                                                        </th>
+                                                        <th class="text-light border border-2 border-fondo">Dias Cancelacion
+                                                        </th>
+                                                        <th class="text-light border border-2 border-fondo">Beneficios</th>
+                                                        <th class="text-light border border-2 border-fondo">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($productos as $producto)
+                                                        @if ($producto->type == 'membership')
+                                                            <tr>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->id }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->name }}</td>
+                                                                <td class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->description }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->precio }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoSuscripcion->clases_semanales }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoSuscripcion->tiempo_clase }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoSuscripcion->asesoramiento }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoSuscripcion->dias_cancelacion }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    {{ $producto->infoSuscripcion->beneficios }}</td>
+                                                                <td
+                                                                    class="texto-color-dorado border border-2 border-fondo">
+                                                                    <div
+                                                                        class=" d-flex flex-row justify-content-center align-items-center">
+                                                                        <form
+                                                                            action="{{ route('productos.edit', ['producto' => $producto->id, 'infoSuscripcion']) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            <input
+                                                                                class="texto-color-dorado-claro estilo-formulario"
+                                                                                type="submit" value="Editar">
+                                                                        </form>
+                                                                        <form
+                                                                            action="{{ route('productos.destroy', $producto->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <input
+                                                                                class="texto-color-dorado-claro estilo-formulario"
+                                                                                type="submit" value="Eliminar">
+                                                                        </form>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +204,7 @@
                                 <div class="row w-100">
                                     <div class="col p-4">
                                         <form class="formulario w-100 h-100 container-fluid "
-                                            action="{{ session()->has('editable') ? route('productos.update', ['producto' => $productoEditar->id]) : route('productos.store') }}"
+                                            action="{{ session()->has('editable') ? route('productos.update', ['producto' => $producto->id]) : route('productos.store') }}"
                                             method="POST">
                                             @csrf
                                             @if (session()->has('editable'))
@@ -183,15 +223,17 @@
                                                             <input id="name" type="text"
                                                                 class="estilo-formulario w-100 text-center"
                                                                 placeholder="Nombre Producto"
-                                                                value="{{ session()->has('editable') ? $productoEditar->name : '' }}">
+                                                                value="{{ session()->has('editable') ? $producto->name : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col d-flex flex-column gap-2">
-                                                            <textarea id="description" class="estilo-formulario w-100 " placeholder="Escribe aqui una descripcion del producto">
-                                                    {{ session()->has('editable') ? $productoEditar->description : '' }}</textarea>
+                                                            <label class="texto-color-principal text-center"
+                                                                for="descripcion">Descripcion del producto</label>
+                                                            <textarea id="description" class="estilo-formulario w-100 texto-color-principal ">
+                                                    {{ session()->has('editable') ? $producto->description : '' }}</textarea>
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
@@ -201,7 +243,7 @@
                                                             <input id="price" type="number"
                                                                 class="estilo-formulario w-100 text-center"
                                                                 placeholder="Precio del producto" step="0.01"
-                                                                value="{{ session()->has('editable') ? $productoEditar->precio : '' }}">
+                                                                value="{{ session()->has('editable') ? $producto->precio : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
@@ -224,7 +266,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none fs-5" id="seccionSuscripcion">
+                                            <div class="row {{ (session()->has('editable') && session('tipoProducto') !== 'membership') || !session()->has('editable') ? 'd-none' : '' }} fs-5"
+                                                id="seccionSuscripcion">
                                                 <div class="col p-4">
                                                     <div class="row">
                                                         <div class="col">
@@ -238,14 +281,14 @@
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Numero clases semanales" type="number"
-                                                                name="numero_clases_semanal" id="numero_clases_semanal">
+                                                                name="numero_clases_semanal" id="numero_clases_semanal" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->clases_semanales : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Duracion de las clases" type="number"
-                                                                name="tiempo_clase_sus" id="tiempo_clase">
+                                                                name="tiempo_clase_sus" id="tiempo_clase" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->tiempo_clase : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
@@ -253,13 +296,13 @@
                                                     <div class="row">
                                                         <div
                                                             class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
-                                                            <label class=""
+                                                            <label class="" 
                                                                 for="asesoramiento">Asesoramiento:</label>
-                                                            <input class="" type="radio" name="asesoramiento"
+                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'inicial' ? 'checked' : '' }} type="radio" name="asesoramiento"
                                                                 value="inicial" id="inicial"><span>Inicio</span>
-                                                            <input class="" type="radio" name="asesoramiento"
+                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'mensual' ? 'checked' : '' }} type="radio" name="asesoramiento"
                                                                 value="mensual" id="mensual"><span>Mensual</span>
-                                                            <input class="" type="radio" name="asesoramiento"
+                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'semanal' ? 'checked' : '' }} type="radio" name="asesoramiento"
                                                                 value="semanal" id="semanal"><span>Semanal</span>
                                                         </div>
                                                     </div>
@@ -267,14 +310,18 @@
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Dias para cancelacion" type="number"
-                                                                name="dias_cancelacion" id="dias_cancelacion">
+                                                                name="dias_cancelacion" id="dias_cancelacion" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->dias_cancelacion : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col">
-                                                                <label for="beneficios">Beneficios:</label>
-                                                                <input type="checkbox" name="beneficios" id="beneficios">
+                                                            <div class="col texto-color-principal">
+                                                                <label class="" for="beneficios">Beneficios:</label>
+                                                                <input type="radio" name="beneficios" id="beneficios" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '1' ? 'checked' : '' }}
+                                                                    value="true">Sí
+                                                                <input type="radio" name="beneficios" id="beneficios" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '0' ? 'checked' : '' }}
+                                                                    value="false" checked>No
+
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -286,28 +333,30 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row d-none" id="seccionPaquete">
+                                            
+                                            <div class="row {{ (session()->has('editable') && session('tipoProducto') !== 'package') || !session()->has('editable') ? 'd-none' : '' }}"
+                                                id="seccionPaquete">
                                                 <div class="col p-4">
                                                     <div class="row">
                                                         <div class="col">
                                                             <h4
                                                                 class="fs-2 text-center p-2 texto-color-secundario text-uppercase">
                                                                 Estás editando un Paquete de clases</h4>
-
                                                         </div>
                                                     </div>
                                                     <div class="row p-4">
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Numero clases paquete" type="number"
-                                                                name="numero_clases_paquete" id="numero_clases_paquete">
+                                                                name="numero_clases_paquete" id="numero_clases_paquete"
+                                                                value="{{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->numero_clases : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Duracion de las clases" type="number"
-                                                                name="tiempo_clase_paq" id="tiempo_clase">
+                                                                name="tiempo_clase_paq" id="tiempo_clase" value="{{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->tiempo_clase : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
@@ -316,18 +365,9 @@
                                                     <div class="row">
                                                         <div
                                                             class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
-                                                            <label for="descuento">Descuento para proximo
-                                                                paquete:</label>
-                                                            <input class="estilo-formulario  border-bottom border-dorado"
-                                                                type="number" name="descuento" id="descuento">
-
-                                                        </div>
-                                                        <div
-                                                            class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
                                                             <label for="validez">Tiempo de validez en dias:</label>
                                                             <input class="estilo-formulario  border-bottom border-dorado"
-                                                                type="number" name="validez" id="validez">
-
+                                                                type="number" name="validez" id="validez" {{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->validez : '' }}>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -349,7 +389,9 @@
                 </div>
             </div>
         </div>
-
+        <div class="position-absolute text-danger top-0 m-3 fs-4 text-uppercase d-none" id="botonAtrasFormulario">
+            Atras
+        </div>
     </div>
 
     <script>
@@ -369,23 +411,33 @@
                 switch (tipo_producto) {
                     case 'package':
                         console.log('HOLA');
+                        $('#seccionSuscripcion').removeClass('d-none');
+                        $('#seccionSuscripcion').addClass('d-none');
                         $('#seccionPaquete').removeClass('d-none');
-                        $('#seccion-general').addClass('d-none');
+                        $('#botonAtrasFormulario').removeClass('d-none');
+                        $('#botonAtrasFormulario').on('click', function() {
+                            $('#botonAtrasFormulario').addClass('d-none');
+                            $('#seccionPaquete').addClass('d-none');
+                            $('#seccion-general').removeClass('d-none');
+                        });
                         break;
                     case 'membership':
+                        $('#seccionPaquete').removeClass('d-none');
+                        $('#seccionPaquete').addClass('d-none');
                         $('#seccionSuscripcion').removeClass('d-none');
-                        $('#seccion-general').addClass('d-none');
+                        $('#botonAtrasFormulario').removeClass('d-none');
+                        $('#botonAtrasFormulario').on('click', function() {
+                            $('#seccionSuscripcion').addClass('d-none');
+                            $('#botonAtrasFormulario').addClass('d-none');
+                            $('#seccion-general').removeClass('d-none');
+                        });
+                        break;
                 }
 
-                var inputName = $('#nombreInput');
-                var inputPrice = $('#precioInput');
-                var inputDescription = $('#descripcionInput');
-                var inputType = $('#tipo_productoInput');
-
-                inputName.val(name);
-                inputPrice.val(precio);
-                inputDescription.val(description),
-                    inputType.val(tipo_producto);
+                $('#nombreInput').val(name);
+                $('#precioInput').val(precio);
+                $('#descripcionInput').val(description);
+                $('#tipo_productoInput').val(tipo_producto);
 
 
 
