@@ -36,7 +36,7 @@ class ProductoController extends Controller
 
 
         if ($activeSubscription) {
-            $productos = Producto::where('type', 'package')->get();
+            $productos = Producto::where('type', 'package')->with(['infoPaquete', 'infoSuscripcion'])->get();
             $suscripcionStripe = SubscriptionStripe::retrieve($activeSubscription->stripe_id);
             //dd($suscripcionStripe, $activeSubscription);
             $fechaFinPeriodo = $suscripcionStripe->current_period_end;
@@ -50,7 +50,7 @@ class ProductoController extends Controller
             return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo', 'productos', 'activeSubscription', 'fechaUltimoPago', 'fechaFinPeriodo'));
 
         } else {
-            $productos = Producto::all();
+            $productos = Producto::with(['infoPaquete', 'infoSuscripcion'])->get();
             return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo', 'productos', 'activeSubscription'));
         }
 

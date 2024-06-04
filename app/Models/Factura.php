@@ -8,9 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Factura extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'fecha_emision',
+        'monto_total',
+        'alumno_id',
+        'pdf',
+    ];
     public function detalles()
     {
-        return $this->hasMany(FacturaDetalles::class);
+        return $this->hasMany(FacturaDetalle::class);
     }
     public function alumno()
     {

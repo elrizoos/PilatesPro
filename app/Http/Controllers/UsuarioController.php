@@ -15,7 +15,8 @@ use Validator;
 class UsuarioController extends Controller
 {
 
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $registerController = new RegisterController();
         $data = $request->all();
         $data['password_confirmation'] = $data['password'];
@@ -26,10 +27,11 @@ class UsuarioController extends Controller
         }
         //dd('funciona: ' . var_dump($data));
         $usuario = $registerController->crearUsuario($data);
-        if(!empty($usuario)){
+        if (!empty($usuario)) {
             Auth::login($usuario);
             return redirect()->route('inicio')->with('success', 'Te has registrado con exito');
-        };
+        }
+        ;
 
     }
     protected function guardarCambios(Request $request)
@@ -98,7 +100,8 @@ class UsuarioController extends Controller
                 break;
         }
     }
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
@@ -145,7 +148,8 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'Información actualizada correctamente.');
 
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         $usuario = User::find($id);
         $usuario->delete();
         return redirect()->back()->with('sucess', 'user borrado');
@@ -174,11 +178,45 @@ class UsuarioController extends Controller
     }
 
 
-    public function sumatorioClases(Producto $producto){
-        $usuario = Auth::user();
-        $usuario->numero_clases += $producto->quantity;
-        $usuario->save();
+    public function sumatorioClases(Producto $producto)
+    {
+        try {
+            $usuario = Auth::user();
+            \Log::debug('Usuario: ' . json_encode($usuario));
+            $tipoProducto = $producto->type;
 
-        return $usuario->numero_clases;
+            switch ($tipoProducto) {
+                case 'package':
+                    $infoPaquete = $producto->infoPaquete;
+                    \Log::debug('Info Paquete: ' . json_encode($infoPaquete));
+                    if ($infoPaquete) {
+                        $usuario->numero_clases += $infoPaquete->numero_clases;
+                    } else {
+                        throw new \Exception('Información del paquete no encontrada');
+                    }
+                    break;
+
+                case 'membership':
+                    $infoSuscripcion = $producto->infoSuscripcion;
+                    \Log::debug('Info Suscripción: ' . json_encode($infoSuscripcion));
+                    if ($infoSuscripcion) {
+                        $usuario->numero_clases += $infoSuscripcion->clases_semanales;
+                    } else {
+                        throw new \Exception('Información de la suscripción no encontrada');
+                    }
+                    break;
+
+                default:
+                    throw new \Exception('Tipo de producto desconocido');
+            }
+
+            $usuario->save();
+            \Log::debug('Usuario actualizado: ' . json_encode($usuario));
+            return true;
+        } catch (\Throwable $th) {
+            \Log::error('Error: ' . $th->getMessage());
+            return $th->getMessage();
+        }
     }
+
 }

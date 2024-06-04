@@ -4,6 +4,9 @@
     @php
         $suscripciones = false;
     @endphp
+    @if (session()->has('success') && session()->has('factura'))
+        @dd(session('factura'))
+    @endif
     <div class="container-fluid text-light">
         <div class="row h-80">
             <div class="col">
@@ -14,7 +17,7 @@
                             <div class="contenedor-estado {{ isset($activeSubscription) ? 'text-success' : 'text-danger' }}">
                                 {{ isset($activeSubscription) ? 'Active' : 'In-Active' }}
                             </div>
-                            <div class="fs-4 d-flex justify-content-center align-items-center">
+                            <div class="fs-4 d-flex justify-content-center align-items-center {{isset($activeSubscription) ? 'd-none' : '' }}">
                                 <ul class="">
                                     <li class=" text-center">Clases disponibles: <span
                                             class=" texto-color-dorado">{{ Auth::user()->numero_clases }}</span></li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Factura;
 use App\Models\InfoSuscripcione;
 use App\Models\PaqueteUsuario;
 use App\Models\Producto;
@@ -29,6 +30,8 @@ class PagoController extends Controller
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
+        $facturaController = new FacturaController();
+        $usuarioController = new UsuarioController();
 
         $paymentMethod = PaymentMethod::retrieve($request->input('payment_method_id'));
 
@@ -61,44 +64,62 @@ class PagoController extends Controller
                 'stripe_id' => $subscription->id,
                 'stripe_status' => 'active',
                 'stripe_price' => $producto->precio_stripe_id,
-                'ends_at' => now()->addMonth(), 
+                'ends_at' => now()->addMonth(),
                 'producto_id' => $producto->id,
             ]);
 
-            InfoSuscripcione::create([
-                'suscripcion_id' => $suscripcionBD->id,
-            ]);
-            $facturaController = new FacturaController();
-            $usuarioController = new UsuarioController();
 
-            $numeroClasesUsuario = $usuarioController->sumatorioClases($producto);
-            //$facturaController->generarFactura();
+            $sumarClases = $usuarioController->sumatorioClases($producto);
+            if ($sumarClases !== true) {
+                return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
+            }
+
+            $generarFactura = $facturaController->generarFactura($customer->id);
+
+            if ($generarFactura !== true) {
+                return $generarFactura;
+            }
 
             return redirect()->route('suscripcion-estadoSuscripcion')->with('success', 'Se ha actualizado su suscripcion. Desde ya mismo puedes disfrutar de las ventajas');
         } else if ($producto->type == 'package') {
-            // Crear un PaymentIntent para una compra única
-            $paymentIntent = PaymentIntent::create([
-                'amount' => $producto->price * 100, // Monto en centavos
-                'currency' => 'eur',
-                'customer' => $customer->id,
-                'payment_method' => $paymentMethod->id,
-                'off_session' => true,
-                'confirm' => true,
-            ]);
+            // dd($producto);
+            try {
+                $paymentIntent = PaymentIntent::create([
+                    'amount' => $producto->precio * 100,
+                    'currency' => 'eur',
+                    'customer' => $customer->id,
+                    'payment_method' => $paymentMethod->id,
+                    'off_session' => true,
+                    'confirm' => true,
+                ]);
+            } catch (\Throwable $th) {
+                dd($th->getMessage());
+            }
             if ($paymentIntent->status == 'succeeded') {
-                // Guardar la compra en la base de datos
                 PaqueteUsuario::create([
                     'user_id' => Auth::id(),
-                    'product_id' => $producto->id,
-                    'amount' => $producto->price,
-                    'payment_intent_id' => $paymentIntent->id,
-                    'status' => 'completed'
+                    'producto_id' => $producto->id,
+                    'fecha_compra' => now(),
+                    'payment_method_id' => $paymentMethod->id,
                 ]);
 
-                return response()->json(['success' => true]);
+                $sumarClases = $usuarioController->sumatorioClases($producto);
+                if ($sumarClases !== true) {
+                    dd("entrado");
+
+                    return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
+                }
+
+                $generarFactura = $facturaController->generarFactura($customer->id);
+
+                if ($generarFactura !== true) {
+                    dd('error');
+                    return $generarFactura;
+                }
+                return redirect()->route('suscripcion-estadoSuscripcion')->with('success', 'Se ha añadido el numero de clases del paquete. Ahora cuentas con ' . $producto->infoPaquete->numero_clases . ' clases extra');
+
             } else {
-                // El pago ha fallado
-                return response()->json(['error' => 'Payment failed.']);
+                return redirect()->back()->with('error', 'El pago ha fallado');
             }
         }
     }

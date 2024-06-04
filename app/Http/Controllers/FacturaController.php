@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Factura;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Stripe\Invoice;
+use Stripe\PaymentIntent;
 use Stripe\Stripe;
 use Stripe\Subscription;
 use Barryvdh\DomPDF\Facade\PDF;
@@ -70,25 +73,20 @@ class FacturaController extends Controller
         //
     }
 
-    public function generarFactura($suscripcionId)
+    public function generarFactura($customerID)
     {
-
-        //dd('hola');
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $usuario = Auth::user();
 
         try {
-            $suscripcion = Subscription::retrieve($suscripcionId);
-
-            // Obtener la última factura de la suscripción
-            $ultimaFactura = Invoice::all(['subscription' => $suscripcionId, 'limit' => 1]);
-
-            if (count($ultimaFactura->data) == 0) {
+            // Obtener la última factura del cliente
+            $ultimasFacturas = Invoice::all(['customer' => $customerID, 'limit' => 1]);
+            if (count($ultimasFacturas->data) == 0) {
                 return redirect()->back()->with('error', 'No se ha encontrado ninguna factura realizada.');
             }
 
-            $factura = $ultimaFactura->data[0];
+            $factura = $ultimasFacturas->data[0];
 
             $empresa = [
                 'nombre' => 'Estudio Pilates',
@@ -106,14 +104,10 @@ class FacturaController extends Controller
                 'DNI' => $usuario->dni,
             ];
 
-            // Usar los timestamps proporcionados por Stripe
-            $fecha_emision = date('d/m/Y', $suscripcion->current_period_start);
-            $fecha_vencimiento = date('d/m/Y', $suscripcion->current_period_end);
-
-            $factura = [
+            $facturaArray = [
                 'numero' => $factura->number,
-                'fecha_emision' => $fecha_emision,
-                'fecha_vencimiento' => $fecha_vencimiento,
+                'fecha_emision' => now(),
+                'fecha_vencimiento' => now()->addMonth(),
                 'items' => $factura->lines->data,
                 'subtotal' => number_format($factura->subtotal / 100, 2),
                 'impuestos' => number_format($factura->tax / 100, 2),
@@ -121,27 +115,48 @@ class FacturaController extends Controller
                 'metodo_pago' => 'Tarjeta de Crédito',
             ];
 
-            $data = compact('empresa', 'cliente', 'factura');
+            $data = compact('empresa', 'cliente', 'facturaArray');
 
             // Generar el PDF
-            $pdf = PDF::loadView('facturaciones.factura', $data);
+            try {
+                $pdf = PDF::loadView('facturaciones.factura', $data);
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors(['message' => 'Error al generar el PDF: ' . $th->getMessage()]);
+            }
 
-            // Enviar la factura por email
+            // Guardar el PDF en storage
+            $pdfFilePath = 'facturas/'.time().'factura_user_' . $usuario->id . '_idFactura_' . $factura->number . '.pdf';
+            try {
+                Storage::put('public/' . $pdfFilePath, $pdf->output());
+            } catch (\Throwable $th) {
+                return redirect()->back()->withErrors(['message' => 'Error al guardar el PDF: ' . $th->getMessage()]);
+            }
+
+            // Guardar información de la factura en la base de datos
+            $facturaNueva = new Factura();
+            $facturaNueva->fecha_emision = now();
+            $facturaNueva->monto_total = $facturaArray['total'];
+            $facturaNueva->alumno_id = $usuario->id;
+            $facturaNueva->pdf = $pdfFilePath;
+            $facturaNueva->save();
+
+            // Enviar la factura por email (opcional)
             /*
-            Mail::send('emails.factura', $data, function ($message) use ($usuario, $pdf, $facturaCliente) {
+            Mail::send('emails.factura', $data, function ($message) use ($usuario, $pdf, $facturaArray) {
                 $message->to($usuario->email, $usuario->nombre)
                     ->subject('Factura de Suscripción')
-                    ->attachData($pdf->output(), "factura_{$facturaCliente['numero']}.pdf");
+                    ->attachData($pdf->output(), "factura_{$facturaArray['numero']}.pdf");
             });
             */
-            \Log::debug("Factura generada");
-            //dd($pdf);
-            return $pdf->stream("factura_{$factura['numero']}.pdf");
+
+            \Log::debug("Factura generada correctamente");
+            return true;
         } catch (\Throwable $th) {
-            \Log::debug("error en guardar factura: " . $th->getMessage());
+            \Log::debug("Error en guardar factura: " . $th->getMessage());
             return redirect()->back()->withErrors(['message' => 'Hubo un problema al generar la factura: ' . $th->getMessage()]);
         }
     }
+
 
     public function mostrarFactura()
     {

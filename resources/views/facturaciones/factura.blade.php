@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Factura</title>
+    <title>facturaArray</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,7 +68,7 @@
             border-bottom: 1px solid #ddd;
         }
 
-        .cliente-factura {
+        .cliente-facturaArray {
             width: 100%;
             display: table;
             margin-top: 20px;
@@ -170,7 +170,7 @@
             <div>
                 <table>
                     <tr>
-                        <th>Factura Nº</th>
+                        <th>facturaArray Nº</th>
                         <td>#001</td>
                     </tr>
                     <tr>
@@ -196,7 +196,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($factura['items'] as $item)
+                @foreach ($facturaArray['items'] as $item)
                     <tr>
                         <td>{{ $item->description }}</td>
                         <td>{{ $item->quantity }}</td>
@@ -211,15 +211,15 @@
             <table>
                 <tr>
                     <th>Subtotal</th>
-                    <td>{{ $factura['subtotal'] }}€</td>
+                    <td>{{ $facturaArray['subtotal'] }}€</td>
                 </tr>
                 <tr>
                     <th>Impuestos (IVA 21%)</th>
-                    <td>{{ $factura['impuestos'] }}€</td>
+                    <td>{{ $facturaArray['impuestos'] }}€</td>
                 </tr>
                 <tr>
                     <th>Total</th>
-                    <td>{{ $factura['total'] }}€</td>
+                    <td>{{ $facturaArray['total'] }}€</td>
                 </tr>
             </table>
         </div>
