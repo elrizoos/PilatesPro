@@ -434,6 +434,13 @@ a {
     border-style: inset;
 }
 
+.border-dorado {
+    border-color:$colorSecundario !important;
+}
+
+.border-dorado-claro {
+    border-color:$colorDoradoClaro !important;
+}
 .max-width-70 {
     max-width: 70% !important;
 }
@@ -480,6 +487,11 @@ a {
 }
 .service-title {
     color: #c39b6a; /* Color del título de los servicios */
+}
+
+.form-control:focus {
+    background-color: unset;
+    color: $colorDoradoClaro;
 }
 
 .estilo-formulario {
@@ -709,7 +721,11 @@ a {
     box-shadow: 0 4px 6px $colorGrisClaro, 0 10px 20px $colorGrisClaro,
         0 15px 30px $colorGrisClaro;
 }
-
+.shadow-lifted-dorado {
+    position: relative;
+    box-shadow: 0 4px 6px $colorSecundario, 0 10px 20px $colorSecundario,
+        0 15px 30px $colorSecundario;
+}
 
 //
 //
@@ -726,6 +742,9 @@ a {
 //
 //
 //
+
+
+
 //Estilos para el apartado de registro horario
 .contenedor-formulario .formulario-horario {
     display: flex;

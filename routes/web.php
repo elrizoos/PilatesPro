@@ -46,7 +46,7 @@ Route::get(
     '/inicio',
     [PaginaController::class, 'index']
 )->name('inicio');
-
+Route::post('/registrarUsuario', [UsuarioController::class, 'create'])->name('registroUsuario');
 Route::get('/foro/{pagina}', [PaginaController::class, 'mostrarPagina'])->name('mostrarPagina');
 Route::group(['middleware' => 'auth'], function () {
 
@@ -79,9 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth.login');
     })->name('login');
 
-    Route::get('/registro', function () {
-        return view('auth.register');
-    })->name('registro');
+    
 
     Route::get('/configuracion', function () {
         return view('usuario.perfil');
@@ -201,13 +199,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
     Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
-    Route::get('/admin/panel-control/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
     //Rutas de facturacion 
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
-    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'pagar'])->name('pagar');
-
+    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
+    Route::get('/facturacion/suscripcion/cambiarPlan/{producto}', [PagoController::class, 'cambioPlan'])->name('cambiarPlan');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');
 
     //Ruta de sincronizacion de productos con stripe y bd local

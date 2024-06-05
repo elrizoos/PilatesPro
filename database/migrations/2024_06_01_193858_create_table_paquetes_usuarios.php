@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('table_paquetes_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('stripe_id');
-            $table->string('name');
-            $table->string('description');
-            $table->enum('type', ['membership', 'package']);
-            $table->decimal('precio', 8, 2);
-            $table->string('precio_stripe_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
+            $table->date('fecha_compra');
+            
 
             $table->timestamps();
         });
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('table_paquetes_usuarios');
     }
 };

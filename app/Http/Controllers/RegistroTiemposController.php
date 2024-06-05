@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
-use App\Models\Subscription;
+use App\Models\RegistroTiempo;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Stripe\Checkout\Session;
-use Stripe\Stripe;
 
-class SubscriptionController extends Controller
+class RegistroTiemposController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +19,18 @@ class SubscriptionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($user)
     {
-        
+        RegistroTiempo::create([
+            'user_id' => $user,
+            'clases_totales' => 0,
+            'clases_45' => 0,
+            'clases_60' => 0,
+            'clases_120' => 0,
+            'minutos_totales' => 0,
+            'clases_disfrutadas' => 0,
+            'tiempo_disfrutado' => 0,
+        ]);
     }
 
     /**
@@ -39,7 +44,7 @@ class SubscriptionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Subscription $subscription)
+    public function show(RegistroTiempo $registroTiempo)
     {
         //
     }
@@ -47,7 +52,7 @@ class SubscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Subscription $subscription)
+    public function edit(RegistroTiempo $registroTiempo)
     {
         //
     }
@@ -55,7 +60,7 @@ class SubscriptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, RegistroTiempo $registroTiempo)
     {
         //
     }
@@ -63,13 +68,8 @@ class SubscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Subscription $subscription)
+    public function destroy(RegistroTiempo $registroTiempo)
     {
         //
     }
-
-
-
-
-
 }

@@ -8,7 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Subscription extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'user_id',
+        'name',
+        'stripe_id',
+        'stripe_status',
+        'stripe_price',
+        'quantity',
+        'trial_ends_at',
+        'ends_at',
+        'producto_id'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -16,6 +26,6 @@ class Subscription extends Model
 
     public function product()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
 }

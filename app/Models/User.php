@@ -30,7 +30,9 @@ class User extends Authenticatable
         'password',
         'tipo_usuario',
         'especializacion',
-        'grupo_id'
+        'grupo_id',
+        'numero_clases',
+        'registro_clases'
     ];
 
     /**
@@ -75,5 +77,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Factura::class);
     }
+    public function productos()
+    {
+        return $this->hasMany(Producto::class);
+    }
 
+    public function suscripcion()
+    {
+        return $this->hasOne(Subscription::class);
+    }
+
+    public function registroTiempo()
+    {
+        return $this->hasOne(RegistroTiempo::class, 'user_id');
+    }
 }
