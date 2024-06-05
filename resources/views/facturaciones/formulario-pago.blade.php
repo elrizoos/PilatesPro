@@ -204,6 +204,15 @@
             <path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
                 fill="#8e6d45" opacity="1" data-original="#000000" />
         </symbol>
+        <symbol id="devolver" viewBox="0 0 512 512">
+            <title>devolver</title>
+            <path fill="#8e6d45"
+                d="M362 512H150C67.2 512 0 444.8 0 362V150C0 67.2 67.2 0 150 0h212c82.8 0 150 67.2 150 150v212c0 82.8-67.2 150-150 150z"
+                opacity="1" data-original="#007bea" class="" />
+            <path fill="#ffffff"
+                d="M210.7 210.7c25-25 65.5-25 90.5 0s25 65.5 0 90.5-65.5 25-90.5 0l-45.3 45.3c50 50 131 50 181 0s50-131 0-181-131-50-181 0l-33.9-33.9v113.1h113.1z"
+                opacity="1" data-original="#ffffff" />
+        </symbol>
     </svg>
 </div>
 
@@ -217,7 +226,7 @@
         </div>
         <div class="row h-5 ps-3">
             <div class="col fs-5">
-                <div class="atras  w-10" id="botonAtras" data-url="{{ route('suscripcion-estadoSuscripcion')}}">
+                <div class="atras  w-10" id="botonAtras" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
                     <svg class="icon icono-normal">
                         <use xlink:href="#botn-cerrar" />
                     </svg> VOLVER
@@ -228,10 +237,12 @@
                     <div
                         class="texto-color-principal bg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
                         <h1 class="fs-2 p-2">
-                            {{ $producto->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $producto->name }} </h1>
-                        <h2 class="fs-3 p-2">Precio a pagar: <b class="text-danger fs-2">{{ $producto->precio }}€</b>
+                            {{ $productoFacturar->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $productoFacturar->name }}
+                        </h1>
+                        <h2 class="fs-3 p-2">Precio a pagar: <b
+                                class="text-danger fs-2">{{ (float) $productoFacturar->precio }}€</b>
                         </h2>
-                        <h2 class="fs-3 p-2">Detalles: <br> {{ $producto->description }}</h2>
+                        <h2 class="fs-3 p-2">Detalles: <br> {{ $productoFacturar->description }}</h2>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
@@ -239,7 +250,7 @@
                         class="bg-color-fondo-claro w-95 h-95 shadow-lifted p-4 d-flex flex-column justify-content-center align-items-center">
                         <h2 class="fs-2 text-uppercase text-center p-2 texto-color-secundario">Formulario de Pago</h2>
                         <form class="w-80" id="payment-form"
-                            action="{{ route('pagar', ['producto' => $producto->id]) }}" method="POST">
+                            action="{{ route('pagar', ['producto' => $productoFacturar->id]) }}" method="POST">
                             @csrf
                             <div class="form-group p-2">
                                 <label for="name">Nombre Completo</label>
@@ -280,7 +291,7 @@
         </div>
         <script src="https://js.stripe.com/v3/"></script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function() {
                 $('#botonAtras').on('click', function() {
                     window.location.href = $(this).data('url');
                 });
@@ -340,7 +351,7 @@
                         hiddenInput.setAttribute('value', result.paymentMethod.id);
                         form.appendChild(hiddenInput);
 
-                        
+
 
                         form.submit();
                     }

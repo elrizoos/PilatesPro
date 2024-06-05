@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->integer('numero_clases')->default(0);
+        Schema::table('users', function(Blueprint $table) {
+            $table->foreignId('registro_clases_id')->nullable()->constrained('registro_tiempos')->onDelete('cascade');
         });
     }
 
@@ -21,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['registro_clases_id']);
+            $table->dropColumn('registro_clases_id');
+        });
     }
 };

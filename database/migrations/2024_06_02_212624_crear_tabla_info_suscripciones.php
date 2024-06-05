@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->integer('clases_semanales')->nullable();
-            $table->integer('tiempo_clase')->nullable();
+            $table->enum('tiempo_clase', ['45', '60', '120'])->nullable();
             $table->enum('asesoramiento', ['inicial', 'mensual', 'semanal'])->nullable();
             $table->integer('dias_cancelacion')->nullable();
             $table->boolean('beneficios')->default(false);

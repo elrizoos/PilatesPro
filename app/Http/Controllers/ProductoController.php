@@ -7,6 +7,7 @@ use App\Models\InfoSuscripcione;
 use App\Models\Producto;
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
+use App\Models\User;
 use Stripe\Customer;
 use Stripe\Invoice;
 use Stripe\PaymentIntent;
@@ -27,7 +28,8 @@ class ProductoController extends Controller
     {
         $tipo = 'SUS-estadoSuscripcion';
         Stripe::setApiKey(config('services.stripe.secret'));
-        $user = Auth::user();
+        $user = User::where('id', Auth::user()->id)->with(['registroTiempo'])->first();
+        //dd($user);
         $subscriptions = Subscription::with(['product'])->where('user_id', $user->id)->get();
         //dd($subscriptions);
         $activeSubscription = $subscriptions->where('stripe_status', 'active')->first();
@@ -47,11 +49,11 @@ class ProductoController extends Controller
 
                 $fechaUltimoPago = date('D, d M Y', $paymentIntent->created);
             }
-            return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo', 'productos', 'activeSubscription', 'fechaUltimoPago', 'fechaFinPeriodo'));
+            return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo','user', 'productos', 'activeSubscription', 'fechaUltimoPago', 'fechaFinPeriodo'));
 
         } else {
             $productos = Producto::with(['infoPaquete', 'infoSuscripcion'])->get();
-            return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo', 'productos', 'activeSubscription'));
+            return view('usuario.submenu.SUS-estadoSuscripcion', compact('tipo','user', 'productos', 'activeSubscription'));
         }
 
         //dd($productos);
@@ -104,15 +106,15 @@ class ProductoController extends Controller
             case 'package':
                 $validatorPaquete = Validator::make($request->all(), [
                     'numero_clases_paquete' => 'required|integer|min:1',
-                    'tiempo_clase_paq' => 'required|integer|min:30',
+                    'tiempo_clase_paq' => 'required|integer|in:45,60,120',
                 ], [
                     'numero_clases_paquete.required' => 'El campo numero de clases es requerido',
                     'numero_clases_paquete.integer' => 'El campo numero de clases es un numero',
                     'numero_clases_paquete.min' => 'El campo numero de clases debe contener al menos 1',
 
-                    'tiempo_clase_paq.required' => 'El campo de tiempo de clase es requerido',
-                    'tiempo_clase_paq.integer' => 'El campo tiempo de clase debe ser un numero en minutos',
-                    'tiempo_clase_paq.min' => 'El campo tiempo de clase debe ser al menos 30',
+                    'tiempo_clase_paq.required' => 'El campo de tiempo de clasePaquete es requerido',
+                    'tiempo_clase_paq.integer' => 'El campo tiempo de clasePaquete debe ser un numero en minutos',
+                    'tiempo_clase_paq.min' => 'El campo tiempo de clasePaquete debe ser al menos 30',
 
 
                 ]);
@@ -127,7 +129,7 @@ class ProductoController extends Controller
             case 'membership':
                 $validatorSuscripcion = Validator::make($request->all(), [
                     'numero_clases_semanal' => 'required|integer|min:1',
-                    'tiempo_clase_sus' => 'required|integer|min:30',
+                    'tiempo_clase_sus' => 'required|integer|in:45,60,120',
                     'asesoramiento' => 'required|in:inicial,mensual,semanal',
                     'dias_cancelacion' => 'required|integer',
 
@@ -253,7 +255,6 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         try {
-            //dd($request->all());
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'description' => 'nullable|string',
@@ -285,7 +286,7 @@ class ProductoController extends Controller
                 case 'package':
                     $validatorPaquete = Validator::make($request->all(), [
                         'numero_clases_paquete' => 'required|integer|min:1',
-                        'tiempo_clase_paq' => 'required|integer|min:30',
+                        'tiempo_clase_paq' => 'required|integer|in:45,60,120',
                     ], [
                         'numero_clases_paquete.required' => 'El campo numero de clases es requerido',
                         'numero_clases_paquete.integer' => 'El campo numero de clases es un numero',
@@ -308,7 +309,7 @@ class ProductoController extends Controller
                 case 'membership':
                     $validatorSuscripcion = Validator::make($request->all(), [
                         'numero_clases_semanal' => 'required|integer|min:1',
-                        'tiempo_clase_sus' => 'required|integer|min:30',
+                        'tiempo_clase_sus' => 'required|integer|in:45,60,120',
                         'asesoramiento' => 'required|in:inicial,mensual,semanal',
                         'dias_cancelacion' => 'required|integer',
 
@@ -443,20 +444,19 @@ class ProductoController extends Controller
 
     public function cambiarPlan()
     {
-        $usuario = Auth::user();
         Stripe::setApiKey(config('services.stripe.secret'));
-        $suscripcionUsuario = Subscription::with(['product'])->where('user_id', $usuario->id)->first();
+        
+        $suscripcionUsuario = Subscription::where('user_id', Auth::user()->id)->first();
+        
+        $productoUsuario = Producto::where('precio_stripe_id', $suscripcionUsuario->stripe_price)->first();
 
-        $suscripcionStripe = SubscriptionStripe::retrieve($suscripcionUsuario->stripe_id);
-        $productoUsuario = $suscripcionStripe->items->data[0]->plan->product;
+        $productosRestantes = Producto::whereNot('stripe_id', $productoUsuario->stripe_id)->get();
 
-        $productoUsuarioStripe = Product::retrieve($productoUsuario);
+        
+        //dd($productosRestantes);
 
-
-        $productosSuscripcionesStripe = Product::search(['query' => 'metadata[\'type\']:\'membership\' AND active:\'true\'']);
-        $tipo = 'FACTU-cambiarPlan';
-
-
-        return view('usuario.submenu.SUS-cambioPlan', compact('tipo', 'productoUsuarioStripe', 'productosSuscripcionesStripe'));
+        return view('usuario.submenu.SUS-cambioPlan', compact('productosRestantes'));
     }
+
+ 
 }

@@ -15,7 +15,7 @@ return new class extends Migration {
 
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->integer('numero_clases')->nullable();
-            $table->integer('tiempo_clase')->nullable();
+            $table->enum('tiempo_clase', ['45', '60', '120'])->nullable();
             $table->integer('tiempo_validez')->nullable();
             $table->integer('descuento')->nullable();
             $table->timestamps();

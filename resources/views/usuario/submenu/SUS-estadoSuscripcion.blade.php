@@ -48,7 +48,7 @@
                         <div class="col-6 fs-4 d-flex justify-content-center align-items-center">
                             <ul class="w-50">
                                 <li class=" p-5 border border-2 border-fondo text-center">Clases disponibles: <span
-                                        class="fs-2 texto-color-dorado">{{ Auth::user()->numero_clases }}</span></li>
+                                        class="fs-2 texto-color-dorado">{{ $user->registroTiempo->clases_totales }}</span></li>
                             </ul>
                         </div>
                     @else
@@ -64,7 +64,7 @@
                                             class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
                                             <li class="p-2 text-center">{{ $subscription->description }}</li>
-                                            <li class="p-2 text-center">{{ $subscription->quantity }} clases</li>
+                                            <li class="p-2 text-center">{{ $subscription->infoSuscripcion->clases_semanales }} clases semanales</li>
                                             <li class="p-2 text-center text-warning fs-4">{{ $subscription->precio }}€</li>
                                             <li>
                                                 <form id="formularioSeleccion-{{ $subscription->id }}"
@@ -114,7 +114,7 @@
                                         class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                         <li class="p-2 text-center text-uppercase">{{ $producto->name }}</li>
                                         <li class="p-2 text-center">{{ $producto->description }}</li>
-                                        <li class="p-2 text-center">{{ $producto->quantity }} clases</li>
+                                        <li class="p-2 text-center">{{ $producto->infoPaquete->numero_clases }} clases</li>
                                         <li class="p-2 text-center text-warning fs-4">{{ $producto->precio }}€</li>
                                         <li>
                                             <form id="formularioSeleccion-{{ $producto->id }}"

@@ -72,7 +72,7 @@
                                                                     {{ $producto->infoPaquete->tiempo_clase }}</td>
                                                                 <td class="texto-color-dorado border border-2 border-fondo">
                                                                     {{ $producto->infoPaquete->tiempo_validez }}</td>
-                                                               
+
                                                                 <td class="texto-color-dorado border border-2 border-fondo">
                                                                     <div
                                                                         class=" d-flex flex-row justify-content-center align-items-center">
@@ -281,45 +281,65 @@
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Numero clases semanales" type="number"
-                                                                name="numero_clases_semanal" id="numero_clases_semanal" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->clases_semanales : '' }}">
+                                                                name="numero_clases_semanal" id="numero_clases_semanal"
+                                                                value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->clases_semanales : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="col">
-                                                            <input class="estilo-formulario"
-                                                                placeholder="Duracion de las clases" type="number"
-                                                                name="tiempo_clase_sus" id="tiempo_clase" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->tiempo_clase : '' }}">
-                                                            <hr
-                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                            <select class="estilo-formulario-select" name="tiempo_clase_sus"
+                                                                id="tiempo_clase">
+                                                                <option value="" disabled selected>Duración de las
+                                                                    clases</option>
+                                                                <option value="45"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 45 ? 'selected' : '' }}>
+                                                                    45 minutos</option>
+                                                                <option value="60"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 60 ? 'selected' : '' }}>
+                                                                    60 minutos</option>
+                                                                <option value="120"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 120 ? 'selected' : '' }}>
+                                                                    120 minutos</option>
+                                                            </select>
                                                         </div>
+
                                                     </div>
                                                     <div class="row">
                                                         <div
                                                             class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
-                                                            <label class="" 
+                                                            <label class=""
                                                                 for="asesoramiento">Asesoramiento:</label>
-                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'inicial' ? 'checked' : '' }} type="radio" name="asesoramiento"
-                                                                value="inicial" id="inicial"><span>Inicio</span>
-                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'mensual' ? 'checked' : '' }} type="radio" name="asesoramiento"
-                                                                value="mensual" id="mensual"><span>Mensual</span>
-                                                            <input class="" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'semanal' ? 'checked' : '' }} type="radio" name="asesoramiento"
-                                                                value="semanal" id="semanal"><span>Semanal</span>
+                                                            <input class=""
+                                                                {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'inicial' ? 'checked' : '' }}
+                                                                type="radio" name="asesoramiento" value="inicial"
+                                                                id="inicial"><span>Inicio</span>
+                                                            <input class=""
+                                                                {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'mensual' ? 'checked' : '' }}
+                                                                type="radio" name="asesoramiento" value="mensual"
+                                                                id="mensual"><span>Mensual</span>
+                                                            <input class=""
+                                                                {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->asesoramiento == 'semanal' ? 'checked' : '' }}
+                                                                type="radio" name="asesoramiento" value="semanal"
+                                                                id="semanal"><span>Semanal</span>
                                                         </div>
                                                     </div>
                                                     <div class="row p-4">
                                                         <div class="col">
                                                             <input class="estilo-formulario"
                                                                 placeholder="Dias para cancelacion" type="number"
-                                                                name="dias_cancelacion" id="dias_cancelacion" value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->dias_cancelacion : '' }}">
+                                                                name="dias_cancelacion" id="dias_cancelacion"
+                                                                value="{{ session()->has('editable') && session('tipoProducto') == 'membership' ? $producto->infoSuscripcion->dias_cancelacion : '' }}">
                                                             <hr
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="row">
                                                             <div class="col texto-color-principal">
                                                                 <label class="" for="beneficios">Beneficios:</label>
-                                                                <input type="radio" name="beneficios" id="beneficios" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '1' ? 'checked' : '' }}
+                                                                <input type="radio" name="beneficios" id="beneficios"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '1' ? 'checked' : '' }}
                                                                     value="true">Sí
-                                                                <input type="radio" name="beneficios" id="beneficios" {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '0' ? 'checked' : '' }}
+                                                                <input type="radio" name="beneficios" id="beneficios"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'membership' && $producto->infoSuscripcion->beneficios == '0' ? 'checked' : '' }}
                                                                     value="false" checked>No
 
                                                             </div>
@@ -333,7 +353,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row {{ (session()->has('editable') && session('tipoProducto') !== 'package') || !session()->has('editable') ? 'd-none' : '' }}"
                                                 id="seccionPaquete">
                                                 <div class="col p-4">
@@ -354,12 +374,23 @@
                                                                 class="linea-transition-weigth border border-warning-subtle  border-1 ">
                                                         </div>
                                                         <div class="col">
-                                                            <input class="estilo-formulario"
-                                                                placeholder="Duracion de las clases" type="number"
-                                                                name="tiempo_clase_paq" id="tiempo_clase" value="{{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->tiempo_clase : '' }}">
-                                                            <hr
-                                                                class="linea-transition-weigth border border-warning-subtle  border-1 ">
+                                                            <select class="estilo-formulario-select"
+                                                                name="tiempo_clase_paq" id="tiempo_clase">
+                                                                <option value="" disabled selected>Duración de las
+                                                                    clases</option>
+                                                                <option value="45"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 45 ? 'selected' : '' }}>
+                                                                    45 minutos</option>
+                                                                <option value="60"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 60 ? 'selected' : '' }}>
+                                                                    60 minutos</option>
+                                                                <option value="120"
+                                                                    {{ session()->has('editable') && session('tipoProducto') == 'package' && $producto->infoPaquete->tiempo_clase == 120 ? 'selected' : '' }}>
+                                                                    120 minutos</option>
+                                                            </select>
+
                                                         </div>
+
                                                     </div>
 
                                                     <div class="row">
@@ -367,7 +398,8 @@
                                                             class="col texto-color-principal d-flex justify-content-center align-items-center gap-3">
                                                             <label for="validez">Tiempo de validez en dias:</label>
                                                             <input class="estilo-formulario  border-bottom border-dorado"
-                                                                type="number" name="validez" id="validez" {{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->validez : '' }}>
+                                                                type="number" name="validez" id="validez"
+                                                                {{ session()->has('editable') && session('tipoProducto') == 'package' ? $producto->infoPaquete->validez : '' }}>
                                                         </div>
                                                     </div>
                                                     <div class="row">

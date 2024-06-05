@@ -205,7 +205,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Rutas de facturacion 
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
-
+    Route::get('/facturacion/suscripcion/cambiarPlan/{producto}', [PagoController::class, 'cambioPlan'])->name('cambiarPlan');
     Route::get('/facturacion/descargarFactura')->name('generarFactura');
 
     //Ruta de sincronizacion de productos con stripe y bd local

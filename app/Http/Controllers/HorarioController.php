@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clase;
 use App\Models\Horario;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class HorarioController extends Controller
             //dd($horasDecimalFin, $horasDecimalStart);
             $diferenciaHoras = $horasDecimalFin - $horasDecimalStart;
             $alturaDiv = $diferenciaHoras * (30 / 13); // Multiplicar por un factor para la altura visual
-            $posicionArriba = (($horasDecimalStart - 8 )* (30/13)); // Ajustar según necesidades
+            $posicionArriba = (($horasDecimalStart - 8) * (30 / 13)); // Ajustar según necesidades
             return [
                 'numeroDia' => $numeroDia,
                 'alturaDiv' => number_format($alturaDiv, 2, '.', ''),
@@ -37,7 +38,7 @@ class HorarioController extends Controller
 
         $today = now()->dayOfYear();
         //dd($eventosFormateados);
-        return view('admin.HORARIO-inicio', ['today' => $today, 'tipo' => 'HORARIO-inicio','eventosFormateados' => $eventosFormateados]);
+        return view('admin.HORARIO-inicio', ['today' => $today, 'tipo' => 'HORARIO-inicio', 'eventosFormateados' => $eventosFormateados]);
 
     }
 
@@ -47,7 +48,7 @@ class HorarioController extends Controller
     public function create()
     {
         $clases = Clase::all();
-        if($clases == null) {
+        if ($clases == null) {
             return redirect()->route('clase.create');
         }
 
@@ -61,72 +62,93 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        if($request->repetir === null){
-            $fecha = new DateTime($request->fechaEspecifica);
-            $diaSemana = $fecha->format('l');
-            $horario = new Horario;
-            $horario->clase_id = $request->clase;
-            $horario->dia_semana = $diaSemana;
-            $horario->fecha_especifica = $request->fechaEspecifica;
-            $horario->hora_inicio = $request->horaInicio;
-            $horario->hora_fin = $request->horaFin;
+        try {
+           //dd($request->all());
+            // Validar los datos de entrada
+            $request->validate([
+                'clase' => 'required|exists:clases,id',
+                'fechaEspecifica' => 'required|date',
+                'horaInicio' => 'required|date_format:H:i',
+                'horaFin' => 'required|date_format:H:i|after:horaInicio',
+                'repetir' => 'nullable',
+            ], [
+                'clase.required' => 'La clase es obligatoria.',
+                'clase.exists' => 'La clase seleccionada no existe.',
+                'fechaEspecifica.required' => 'La fecha específica es obligatoria.',
+                'fechaEspecifica.date' => 'La fecha específica debe ser una fecha válida.',
+                'horaInicio.required' => 'La hora de inicio es obligatoria.',
+                'horaInicio.date_format' => 'La hora de inicio debe tener el formato HH:MM.',
+                'horaFin.required' => 'La hora de fin es obligatoria.',
+                'horaFin.date_format' => 'La hora de fin debe tener el formato HH:MM.',
+                'horaFin.after' => 'La hora de fin debe ser posterior a la hora de inicio.',
+            ]);
 
-            $horario->save();
+            $fechaEspecifica = Carbon::parse($request->fechaEspecifica);
+            $horaInicio = $request->horaInicio;
+            $horaFin = $request->horaFin;
 
-
-        } else {
-            $fechasDias = $this->averiguarDiasFecha($request->diasSemana, $request->fechaEspecifica, $request->numeroSemanas);
-            foreach($fechasDias as $fecha){
-                $diaSemana = $fecha->format('l');
-                $horario = new Horario;
-                $horario->clase_id = $request->clase;
-                $horario->dia_semana = $diaSemana;
-                $horario->fecha_especifica = $fecha;
-                $horario->hora_inicio = $request->horaInicio;
-                $horario->hora_fin = $request->horaFin;
-
-                $horario->save();
+            if ($request->repetir === null) {
+                $this->crearHorario($request->clase, $fechaEspecifica, $horaInicio, $horaFin);
+            } else {
+                $fechasDias = $this->averiguarDiasFecha($request->diasSemana, $request->fechaEspecifica, $request->numeroSemanas);
+                foreach ($fechasDias as $fecha) {
+                    $this->crearHorario($request->clase, $fecha, $horaInicio, $horaFin);
+                }
             }
-        }
-        return redirect()->back()->with('success', 'El registro horario se ha agregado con exito');
 
+            return redirect()->back()->with('success', 'El registro horario se ha agregado con éxito');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->validator)->withInput();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ha ocurrido un error: ' . $e->getMessage());
+        }
+    }
+
+    private function crearHorario($claseId, Carbon $fecha, $horaInicio, $horaFin)
+    {
+        Horario::create([
+            'clase_id' => $claseId,
+            'dia_semana' => $fecha->format('l'),
+            'fecha_especifica' => $fecha->toDateString(),
+            'hora_inicio' => $horaInicio,
+            'hora_fin' => $horaFin,
+        ]);
     }
 
     public function averiguarDiasFecha($dias, $fechaInicio, $numeroSemanas)
     {
         $fechasDias = [];
         $diasAsociados = [
-            'Monday' => 0,
-            'Tuesday' => 1,
-            'Wednesday' => 2,
-            'Thursday' => 3,
-            'Friday' => 4,
-            'Saturday' => 5,
-            'Sunday' => 6,
+            'Monday' => 1,
+            'Tuesday' => 2,
+            'Wednesday' => 3,
+            'Thursday' => 4,
+            'Friday' => 5,
+            'Saturday' => 6,
+            'Sunday' => 0,
         ];
 
         $fecha = new DateTime($fechaInicio);
-        
-        array_push($fechasDias, $fecha);
-        $diaFechaInicio = $fecha->format('l');
-        $indiceFechaInicio = $diasAsociados[$diaFechaInicio];
 
         for ($semana = 0; $semana < $numeroSemanas; $semana++) {
             foreach ($dias as $dia) {
                 $fechaDia = clone $fecha;
-                $offsetDias = (($dia - $indiceFechaInicio) + 7) % 7;
+                $indiceFechaInicio = $diasAsociados[$fecha->format('l')];
+                $offsetDias = ($diasAsociados[$dia] - $indiceFechaInicio + 7) % 7;
                 $fechaDia->modify("+$offsetDias days");
                 if ($semana > 0) {
                     $fechaDia->modify('+' . $semana . ' weeks');
                 }
-                array_push($fechasDias, $fechaDia);
+                if (!in_array($fechaDia, $fechasDias)) {
+                    $fechasDias[] = $fechaDia;
+                }
             }
         }
-        //dd($fechasDias);
+
         return $fechasDias;
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -151,7 +173,7 @@ class HorarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $horario)
+    public function update(Request $request, $horario)
     {
         $horario = Horario::find($horario);
 
@@ -174,7 +196,8 @@ class HorarioController extends Controller
         //
     }
 
-    public function mostrarHorarios() {
+    public function mostrarHorarios()
+    {
         $horarios = Horario::paginate(20);
 
         $clases = Clase::all();
