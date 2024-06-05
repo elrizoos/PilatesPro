@@ -109,10 +109,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.reservas');
     })->name('usuario-reservas');
 
-    Route::get('/usuario/reservas/sugerenciasReservas', function () {
-        return view('usuario.submenu.RES-sugerenciasReservas');
-    })->name('reservas-sugerenciasReservas');
-
+    Route::get('/usuario/reservas/sugerenciasReservas', [ReservasController::class, 'mostrarSugerencias'])->name('reservas-sugerenciasReservas');
+    Route::get('/usuario/reservas/mostrarHorariosFecha', [ReservasController::class, 'mostrarHorariosFecha'])->name('mostrarHorariosFecha');
+    Route::get('/usuario/reservas/reservar', [ReservasController::class, 'reservar'])->name('reservarClase');
     Route::get('/usuario/suscripcion', function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');

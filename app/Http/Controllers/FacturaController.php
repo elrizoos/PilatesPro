@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Stripe\Invoice;
+use Stripe\InvoiceItem;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 use Stripe\Subscription;
@@ -73,20 +74,55 @@ class FacturaController extends Controller
         //
     }
 
-    public function generarFactura($customerID)
+    public function generarFactura($customerID, $precio, $descripcion, $priceID = null)
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $usuario = Auth::user();
 
         try {
-            // Obtener la última factura del cliente
-            $ultimasFacturas = Invoice::all(['customer' => $customerID, 'limit' => 1]);
-            if (count($ultimasFacturas->data) == 0) {
-                return redirect()->back()->with('error', 'No se ha encontrado ninguna factura realizada.');
+            // Verificar que el precio no sea cero
+            if ($precio <= 0) {
+                return redirect()->back()->with('error', 'El monto del ítem de la factura debe ser mayor que cero.');
             }
+            
+            // Crear la factura
+            \Log::debug('Creando factura');
+            $factura = Invoice::create([
+                'customer' => $customerID,
+                'auto_advance' => true, // Auto-finaliza la factura
+            ]);
 
-            $factura = $ultimasFacturas->data[0];
+            \Log::debug('Factura creada: ' . json_encode($factura));
+            \Log::debug('Creando InvoiceItem');
+
+            // Crear un InvoiceItem
+            $invoiceItem = InvoiceItem::create([
+                'customer' => $customerID,
+                'currency' => 'eur',
+                'description' => $descripcion,
+                'price' => $priceID,
+                'invoice' => $factura->id,
+            ]);
+
+            \Log::debug('InvoiceItem creado: ' . json_encode($invoiceItem));
+
+            
+
+
+            // Finalizar la factura
+            \Log::debug('Finalizando factura');
+            $factura->finalizeInvoice();
+
+            // Obtener la factura con las líneas expandidas
+            \Log::debug('Obteniendo factura con líneas expandidas');
+            $factura = Invoice::retrieve($factura->id, ['expand' => ['lines']]);
+
+            \Log::debug('Factura obtenida: ' . json_encode($factura));
+
+            if (count($factura->lines->data) == 0) {
+                return redirect()->back()->with('error', 'No se ha encontrado ningún ítem en la factura.');
+            }
 
             $empresa = [
                 'nombre' => 'Estudio Pilates',
@@ -118,19 +154,11 @@ class FacturaController extends Controller
             $data = compact('empresa', 'cliente', 'facturaArray');
 
             // Generar el PDF
-            try {
-                $pdf = PDF::loadView('facturaciones.factura', $data);
-            } catch (\Throwable $th) {
-                return redirect()->back()->withErrors(['message' => 'Error al generar el PDF: ' . $th->getMessage()]);
-            }
+            $pdf = PDF::loadView('facturaciones.factura', $data);
 
             // Guardar el PDF en storage
-            $pdfFilePath = 'facturas/'.time().'factura_user_' . $usuario->id . '_idFactura_' . $factura->number . '.pdf';
-            try {
-                Storage::put('public/' . $pdfFilePath, $pdf->output());
-            } catch (\Throwable $th) {
-                return redirect()->back()->withErrors(['message' => 'Error al guardar el PDF: ' . $th->getMessage()]);
-            }
+            $pdfFilePath = 'facturas/' . time() . 'factura_user_' . $usuario->id . '_idFactura_' . $factura->number . '.pdf';
+            Storage::put('public/' . $pdfFilePath, $pdf->output());
 
             // Guardar información de la factura en la base de datos
             $facturaNueva = new Factura();
@@ -140,15 +168,6 @@ class FacturaController extends Controller
             $facturaNueva->pdf = $pdfFilePath;
             $facturaNueva->save();
 
-            // Enviar la factura por email (opcional)
-            /*
-            Mail::send('emails.factura', $data, function ($message) use ($usuario, $pdf, $facturaArray) {
-                $message->to($usuario->email, $usuario->nombre)
-                    ->subject('Factura de Suscripción')
-                    ->attachData($pdf->output(), "factura_{$facturaArray['numero']}.pdf");
-            });
-            */
-
             \Log::debug("Factura generada correctamente");
             return true;
         } catch (\Throwable $th) {
@@ -156,6 +175,10 @@ class FacturaController extends Controller
             return redirect()->back()->withErrors(['message' => 'Hubo un problema al generar la factura: ' . $th->getMessage()]);
         }
     }
+
+
+
+
 
 
     public function mostrarFactura()

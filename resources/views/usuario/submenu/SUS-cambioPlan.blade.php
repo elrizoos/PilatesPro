@@ -38,7 +38,7 @@
                                 </div>
                             @endif
                         @endforeach
-                        @if ($suscripciones == false)
+                        @if (!isset($suscripciones) ||$suscripciones == false  )
                             <div class="col d-flex justify-content-center align-items-center">
                                 <p>Por el momento no hay suscripciones para activar</p>
                             </div>

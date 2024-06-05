@@ -3,128 +3,131 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>facturaArray</title>
+    <title>Factura</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
-            color: black;
+            color: #333;
+            background-color: #f7f7f7;
         }
 
         .container {
-            width: 100%;
-            margin: 0 auto;
+            width: 80%;
+            margin: 20px auto;
             padding: 20px;
-        }
-
-        .contenedor-header {
-            display: table;
-            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .header,
         .footer {
             text-align: center;
-        }
-
-        .header {
-            display: table-cell;
-            width: 30%;
-            position: relative;
+            margin-bottom: 20px;
         }
 
         .header img {
-            width: 77%;
-            position: absolute;
-            top: 0;
-            left: 0;
+            width: 150px;
         }
 
-        td {
-            text-align: left;
+        .info-table {
+            width: 100%;
+            margin-bottom: 20px;
         }
 
-        td span {
-            color: black;
+        .info-table td {
+            padding: 5px;
+        }
+
+        .info-table span {
             font-weight: bold;
         }
 
-        .details,
-        .client-info,
-        .vendor-info {
-            margin: 20px 0;
+        .client-vendor-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        .details th,
-        .details td,
-        .client-info th,
-        .client-info td,
-        .vendor-info th,
-        .vendor-info td {
+        .client-info,
+        .vendor-info {
+            width: 45%;
+        }
+
+        .invoice-details {
+            text-align: right;
+        }
+
+        .invoice-details th,
+        .invoice-details td {
             padding: 5px;
-            border-bottom: 1px solid #ddd;
         }
 
-        .cliente-facturaArray {
-            width: 100%;
-            display: table;
-            margin-top: 20px;
+        .invoice-details th {
+            text-align: left;
         }
 
-        .client-info,
-        .vendor-info {
-            display: table-cell;
-            width: 50%;
-        }
-
-        .details {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .bienvenido {
+        h2 {
+            background-color: #ffcc00;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
-            margin-top: 50px;
-            color: red;
-            font-size: 18px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
         table th,
         table td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
+            text-align: center;
         }
 
-        .no-border th,
-        .no-border td {
+        .summary-table th,
+        .summary-table td {
             border: none;
+            padding: 5px 10px;
+        }
+
+        .summary-table {
+            text-align: right;
+        }
+
+        .summary-table th {
+            text-align: left;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-top: 50px;
+            color: #ff0000;
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <div>
-            <div>
-                <img src="{{ asset('imagenes/logo.png') }}" alt="Logo Pilates">
-            </div>
+    <div class="container">
+        <div class="header">
+            <img src="{{ asset('imagenes/logo.png') }}" alt="Logo Pilates">
+        </div>
 
-            <div>
-                <table>
+        <div class="client-vendor-info">
+            <div class="vendor-info">
+                <table class="info-table">
                     <tr>
                         <td><span>Nombre de la empresa:</span> Estudio Pilates</td>
                     </tr>
@@ -142,19 +145,14 @@
                     </tr>
                 </table>
             </div>
-        </div>
 
-        <div>
-            <div>
-                <table>
+            <div class="client-info">
+                <table class="info-table">
                     <tr>
                         <th>CLIENTE</th>
                     </tr>
                     <tr>
                         <td><span>Nombre del cliente:</span> {{ $cliente['nombre'] }} {{ $cliente['apellidos'] }}</td>
-                    </tr>
-                    <tr>
-                        <td><span>Apellidos del cliente:</span> {{ $cliente['apellidos'] }}</td>
                     </tr>
                     <tr>
                         <td><span>Teléfono:</span> {{ $cliente['telefono'] }}</td>
@@ -167,22 +165,23 @@
                     </tr>
                 </table>
             </div>
-            <div>
-                <table>
-                    <tr>
-                        <th>facturaArray Nº</th>
-                        <td>#001</td>
-                    </tr>
-                    <tr>
-                        <th>Fecha de emisión</th>
-                        <td>dd/mm/yyyy</td>
-                    </tr>
-                    <tr>
-                        <th>Fecha de vencimiento</th>
-                        <td>dd/mm/yyyy</td>
-                    </tr>
-                </table>
-            </div>
+        </div>
+
+        <div class="invoice-details">
+            <table>
+                <tr>
+                    <th>Factura Nº</th>
+                    <td>{{ $facturaArray['numero'] }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de emisión</th>
+                    <td>{{ $facturaArray['fecha_emision']->format('d/m/Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de vencimiento</th>
+                    <td>{{ $facturaArray['fecha_vencimiento']->format('d/m/Y') }}</td>
+                </tr>
+            </table>
         </div>
 
         <h2>Detalles de la Suscripción</h2>
@@ -207,7 +206,7 @@
             </tbody>
         </table>
 
-        <div>
+        <div class="summary-table">
             <table>
                 <tr>
                     <th>Subtotal</th>
@@ -225,13 +224,17 @@
         </div>
 
         <div>
-            <p><strong>Método de Pago:</strong> Tarjeta de crédito</p>
+            <p><strong>Método de Pago:</strong> {{ $facturaArray['metodo_pago'] }}</p>
             <p><strong>Número de pedido:</strong> 12345</p>
             <p>Gracias por su compra.</p>
         </div>
 
-        <div>
+        <div class="welcome-message">
             <p>BIENVENIDO A PILATES STUDIO</p>
+        </div>
+
+        <div class="footer">
+            <p>Estudio Pilates - Mieres, Asturias | Teléfono: 667667766 | Email: estudioPilates@gmail.com</p>
         </div>
     </div>
 </body>

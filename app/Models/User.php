@@ -61,7 +61,7 @@ class User extends Authenticatable
 
 
     public function grupo() {
-        return $this->hasOne(Grupo::class);
+        return $this->belongsTo(Grupo::class);
     }
 
     public function getRutaImagenAttribute()

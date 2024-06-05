@@ -15,7 +15,7 @@ class ReservasTableSeeder extends Seeder
     {
         DB::table('reservas')->insert([
             [
-                'clase_id' => 1,
+                'horario_id' => 1,
                 'alumno_id' => 2,
             ],
         ]);

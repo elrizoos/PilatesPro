@@ -19,7 +19,8 @@ class Grupo extends Model
         return $this->hasMany(Clase::class);
     }
 
-    public function profesor() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
+
 }

@@ -9,6 +9,8 @@ use App\Models\Subscription as Suscripcion;
 use Auth;
 use Illuminate\Http\Request;
 use Stripe\Customer;
+use Stripe\Invoice;
+use Stripe\InvoiceItem;
 use Stripe\PaymentIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
@@ -22,7 +24,7 @@ class PagoController extends Controller
         return view('facturaciones.formulario-pago', compact('productoFacturar'));
     }
 
-    public function procesarPago(Request $request, $productoId)
+ public function procesarPago(Request $request, $productoId)
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -110,7 +112,7 @@ class PagoController extends Controller
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id)) {
+            if (!$facturaController->generarFactura($customer->id, $producto->price,$producto->descripcion, $producto->price_stripe_id)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
@@ -149,7 +151,7 @@ class PagoController extends Controller
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id)) {
+            if (!$facturaController->generarFactura($customer->id, $producto->precio, $producto->description, $producto->precio_stripe_id)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
@@ -180,7 +182,7 @@ class PagoController extends Controller
 
             if ($productoNuevo->precio < $productoUsuario->precio) {
                 $clasesExtra = $this->convertirDiferenciaEnClases($productoUsuario->precio, $productoNuevo->precio, $diasHastaFinalSuscripcion);
-                $usuario->numero_clases += $clasesExtra;
+                $usuario->registroTiempo->clases_totales += $clasesExtra;
                 $usuario->save();
             }
 

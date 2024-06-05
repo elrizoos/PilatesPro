@@ -20,7 +20,7 @@
                             <div class="fs-4 d-flex justify-content-center align-items-center {{isset($activeSubscription) ? 'd-none' : '' }}">
                                 <ul class="">
                                     <li class=" text-center">Clases disponibles: <span
-                                            class=" texto-color-dorado">{{ Auth::user()->numero_clases }}</span></li>
+                                            class=" texto-color-dorado">{{ $user->registroTiempo->clases_totales }}</span></li>
                                 </ul>
                             </div>
                         </div>

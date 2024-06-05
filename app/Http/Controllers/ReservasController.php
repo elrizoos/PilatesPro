@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
+use App\Models\Horario;
 use App\Models\Reserva;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservasController extends Controller
@@ -14,20 +18,22 @@ class ReservasController extends Controller
      */
     public function index()
     {
-        $idAlumno = Auth()->user()->id;
-        $reservas = Reserva::where('alumno_id', '=', $idAlumno)->get();
-        //dd($reservas);
-        $clases = Clase::with('reserva');
-        $clasesAlumno = [];
-        foreach ($clases as $clase) {
-            $idAlumnoClase = $clase->reserva->alumno_id;
-            if ($idAlumnoClase == $idAlumno) {
-                array_push($clasesAlumno,$clase);
-                //dd($clasesAlumno);
-            }
-
+        $usuario = User::where('id', Auth::user()->id)->with('grupo')->first();
+        $grupoUsuario = Auth::user()->grupo_id;
+        if ($grupoUsuario === null) {
+            \Log::error('El usuario no tiene grupo, asi que no se muestran reservas asociadas');
+            return view('usuario.submenu.RES-histoReservas', compact('grupoUsuario'));
         }
-        return view('usuario.submenu.RES-histoReservas', compact('clasesAlumno','reservas'));
+        $reservas = Reserva::where('alumno_id', $usuario->id)->get();
+        if ($reservas->count() == 0) {
+            $reservas = '';
+
+            return view('usuario.submenu.RES-histoReservas', compact('reservas'));
+        }
+        $claseId = $usuario->grupo->clase->id;
+        $reservas = '';
+
+        return view('usuario.submenu.RES-histoReservas', compact('clasesAlumno', 'reservas'));
     }
 
     /**
@@ -87,4 +93,41 @@ class ReservasController extends Controller
 
         return view('usuario.submenu.RES-reservasActivas', compact('reservas'));
     }
+
+    public function mostrarSugerencias()
+    {
+        $usuario = User::where('id', Auth::user()->id)->with(['grupo.clase', 'registroTiempo'])->first();
+
+        if ($usuario->registroTiempo->clases_totales == 0) {
+            return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'No tienes clases disponibles para reservar');
+        }
+        if (!$usuario->grupo || $usuario->grupo->clase->isEmpty()) {
+            return redirect()->back()->with('error', 'No se encontraron clases para tu grupo.');
+        }
+
+        $clase = $usuario->grupo->clase->first();
+        $horariosClase = Horario::where('clase_id', $clase->id)->get();
+
+        $dayCount = 1;
+        $fechaActual = Carbon::now();
+        $diasMes = $fechaActual->daysInMonth;
+        $primerDiaMes = $fechaActual->copy()->startOfMonth()->dayOfWeekIso;
+        $semanasMes = ceil(($diasMes + $primerDiaMes - 1) / 7);
+
+        return view('usuario.submenu.RES-sugerenciasReservas', compact('horariosClase', 'dayCount', 'diasMes', 'primerDiaMes', 'semanasMes', 'fechaActual'));
+    }
+
+    public function mostrarHorariosFecha(Request $request)
+    {
+        $horarios = Horario::where('fecha_especifica', $request->fecha)->get();
+        return view('usuario.submenu.RES-mostrarHorariosFecha', compact('horarios'));
+    }
+
+    public function reservar(Request $request)
+    {
+        dd($request->all());
+
+
+    }
+
 }

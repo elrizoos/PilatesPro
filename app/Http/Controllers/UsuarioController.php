@@ -190,49 +190,29 @@ class UsuarioController extends Controller
     public function sumatorioClases(Producto $producto)
     {
         try {
-            $usuario = User::where('id', Auth::user()->id)->with(['registroTiempo'])->first();
-
+            $usuario = Auth::user();
             \Log::debug('Usuario: ' . json_encode($usuario));
             $tipoProducto = $producto->type;
-
-            // Asegúrate de que el registro de tiempo exista para el usuario
-            $registroTiempo = $usuario->registroTiempo;
-            \Log::debug('RegistroTiempo: ' . json_encode($registroTiempo));
-
-            if (!$registroTiempo) {
-                $registroTiempo = new RegistroTiempo([
-                    'user_id' => $usuario->id,
-                    'clases_totales' => 0,
-                    'clases_45' => 0,
-                    'clases_60' => 0,
-                    'clases_120' => 0,
-                    'minutos_totales' => 0,
-                    'clases_disfrutadas' => 0,
-                    'tiempo_disfrutado' => 0,
-                ]);
-            }
 
             switch ($tipoProducto) {
                 case 'package':
                     $infoPaquete = $producto->infoPaquete;
                     \Log::debug('Info Paquete: ' . json_encode($infoPaquete));
                     if ($infoPaquete) {
-                        $tiempoClase = (int) $infoPaquete->tiempo_clase;
+                        $tiempoClase = $infoPaquete->tiempo_clase;
                         switch ($tiempoClase) {
                             case 45:
-                                $registroTiempo->clases_45 += $infoPaquete->numero_clases;
+                                $usuario->registroTiempo->clases_45 += $infoPaquete->numero_clases;
                                 break;
                             case 60:
-                                $registroTiempo->clases_60 += $infoPaquete->numero_clases;
+                                $usuario->registroTiempo->clases_60 += $infoPaquete->numero_clases;
                                 break;
                             case 120:
-                                $registroTiempo->clases_120 += $infoPaquete->numero_clases;
+                                $usuario->registroTiempo->clases_120 += $infoPaquete->numero_clases;
                                 break;
-                            default:
-                                throw new \Exception('Duración de clase no válida');
                         }
-                        $registroTiempo->clases_totales += $infoPaquete->numero_clases;
-                        $registroTiempo->minutos_totales += ($infoPaquete->numero_clases * $tiempoClase);
+                        $usuario->registroTiempo->clases_totales += $infoPaquete->numero_clases;
+                        $usuario->registroTiempo->minutos_totales += ($infoPaquete->numero_clases * $tiempoClase);
                     } else {
                         throw new \Exception('Información del paquete no encontrada');
                     }
@@ -242,24 +222,20 @@ class UsuarioController extends Controller
                     $infoSuscripcion = $producto->infoSuscripcion;
                     \Log::debug('Info Suscripción: ' . json_encode($infoSuscripcion));
                     if ($infoSuscripcion) {
-                        $tiempoClase = (int) $infoSuscripcion->tiempo_clase;
-                        \Log::debug('Info tiempoclase: ' . json_encode($tiempoClase));
-
+                        $tiempoClase = $infoSuscripcion->tiempo_clase;
                         switch ($tiempoClase) {
                             case 45:
-                                $registroTiempo->clases_45 += round($infoSuscripcion->clases_semanales *(52/12));
+                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->numero_clases;
                                 break;
                             case 60:
-                                $registroTiempo->clases_60 += round($infoSuscripcion->clases_semanales *(52/12));
+                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->numero_clases;
                                 break;
                             case 120:
-                                $registroTiempo->clases_120 += round($infoSuscripcion->clases_semanales *(52/12));
+                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->numero_clases;
                                 break;
-                            default:
-                                throw new \Exception('Duración de clase no válida');
                         }
-                        $registroTiempo->clases_totales += round($infoSuscripcion->clases_semanales *(52/12));
-                        $registroTiempo->minutos_totales += (round($infoSuscripcion->clases_semanales *(52/12) * $tiempoClase));
+                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->numero_clases;
+                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->numero_clases * $tiempoClase);
                     } else {
                         throw new \Exception('Información de la suscripción no encontrada');
                     }
@@ -269,14 +245,15 @@ class UsuarioController extends Controller
                     throw new \Exception('Tipo de producto desconocido');
             }
 
-            $registroTiempo->save();
-            \Log::debug('Registro de tiempo actualizado: ' . json_encode($registroTiempo));
+            $usuario->registroTiempo->save();
+            \Log::debug('Usuario actualizado: ' . json_encode($usuario));
             return true;
         } catch (\Throwable $th) {
             \Log::error('Error: ' . $th->getMessage());
             return $th->getMessage();
         }
     }
+
 
 
 }
