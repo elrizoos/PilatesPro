@@ -13,15 +13,15 @@
                 <h2 class="fs-3 text-center texto-color-secundario">Visión General</h2>
                 <div class="row">
                     <div class="col-md-6  d-flex justify-content-center align-items-center">
-                        <div class="card bg-color-fondo-oscuro p-4 border-2 border-dorado text-center">
+                        <div class="card bg-color-fondop-4 border-2 border-dorado text-center">
                             <h3 class="fs-3 texto-color-principal">Usuarios Registrados</h3>
-                            <p class="display-4 text-light">{{ $totalUsuarios }}</p>
+                            <p class="display-4 texto-color-resalte">{{ $totalUsuarios }}</p>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center align-items-center">
-                        <div class="card bg-color-fondo-oscuro p-4 border-2 border-dorado text-center">
+                        <div class="card bg-color-fondop-4 border-2 border-dorado text-center">
                             <h3 class="fs-3 texto-color-principal">Clases Programadas</h3>
-                            <p class="display-4 text-light">{{ $clasesProgramadas }}</p>
+                            <p class="display-4 texto-color-resalte">{{ $clasesProgramadas }}</p>
                         </div>
                     </div>
                 </div>
@@ -30,13 +30,16 @@
 
         <div class="row mb-4">
             <div class="col-md-6">
-                <div class="card bg-color-fondo-oscuro p-4">
-                    <h2 class="fs-3 text-center text-light">Usuarios Recientes</h2>
+                <div class="card bg-color-fondop-4">
+                    <h2 class="fs-3 text-center texto-color-resalte">Usuarios Recientes</h2>
                     <ul class="list-group">
                         @foreach ($usuariosRecientes as $usuario)
-                            <li class="list-group-item fs-4 d-flex border border-2 border-dorado justify-content-between align-items-center bg-color-fondo-oscuro texto-color-principal">
+                            <li
+                                class="list-group-item fs-4 d-flex border border-2 border-dorado justify-content-between align-items-center bg-color-fondotexto-color-principal">
                                 {{ $usuario->nombre }}
-                                <a href="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}" class="btn estilo-formulario border border-1 border-dorado-claro texto-color-dorado-claro btn-sm">Ver Perfil</a>
+                                <a href="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
+                                    class="btn estilo-formulario border border-1 border-dorado-claro texto-color-resalte btn-sm">Ver
+                                    Perfil</a>
                             </li>
                         @endforeach
                     </ul>
@@ -44,13 +47,14 @@
             </div>
             <div class="col-md-6">
                 <div class="card p-4 bg-color-fondo-oscuro">
-                    <h2 class="fs-3 text-center text-light">Calendario de Clases</h2>
+                    <h2 class="fs-3 text-center texto-color-resalte">Calendario de Clases</h2>
                     <ul class="list-group">
                         @foreach ($calendarioClases as $clase)
-                            <li class="list-group-item  texto-color-principal bg-color-fondo-oscuro border border-2 border-dorado fs-4 d-flex justify-content-between">
+                            <li
+                                class="list-group-item  texto-color-secundariobg-color-fondo border border-2 border-dorado fs-4 d-flex justify-content-between">
                                 <p>Día: {{ $clase->fecha_especifica }}</p>
                                 <p>Horario: {{ $clase->hora_inicio }} a {{ $clase->hora_fin }}</p>
-                                 
+
                             </li>
                         @endforeach
                     </ul>

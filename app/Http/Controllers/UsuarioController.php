@@ -18,26 +18,40 @@ use Validator;
 class UsuarioController extends Controller
 {
 
-    public function create(Request $request)
+   public function create(Request $request)
     {
-        $registerController = new RegisterController();
         $data = $request->all();
         $data['password_confirmation'] = $data['password'];
+
+        $registerController = new RegisterController();
         $validator = $registerController->validar($data);
+
         if ($validator->fails()) {
-            //dd('error: ' . var_dump($data));
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        //dd('funciona: ' . var_dump($data));
+
         $usuario = $registerController->crearUsuario($data);
-        if (!empty($usuario)) {
+
+        if ($usuario) {
             $registroTiempoController = new RegistroTiemposController();
             $registroTiempoController->create($usuario->id);
-            Auth::login($usuario);
-            return redirect()->route('inicio')->with('success', 'Te has registrado con exito');
-        }
-        ;
 
+            Auth::login($usuario);
+
+            if ($request->producto) {
+                return redirect()->route('formularioPago', ['producto' => $request->producto]);
+            }
+
+            return redirect()->route('inicio')->with('success', 'Te has registrado con éxito');
+        }
+
+        return redirect()->back()->with('error', 'Hubo un problema al registrarse. Por favor, inténtalo de nuevo.');
+    }
+
+
+    public function createConProducto($producto) {
+        //dd($producto);
+        return view('auth.register', compact('producto'));
     }
     protected function guardarCambios(Request $request)
     {

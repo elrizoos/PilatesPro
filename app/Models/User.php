@@ -2,23 +2,16 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Imagen;
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Billable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'nombre',
         'apellidos',
@@ -35,21 +28,11 @@ class User extends Authenticatable
         'registro_clases'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'password' => 'hashed',
     ];
@@ -59,9 +42,14 @@ class User extends Authenticatable
         return $this->hasOne(Imagen::class, 'usuario_id');
     }
 
+    public function clases()
+    {
+        return $this->hasMany(Clase::class, 'profesor_id');
+    }
 
-    public function grupo() {
-        return $this->belongsTo(Grupo::class);
+    public function grupo()
+    {
+        return $this->belongsTo(Grupo::class, 'grupo_id');
     }
 
     public function getRutaImagenAttribute()
@@ -73,10 +61,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pago::class);
     }
+
     public function facturas()
     {
         return $this->hasMany(Factura::class);
     }
+
     public function productos()
     {
         return $this->hasMany(Producto::class);
@@ -90,5 +80,10 @@ class User extends Authenticatable
     public function registroTiempo()
     {
         return $this->hasOne(RegistroTiempo::class, 'user_id');
+    }
+
+    public function reserva()
+    {
+        return $this->hasOne(Reserva::class, 'alumno_id');
     }
 }

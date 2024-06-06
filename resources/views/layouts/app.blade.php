@@ -221,7 +221,7 @@
     </svg>
 </div>
 
-<body class="bg-color-fondo texto-color-principal no-scrollbar">
+<body class="bg-color-fondo texto-color-secundariono-scrollbar">
     <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
     <div class="d-flex flex-row  position-relative bottom-100" id="appEscritorio">
         <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"
@@ -232,6 +232,7 @@
         </div>
         @if (Route::currentRouteName() !== 'formularioPago' &&
                 Route::currentRouteName() !== 'login' &&
+                Route::currentRouteName() !== 'registrarUsuarioProducto' &&
                 Route::currentRouteName() !== 'register')
             <nav class=" container-fluid bg-color-principal w-20 position-relative">
                 <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-1">
@@ -260,11 +261,13 @@
                             <div class="d-none" id="listaPaginas">
                                 <div><span></span></div>
                                 <ul>
-                                    @foreach ($paginas as $pagina)
-                                        <li><a
-                                                href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
-                                        </li>
-                                    @endforeach
+                                    @if (isset($paginas))
+                                        @foreach ($paginas as $pagina)
+                                            <li><a
+                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -346,7 +349,13 @@
 
                 </div>
             @endif
-            @yield('content')
+            @if (isset($mostrarProducto))
+                @if ($mostrarProducto === true)
+                    @yield('mostrarProducto')
+                @endif
+            @else
+                @yield('content')
+            @endif
         </main>
     </div>
 

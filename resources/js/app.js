@@ -387,3 +387,11 @@ $("#input-mas-detalles-pago").on("click", function () {
     $(".mas-detalles-pago").addClass("d-flex");
     $(this).hide();
 });
+
+
+$(".evento").on("click", function () {
+        var elemento = $(this).attr('id');
+        var formulario = $('#' + elemento + ' form');
+        formulario.submit();
+    console.log(formulario);
+});

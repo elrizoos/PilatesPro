@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InfoPaquete;
 use App\Models\InfoSuscripcione;
+use App\Models\Pagina;
 use App\Models\Producto;
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
@@ -458,5 +459,12 @@ class ProductoController extends Controller
         return view('usuario.submenu.SUS-cambioPlan', compact('productosRestantes'));
     }
 
- 
+    public function mostrarDetalles($producto)
+    {
+        $paginas = Pagina::all();
+        $mostrarProducto = true;
+        $producto = Producto::find($producto);
+        $productos = Producto::all();
+        return view('mostrarProducto', compact('mostrarProducto', 'paginas', 'producto', 'productos'));
+    }
 }

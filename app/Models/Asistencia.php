@@ -9,6 +9,12 @@ class Asistencia extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'reserva_id',
+        'fecha',
+        'asistio',
+    ];
+
     public function reserva() {
         return $this->belongsTo(Reserva::class);
     }

@@ -55,7 +55,7 @@
 
             </form>
         </div>
-        <div class="row max-heigth-60 text-light d-flex flex-column justify-content-center align-items-center">
+        <div class="row max-heigth-60 texto-color-resalte d-flex flex-column justify-content-center align-items-center">
             <div class="col mh-100">
                 <div class="row">
                     <div class="col p-3">
@@ -65,32 +65,31 @@
                 </div>
                 <div class="row h-75 overflow-y-scroll  max-heigth-10em">
                     <div class="col h-100 ">
-                        <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
+                        <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                             <thead class="">
-                                <tr
-                                    class="text-uppercase sticky-top bg-color-fondo-muy-oscuro border border-2 border-fondo">
-                                    <th class="text-light border border-2 border-fondo">Nombre</th>
-                                    <th class="text-light border border-2 border-fondo">Apellido</th>
-                                    <th class="text-light border border-2 border-fondo">Tipo Usuario</th>
-                                    <th class="text-light border border-2 border-fondo">Opciones</th>
+                                <tr class="text-uppercase sticky-top bg-color-terciario border border-2 border-fondo">
+                                    <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
+                                    <th class="texto-color-resalte border border-2 border-fondo">Apellido</th>
+                                    <th class="texto-color-resalte border border-2 border-fondo">Tipo Usuario</th>
+                                    <th class="texto-color-resalte border border-2 border-fondo">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($participantesGrupo as $usuario)
                                     <tr>
-                                        <td class="texto-color-dorado border border-2 border-fondo">{{ $usuario->nombre }}
+                                        <td class="texto-color-resalte border border-2 border-fondo">{{ $usuario->nombre }}
                                         </td>
-                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-2 border-fondo">
                                             {{ $usuario->apellidos }}</td>
-                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-2 border-fondo">
                                             {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
-                                        <td class="texto-color-dorado border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-2 border-fondo">
                                             <div>
                                                 <form class="formulario"
                                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
                                                     method="get">
                                                     @csrf
-                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                    <input class="texto-color-resalte estilo-formulario" type="submit"
                                                         value="Ver/Editar">
                                                 </form>
                                                 <form class="formulario"
@@ -98,7 +97,7 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <input class="texto-color-dorado-claro estilo-formulario" type="submit"
+                                                    <input class="texto-color-resalte estilo-formulario" type="submit"
                                                         value="Eliminar participante">
 
                                                 </form>
@@ -113,7 +112,7 @@
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
                         <form class="formulario" action="{{ route('mostrarUsuarios', ['grupo' => $grupo->id]) }}">
-                            <input class="texto-color-dorado-claro estilo-formulario fs-4" type="submit"
+                            <input class="texto-color-resalte estilo-formulario fs-4" type="submit"
                                 value="Añadir Participantes">
                         </form>
                     </div>

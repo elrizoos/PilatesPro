@@ -208,67 +208,74 @@ table td {
     background: transparent;
 }
 
+body {
+    color: $colorResalte !important;
+}
+
 a {
     text-decoration: none;
     color: $colorGris;
 }
 
+.bg-color-fondo-oscuro-transparente {
+    background-color: $colorPrincipalTransparente !important;
+}
+.bg-color-fondo-oscuro-transparente-0 {
+    background-color: $colorPrincipalTransparenteCero !important;
+}
+
 .bg-color-principal {
-    background-color: $colorPrincipal;
+    background-color: $colorPrincipal !important;
 }
-
 .bg-color-secundario {
-    background-color: $colorSecundario;
+    background-color: $colorSecundario !important;
 }
-
+.bg-color-terciario {
+    background-color: $colorTerciario !important;
+}
+.bg-color-resalte {
+    background-color: $colorResalte !important;
+}
 .bg-color-fondo {
-    background-color: $colorFondoClaro;
+    background-color: $colorFondo !important;
 }
-
-.bg-color-fondo-oscuro {
-    background-color: $colorFondoOscuro;
-}
-
-.bg-color-fondo-muy-oscuro {
-    background-color: $colorPrincipalOscuro;
+.bg-color-gris {
+    background-color: $colorGrisClaro !important;
 }
 
 .bg-color-fondo-claro {
-    background-color: $colorPrincipalClaro;
-}
-.bg-color-fondo-oscuro-transparente {
-    background-color: $colorPrincipalTransparente;
-}
-.bg-color-fondo-oscuro-transparente-0 {
-    background-color: $colorPrincipalTransparenteCero;
+    background-color: $colorFondoClaro !important;
 }
 
 .bg-color-negro {
     background-color: $colorNegro !important;
 }
 
+.texto-color-principal {
+    color: $colorPrincipal !important;
+}
+.texto-color-secundario {
+    color: $colorSecundario !important;
+}
+.texto-color-terciario {
+    color: $colorTerciario !important;
+}
+.texto-color-resalte {
+    color: $colorResalte !important;
+}
+.texto-color-fondo {
+    color: $colorFondo !important;
+}
+.texto-color-gris {
+    color: $colorGrisClaro !important;
+}
+
+.texto-color-titulo {
+    color: $colorTitulo !important;
+}
+
 .bg-none {
     background: none !important;
-}
-
-.texto-color-principal {
-    color: $colorGris;
-}
-
-.texto-color-secundario {
-    color: $colorSecundario;
-}
-
-.texto-color-importante {
-    color: $colorDorado;
-}
-
-.texto-color-dorado-claro {
-    color: $colorDoradoClaro !important;
-}
-
-.texto-color-dorado {
-    color: $colorDorado !important;
 }
 
 .sombra {
@@ -435,11 +442,11 @@ a {
 }
 
 .border-dorado {
-    border-color:$colorSecundario !important;
+    border-color: $colorSecundario !important;
 }
 
 .border-dorado-claro {
-    border-color:$colorDoradoClaro !important;
+    border-color: $colorDoradoClaro !important;
 }
 .max-width-70 {
     max-width: 70% !important;
@@ -485,11 +492,8 @@ a {
     padding: 20px;
     margin-bottom: 20px;
 }
-.service-title {
-    color: #c39b6a; /* Color del título de los servicios */
-}
 
-.form-control:focus {
+:focus {
     background-color: unset;
     color: $colorDoradoClaro;
 }
@@ -742,8 +746,6 @@ a {
 //
 //
 //
-
-
 
 //Estilos para el apartado de registro horario
 .contenedor-formulario .formulario-horario {

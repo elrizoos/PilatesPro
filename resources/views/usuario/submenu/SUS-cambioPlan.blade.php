@@ -18,7 +18,7 @@
                                 @endphp
                                 <div class="col">
                                     <div data-id="{{ $subscription->id }}"
-                                        class="producto-click col text-light d-flex justify-content-center align-items-center">
+                                        class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                         <ul
                                             class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
@@ -38,7 +38,7 @@
                                 </div>
                             @endif
                         @endforeach
-                        @if (!isset($suscripciones) ||$suscripciones == false  )
+                        @if (!isset($suscripciones) || $suscripciones == false)
                             <div class="col d-flex justify-content-center align-items-center">
                                 <p>Por el momento no hay suscripciones para activar</p>
                             </div>

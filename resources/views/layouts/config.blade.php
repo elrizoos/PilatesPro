@@ -264,7 +264,7 @@
                     </li>
                 </ul>
                 <div class="col-2 d-flex justify-content-center align-items-center">
-                    <div class="w-100 h-100 p-4 d-flex gap-2 fs-5 text-capitalize text-light">
+                    <div class="w-100 h-100 p-4 d-flex gap-2 fs-5 text-capitalize texto-color-resalte">
                         {{ Auth::user()->nombre }}
                         <svg class="icon icono-normal">
                             <use xlink:href="#botn-cerrar" />

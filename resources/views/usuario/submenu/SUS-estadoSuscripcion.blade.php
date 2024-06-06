@@ -7,7 +7,7 @@
     @if (session()->has('success') && session()->has('factura'))
         @dd(session('factura'))
     @endif
-    <div class="container-fluid text-light">
+    <div class="container-fluid texto-color-resalte">
         <div class="row h-80">
             <div class="col">
                 <div class="row  h-15">
@@ -17,10 +17,12 @@
                             <div class="contenedor-estado {{ isset($activeSubscription) ? 'text-success' : 'text-danger' }}">
                                 {{ isset($activeSubscription) ? 'Active' : 'In-Active' }}
                             </div>
-                            <div class="fs-4 d-flex justify-content-center align-items-center {{isset($activeSubscription) ? 'd-none' : '' }}">
+                            <div
+                                class="fs-4 d-flex justify-content-center align-items-center {{ isset($activeSubscription) ? 'd-none' : '' }}">
                                 <ul class="">
                                     <li class=" text-center">Clases disponibles: <span
-                                            class=" texto-color-dorado">{{ $user->registroTiempo->clases_totales }}</span></li>
+                                            class=" texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -39,7 +41,8 @@
                                         </li>
                                         <li class="p-2 text-center bg-color-fondo-claro">
                                             <h3>Fecha fin de periodo: </h3>
-                                            <span class="text-danger-emphasis">{{ date('D, d M, y', $fechaFinPeriodo) }}</span>
+                                            <span
+                                                class="text-danger-emphasis">{{ date('D, d M, y', $fechaFinPeriodo) }}</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -48,7 +51,8 @@
                         <div class="col-6 fs-4 d-flex justify-content-center align-items-center">
                             <ul class="w-50">
                                 <li class=" p-5 border border-2 border-fondo text-center">Clases disponibles: <span
-                                        class="fs-2 texto-color-dorado">{{ $user->registroTiempo->clases_totales }}</span></li>
+                                        class="fs-2 texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
+                                </li>
                             </ul>
                         </div>
                     @else
@@ -59,12 +63,14 @@
                                 @endphp
                                 <div class="col">
                                     <div data-id="{{ $subscription->id }}"
-                                        class="producto-click col text-light d-flex justify-content-center align-items-center">
+                                        class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                         <ul
                                             class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
                                             <li class="p-2 text-center">{{ $subscription->description }}</li>
-                                            <li class="p-2 text-center">{{ $subscription->infoSuscripcion->clases_semanales }} clases semanales</li>
+                                            <li class="p-2 text-center">
+                                                {{ $subscription->infoSuscripcion->clases_semanales }} clases semanales
+                                            </li>
                                             <li class="p-2 text-center text-warning fs-4">{{ $subscription->precio }}€</li>
                                             <li>
                                                 <form id="formularioSeleccion-{{ $subscription->id }}"
@@ -96,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="offcanvas offcanvas-bottom bg-color-principal texto-color-dorado-claro h-70" tabindex="-1"
+        <div class="offcanvas offcanvas-bottom bg-color-principal texto-color-resalte h-70" tabindex="-1"
             id="panelProductos" aria-labelledby="panelProductosLabel">
             <div class="offcanvas-header d-flex justify-content-between align-items-center" data-bs-theme="dark">
                 <h5 class="offcanvas-title fs-2" id="panelProductosLabel">Paquetes de Clases</h5>
@@ -109,7 +115,7 @@
                         @foreach ($productos as $producto)
                             @if ($producto->type == 'package')
                                 <div data-id="{{ $producto->id }}"
-                                    class="producto-click col text-light d-flex justify-content-center align-items-center">
+                                    class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                     <ul
                                         class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                         <li class="p-2 text-center text-uppercase">{{ $producto->name }}</li>

@@ -216,7 +216,7 @@
     </svg>
 </div>
 
-<body class="bg-color-principal vh-100 text-light">
+<body class="bg-color-principal vh-100 texto-color-resalte">
     <div class="container-fluid h-100">
         <div class="row h-20">
             <div class="col">
@@ -235,7 +235,7 @@
             <div class="row h-75 p-3">
                 <div class="col d-flex justify-content-center align-items-center">
                     <div
-                        class="texto-color-principal bg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
+                        class="texto-color-secundariobg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
                         <h1 class="fs-2 p-2">
                             {{ $productoFacturar->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $productoFacturar->name }}
                         </h1>
@@ -254,28 +254,28 @@
                             @csrf
                             <div class="form-group p-2">
                                 <label for="name">Nombre Completo</label>
-                                <input type="text" id="name" name="name"
-                                    class="form-control bg-color-fondo-oscuro border-0" required>
+                                <input type="text" id="name" name="name" class=" bg-color-fondo border-0"
+                                    required>
                             </div>
                             <div class="form-group p-2">
                                 <label for="email">Correo Electrónico</label>
-                                <input type="email" id="email" name="email"
-                                    class="form-control bg-color-fondo-oscuro border-0" required>
+                                <input type="email" id="email" name="email" class=" bg-color-fondo border-0"
+                                    required>
                             </div>
                             <div class="form-group p-2">
                                 <label for="card-number-element">Número de Tarjeta</label>
-                                <div id="card-number-element" class="form-control bg-color-fondo-oscuro border-0">
+                                <div id="card-number-element" class=" bg-color-fondo border-0">
                                 </div>
                             </div>
                             <div class="form-group p-2 row">
                                 <div class="form-group col-md-6">
                                     <label for="card-expiry-element">Fecha de Vencimiento</label>
-                                    <div id="card-expiry-element" class="form-control bg-color-fondo-oscuro border-0">
+                                    <div id="card-expiry-element" class=" bg-color-fondo border-0">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="card-cvc-element">CVC</label>
-                                    <div id="card-cvc-element" class="form-control bg-color-fondo-oscuro border-0">
+                                    <div id="card-cvc-element" class=" bg-color-fondo border-0">
                                     </div>
                                 </div>
                             </div>

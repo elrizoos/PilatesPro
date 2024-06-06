@@ -10,19 +10,22 @@ class Clase extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre', 
+        'nombre',
         'grupo_id'
     ];
 
-    public function profesor() {
-        return $this->belongsTo(User::class);
+    public function profesor()
+    {
+        return $this->belongsTo(User::class, 'profesor_id');
     }
 
-    public function grupo() {
-        return $this->belongsTo(Grupo::class);
+    public function grupo()
+    {
+        return $this->belongsTo(Grupo::class, 'grupo_id');
     }
 
-    public function reserva() {
-        return $this->hasOne(Reserva::class);
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class);
     }
 }
