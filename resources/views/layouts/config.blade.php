@@ -255,7 +255,7 @@
                         id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
                         Suscripcion</li>
                     <li class="contenido-cargable p-4 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
-                        id="contenidoContraseña" data-url="{{ route('contrasena-cambiarContraseña') }}">
+                        id="contenidoContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">
                         Cambiar contraseña</li>
                     <li class="contenido-cargable p-4 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
                         id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">
@@ -275,7 +275,7 @@
             <div class="row g-0 p-0 h-85 position-relative" id="contenido-dinamico" class="contenido-ajustes">
                 <ul id="listaMovil"
                     class="position-absolute end-100 deslizamiento z-2 w-100 h-100 bg-color-principal d-flex d-none flex-column d-lg-none gap-5 align-items-center justify-content-center texto-color-secundario text-center text-uppercase">
-                    <li id="selectorMovilCerrar" >
+                    <li id="selectorMovilCerrar">
                         <svg class="icon icono-normal">
                             <use xlink:href="#botn-cerrar" />
                         </svg>
@@ -291,7 +291,7 @@
                         id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
                         Suscripcion</li>
                     <li class="contenido-cargable p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
-                        id="contenidoContraseña" data-url="{{ route('contrasena-cambiarContraseña') }}">
+                        id="contenidoContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">
                         Cambiar contraseña</li>
                     <li class="contenido-cargable  p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
                         id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">
@@ -305,22 +305,22 @@
                     </div>
                 </div>
                 <div class="col contenidoReservas" id="contenedor-contenidoReservas">
-                    <div class="row h-100 g-0">
+                    <div class="row w-100 h-100 g-0">
                         @yield('contenidoReservas')
                     </div>
                 </div>
                 <div class="col contenidoSuscripcion" id="contenedor-contenidoSuscripcion">
-                    <div class="row h-100 g-0">
+                    <div class="row w-100 h-100 g-0">
                         @yield('contenidoSuscripcion')
                     </div>
                 </div>
-                <div class="col contenidoContraseña" id="contenedor-contenidoContraseña">
-                    <div class="row h-100 g-0">
-                        @yield('contenidoContraseña')
+                <div class="col contenidoContrasena" id="contenedor-contenidoContrasena">
+                    <div class="row w-100 h-100 g-0">
+                        @yield('contenidoContrasena')
                     </div>
                 </div>
                 <div class="col contenidoOtros" id="contenedor-contenidoOtros">
-                    <div class="row h-100 g-0">
+                    <div class="row w-100    h-100 g-0">
                         @yield('contenidoOtros')
                     </div>
                 </div>

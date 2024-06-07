@@ -30,7 +30,7 @@
                 </div>
                 <div class="row h-85 overflow-y-auto p-3 {{ !isset($activeSubscription) ? 'row-cols-3' : '' }}">
                     @if (isset($activeSubscription))
-                        <div class="col-6 d-flex justify-content-center align-items-center">
+                        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center">
                             <ul class="fs-4">
                                 <li class="p-2 mb-4 fs-3 text-center"> {{ $activeSubscription->name }}</li>
                                 <li>
@@ -48,9 +48,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-6 fs-4 d-flex justify-content-center align-items-center">
+                        <div class="col-lg-6 col-12 fs-4 d-flex justify-content-center align-items-center">
                             <ul class="w-50">
-                                <li class=" p-5 border border-2 border-fondo text-center">Clases disponibles: <span
+                                <li class=" p-3 border border-2 border-fondo text-center">Clases disponibles: <span
                                         class="fs-2 texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
                                 </li>
                             </ul>
@@ -96,7 +96,7 @@
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center align-items-center">
-                <div class="ver-productos h-50 w-50 d-flex justify-content-center align-items-center fs-3"
+                <div class="ver-productos text-center h-50 w-50 d-flex justify-content-center align-items-center fs-3"
                     data-bs-toggle="offcanvas" data-bs-target="#panelProductos" aria-controls="panelProductos">
                     VER PAQUETES DE CLASES
                 </div>

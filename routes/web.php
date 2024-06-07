@@ -7,6 +7,7 @@ use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
+use App\Http\Controllers\MetodosRecuperacioneController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PanelController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\SeccionContenidoController;
 use App\Http\Controllers\StripeSyncController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\MetodosRecuperacione;
 use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -81,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth.login');
     })->name('login');
 
-    
+
 
     Route::get('/configuracion', function () {
         return view('usuario.perfil');
@@ -127,19 +129,21 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('usuario-contrasena');
 
 
-    Route::get('/usuario/contrasena/cambiarContraseña', function () {
+    Route::get('/usuario/contrasena/cambiarContrasena', function () {
         return view('usuario.submenu.CON-cambiarContraseña');
-    })->name('contrasena-cambiarContraseña');
+    })->name('contrasena-cambiarContrasena');
 
     Route::get('/usuario/contrasena/opciones', function () {
         return view('usuario.submenu.CON-opciones');
     })->name('contrasena-opciones');
-
+    Route::post('/usuario/contrasena/opciones/metodosRecueracion', [MetodosRecuperacioneController::class, 'store'])->name('metodoRecuperacion.store');
 
     Route::get('/usuario/contrasena/politicas', function () {
         return view('usuario.submenu.CON-politicas');
     })->name('contrasena-politicas');
-
+    Route::get('/usuario/contrasena/preguntaSeguridad', function () {
+        return view('usuario.submenu.CON-formularioPreguntaSeguridad');
+    })->name('password.security_question');
     Route::get('/usuario/otros', function () {
         return view('usuario.otros');
     })->name('usuario-otros');

@@ -1,24 +1,35 @@
-@extends('usuario.general')
+@extends('layouts.config')
 @section('contenidoContrasena')
-    <div>
-        <ul>
-            <li id="cambiarContraseña"
-                data-url="{{ route('contrasena-cambiarContraseña') }}">Cambio de contraseña</li>
-            <li id="opciones" data-url="{{ route('contrasena-opciones') }}">Politicas de
-                contraseña</li>
-            <li id="politicas" data-url="{{ route('contrasena-politicas') }}">Opciones de
-                recuperación de cuenta</li>
+    <div class="d-block d-lg-none">
+        <h2 class="fs-3 text-center selectorMovil">GENERAL</h2>
+    </div>
+    <div class="col col-12 col-lg-3  d-flex justify-content-center align-items-center">
+        <ul class="row fs-5">
+            <div class="col-12 d-flex d-lg-inline-block justify-content-center align-items-center">
+                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario"
+                    id="cambiarContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">Cambio de Contrasena</li>
+                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="opciones"
+                    data-url="{{ route('contrasena-politicas') }}">Politicas de
+                    contraseña</li>
+            </div>
+            <div class="col-12">
+                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="politicas"
+                    data-url="{{ route('contrasena-opciones') }}">Opciones de
+                    recuperación de cuenta</li>
+            </div>
         </ul>
     </div>
-    <div id="contenido-dinamico-interno">
-        <div id="contenedor-cambiarContraseña">
-            @yield('cambiarContraseña')
+    <div class="col-12 col-lg-9 contenido-dinamico-interno" id="contenido-dinamico-interno">
+        <div class="row h-100 contenedor-interno cambiarContrasena" id="contenedor-cambiarContrasena">
+            @yield('cambiarContrasena')
         </div>
-        <div id="contenedor-opciones">
+        <div class="row h-100 contenedor-interno opciones" id="contenedor-opciones">
             @yield('opciones')
         </div>
-        <div id="contenedor-politicas">
+        <div class="row h-100 contenedor-interno politicas" id="contenedor-politicas">
             @yield('politicas')
         </div>
+        
     </div>
+
 @endsection
