@@ -14,6 +14,7 @@ class Factura extends Model
         'monto_total',
         'alumno_id',
         'pdf',
+        'stripe_id',
     ];
     public function detalles()
     {

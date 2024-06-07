@@ -1,44 +1,43 @@
 @extends('usuario.reservas')
+
 @section('sugerenciasReservas')
-    <div class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 rounded-5 ">
-        <table class="table tabla-dorada w-100 fs-5 bg-color-fondo-muy-oscuro text-center">
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100 w-100 rounded-5">
+        <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
             <thead>
                 <tr>
-                    <th class="text-light border border-2 border-fondo">Lunes</th>
-                    <th class="text-light border border-2 border-fondo">Martes</th>
-                    <th class="text-light border border-2 border-fondo">Miércoles</th>
-                    <th class="text-light border border-2 border-fondo">Jueves</th>
-                    <th class="text-light border border-2 border-fondo">Viernes</th>
-                    <th class="text-light border border-2 border-fondo">Sábado</th>
-                    <th class="text-light border border-2 border-fondo">Domingo</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Lunes</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Martes</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Miércoles</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Jueves</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Viernes</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Sábado</th>
+                    <th class="texto-color-resalte border border-2 border-fondo">Domingo</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                    $dayCount = 1;
-                    $diasMes = date('t');
-                    $anno = date('Y'); // Corrección para el año en formato de cuatro dígitos
-                    $mes = date('m');
-
-                    $idAlumno = Auth()->user()->id;
-                    $primerDiaMes = date('N', strtotime("$anno-$mes-01")); // Corregido para usar comillas dobles
-                    $semanasMes = ceil(($diasMes + $primerDiaMes - 1) / 7);
-                    $clasesAlumno = App\Models\Clase::whereHas('reserva', function ($query) use ($idAlumno) {
-                        $query->where('alumno_id', $idAlumno);
-                    })->get();
-                @endphp
+                @php $dayCount = 1; @endphp
                 @for ($week = 0; $week < $semanasMes; $week++)
                     <tr>
-                        @for ($day = 0; $day < 7; $day++)
-                            <td class="texto-color-dorado border border-2 border-fondo">
-                                @if ($week == 0 && $day < $primerDiaMes - 1)
+                        @for ($day = 1; $day <= 7; $day++)
+                            <td class="texto-color-resalte border border-2 border-fondo">
+                                @if ($week == 0 && $day < $primerDiaMes)
+                                    <!-- Vacío -->
                                 @elseif ($dayCount > $diasMes)
+                                    <!-- Vacío -->
                                 @else
                                     @php
-                                        $fechaActual = "$anno-$mes-" . str_pad($dayCount, 2, '0', STR_PAD_LEFT);
+                                        $fechaIterada = $fechaActual
+                                            ->copy()
+                                            ->startOfMonth()
+                                            ->addDays($dayCount - 1);
                                     @endphp
-                                    @if ($clasesAlumno->contains('fecha', $fechaActual))
-                                        <a href="#">{{ $dayCount }}</a>
+                                    @if ($horariosClase->contains('fecha_especifica', $fechaIterada->toDateString()))
+                                        <form action="{{ route('mostrarHorariosFecha') }}" method="get">
+                                            <input type="hidden" name="fecha"
+                                                value="{{ $fechaIterada->toDateString() }}">
+                                            <input class="estilo-formulario text-success" type="submit"
+                                                value="{{ $dayCount }}">
+                                        </form>
                                     @else
                                         {{ $dayCount }}
                                     @endif

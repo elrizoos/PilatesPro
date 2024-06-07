@@ -21,4 +21,9 @@ class Horario extends Model
     {
         return $this->belongsTo(Clase::class, 'clase_id');
     }
+
+    public function reserva()
+    {
+        return $this->hasMany(Reserva::class, 'horario_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InfoPaquete;
 use App\Models\InfoSuscripcione;
+use App\Models\Pagina;
 use App\Models\Producto;
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
@@ -161,7 +162,7 @@ class ProductoController extends Controller
 
     public function crearProductoStripe(Request $request, $tipo)
     {
-       // dd($request->all());
+       //dd($request->all());
         try {
             Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -174,12 +175,20 @@ class ProductoController extends Controller
                 ],
             ]);
 
-            $stripePrice = Price::create([
+            $stripePriceData = [
                 'unit_amount' => $request->price * 100,
                 'currency' => 'eur',
-                'recurring' => $request->type == 'membership' ? ['interval' => 'month'] : null,
                 'product' => $stripeProducto->id,
-            ]);
+            ];
+
+            if ($request->type == 'membership') {
+                $stripePriceData['recurring'] = ['interval' => 'month'];
+            } else {
+                // Ensure no 'recurring' field for one-time prices
+                unset($stripePriceData['recurring']);
+            }
+
+            $stripePrice = Price::create($stripePriceData);
 
             $productoBD = Producto::create([
                 'stripe_id' => $stripeProducto->id,
@@ -241,12 +250,15 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Producto $producto, $info)
+    public function edit(Producto $producto)
     {
         //dd($producto::with(['infoPaquete'])->get());
+        $producto = Producto::where('id', $producto->id)->with(['infoPaquete', 'infoSuscripcion'])->first();
         $productoEditable = $producto->id;
         $tipoProducto = $producto->type;
-        return redirect()->back()->with(['editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto::with([$info])->get()]);
+        \Log::info("Informacion a la vista " . $productoEditable );
+        \Log::info("Informacion a la vista "  . $tipoProducto);
+        return redirect()->back()->with(['editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto]);
     }
 
     /**
@@ -458,5 +470,12 @@ class ProductoController extends Controller
         return view('usuario.submenu.SUS-cambioPlan', compact('productosRestantes'));
     }
 
- 
+    public function mostrarDetalles($producto)
+    {
+        $paginas = Pagina::all();
+        $mostrarProducto = true;
+        $producto = Producto::find($producto);
+        $productos = Producto::all();
+        return view('mostrarProducto', compact('mostrarProducto', 'paginas', 'producto', 'productos'));
+    }
 }

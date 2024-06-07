@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Factura;
 use App\Models\PaqueteUsuario;
 use App\Models\Producto;
 use App\Models\Subscription as Suscripcion;
 use Auth;
 use Illuminate\Http\Request;
 use Stripe\Customer;
+use Stripe\Invoice;
+use Stripe\InvoiceItem;
 use Stripe\PaymentIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
@@ -110,7 +113,7 @@ class PagoController extends Controller
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id)) {
+            if (!$facturaController->generarFactura($customer->id, $producto->precio, $producto->descripcion, $producto->precio_stripe_id, $producto->type)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
@@ -149,7 +152,7 @@ class PagoController extends Controller
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id)) {
+            if (!$facturaController->generarFactura($customer->id, $producto->precio, $producto->description, $producto->precio_stripe_id, $producto->type)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
@@ -180,7 +183,7 @@ class PagoController extends Controller
 
             if ($productoNuevo->precio < $productoUsuario->precio) {
                 $clasesExtra = $this->convertirDiferenciaEnClases($productoUsuario->precio, $productoNuevo->precio, $diasHastaFinalSuscripcion);
-                $usuario->numero_clases += $clasesExtra;
+                $usuario->registroTiempo->clases_totales += $clasesExtra;
                 $usuario->save();
             }
 
@@ -204,7 +207,7 @@ class PagoController extends Controller
             $totalNuevo = $totalSinDisfrutar - $totalDisfrutar;
         }
 
-        return max($totalNuevo, 0); 
+        return max($totalNuevo, 0);
     }
 
     public function convertirDiferenciaEnClases($precioViejo, $precioNuevo, $dias)
@@ -218,4 +221,32 @@ class PagoController extends Controller
         return $clasesExtra;
     }
 
+
+    public function historialPago() {
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $usuario = Auth::user();
+        $customer = Customer::retrieve($usuario->stripe_id);
+        $facturas = Invoice::search(['query' => 'customer:\''.$customer->id.'\'']);
+        //dd($facturas);
+
+        if(count($facturas) == 0){
+            $facturasDatos = null;
+            return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
+
+        }
+        $facturasDatos = [];
+        foreach($facturas as $factura){
+            $facturaStripeId = $factura->id;
+            $facturaBD = Factura::where('stripe_id', $facturaStripeId)->first();
+            $facturasDatos[] = [
+                'factura' => $factura,
+                'pdf' => $facturaBD->pdf,
+            ];
+        };
+
+        //dd($facturasDatos);
+        return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
+    }
 }

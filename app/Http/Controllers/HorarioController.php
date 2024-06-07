@@ -16,23 +16,23 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        $horarios = Horario::all(); // Asegúrate de tener el modelo correcto y la relación si es necesario
+        $horarios = Horario::all(); 
         //dd($horarios);
         $eventosFormateados = $horarios->map(function ($evento) {
             $dia = new DateTime($evento->fecha_especifica);
-            $numeroDia = $dia->format('z') + 1; // Ajustar día del año para empezar en 1
+            $numeroDia = $dia->format('z') + 1; 
 
             $horasDecimalStart = $this->convertirHoraADecimal($evento->hora_inicio);
             $horasDecimalFin = $this->convertirHoraADecimal($evento->hora_fin);
             //dd($horasDecimalFin, $horasDecimalStart);
             $diferenciaHoras = $horasDecimalFin - $horasDecimalStart;
-            $alturaDiv = $diferenciaHoras * (30 / 13); // Multiplicar por un factor para la altura visual
-            $posicionArriba = (($horasDecimalStart - 8) * (30 / 13)); // Ajustar según necesidades
+            $alturaDiv = $diferenciaHoras * (30 / 13); 
+            $posicionArriba = (($horasDecimalStart - 8) * (30 / 13)); 
             return [
                 'numeroDia' => $numeroDia,
                 'alturaDiv' => number_format($alturaDiv, 2, '.', ''),
                 'posicionArriba' => number_format($posicionArriba, 2, '.', ''),
-                'evento' => $evento // Si necesitas más datos del evento en la vista
+                'evento' => $evento 
             ];
         });
 
@@ -63,7 +63,7 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         try {
-           //dd($request->all());
+           ///dd($request->all());
             // Validar los datos de entrada
             $request->validate([
                 'clase' => 'required|exists:clases,id',
@@ -86,13 +86,13 @@ class HorarioController extends Controller
             $fechaEspecifica = Carbon::parse($request->fechaEspecifica);
             $horaInicio = $request->horaInicio;
             $horaFin = $request->horaFin;
-
+            $tiempoClase = $request->tiempoClase;
             if ($request->repetir === null) {
-                $this->crearHorario($request->clase, $fechaEspecifica, $horaInicio, $horaFin);
+                $this->crearHorario($request->clase, $fechaEspecifica, $horaInicio, $horaFin, $tiempoClase);
             } else {
                 $fechasDias = $this->averiguarDiasFecha($request->diasSemana, $request->fechaEspecifica, $request->numeroSemanas);
                 foreach ($fechasDias as $fecha) {
-                    $this->crearHorario($request->clase, $fecha, $horaInicio, $horaFin);
+                    $this->crearHorario($request->clase, $fecha, $horaInicio, $horaFin, $tiempoClase);
                 }
             }
 
@@ -105,7 +105,7 @@ class HorarioController extends Controller
         }
     }
 
-    private function crearHorario($claseId, Carbon $fecha, $horaInicio, $horaFin)
+    private function crearHorario($claseId, Carbon $fecha, $horaInicio, $horaFin, $tiempoClase)
     {
         Horario::create([
             'clase_id' => $claseId,
@@ -113,6 +113,7 @@ class HorarioController extends Controller
             'fecha_especifica' => $fecha->toDateString(),
             'hora_inicio' => $horaInicio,
             'hora_fin' => $horaFin,
+            'tiempo_clase' => $tiempoClase,
         ]);
     }
 
@@ -163,11 +164,21 @@ class HorarioController extends Controller
      */
     public function edit(Horario $horario)
     {
-        $tipo = 'HORARIO-crear';
+        $reservas = $horario->reserva;
 
-        $clases = Clase::all();
+        $claseHorario = $horario->clase;
 
-        return view('admin.HORARIO-crear', compact('tipo', 'clases', 'horario'));
+        $grupoHorario = $horario->clase->grupo;
+
+        $profesor = $horario->clase->grupo->profesor;
+
+        $alumnos = $horario->clase->grupo->usuarios;
+
+
+        $tipo = 'HORARIO-editar';
+
+
+        return view('admin.HORARIO-editar', compact('tipo', 'horario', 'reservas','claseHorario', 'grupoHorario', 'profesor', 'alumnos'));
     }
 
     /**

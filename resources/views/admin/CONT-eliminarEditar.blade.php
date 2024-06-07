@@ -7,7 +7,7 @@
             data-eliminarSeccion="{{ route('seccion.destroy', ['seccion' => 'INDEFINIDO']) }}"
             data-editarPagina="{{ route('pagina.edit', ['pagina' => 'INDEFINIDO']) }}"
             data-editarSeccion="{{ route('seccion.edit', ['seccion' => 'INDEFINIDO']) }}">
-        <div class="row w-100 h-100 text-light d-flex gap-3">
+        <div class="row w-100 h-100 texto-color-resalte d-flex gap-3">
             <div
                 class="col  d-flex flex-column justify-content-center align-items-center fs-3 position-relative gap-3 border border-2 border-secondary-subtle rounded-5">
                 <h2 class="fs-1 position-absolute top-0 mt-4 texto-color-secundario">PAGINAS</h2>
