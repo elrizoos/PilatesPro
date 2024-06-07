@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupo;
+use App\Models\Horario;
 use App\Models\Imagen;
 use App\Models\ImagenesSeccion;
 use App\Models\ImagenSeccion;
 use App\Models\ImagenSeccione;
 use App\Models\Pagina;
+use App\Models\Pago;
 use App\Models\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Reserva;
 use App\Models\SeccionContenido;
 use App\Models\User;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\Request;
 use Validator;
@@ -38,13 +41,77 @@ class PanelController extends Controller
         $profesores = User::where('tipo_usuario', '=', 'profesor')->get();
         $reservas = Reserva::get();
         $tipo = "";
+        $totalUsuarios = User::count();
+        $clasesProgramadas = Horario::where('fecha_especifica', '>=', Carbon::now())->count();
 
+        // Obtener usuarios recientes
+        $usuariosRecientes = User::orderBy('created_at', 'desc')->take(5)->get();
+        //dd($usuariosRecientes);
+        // Obtener clases próximas
+        $calendarioClases = Horario::where('fecha_especifica', '>=', Carbon::now())->orderBy('fecha_especifica')->get();
+
+        // Obtener tareas y recordatorios
+        $tareasRecordatorios = [
+            'Revisar pagos pendientes',
+            'Actualizar calendario de clases',
+            'Enviar boletín mensual'
+        ];
+
+        // Obtener configuraciones rápidas
+        $configuracionesRapidas = [
+            'Configurar Horarios',
+            'Cambiar Tarifas',
+            'Políticas del Sitio'
+        ];
+
+        // Información del sistema
+        $infoSistema = [
+            'Versión del Software' => '1.0.0',
+            'Estado del Servidor' => 'Activo'
+        ];
+
+        // Soporte y ayuda
+        $soporteAyuda = [
+            'Documentación' => '#',
+            'Contactar Soporte Técnico' => '#'
+        ];
+
+        // Reportes rápidos
+        $reportesRapidos = [
+            'Generar Reporte de Usuarios' => '#',
+            'Generar Reporte de Clases' => '#'
+        ];
+
+        // Noticias y actualizaciones
+        $noticiasActualizaciones = [
+            'Ver Noticias Recientes' => '#'
+        ];
+
+        // Seguridad
+        $seguridad = [
+            'Configurar Seguridad' => '#'
+        ];
+
+        return view('admin.dashboard', compact(
+            'alumnos', 'profesores', 'reservas', 'tipo',
+            'totalUsuarios',
+            'clasesProgramadas',
+            'usuariosRecientes',
+            'calendarioClases',
+            'tareasRecordatorios',
+            'configuracionesRapidas',
+            'infoSistema',
+            'soporteAyuda',
+            'reportesRapidos',
+            'noticiasActualizaciones',
+            'seguridad'
+        )
+        );
         //depuracion
         //dd('Alumnos: ' . $alumnos);
         //dd('Profesores: ' . $profesores);
         //dd('Reservas: ' . $reservas);
 
-        return view('admin/panel-control', compact(['alumnos', 'profesores', 'reservas', 'tipo']));
     }
 
     /**

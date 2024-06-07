@@ -9,8 +9,21 @@ class Horario extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'clase_id',
+        'dia_semana',
+        'fecha_especifica',
+        'hora_inicio',
+        'hora_fin',
+
+    ];
     public function clase()
     {
         return $this->belongsTo(Clase::class, 'clase_id');
+    }
+
+    public function reserva()
+    {
+        return $this->hasMany(Reserva::class, 'horario_id');
     }
 }

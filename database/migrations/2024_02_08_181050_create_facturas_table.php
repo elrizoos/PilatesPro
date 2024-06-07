@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_emision');
             $table->decimal('monto_total', 8, 2);
+            $table->string('stripe_id');
             $table->unsignedBigInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('pdf');

@@ -208,6 +208,15 @@
             <path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
                 fill="#8e6d45" opacity="1" data-original="#000000" />
         </symbol>
+        <symbol id="devolver" viewBox="0 0 512 512">
+            <title>devolver</title>
+            <path fill="#8e6d45"
+                d="M362 512H150C67.2 512 0 444.8 0 362V150C0 67.2 67.2 0 150 0h212c82.8 0 150 67.2 150 150v212c0 82.8-67.2 150-150 150z"
+                opacity="1" data-original="#007bea" class="" />
+            <path fill="#ffffff"
+                d="M210.7 210.7c25-25 65.5-25 90.5 0s25 65.5 0 90.5-65.5 25-90.5 0l-45.3 45.3c50 50 131 50 181 0s50-131 0-181-131-50-181 0l-33.9-33.9v113.1h113.1z"
+                opacity="1" data-original="#ffffff" />
+        </symbol>
     </svg>
 </div>
 
@@ -255,7 +264,7 @@
                     </li>
                 </ul>
                 <div class="col-2 d-flex justify-content-center align-items-center">
-                    <div class="w-100 h-100 p-4 d-flex gap-2 fs-5 text-capitalize text-light">
+                    <div class="w-100 h-100 p-4 d-flex gap-2 fs-5 text-capitalize texto-color-resalte">
                         {{ Auth::user()->nombre }}
                         <svg class="icon icono-normal">
                             <use xlink:href="#botn-cerrar" />

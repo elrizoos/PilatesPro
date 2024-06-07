@@ -60,6 +60,7 @@ switch (lastSegment) {
     case "historialReservas":
     case "reservasActivas":
     case "sugerenciasReservas":
+    case "mostrarHorariosFecha":
         var elementoDinamico = "contenidoReservas";
         break;
     case "cambioPlan":

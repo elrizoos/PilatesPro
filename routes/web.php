@@ -34,6 +34,7 @@ use App\Http\Controllers;
 
 
 Route::get('/vista-factura', [FacturaController::class, 'mostrarFactura'])->name('vista.factura');
+Route::get('/productos/mostrarDetalles/{producto}', [ProductoController::class, 'mostrarDetalles'])->name('mostrarDetallesProducto');
 
 Route::get('/', function () {
     return redirect()->route('inicio');
@@ -46,7 +47,8 @@ Route::get(
     '/inicio',
     [PaginaController::class, 'index']
 )->name('inicio');
-
+Route::post('/registrarUsuario', [UsuarioController::class, 'create'])->name('registroUsuario');
+Route::get('/registrarUsuarioProducto/{producto}', [UsuarioController::class, 'createConProducto'])->name('registrarUsuarioProducto');
 Route::get('/foro/{pagina}', [PaginaController::class, 'mostrarPagina'])->name('mostrarPagina');
 Route::group(['middleware' => 'auth'], function () {
 
@@ -79,9 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth.login');
     })->name('login');
 
-    Route::get('/registro', function () {
-        return view('auth.register');
-    })->name('registro');
+    
 
     Route::get('/configuracion', function () {
         return view('usuario.perfil');
@@ -111,10 +111,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.reservas');
     })->name('usuario-reservas');
 
-    Route::get('/usuario/reservas/sugerenciasReservas', function () {
-        return view('usuario.submenu.RES-sugerenciasReservas');
-    })->name('reservas-sugerenciasReservas');
-
+    Route::get('/usuario/reservas/sugerenciasReservas', [ReservasController::class, 'mostrarSugerencias'])->name('reservas-sugerenciasReservas');
+    Route::get('/usuario/reservas/mostrarHorariosFecha', [ReservasController::class, 'mostrarHorariosFecha'])->name('mostrarHorariosFecha');
+    Route::get('/usuario/reservas/reservar', [ReservasController::class, 'reservar'])->name('reservarClase');
+    Route::post('/usuario/reservas/cancelarReserva/{reserva}', [ReservasController::class, 'cancelarReserva'])->name('cancelarReserva');
     Route::get('/usuario/suscripcion', function () {
         return view('usuario.suscripcion');
     })->name('usuario-suscripcion');
@@ -122,7 +122,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion/estadoSuscripcion', [ProductoController::class, 'index'])->name('suscripcion-estadoSuscripcion');
     Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetalles'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
-    Route::get('/usuario/suscripcion/historialPago', [ProductoController::class, 'historialPago'])->name('suscripcion-historialPago');
+    Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'historialPago'])->name('suscripcion-historialPago');
+    Route::get('/usuario/suscripcion/historialPago/descargarFactura/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
 
     Route::get('/usuario/contrasena', function () {
         return view('usuario.contrasena');
@@ -199,17 +200,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/admin/panel-control/grupo/eliminarParticipante/{participante}', [GrupoController::class, 'eliminarParticipante'])->name('eliminarParticipante');
     Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
+    Route::get('/admin/panel-control/horario/{horario}/editar', [HorarioController::class, 'editarHorario'])->name('horario.editar');
+    Route::get('/admin/panel-control/reserva/{reserva}/editar', [ReservasController::class, 'edit'])->name('reserva.editar');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
     Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
-    Route::get('/admin/panel-control/productos/{producto}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
     //Rutas de facturacion 
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
-    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'pagar'])->name('pagar');
-
-    Route::get('/facturacion/descargarFactura')->name('generarFactura');
-
+    Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
+    Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
+    Route::get('/facturacion/suscripcion/cambiarPlan/{producto}', [PagoController::class, 'cambioPlan'])->name('cambiarPlan');
+    Route::get('/facturacion/regenerarFacturas', [FacturaController::class, 'regenerarFacturas'])->name('regenerarFacturas');
     //Ruta de sincronizacion de productos con stripe y bd local
     Route::get('/sincronizar-productos', [StripeSyncController::class, 'syncProductos']);
 

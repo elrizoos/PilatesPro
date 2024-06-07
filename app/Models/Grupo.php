@@ -15,11 +15,18 @@ class Grupo extends Model
         'profesor_id',
     ];
 
-    public function clase() {
-        return $this->hasMany(Clase::class);
+    public function clases()
+    {
+        return $this->hasMany(Clase::class, 'grupo_id');
     }
 
-    public function profesor() {
-        return $this->belongsTo(User::class);
+    public function usuarios()
+    {
+        return $this->hasMany(User::class, 'grupo_id');
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(User::class, 'profesor_id');
     }
 }

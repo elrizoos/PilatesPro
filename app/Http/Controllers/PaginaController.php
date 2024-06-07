@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\ImagenesSeccion;
 use App\Models\Pagina;
 use App\Http\Controllers\Controller;
+use App\Models\Producto;
 use App\Models\SeccionContenido;
+use Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Validator;
@@ -18,8 +20,13 @@ class PaginaController extends Controller
     public function index()
     {
         $paginas = Pagina::all();
+        $suscripciones = Producto::where('type', 'membership')->get();
+        $usuario = Auth::user();
+        $contadorSuscripciones = count($suscripciones);
+
+
         //dd($paginas);
-        return view('inicio', compact('paginas'));
+        return view('inicio', compact('paginas', 'suscripciones', 'usuario',  'contadorSuscripciones'));
     }
 
     /**
@@ -152,4 +159,6 @@ class PaginaController extends Controller
         $secciones = SeccionContenido::orderBy('idPagina', 'asc')->get();
         return view('admin.CONT-eliminarEditar', compact('paginas', 'tipo', 'secciones'));
     }
+
+   
 }

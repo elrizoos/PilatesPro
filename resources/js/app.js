@@ -83,12 +83,6 @@ $(document).ready(function () {
         }
     });
 
-
-
-
-
-
-
     $("#contenedorSeleccion .opcion").on("click", function (e) {
         var elemento = e.currentTarget.id;
         var valorBoton;
@@ -114,13 +108,13 @@ $(document).ready(function () {
     });
 
     function ocultarContenedores() {
-        $("#contenedorSeleccion").addClass('d-none'); 
+        $("#contenedorSeleccion").addClass("d-none");
     }
 
     function mostrarContenedor(clase, valorBoton, elemento, objeto) {
         $("." + clase).removeClass("d-none");
 
-        $("." + clase).addClass('d-flex');
+        $("." + clase).addClass("d-flex");
         var botonEnviar = $("." + clase + " input[type=submit]");
         botonEnviar.val(valorBoton).addClass(elemento);
 
@@ -164,14 +158,15 @@ $(document).ready(function () {
     });
 });
 
-$(".hora-inicio, .hora-fin").on("click", function () {
-    if ($(this).hasClass("hora-inicio")) {
-        $(".seleccion-horas").removeClass("d-none");
-        $("#inicioFin").text("Hora Inicio");
-    } else {
-        $(".seleccion-horas").removeClass("d-none");
-        $("#inicioFin").text("Hora Fin");
-    }
+$(".hora-inicio").on("click", function () {
+    $(".seleccion-horas").removeClass("d-none");
+    $("#inicioFin").text("Hora Inicio");
+});
+
+$('#tiempoClase').on('change', function(){
+    var seleccionado = $(this).val();
+    console.log(seleccionado);
+    $(this).attr('data-value', seleccionado);
 });
 
 $("#seleccionarHora").on("click", function () {
@@ -180,16 +175,63 @@ $("#seleccionarHora").on("click", function () {
     let horas;
     switch (h3) {
         case "Hora Inicio":
-            minutos = $("#minutosProvisional").val();
-            horas = $("#horaProvisional").val();
-            console.log(horas);
+            minutos = parseInt($("#minutosProvisional").val(), 10);
+            horas = parseInt($("#horaProvisional").val(), 10);
+            console.log("Horas:", horas);
+            var tiempoClase = parseInt(
+                $("#tiempoClase").attr("data-value"),
+                10
+            );
+            console.log("Tiempo de clase:", tiempoClase);
+
+            if (!isNaN(tiempoClase)) {
+                var minutosFinal = minutos + tiempoClase;
+                var horasFinal = horas;
+
+                if (minutosFinal >= 60) {
+                    horasFinal += Math.floor(minutosFinal / 60);
+                    minutosFinal = minutosFinal % 60;
+                }
+
+                let inputFin = $("#horaFin");
+                inputFin.val(
+                    (horasFinal < 10 ? "0" : "") +
+                        horasFinal +
+                        ":" +
+                        (minutosFinal < 10 ? "0" : "") +
+                        minutosFinal
+                );
+                $(".hora-fin .hora").text(
+                    (horasFinal < 10 ? "0" : "") + horasFinal
+                );
+                $(".hora-fin .minutos").text(
+                    (minutosFinal < 10 ? "0" : "") + minutosFinal
+                );
+                console.log(
+                    "Hora Final:",
+                    horasFinal,
+                    "Minutos Finales:",
+                    minutosFinal
+                );
+            } else {
+                console.log("Seleccione un tiempo de clase válido.");
+            }
+
             let inputInicio = $("#horaInicio");
-            inputInicio.val(horas + ":" + minutos);
+            inputInicio.val(
+                (horas < 10 ? "0" : "") +
+                    horas +
+                    ":" +
+                    (minutos < 10 ? "0" : "") +
+                    minutos
+            );
 
-            $(".hora-inicio .hora").text(horas);
-            $(".hora-inicio .minutos").text(minutos);
+            $(".hora-inicio .hora").text((horas < 10 ? "0" : "") + horas);
+            $(".hora-inicio .minutos").text(
+                (minutos < 10 ? "0" : "") + minutos
+            );
 
-            console.log(inputInicio);
+            console.log("Hora Inicio:", inputInicio.val());
             break;
         case "Hora Fin":
             minutos = $("#minutosProvisional").val();
@@ -249,7 +291,7 @@ function calendario() {
     mesAnno.text(fecha);
 
     diasMes.empty();
-    for (let i = 0; i < primerDia.getDay()-1; i++) {
+    for (let i = 0; i < primerDia.getDay() - 1; i++) {
         diasMes.append("<div></div>");
     }
 
@@ -315,7 +357,7 @@ function añadirEvento() {
     diasCalendario.on("click", function () {
         contenedorCalendario.addClass("d-none");
         fechaEspecifica.val(
-            annoActual + "-" + pad(mesActual+1) + "-" + pad($(this).text())
+            annoActual + "-" + pad(mesActual + 1) + "-" + pad($(this).text())
         );
     });
 }
@@ -341,10 +383,15 @@ $(".timeline").scroll(function () {
 });
 
 //Funcionalidad pagos
-$('#input-mas-detalles-pago').on('click', function() {
-    $('.mas-detalles-pago').addClass('d-flex');
+$("#input-mas-detalles-pago").on("click", function () {
+    $(".mas-detalles-pago").addClass("d-flex");
     $(this).hide();
 });
 
 
-
+$(".evento").on("click", function () {
+        var elemento = $(this).attr('id');
+        var formulario = $('#' + elemento + ' form');
+        formulario.submit();
+    console.log(formulario);
+});

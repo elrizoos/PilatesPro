@@ -10,6 +10,8 @@
                 Reservas activas</li>
             <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="sugerenciasReservas"
                 data-url="{{ route('reservas-sugerenciasReservas') }}">Sugerencias de reservas</li>
+            <li hidden class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="mostrarHorariosFecha"
+                data-url="{{ route('mostrarHorariosFecha', ['fecha' => now()->toDateString()]) }}"></li>
         </ul>
     </div>
     <div class="col contenido-dinamico-interno" id="contenido-dinamico-interno">
@@ -21,6 +23,9 @@
         </div>
         <div class="row h-100 contenedor-interno sugerenciasReservas" id="contenedor-sugerenciasReservas">
             @yield('sugerenciasReservas')
+        </div>
+        <div class="row h-100 contenedor-interno mostrarHorariosFecha" id="contenedor-mostrarHorariosFecha">
+            @yield('mostrarHorariosFecha')
         </div>
     </div>
 @endsection

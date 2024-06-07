@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalleFacturas', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('factura_id');
-            $table->decimal('cantidad');
-            $table->string('descripcion');
-            $table->timestamps();
+        Schema::table('horarios', function(Blueprint $table){
+            $table->enum('tiempo_clase', ['45', '60', '120']);
         });
     }
 

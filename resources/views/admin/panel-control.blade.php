@@ -201,6 +201,23 @@
                 d="M320.898 113.548a25.047 25.047 0 0 0-16.631 20.842h143.932v-24.932c0-17.119-16.845-29.167-33.022-23.682l-93.968 27.672c-.101.029-.211.069-.311.1z"
                 fill="#8e6d45" opacity="1" data-original="#000000" class="" />
         </symbol>
+        <symbol id="subir" viewBox="0 0 512 512">
+            <title>subir</title>
+            <path
+                d="m380.032 133.472-112-128C264.992 2.016 260.608 0 256 0s-8.992 2.016-12.032 5.472l-112 128c-4.128 4.736-5.152 11.424-2.528 17.152A16.013 16.013 0 0 0 144 160h64v208c0 8.832 7.168 16 16 16h64c8.832 0 16-7.168 16-16V160h64a15.96 15.96 0 0 0 14.56-9.376c2.592-5.728 1.632-12.448-2.528-17.152z"
+                fill="#8e6d45" opacity="1" data-original="#000000" />
+            <path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
+                fill="#8e6d45" opacity="1" data-original="#000000" />
+        </symbol>
+        <symbol id="devolver" viewBox="0 0 512 512">
+            <title>devolver</title>
+            <path fill="#8e6d45"
+                d="M362 512H150C67.2 512 0 444.8 0 362V150C0 67.2 67.2 0 150 0h212c82.8 0 150 67.2 150 150v212c0 82.8-67.2 150-150 150z"
+                opacity="1" data-original="#007bea" class="" />
+            <path fill="#ffffff"
+                d="M210.7 210.7c25-25 65.5-25 90.5 0s25 65.5 0 90.5-65.5 25-90.5 0l-45.3 45.3c50 50 131 50 181 0s50-131 0-181-131-50-181 0l-33.9-33.9v113.1h113.1z"
+                opacity="1" data-original="#ffffff" />
+        </symbol>
     </svg>
 </div>
 
@@ -299,8 +316,8 @@
                                 <use xlink:href="#flecha-abajo-blanco" />
                             </svg>
                             <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('productos') }}">Gestionar Productos</a>
+                                <li class="p-1"><a class="enlace" href="{{ route('productos') }}">Gestionar
+                                        Productos</a>
                                 </li>
                                 <li class="p-1">Registrar pagos</li>
                                 <li class="p-1">Generar facturacion</li>
@@ -340,8 +357,13 @@
                 </div>
             </div>
             <div class="col h-100 w-80 p-0 pe-5 pb-3">
+                <div class=" position-fixed z-1 top-0 start-0 m-5 d-flex align-items-center fs-6">
+                    <svg class="icon icono-normal">
+                        <use xlink:href="#devolver" />
+                    </svg>
+                    <button class="estilo-formulario" onclick="goBack()">Volver</button></div>
                 <div
-                    class="bg-color-fondo-claro w-100 h-100 border border-4 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
+                    class="bg-color-fondo-claro w-100 h-100 p-2 border border-4 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
                     @if (session('success'))
                         <div>
                             <p>{{ session('success') }}</p>
@@ -358,6 +380,7 @@
                     @if ($tipo)
                         @yield($tipo)
                     @else
+                   @yield('content')
                     @endif
                 </div>
             </div>
@@ -374,6 +397,14 @@
 
             });
         });
+
+        function goBack() {
+            if (document.referrer.indexOf(window.location.host) !== -1) {
+                window.history.back();
+            } else {
+                window.location.href = '/'; // Cambia '/' a la URL de tu página de inicio si es diferente
+            }
+        }
     </script>
 </body>
 
