@@ -3,181 +3,192 @@ import "./bootstrap";
 $(document).ready(function () {
     console.log("SCRIPT JS LOAD");
 
-    // Slider
+    initSlider("#appEscritorio .slider", "Slider Escritorio");
+    initSlider("#appMovil .slider", "Slider Móvil");
+
+    initVideoControls("#botonPlay", "#botonCerrar", "#reproductor-video");
+
+    $("#imagen-logo").on("click", redirectToUrl);
+    $(".iconoMenu").on("click", toggleMenu);
+    $("#paginasPersonalizadas").on("click", togglePagesList);
+
+    $("#contenedorSeleccion .opcion").on("click", handleOptionSelection);
+    $("#paginaEscogida, #seccionEscogida").on("change", updateFormAction);
+
+    $("#cerrarBoton").on("click", () => {
+        console.log("Cerrar botón clicado");
+        $(".ventana-emergente").addClass("no-active");
+    });
+
+    $(".hora-inicio").on("click", () => {
+        console.log("Hora inicio seleccionada");
+        $(".seleccion-horas").removeClass("d-none");
+        $("#inicioFin").text("Hora Inicio");
+    });
+
+    $("#tiempoClase").on("change", function () {
+        var seleccionado = $(this).val();
+        console.log("Tiempo de clase seleccionado:", seleccionado);
+        $(this).attr("data-value", seleccionado);
+    });
+
+    $("#seleccionarHora").on("click", handleTimeSelection);
+    $("#sliderHoras").on("input", updateProvisionalTime);
+    $(".mes-anterior").click(() => changeMonth(-1));
+    $(".mes-siguiente").click(() => changeMonth(1));
+    $(".anno-anterior").click(() => changeYear(-1));
+    $(".anno-siguiente").click(() => changeYear(1));
+
+    calendario();
+
+    $("#repetir").on("change", toggleRepeatOptions);
+    $(".timeline").scroll(syncTimelineScroll);
+    $("#input-mas-detalles-pago").on("click", showMorePaymentDetails);
+    $(".evento").on("click", submitEventForm);
+    $(".selectorMovil").on('click', function(){
+        $('#listaMovil').toggleClass('d-none');
+        $("#listaMovil").toggleClass("deslizamiento-click");
+    });
+    $("#selectorMovilCerrar").on("click", function () {
+        $("#listaMovil").toggleClass("d-none");
+        $("#listaMovil").toggleClass("deslizamiento-click");
+    });
+});
+
+function initSlider(selector, sliderName) {
     let slideIndex = 0;
-    showSlides();
-    showSlidesMovil();
+
     function showSlides() {
-        const slides = $("#appEscritorio .slider");
-        //console.log(slides);
+        const slides = $(selector);
         slides.removeClass("active");
         slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
         slides.eq(slideIndex++).addClass("active");
         setTimeout(showSlides, 3000);
+        console.log(`${sliderName} slideIndex: ${slideIndex}`);
     }
 
-    function showSlidesMovil() {
-        const slides = $("#appMovil .slider");
-        //console.log(slides);
-        slides.removeClass("active");
-        slideIndex = slideIndex >= slides.length ? 0 : slideIndex;
-        slides.eq(slideIndex++).addClass("active");
-        setTimeout(showSlidesMovil, 3000);
-    }
+    showSlides();
+}
 
-    // Control de Video
-    const botonPlay = $("#botonPlay");
-    const botonCerrar = $("#botonCerrar");
-    const video = $("#reproductor-video").get(0);
+function initVideoControls(playButton, closeButton, videoElement) {
+    const video = $(videoElement).get(0);
     let tiempo = 0;
 
-    botonPlay.on("click", function () {
-        toggleVideo(true);
-    });
+    $(playButton).on("click", () => toggleVideo(true, video, tiempo));
+    $(document).on("touchstart", playButton, () =>
+        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+    );
 
-    $(document).on("touchstart", "#botonPlay", function () {
-        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
-    });
+    $(closeButton).on("click", () => toggleVideo(false, video, tiempo));
+    $(document).on("touchstart", closeButton, () =>
+        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+    );
 
-    botonCerrar.on("click", function () {
-        toggleVideo(false);
-    });
-
-    $(document).on("touchstart", "#botonCerrar", function () {
-        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
-    });
-    function toggleVideo(play) {
-        $(".contenido-video, #reproductor-video, #botonCerrar").toggle();
+    function toggleVideo(play, video, tiempo) {
+        toggleElements(".contenido-video, #reproductor-video, #botonCerrar");
         if (play) {
             video.currentTime = tiempo;
             video.play();
+            console.log("Video play desde:", tiempo);
         } else {
             video.pause();
             tiempo = video.currentTime;
+            console.log("Video pausado en:", tiempo);
         }
     }
-    // Redirección con Imagen del Logo
-    $("#imagen-logo").on("click", function () {
-        const url = $(this).data("url");
-        window.location.href = url;
-    });
 
-    $(".iconoMenu").on("click", function () {
-        console.log("hola");
-        if ($("#listaMenu ul").hasClass("active")) {
-            $("#listaMenu ul").addClass("no-active");
-            $("#listaMenu ul").removeClass("active");
-        } else {
-            $("#listaMenu ul").addClass("active");
-            $("#listaMenu ul").removeClass("no-active");
-        }
-    });
-
-    $("#paginasPersonalizadas").on("click", function () {
-        if ($("#listaPaginas").hasClass("listaPaginasTransicion")) {
-            $("#listaPaginas").addClass("no-active");
-            $("#listaPaginas").removeClass("listaPaginasTransicion");
-        } else {
-            $("#listaPaginas").addClass("listaPaginasTransicion");
-            $("#listaPaginas").removeClass("no-active");
-        }
-    });
-
-    $("#contenedorSeleccion .opcion").on("click", function (e) {
-        var elemento = e.currentTarget.id;
-        var valorBoton;
-        valorBoton = elemento.replace(/([a-z])([A-Z])/g, "$1 $2");
-        console.log(valorBoton);
-        if (elemento === "eliminarPagina" || elemento === "editarPagina") {
-            ocultarContenedores();
-            mostrarContenedor(
-                "contenedor-paginas",
-                valorBoton,
-                elemento,
-                "pagina"
-            );
-        } else {
-            ocultarContenedores();
-            mostrarContenedor(
-                "contenedor-secciones",
-                valorBoton,
-                elemento,
-                "seccion"
-            );
-        }
-    });
-
-    function ocultarContenedores() {
-        $("#contenedorSeleccion").addClass("d-none");
+    function toggleElements(selector) {
+        $(selector).toggle();
     }
+}
 
-    function mostrarContenedor(clase, valorBoton, elemento, objeto) {
-        $("." + clase).removeClass("d-none");
+function redirectToUrl() {
+    const url = $(this).data("url");
+    console.log("Redirigiendo a URL:", url);
+    window.location.href = url;
+}
 
-        $("." + clase).addClass("d-flex");
-        var botonEnviar = $("." + clase + " input[type=submit]");
-        botonEnviar.val(valorBoton).addClass(elemento);
+function toggleMenu() {
+    console.log("Icono de menú clicado");
+    $("#listaMenu ul").toggleClass("active no-active");
+}
 
-        var esEliminar =
-            elemento === "eliminarPagina" || elemento === "eliminarSeccion";
-        $("." + clase + " input[name=_method]").val(esEliminar ? "DELETE" : "");
+function togglePagesList() {
+    console.log("Lista de páginas personalizadas clicada");
+    $("#listaPaginas").toggleClass("listaPaginasTransicion no-active");
+}
 
-        $("." + clase + " .formulario-contenedor").attr(
-            "method",
-            !esEliminar ? "GET" : "POST"
+function handleOptionSelection(e) {
+    var elemento = e.currentTarget.id;
+    var valorBoton = elemento.replace(/([a-z])([A-Z])/g, "$1 $2");
+    console.log("Opción seleccionada:", valorBoton);
+    if (elemento === "eliminarPagina" || elemento === "editarPagina") {
+        ocultarContenedores();
+        mostrarContenedor("contenedor-paginas", valorBoton, elemento, "pagina");
+    } else {
+        ocultarContenedores();
+        mostrarContenedor(
+            "contenedor-secciones",
+            valorBoton,
+            elemento,
+            "seccion"
         );
-
-        var tipoObjeto =
-            objeto === "pagina" ? "paginaEscogida" : "seccionEscogida";
-        var objetoId = $(
-            "." + clase + " select[name=" + tipoObjeto + "]"
-        ).val();
-        var ruta = $("#data-input").data(elemento.toLowerCase());
-        ruta = ruta.replace("INDEFINIDO", objetoId);
-        console.log(ruta);
-
-        $("." + clase + " form").attr("action", ruta);
     }
+}
 
-    $("#paginaEscogida, #seccionEscogida").on("change", function (e) {
-        var objetoInicial = e.currentTarget.id;
-        var tipoObjeto =
-            objetoInicial === "seccionEscogida" ? "seccion" : "pagina";
-        var formulario =
-            tipoObjeto === "pagina"
-                ? "formulario-pagina"
-                : "formulario-seccion";
-        var objetoId = $("#" + objetoInicial).val();
-        var ruta = $("form." + formulario).attr("action");
-        ruta = ruta.replace(/\/\d+/, "/" + objetoId);
-        $("." + formulario).attr("action", ruta);
-    });
+function ocultarContenedores() {
+    console.log("Ocultando contenedores");
+    $("#contenedorSeleccion").addClass("d-none");
+}
 
-    $("#cerrarBoton").on("click", function () {
-        $(".ventana-emergente").addClass("no-active");
-    });
-});
+function mostrarContenedor(clase, valorBoton, elemento, objeto) {
+    console.log("Mostrando contenedor:", clase);
+    $("." + clase)
+        .removeClass("d-none")
+        .addClass("d-flex");
 
-$(".hora-inicio").on("click", function () {
-    $(".seleccion-horas").removeClass("d-none");
-    $("#inicioFin").text("Hora Inicio");
-});
+    var botonEnviar = $("." + clase + " input[type=submit]");
+    botonEnviar.val(valorBoton).addClass(elemento);
 
-$('#tiempoClase').on('change', function(){
-    var seleccionado = $(this).val();
-    console.log(seleccionado);
-    $(this).attr('data-value', seleccionado);
-});
+    var esEliminar =
+        elemento === "eliminarPagina" || elemento === "eliminarSeccion";
+    $("." + clase + " input[name=_method]").val(esEliminar ? "DELETE" : "");
 
-$("#seleccionarHora").on("click", function () {
+    $("." + clase + " .formulario-contenedor").attr(
+        "method",
+        !esEliminar ? "GET" : "POST"
+    );
+
+    var tipoObjeto = objeto === "pagina" ? "paginaEscogida" : "seccionEscogida";
+    var objetoId = $("." + clase + " select[name=" + tipoObjeto + "]").val();
+    var ruta = $("#data-input").data(elemento.toLowerCase());
+    ruta = ruta.replace("INDEFINIDO", objetoId);
+    console.log("Ruta ajustada:", ruta);
+
+    $("." + clase + " form").attr("action", ruta);
+}
+
+function updateFormAction(e) {
+    var objetoInicial = e.currentTarget.id;
+    var tipoObjeto = objetoInicial === "seccionEscogida" ? "seccion" : "pagina";
+    var formulario =
+        tipoObjeto === "pagina" ? "formulario-pagina" : "formulario-seccion";
+    var objetoId = $("#" + objetoInicial).val();
+    var ruta = $("form." + formulario).attr("action");
+    ruta = ruta.replace(/\/\d+/, "/" + objetoId);
+    console.log("Ruta del formulario actualizada:", ruta);
+    $("." + formulario).attr("action", ruta);
+}
+
+function handleTimeSelection() {
     const h3 = $("#inicioFin").text();
-    let minutos;
-    let horas;
+    let minutos, horas;
+
     switch (h3) {
         case "Hora Inicio":
             minutos = parseInt($("#minutosProvisional").val(), 10);
             horas = parseInt($("#horaProvisional").val(), 10);
-            console.log("Horas:", horas);
+            console.log("Horas:", horas, "Minutos:", minutos);
             var tiempoClase = parseInt(
                 $("#tiempoClase").attr("data-value"),
                 10
@@ -241,13 +252,13 @@ $("#seleccionarHora").on("click", function () {
             inputFin.val(horas + ":" + minutos);
             $(".hora-fin .hora").text(horas);
             $(".hora-fin .minutos").text(minutos);
-            console.log(inputFin);
+            console.log("Hora Fin seleccionada:", inputFin.val());
             break;
     }
     $(".seleccion-horas").addClass("d-none");
-});
+}
 
-$("#sliderHoras").on("input", function () {
+function updateProvisionalTime() {
     const minutos = $(this).val() * 5;
     const horas = Math.floor(minutos / 60);
     const minutosRestantes = minutos % 60;
@@ -258,7 +269,7 @@ $("#sliderHoras").on("input", function () {
     $("#horaProvisional").val(horasCeros);
     $("#minutosProvisional").val(minutosCeros);
     setAgujas(horasCeros, minutosCeros);
-});
+}
 
 function pad(num) {
     return num.toString().padStart(2, "0");
@@ -272,16 +283,13 @@ function setAgujas(horas, minutos) {
     $(".aguja-minuto").css("transform", "rotate(" + anguloMinutos + "deg)");
 }
 
-//Funcion para el funcionamiento del calendario
-
-const mesAnno = $("#mesAnnoActual");
-const diasMes = $("#diasMes");
-const fechaActual = new Date();
-let mesActual = fechaActual.getMonth();
-console.log(mesActual);
-let annoActual = fechaActual.getFullYear();
-
 function calendario() {
+    const mesAnno = $("#mesAnnoActual");
+    const diasMes = $("#diasMes");
+    const fechaActual = new Date();
+    let mesActual = fechaActual.getMonth();
+    let annoActual = fechaActual.getFullYear();
+
     const primerDia = new Date(annoActual, mesActual, 1);
     const ultimoDia = new Date(annoActual, mesActual + 1, 0);
     const fecha = primerDia.toLocaleDateString("es-ES", {
@@ -307,91 +315,66 @@ function calendario() {
         diasMes.append(diaDiv);
     }
     añadirEvento();
+
+    function añadirEvento() {
+        const diasCalendario = $(".dia-calendario");
+        diasCalendario.on("click", function () {
+            console.log("Día del calendario seleccionado:", $(this).text());
+            $("#contenedorCalendario").addClass("d-none");
+            $("#fechaEspecifica").val(
+                annoActual +
+                    "-" +
+                    pad(mesActual + 1) +
+                    "-" +
+                    pad($(this).text())
+            );
+        });
+    }
 }
 
-$(".mes-anterior").click(function () {
-    mesActual--;
+function changeMonth(increment) {
+    mesActual += increment;
     if (mesActual < 0) {
         mesActual = 11;
         annoActual--;
-    }
-    calendario();
-});
-
-$(".mes-siguiente").click(function () {
-    mesActual++;
-    if (mesActual > 11) {
+    } else if (mesActual > 11) {
         mesActual = 0;
         annoActual++;
     }
+    console.log("Mes cambiado:", mesActual, "Año:", annoActual);
     calendario();
-});
-
-$(".anno-anterior").click(function () {
-    annoActual--;
-    calendario();
-});
-
-$(".anno-siguiente").click(function () {
-    annoActual++;
-    calendario();
-});
-
-calendario();
-
-//Funcion para aparecer y desaparecer calendario y label de placeholder
-const label = $("#fechaPlaceholder");
-const contenedorCalendario = $("#contenedorCalendario");
-const fechaEspecifica = $("#fechaEspecifica");
-let dias = $(".dias-mes div");
-label.on("click", function () {
-    label.hide();
-    contenedorCalendario.addClass("d-flex");
-});
-fechaEspecifica.on("click", function () {
-    contenedorCalendario.removeClass("d-none");
-});
-
-function añadirEvento() {
-    const diasCalendario = $(".dia-calendario");
-    diasCalendario.on("click", function () {
-        contenedorCalendario.addClass("d-none");
-        fechaEspecifica.val(
-            annoActual + "-" + pad(mesActual + 1) + "-" + pad($(this).text())
-        );
-    });
 }
 
-//Funcionalidad de boton repetir
-$("#repetir").on("change", function () {
-    console.log($(this).prop("checked"));
+function changeYear(increment) {
+    annoActual += increment;
+    console.log("Año cambiado:", annoActual);
+    calendario();
+}
 
-    switch ($(this).prop("checked")) {
-        case true:
-            $(".opcionRepetir").addClass("d-flex");
-            break;
-        case false:
-            $(".opcionRepetir").removeClass("d-flex");
-            $(".listaDiasSemana li input").prop("checked", false);
+function toggleRepeatOptions() {
+    console.log("Repetir opción cambiada:", $(this).prop("checked"));
+    $(".opcionRepetir").toggleClass("d-flex", $(this).prop("checked"));
+    if (!$(this).prop("checked")) {
+        $(".listaDiasSemana li input").prop("checked", false);
     }
-});
+}
 
-$(".timeline").scroll(function () {
-    console.log("moviendo");
+function syncTimelineScroll() {
+    console.log("Timeline desplazada");
     $(".horas-timeline").css("left", $(".timeline").scrollLeft());
     $(".fecha-timeline").css("top", $(".timeline").scrollTop());
-});
+}
 
-//Funcionalidad pagos
-$("#input-mas-detalles-pago").on("click", function () {
+function showMorePaymentDetails() {
+    console.log("Mostrando más detalles del pago");
     $(".mas-detalles-pago").addClass("d-flex");
     $(this).hide();
-});
+}
 
+function submitEventForm() {
+    var elemento = $(this).attr("id");
+    var formulario = $("#" + elemento + " form");
+    console.log("Enviando formulario de evento:", formulario);
+    formulario.submit();
+}
 
-$(".evento").on("click", function () {
-        var elemento = $(this).attr('id');
-        var formulario = $('#' + elemento + ' form');
-        formulario.submit();
-    console.log(formulario);
-});

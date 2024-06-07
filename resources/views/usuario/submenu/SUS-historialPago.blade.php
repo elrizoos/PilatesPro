@@ -1,28 +1,28 @@
 @extends('usuario.suscripcion')
 @section('historialPago')
-    <div>
-        <h2>Historial de Pagos</h2>
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100 rounded-5">
+        <h2 class="fs-3 p-4">Historial de Pagos</h2>
         @if ($facturasDatos == null)
             <p>No hay pagos registrados.</p>
         @else
-            <table>
+            <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                 <thead>
                     <tr>
-                        <th>ID del Pago</th>
-                        <th>Fecha</th>
-                        <th>Monto</th>
-                        <th>Estado</th>
-                        <th>Factura</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">ID del Pago</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Fecha</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Monto</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Estado</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Factura</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($facturasDatos as $factura)
                         <tr>
-                            <td>{{ $factura['factura']->id }}</td>
-                            <td>{{ \Carbon\Carbon::createFromTimestamp($factura['factura']->created)->toFormattedDateString() }}</td>
-                            <td>${{ number_format($factura['factura']->amount / 100, 2) }}</td>
-                            <td>{{ $factura['factura']->status }}</td>
-                            <td><a href="{{ route('descargarFactura', ['factura' => basename($factura['pdf'])]) }}">Descargar Factura</a></td>
+                            <td class="texto-color-resalte border border-2 border-fondo">{{ $factura['factura']->id }}</td>
+                            <td class="texto-color-resalte border border-2 border-fondo">{{ \Carbon\Carbon::createFromTimestamp($factura['factura']->created)->toFormattedDateString() }}</td>
+                            <td class="texto-color-resalte border border-2 border-fondo">${{ number_format($factura['factura']->amount / 100, 2) }}</td>
+                            <td class="texto-color-resalte border border-2 border-fondo">{{ $factura['factura']->status }}</td>
+                            <td class="texto-color-resalte border border-2 border-fondo"><a href="{{ route('descargarFactura', ['factura' => basename($factura['pdf'])]) }}">Descargar Factura</a></td>
                         </tr>
                     @endforeach
                 </tbody>
