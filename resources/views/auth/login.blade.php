@@ -23,6 +23,7 @@
                 <input class="estilo-formulario" type="password" name="password" id="password" placeholder="Contraseña">
                 <hr class="linea-transition-rigth border border-warning-subtle w-25 border-1">
                 <input class="estilo-formulario estilo-formulario-enviar text-center" type="submit" value="Entrar">
+                <a href="{{ route('password.request') }}" class="estilo-formulario text-center w-100 d-inline-block">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
     </div>

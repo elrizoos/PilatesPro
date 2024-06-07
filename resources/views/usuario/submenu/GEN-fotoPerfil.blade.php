@@ -14,7 +14,7 @@
                         <label class="texto-color-resalte fs-3" for="fotoPerfil">Foto de perfil:</label>
                     </div>
                 </div>
-                <div class="row w-100 h-50">
+                <div class="row h-50">
                     <div class="col d-flex justify-content-center align-items-center">
                         @if (auth()->user()->imagen)
                             <img class="imagen img-fluid w-25 h-auto"

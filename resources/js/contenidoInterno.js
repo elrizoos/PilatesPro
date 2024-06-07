@@ -69,10 +69,10 @@ switch (lastSegment) {
     case "historialPago":
         var elementoDinamico = "contenidoSuscripcion";
         break;
-    case "cambiarContraseña":
+    case "cambiarContrasena":
     case "opciones":
     case "politicas":
-        var elementoDinamico = "contenidoContraseña";
+        var elementoDinamico = "contenidoContrasena";
         break;
     case "notificaciones":
     case "privacidad":
