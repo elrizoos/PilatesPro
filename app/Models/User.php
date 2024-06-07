@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -85,5 +86,14 @@ class User extends Authenticatable
     public function reserva()
     {
         return $this->hasOne(Reserva::class, 'alumno_id');
+    }
+
+    public function metodosRecuperacion()
+    {
+        return $this->hasOne(MetodosRecuperacione::class);
+    }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

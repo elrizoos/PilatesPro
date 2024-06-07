@@ -2,14 +2,14 @@
 @section('cambioPlan')
     <div class="container-fluid ">
         <div class="row">
-            <div class="col">
+            <div class="col text-center p-4 fs-5">
                 <h3>Cambiar de plan</h3>
                 <p>Puedes cambiar de suscripcion siempre que quieras</p>
             </div>
         </div>
         <div class="row p-5">
             <div class="container-fluid">
-                <div class="row row-cols-4 overflow-y-auto">
+                <div class="row row-cols-4 overflow-y-hidden">
                     @if (isset($productosRestantes))
                         @foreach ($productosRestantes as $subscription)
                             @if ($subscription->type == 'membership')
@@ -39,7 +39,7 @@
                             @endif
                         @endforeach
                         @if (!isset($suscripciones) || $suscripciones == false)
-                            <div class="col d-flex justify-content-center align-items-center">
+                            <div class="col-12 d-flex fs-5 justify-content-center align-items-center">
                                 <p>Por el momento no hay suscripciones para activar</p>
                             </div>
                         @endif

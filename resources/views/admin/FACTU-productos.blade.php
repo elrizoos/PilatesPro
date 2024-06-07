@@ -29,13 +29,13 @@
                         </li>
                     </ul>
                 </div>
-                <div class="row w-100 flex-grow-1 overflow-y-auto   h-auto">
+                <div class="row flex-grow-1 overflow-y-auto   h-auto">
                     <div class="tab-content w-100 h-100" id="tabProductosContent">
                         <div class="tab-pane fade container-fluid w-100 h-100" id="productos-paquetes" role="tabpanel"
                             aria-labelledby="productos-paquetes" tabindex="0">
                             <div
                                 class="container-fluid p-2  overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
-                                <div class="row w-100 h-100 ">
+                                <div class="row h-100 ">
                                     <div class="col">
                                         <div class="row h-100 row-cols-3 ">
                                             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
@@ -124,7 +124,7 @@
                             aria-labelledby="productos-suscripcion" tabindex="0">
                             <div
                                 class="container-fluid p-2 overflow-y-auto w-100 h-100  d-flex flex-column justify-content-center align-items-center">
-                                <div class="row w-100 h-100 ">
+                                <div class="row h-100 ">
                                     <div class="col">
                                         <div class="row h-100 row-cols-3 ">
 

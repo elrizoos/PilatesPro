@@ -1,5 +1,8 @@
 @extends('layouts.config')
 @section('contenidoOtros')
+    <div class="d-block d-lg-none">
+        <h2 class="fs-3 text-center selectorMovil">GENERAL</h2>
+    </div>
     <div>
         <ul>
             <li id="notificaciones" data-url="{{ route('otros-notificaciones') }}">Notificaciones</li>

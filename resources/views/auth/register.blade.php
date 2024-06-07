@@ -126,6 +126,7 @@
                     <div class="col">
                         <input class="estilo-formulario estilo-formulario-enviar text-center w-100" type="submit"
                             value="Entrar">
+                            
                     </div>
                 </div>
             </form>
