@@ -1,5 +1,8 @@
 @extends('layouts.config')
 @section('contenidoReservas')
+    <div class="d-block d-lg-none">
+        <h2 class="fs-3 text-center selectorMovil">GENERAL</h2>
+    </div>
     <div class="col col-3  d-flex justify-content-center align-items-center">
         <ul class="p-2 fs-5">
             <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="historialReservas"
@@ -10,7 +13,8 @@
                 Reservas activas</li>
             <li class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="sugerenciasReservas"
                 data-url="{{ route('reservas-sugerenciasReservas') }}">Sugerencias de reservas</li>
-            <li hidden class="contenido-cargable-interno contenido-item p-2 texto-color-secundario" id="mostrarHorariosFecha"
+            <li hidden class="contenido-cargable-interno contenido-item p-2 texto-color-secundario"
+                id="mostrarHorariosFecha"
                 data-url="{{ route('mostrarHorariosFecha', ['fecha' => now()->toDateString()]) }}"></li>
         </ul>
     </div>

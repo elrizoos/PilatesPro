@@ -1,8 +1,8 @@
-<div class="container-fluid w-100 vh-100 bg-color-fondo-claro border-bottom border-1 border-dorado-claro">
-    <div class="container h-100 py-5 ">
+<div class="row  vh-100 bg-color-fondo-claro border-bottom border-1 border-dorado-claro">
+    <div class="col h-100 py-5  g-0">
         <h2 class="text-center text-uppercase fs-2 texto-color-resalte">Nuestros servicios</h2>
         <h3 class="text-center text-uppercase fs-3 texto-color-secundario">Facilidades del estudio</h3>
-        <div class="row  h-75  row-gap-4 mt-5">
+        <div class="row  h-75  row-gap-4 mt-5 p-5 pt-0 ">
             <div class="col-md-4">
                 <div class="service-box w-100 h-100 border border-warning-subtle">
                     <div class="d-flex align-items-center justify-content-center mb-3 min-height-40">

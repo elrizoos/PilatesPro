@@ -473,18 +473,18 @@ a {
 }
 
 .icono-normal {
-    width: 1em;
-    height: 1em;
+    width: 2rem;
+    height: 2rem;
 }
 
 .icono-grande {
-    width: 3em;
-    height: 3em;
+    width: 3rem;
+    height: 3rem;
 }
 
 .icono-muy-grande {
-    width: 5em;
-    height: 5em;
+    width: 5rem;
+    height: 5rem;
 }
 
 .service-box {
@@ -1414,4 +1414,59 @@ input[type="checkbox"]:checked::before {
 .day div {
     position: relative;
     height: 2em;
+}
+.deslizamiento {
+    transform: translateX(0%);
+    transition: all 1.5s ease;
+}
+
+.deslizamiento-click {
+    transform: translateX(100%);
+    transition: all 1.5s ease;
+}
+
+//RESPONSIVE DESING
+/* Base font size for the entire document */
+html {
+    font-size: 100%; /* Default font size */
+}
+@media (min-width: 0) {
+    html {
+        font-size: 80%;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    html {
+        font-size: 65%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    html {
+        font-size: 100%;
+    }
 }

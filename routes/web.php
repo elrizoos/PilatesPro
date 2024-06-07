@@ -103,9 +103,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.submenu.GEN-fotoPerfil');
     })->name('general-fotoPerfil');
 
-    Route::get('/usuario/general/preferenciasIdioma', function () {
-        return view('usuario.submenu.GEN-preferenciasIdioma');
-    })->name('general-preferenciasIdioma');
 
     Route::get('/usuario/reservas', function () {
         return view('usuario.reservas');

@@ -227,7 +227,7 @@
             </div>
         </div>
     </div>
-    <div class="row h-75 g-0" id="app">
+    <div class=" row h-75 g-0" id="app">
         <div class="col">
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
@@ -241,7 +241,7 @@
 
                 </div>
             @endif
-            <div class="row h-15">
+            <div class="row d-none d-lg-flex h-15">
                 <ul
                     class="col d-flex gap-5 align-items-center justify-content-center texto-color-secundario text-center text-uppercase">
                     <li class="contenido-cargable p-4 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
@@ -272,35 +272,62 @@
                     </div>
                 </div>
             </div>
-            <div class="row g-0 p-0 h-85" id="contenido-dinamico" class="contenido-ajustes">
+            <div class="row g-0 p-0 h-85 position-relative" id="contenido-dinamico" class="contenido-ajustes">
+                <ul id="listaMovil"
+                    class="position-absolute end-100 deslizamiento z-2 w-100 h-100 bg-color-principal d-flex d-none flex-column d-lg-none gap-5 align-items-center justify-content-center texto-color-secundario text-center text-uppercase">
+                    <li id="selectorMovilCerrar" >
+                        <svg class="icon icono-normal">
+                            <use xlink:href="#botn-cerrar" />
+                        </svg>
+                    </li>
+                    <li class="contenido-cargable p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoGeneral" data-url="{{ route('general-informacion') }}">
+                        General
+                    </li>
+                    <li class="contenido-cargable  p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoReservas" data-url="{{ route('reservas-historialReservas') }}">Reservas
+                    </li>
+                    <li class="contenido-cargable  p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
+                        Suscripcion</li>
+                    <li class="contenido-cargable p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoContraseña" data-url="{{ route('contrasena-cambiarContraseña') }}">
+                        Cambiar contraseña</li>
+                    <li class="contenido-cargable  p-3 border border-2 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">
+                        Otros
+                        ajustes
+                    </li>
+                </ul>
                 <div class="col p-0 contenidoGeneral" id="contenedor-contenidoGeneral">
-                    <div class="row  w-100 h-100 g-0">
+                    <div class="row w-100 h-100 g-0">
                         @yield('contenidoGeneral')
                     </div>
                 </div>
                 <div class="col contenidoReservas" id="contenedor-contenidoReservas">
-                    <div class="row w-100 h-100 g-0">
+                    <div class="row h-100 g-0">
                         @yield('contenidoReservas')
                     </div>
                 </div>
                 <div class="col contenidoSuscripcion" id="contenedor-contenidoSuscripcion">
-                    <div class="row w-100 h-100 g-0">
+                    <div class="row h-100 g-0">
                         @yield('contenidoSuscripcion')
                     </div>
                 </div>
                 <div class="col contenidoContraseña" id="contenedor-contenidoContraseña">
-                    <div class="row w-100 h-100 g-0">
+                    <div class="row h-100 g-0">
                         @yield('contenidoContraseña')
                     </div>
                 </div>
                 <div class="col contenidoOtros" id="contenedor-contenidoOtros">
-                    <div class="row w-100 h-100 g-0">
+                    <div class="row h-100 g-0">
                         @yield('contenidoOtros')
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

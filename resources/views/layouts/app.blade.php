@@ -221,9 +221,9 @@
     </svg>
 </div>
 
-<body class="bg-color-fondo texto-color-secundariono-scrollbar">
+<body class="bg-color-fondo texto-color-secundario no-scrollbar">
     <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
-    <div class="d-flex flex-row  position-relative bottom-100" id="appEscritorio">
+    <div class="d-flex flex-column flex-sm-row  position-relative bottom-100" id="appEscritorio">
         <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"
             id="cuadroActualizacion">
             <h5 class="w-100 p-3 fs-1 text-center texto-color-secundario">¡La página ha sido actualizada!</h5>
@@ -234,7 +234,7 @@
                 Route::currentRouteName() !== 'login' &&
                 Route::currentRouteName() !== 'registrarUsuarioProducto' &&
                 Route::currentRouteName() !== 'register')
-            <nav class=" container-fluid bg-color-principal w-20 position-relative">
+            <nav class="d-none d-sm-block container-fluid bg-color-principal w-20 position-relative">
                 <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-1">
                     <div class="w-100 h-25 p-2">
                         <div class="img-fluid imagen-logo w-100 h-100 img" id="imagen-logo"
@@ -302,14 +302,7 @@
                                         </svg><a
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
-                                    @if (Auth::user()->nombre !== 'admin')
-                                        <li class="w-100 p-3 text-center"><svg xmlns="http://www.w3.org/2000/svg"
-                                                width="16" height="16" fill="white" class="bi bi-gem me-1"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.995zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83-2.928.002z" />
-                                            </svg></i>Suscripción</li>
-                                    @endif
+                                   
                                     <li class="w-100 p-3 text-center">
                                         <form class="formulario" action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -331,31 +324,112 @@
                     </div>
                 </div>
             </nav>
+
+            <nav class="container-fluid d-block d-sm-none bg-color-principal">
+                <div class="row   p-2">
+                    <div class="col p-4 d-flex justify-content-center align-items-center">
+                        <div class="img-fluid imagen-logo w-100 h-auto" style="height:10rem !important"
+                            id="imagen-logo" data-url="{{ route('inicio') }}">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4 justify-content-center align-items-center">
+                    <div class="col">
+                        <ul class="row row-cols-3 text-uppercase fs-5">
+                            <li class="p-3 border border-1"><a href="{{ route('inicio') }}">Inicio</a></li>
+                            <li class="p-3 border border-1"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
+                            <li class="p-3 border border-1"><a href="{{ route('clases') }}">Clases</a></li>
+                            <li class="p-3 border border-1"><a href="{{ route('horarios') }}">Horario</a></li>
+                            <li class="p-3 border border-1"><a href="{{ route('instructores') }}">Instructores</a>
+                            </li>
+                            <li class="p-3 border border-1"><a href="{{ route('reservas') }}">Reservas</a></li>
+                            <li class="p-3 border border-1"><a href="{{ route('preciosVIP') }}">Precios y VIP</a>
+                            </li>
+                            <li class="p-3 border border-1"><a href="{{ route('contacto') }}">Contacto</a></li>
+                            <li class="p-3 border border-1" id="paginasPersonalizadas">
+                                Más <span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @guest
+                            <ul class="w-75 d-flex flex-column gap-4 justify-content-center align-items-center m-auto">
+                                <li
+                                    class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra with-transitions">
+                                    <a class="text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
+                                </li>
+                                <li
+                                    class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra">
+                                    <a class="text-uppercase" href="{{ route('register') }}">Registro</a>
+                                </li>
+                            </ul>
+                        @endguest
+                      
+                        @auth
+                            <ul class="w-100 d-flex flex-row align-items-center justify-content-center  text-uppercase">
+                                <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
+                                    {{ Auth::user()->apellidos }}
+                                </li>
+                                <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="white" class="bi bi-gear me-1" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                                        <path
+                                            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                                    </svg><a
+                                        href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
+                                </li>
+                               
+                                <li class="w-100 p-3 text-center">
+                                    <form class="formulario" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="ms-1 estilo-formulario" type="submit"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                            </svg>Salir</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        @endauth
+                    </div>
+                </div>
+            </nav>
         @else
         @endif
 
 
 
-        <main class="position-relative w-80">
-            @if (session('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
+        <main class="position-relative container-fluid w-100 p-0 overflow-hidden w-80">
+            <div class="row g-0">
+                <div class="col g-0">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
 
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger" role="alert">
-                    {{ session('error') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
 
+                        </div>
+                    @endif
+                    @if (isset($mostrarProducto))
+                        @if ($mostrarProducto === true)
+                            @yield('mostrarProducto')
+                        @endif
+                    @else
+                        @yield('content')
+                    @endif
                 </div>
-            @endif
-            @if (isset($mostrarProducto))
-                @if ($mostrarProducto === true)
-                    @yield('mostrarProducto')
-                @endif
-            @else
-                @yield('content')
-            @endif
+            </div>
         </main>
     </div>
 
