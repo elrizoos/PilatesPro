@@ -122,7 +122,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion/estadoSuscripcion', [ProductoController::class, 'index'])->name('suscripcion-estadoSuscripcion');
     Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetalles'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
-    Route::get('/usuario/suscripcion/historialPago', [ProductoController::class, 'historialPago'])->name('suscripcion-historialPago');
+    Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'historialPago'])->name('suscripcion-historialPago');
+    Route::get('/usuario/suscripcion/historialPago/descargarFactura/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
 
     Route::get('/usuario/contrasena', function () {
         return view('usuario.contrasena');
@@ -211,8 +212,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
     Route::get('/facturacion/suscripcion/cambiarPlan/{producto}', [PagoController::class, 'cambioPlan'])->name('cambiarPlan');
-    Route::get('/facturacion/descargarFactura')->name('generarFactura');
-
+    Route::get('/facturacion/regenerarFacturas', [FacturaController::class, 'regenerarFacturas'])->name('regenerarFacturas');
     //Ruta de sincronizacion de productos con stripe y bd local
     Route::get('/sincronizar-productos', [StripeSyncController::class, 'syncProductos']);
 

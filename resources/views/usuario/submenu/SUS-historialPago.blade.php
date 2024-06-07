@@ -2,7 +2,7 @@
 @section('historialPago')
     <div>
         <h2>Historial de Pagos</h2>
-        @if ($charges->isEmpty())
+        @if ($facturasDatos == null)
             <p>No hay pagos registrados.</p>
         @else
             <table>
@@ -16,13 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($charges as $charge)
+                    @foreach ($facturasDatos as $factura)
                         <tr>
-                            <td>{{ $charge->id }}</td>
-                            <td>{{ \Carbon\Carbon::createFromTimestamp($charge->created)->toFormattedDateString() }}</td>
-                            <td>${{ number_format($charge->amount / 100, 2) }}</td>
-                            <td>{{ $charge->status }}</td>
-                            <td><a href="{{ route('generarFactura') }}">Descargar Factura</a></td>
+                            <td>{{ $factura['factura']->id }}</td>
+                            <td>{{ \Carbon\Carbon::createFromTimestamp($factura['factura']->created)->toFormattedDateString() }}</td>
+                            <td>${{ number_format($factura['factura']->amount / 100, 2) }}</td>
+                            <td>{{ $factura['factura']->status }}</td>
+                            <td><a href="{{ route('descargarFactura', ['factura' => basename($factura['pdf'])]) }}">Descargar Factura</a></td>
                         </tr>
                     @endforeach
                 </tbody>

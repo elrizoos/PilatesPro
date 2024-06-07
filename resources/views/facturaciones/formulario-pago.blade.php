@@ -234,8 +234,20 @@
             </div>
             <div class="row h-75 p-3">
                 <div class="col d-flex justify-content-center align-items-center">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+
+                        </div>
+                    @endif
                     <div
-                        class="texto-color-secundariobg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
+                        class="texto-color-secundario bg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
                         <h1 class="fs-2 p-2">
                             {{ $productoFacturar->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $productoFacturar->name }}
                         </h1>

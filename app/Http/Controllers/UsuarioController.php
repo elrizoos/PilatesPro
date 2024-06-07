@@ -239,17 +239,17 @@ class UsuarioController extends Controller
                         $tiempoClase = $infoSuscripcion->tiempo_clase;
                         switch ($tiempoClase) {
                             case 45:
-                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->numero_clases;
+                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->clases_semanales * (52/12);
                                 break;
                             case 60:
-                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->numero_clases;
+                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->clases_semanales * (52/12);
                                 break;
                             case 120:
-                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->numero_clases;
+                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->clases_semanales * (52/12);
                                 break;
                         }
-                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->numero_clases;
-                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->numero_clases * $tiempoClase);
+                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->clases_semanales * (52/12);
+                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->clases_semanales * (52/12) * $tiempoClase);
                     } else {
                         throw new \Exception('Información de la suscripción no encontrada');
                     }
