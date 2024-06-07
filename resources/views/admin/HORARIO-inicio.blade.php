@@ -37,7 +37,7 @@
                                     @php
                                         $vacio = false;
                                     @endphp
-                                    <div class="evento evento-{{ $evento['evento']->clase_id }} "
+                                    <div class="evento evento-{{ $evento['evento']->id }} " id="evento-{{ $evento['evento']->id }}"
                                         style="top: {{ $evento['posicionArriba'] }}em; height: {{ $evento['alturaDiv'] }}em;">
                                         {{ $evento['evento']->clase->nombre }}
                                         <div class="informacion-evento">
@@ -55,6 +55,11 @@
                                                 <span>{{ $evento['evento']->fecha_especifica }}</span></h6>
 
                                         </div>
+
+                                        <form hidden action="{{ route('horario.edit', ['horario' => $evento['evento']->id]) }}" method="get">
+                                            @csrf
+                                            <input type="submit" value="Editar">
+                                        </form>
                                     </div>
                                 @endif
                             @endforeach
@@ -71,7 +76,7 @@
                 block: 'nearest',
                 inline: 'start'
             });
-
+            
         });
     </script>
 @endsection

@@ -209,10 +209,19 @@
             <path d="M432 352v96H80v-96H16v128c0 17.696 14.336 32 32 32h416c17.696 0 32-14.304 32-32V352h-64z"
                 fill="#8e6d45" opacity="1" data-original="#000000" />
         </symbol>
+        <symbol id="devolver" viewBox="0 0 512 512">
+            <title>devolver</title>
+            <path fill="#8e6d45"
+                d="M362 512H150C67.2 512 0 444.8 0 362V150C0 67.2 67.2 0 150 0h212c82.8 0 150 67.2 150 150v212c0 82.8-67.2 150-150 150z"
+                opacity="1" data-original="#007bea" class="" />
+            <path fill="#ffffff"
+                d="M210.7 210.7c25-25 65.5-25 90.5 0s25 65.5 0 90.5-65.5 25-90.5 0l-45.3 45.3c50 50 131 50 181 0s50-131 0-181-131-50-181 0l-33.9-33.9v113.1h113.1z"
+                opacity="1" data-original="#ffffff" />
+        </symbol>
     </svg>
 </div>
 
-<body class="bg-color-fondo texto-color-principal no-scrollbar">
+<body class="bg-color-fondo texto-color-secundariono-scrollbar">
     <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
     <div class="d-flex flex-row  position-relative bottom-100" id="appEscritorio">
         <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"
@@ -223,6 +232,7 @@
         </div>
         @if (Route::currentRouteName() !== 'formularioPago' &&
                 Route::currentRouteName() !== 'login' &&
+                Route::currentRouteName() !== 'registrarUsuarioProducto' &&
                 Route::currentRouteName() !== 'register')
             <nav class=" container-fluid bg-color-principal w-20 position-relative">
                 <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-1">
@@ -251,11 +261,13 @@
                             <div class="d-none" id="listaPaginas">
                                 <div><span></span></div>
                                 <ul>
-                                    @foreach ($paginas as $pagina)
-                                        <li><a
-                                                href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
-                                        </li>
-                                    @endforeach
+                                    @if (isset($paginas))
+                                        @foreach ($paginas as $pagina)
+                                            <li><a
+                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -325,7 +337,25 @@
 
 
         <main class="position-relative w-80">
-            @yield('content')
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+
+                </div>
+            @endif
+            @if (isset($mostrarProducto))
+                @if ($mostrarProducto === true)
+                    @yield('mostrarProducto')
+                @endif
+            @else
+                @yield('content')
+            @endif
         </main>
     </div>
 

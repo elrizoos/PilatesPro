@@ -1,4 +1,4 @@
-<div class="w-100 vh-100 bg-color-fondo-oscuro-transparente">
+<div class="w-100 vh-100 bg-color-fondo-oscuro-transparente border-bottom border-1 border-dorado-claro">
     <div class="position-relative w-100 h-100 d-flex flex-column justify-content-center align-items-center">
         <div class="position-absolute d-none w-75 h-75 d-flex flex-column align-items-end gap-2">
             <svg class="icon icono-normal top-0 end-0 fs-1  z-3">
@@ -27,8 +27,8 @@
                     <use xlink:href="#pelota-de-pilates" />
                 </svg>
             </div>
-            <h2 class="text-light text-uppercase fs-2">Chus Alvarez Pilates</h3>
-                <h3 class="text-light text-uppercase fs-2">Video de promoción</h4>
+            <h2 class="texto-color-resalte text-uppercase fs-2">Chus Alvarez Pilates</h3>
+                <h3 class="texto-color-titulo text-uppercase fs-2">Video de promoción</h4>
                     <svg class="icon icono-muy-grande">
                         <use xlink:href="#reproducir-msica" />
                     </svg>

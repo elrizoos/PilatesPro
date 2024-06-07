@@ -4,14 +4,27 @@
     @php
         $suscripciones = false;
     @endphp
-    <div class="container-fluid text-light">
+    @if (session()->has('success') && session()->has('factura'))
+        @dd(session('factura'))
+    @endif
+    <div class="container-fluid texto-color-resalte">
         <div class="row h-80">
             <div class="col">
-                <div class="row h-15">
-                    <div class="col-4 d-flex justify-content-center align-items-center gap-4 fs-4">
-                        <h3 class="">Estado Suscripcion:</h3>
-                        <div class="contenedor-estado {{ isset($activeSubscription) ? 'text-success' : 'text-danger' }}">
-                            {{ isset($activeSubscription) ? 'Active' : 'In-Active' }}
+                <div class="row  h-15">
+                    <div class="col d-flex justify-content-center align-items-center ">
+                        <div class="d-flex gap-4 fs-4 border-bottom w-75 justify-content-center align-items-center p-3">
+                            <h3 class="">Estado Suscripcion:</h3>
+                            <div class="contenedor-estado {{ isset($activeSubscription) ? 'text-success' : 'text-danger' }}">
+                                {{ isset($activeSubscription) ? 'Active' : 'In-Active' }}
+                            </div>
+                            <div
+                                class="fs-4 d-flex justify-content-center align-items-center {{ isset($activeSubscription) ? 'd-none' : '' }}">
+                                <ul class="">
+                                    <li class=" text-center">Clases disponibles: <span
+                                            class=" texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -19,16 +32,27 @@
                     @if (isset($activeSubscription))
                         <div class="col-6 d-flex justify-content-center align-items-center">
                             <ul class="fs-4">
-                                <li class="p-1">Nombre de suscripcion: {{ $activeSubscription->name }}</li>
-                                <li class="p-1">Fecha de ultimo pago: {{ $activeSubscription->last_payment_date }}</li>
-                                <li class="p-1">Fecha fin de periodo: {{ $activeSubscription->end_date }}</li>
-                                <li class="p-1">Contenido de la suscripcion: {{ $activeSubscription->content }}</li>
+                                <li class="p-2 mb-4 fs-3 text-center"> {{ $activeSubscription->name }}</li>
+                                <li>
+                                    <ul class="d-flex gap-2">
+                                        <li class="p-2 text-center bg-color-fondo-claro">
+                                            <h3>Fecha de ultimo pago:</h3>
+                                            <span class="text-success">{{ $fechaUltimoPago }}</span>
+                                        </li>
+                                        <li class="p-2 text-center bg-color-fondo-claro">
+                                            <h3>Fecha fin de periodo: </h3>
+                                            <span
+                                                class="text-danger-emphasis">{{ date('D, d M, y', $fechaFinPeriodo) }}</span>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
-                        <div class="col-6 fs-4">
-                            <ul>
-                                <li class="p-1">Numero de clases incluidas: {{ $activeSubscription->included_classes }}</li>
-                                <li class="p-1">Numero de clases disponibles: {{ $activeSubscription->available_classes }}</li>
+                        <div class="col-6 fs-4 d-flex justify-content-center align-items-center">
+                            <ul class="w-50">
+                                <li class=" p-5 border border-2 border-fondo text-center">Clases disponibles: <span
+                                        class="fs-2 texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
+                                </li>
                             </ul>
                         </div>
                     @else
@@ -39,19 +63,21 @@
                                 @endphp
                                 <div class="col">
                                     <div data-id="{{ $subscription->id }}"
-                                        class="producto-click col text-light d-flex justify-content-center align-items-center">
-                                        <ul 
-                                            class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
+                                        class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
+                                        <ul
+                                            class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
                                             <li class="p-2 text-center">{{ $subscription->description }}</li>
-                                            <li class="p-2 text-center">{{ $subscription->quantity }} clases</li>
-                                            <li class="p-2 text-center text-danger fs-4">{{ $subscription->precio }}€</li>
+                                            <li class="p-2 text-center">
+                                                {{ $subscription->infoSuscripcion->clases_semanales }} clases semanales
+                                            </li>
+                                            <li class="p-2 text-center text-warning fs-4">{{ $subscription->precio }}€</li>
                                             <li>
                                                 <form id="formularioSeleccion-{{ $subscription->id }}"
                                                     action="{{ route('formularioPago', ['producto' => $subscription->id]) }}"
                                                     method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-primary">Seleccionar</button>
+                                                    <button type="submit" class="btn btn-success">Seleccionar</button>
                                                 </form>
                                             </li>
                                         </ul>
@@ -76,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div class="offcanvas offcanvas-bottom bg-color-principal texto-color-dorado-claro h-70" tabindex="-1"
+        <div class="offcanvas offcanvas-bottom bg-color-principal texto-color-resalte h-70" tabindex="-1"
             id="panelProductos" aria-labelledby="panelProductosLabel">
             <div class="offcanvas-header d-flex justify-content-between align-items-center" data-bs-theme="dark">
                 <h5 class="offcanvas-title fs-2" id="panelProductosLabel">Paquetes de Clases</h5>
@@ -89,19 +115,19 @@
                         @foreach ($productos as $producto)
                             @if ($producto->type == 'package')
                                 <div data-id="{{ $producto->id }}"
-                                    class="producto-click col text-light d-flex justify-content-center align-items-center">
+                                    class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                     <ul
-                                        class="h-40 border border-2 border-info p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
+                                        class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                         <li class="p-2 text-center text-uppercase">{{ $producto->name }}</li>
                                         <li class="p-2 text-center">{{ $producto->description }}</li>
-                                        <li class="p-2 text-center">{{ $producto->quantity }} clases</li>
-                                        <li class="p-2 text-center text-danger fs-4">{{ $producto->precio }}€</li>
+                                        <li class="p-2 text-center">{{ $producto->infoPaquete->numero_clases }} clases</li>
+                                        <li class="p-2 text-center text-warning fs-4">{{ $producto->precio }}€</li>
                                         <li>
                                             <form id="formularioSeleccion-{{ $producto->id }}"
                                                 action="{{ route('formularioPago', ['producto' => $producto->id]) }}"
                                                 method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-primary">Seleccionar</button>
+                                                <button type="submit" class="btn btn-success">Seleccionar</button>
                                             </form>
                                         </li>
                                     </ul>

@@ -71,23 +71,5 @@ class SubscriptionController extends Controller
 
 
 
-    public function success(Request $request)
-    {
-        $session = Session::retrieve($request->session_id);
-        // Aquí puedes manejar la lógica para guardar la suscripción en tu base de datos
-        // Por ejemplo:
-        Subscription::create([
-            'user_id' => auth()->id(),
-            'stripe_subscription_id' => $session->subscription,
-            'status' => 'active',
-            'expires_at' => now()->addMonth(),
-        ]);
 
-        return redirect()->route('usuario.submenu.SUS-estadoSuscripcion')->with('success', 'Suscripción activada correctamente');
-    }
-
-    public function cancel()
-    {
-        return redirect()->route('usuario.submenu.SUS-estadoSuscripcion')->with('error', 'El pago de la suscripción fue cancelado');
-    }
 }

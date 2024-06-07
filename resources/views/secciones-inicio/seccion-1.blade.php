@@ -1,4 +1,4 @@
- <div id="carousel-inicio" class="w-100 vh-100 bg-color-fondo carousel slide carousel-fade" data-bs-ride="true" data-bs-keyboard="true">
+ <div id="carousel-inicio" class="w-100 vh-100 bg-color-fondo  carousel slide carousel-fade" data-bs-ride="true" data-bs-keyboard="true">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carousel-inicio" data-bs-slide-to="0" class="active" aria-current="true"
                 aria-label="Slide 1"></button>
@@ -12,8 +12,8 @@
                 <div
                     class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                     <div class="carousel-caption d-none  position-relative start-0 top-0 w-75 h-50 d-md-flex flex-column gap-4 justify-content-center align-items-center">
-                        <h5 class="fs-1">Titulo 1</h5>
-                        <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
+                        <h5 class="fs-1 texto-color-resalte">Titulo 1</h5>
+                        <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
                             totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt accusamus
                             quidem libero sequi.</p>
                     </div>
@@ -24,8 +24,8 @@
                 <div
                     class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                     <div class="carousel-caption d-none  position-relative start-0 top-0 w-75 h-50 d-md-flex flex-column gap-4 justify-content-center align-items-center">
-                        <h5 class="fs-1">Titulo 2</h5>
-                        <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
+                        <h5 class="fs-1 texto-color-resalte">Titulo 2</h5>
+                        <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
                             totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt accusamus
                             quidem libero sequi.</p>
                     </div>
@@ -38,8 +38,8 @@
                 <div
                     class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                     <div class="carousel-caption d-none  position-relative start-0 top-0 w-75 h-50 d-md-flex flex-column gap-4 justify-content-center align-items-center">
-                        <h5 class="fs-1">Titulo 3</h5>
-                        <p class="fs-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
+                        <h5 class="fs-1 texto-color-resalte">Titulo 3</h5>
+                        <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum doloribus at illo, quae a
                             totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt accusamus
                             quidem libero sequi.</p>
                     </div>

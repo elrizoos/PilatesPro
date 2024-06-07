@@ -17,4 +17,18 @@ class Producto extends Model
         'quantity',
         'precio_stripe_id',
     ];
+    public function subscription()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function infoPaquete()
+    {
+        return $this->hasOne(InfoPaquete::class, 'producto_id');
+    }
+
+    public function infoSuscripcion()
+    {
+        return $this->hasOne(InfoSuscripcione::class, 'producto_id');
+    }
 }

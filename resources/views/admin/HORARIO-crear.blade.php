@@ -2,11 +2,11 @@
 
 @section('HORARIO-crear')
     <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
-        <form class="formulario" class="formulario formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}"
+        <form class="formulario formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}"
             method="POST">
             @csrf
             <div class="central">
-                <div class="inputs">
+                <div class="inputs gap-3">
                     <div class="contenedor-calendario" id="contenedorCalendario">
                         <div class="encabezado-calendario">
                             <span class="anno-anterior"></span>
@@ -47,6 +47,12 @@
                             fecha concreta
                             ---</label>
                     </div>
+                    <select name="tiempoClase" id="tiempoClase" data-value="45">
+                        <option value="">--- Selecciona el tiempo de clase ---</option>
+                        <option value="45">45 minutos</option>
+                        <option value="60">60 minutos</option>
+                        <option value="120">120 minutos</option>
+                    </select>
                     <input type="time" name="horaInicio" id="horaInicio" hidden
                         value="{{ isset($horario) ? $horario->hora_inicio : '' }}">
                     <input type="time" name="horaFin" id="horaFin" hidden
@@ -115,9 +121,9 @@
                                 <h2 id="inicioFin"></h2>
                                 <div class="hora-minuto">
                                     <div class="contenedor-hora-minuto">
-                                        <input placeholder="00" class="casillaReloj" type="number" id="horaProvisional">
+                                        <input disabled placeholder="00" class="casillaReloj" type="number" id="horaProvisional">
                                         <div class="puntos">:</div>
-                                        <input placeholder="00" class="casillaReloj" type="number" id="minutosProvisional">
+                                        <input disabled placeholder="00" class="casillaReloj" type="number" id="minutosProvisional">
                                     </div>
                                 </div>
                                 <div class="reloj">
@@ -143,14 +149,14 @@
                 <div class="repeticion">
                     <div class="grupo-input">
                         <label for="repetir">¿Quieres que esta clase se repita algun dia mas?</label>
-                        <input type="checkbox" name="repetir" id="repetir">
+                        <input type="checkbox" name="repetir" id="repetir">Sí
                     </div>
-                    <div class="grupo-input opcionRepetir">
+                    <div class="grupo-input opcionRepetir position-relative top-0 start-0 mt-3">
                         <input class="estilo-formulario" type="number" name="numeroSemanas"
-                            placeholder="Numero de semanas">
+                           value="0" placeholder="Numero de semanas">
                         <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
 
-                        <ul class="listaDiasSemana">
+                        <ul class="listaDiasSemana row row-cols-3">
                             <li>
                                 <label for="lunes">Lunes</label>
                                 <input type="checkbox" name="diasSemana[]" id="lunes" value="0">

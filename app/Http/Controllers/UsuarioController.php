@@ -4,28 +4,54 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Models\Producto;
+use App\Models\RegistroTiempo;
 use App\Models\User;
+use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Stripe\Customer;
+use Stripe\Stripe;
 use Validator;
 
 class UsuarioController extends Controller
 {
 
-    public function create(Request $request) {
-        $registerController = new RegisterController();
+   public function create(Request $request)
+    {
         $data = $request->all();
         $data['password_confirmation'] = $data['password'];
+
+        $registerController = new RegisterController();
         $validator = $registerController->validar($data);
+
         if ($validator->fails()) {
-            //dd('error: ' . var_dump($data));
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        //dd('funciona: ' . var_dump($data));
-        $usuario = $registerController->crearUsuario($data);
-        return redirect()->back()->with('success', 'El usuario ha sido registrado con exito');
 
+        $usuario = $registerController->crearUsuario($data);
+
+        if ($usuario) {
+            $registroTiempoController = new RegistroTiemposController();
+            $registroTiempoController->create($usuario->id);
+
+            Auth::login($usuario);
+
+            if ($request->producto) {
+                return redirect()->route('formularioPago', ['producto' => $request->producto]);
+            }
+
+            return redirect()->route('inicio')->with('success', 'Te has registrado con éxito');
+        }
+
+        return redirect()->back()->with('error', 'Hubo un problema al registrarse. Por favor, inténtalo de nuevo.');
+    }
+
+
+    public function createConProducto($producto) {
+        //dd($producto);
+        return view('auth.register', compact('producto'));
     }
     protected function guardarCambios(Request $request)
     {
@@ -93,7 +119,8 @@ class UsuarioController extends Controller
                 break;
         }
     }
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
@@ -140,8 +167,13 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'Información actualizada correctamente.');
 
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
         $usuario = User::find($id);
+        $customer = Customer::retrieve($usuario->stripe_id);
+        $customer->delete();
         $usuario->delete();
         return redirect()->back()->with('sucess', 'user borrado');
     }
@@ -168,7 +200,74 @@ class UsuarioController extends Controller
 
     }
 
-    public function limpiarSesion() {
-        return view('admin.FACTU-productos', compact(['editable' => null]));
+
+    public function sumatorioClases(Producto $producto)
+    {
+        try {
+            $usuario = Auth::user();
+            \Log::debug('Usuario: ' . json_encode($usuario));
+            $tipoProducto = $producto->type;
+
+            switch ($tipoProducto) {
+                case 'package':
+                    $infoPaquete = $producto->infoPaquete;
+                    \Log::debug('Info Paquete: ' . json_encode($infoPaquete));
+                    if ($infoPaquete) {
+                        $tiempoClase = $infoPaquete->tiempo_clase;
+                        switch ($tiempoClase) {
+                            case 45:
+                                $usuario->registroTiempo->clases_45 += $infoPaquete->numero_clases;
+                                break;
+                            case 60:
+                                $usuario->registroTiempo->clases_60 += $infoPaquete->numero_clases;
+                                break;
+                            case 120:
+                                $usuario->registroTiempo->clases_120 += $infoPaquete->numero_clases;
+                                break;
+                        }
+                        $usuario->registroTiempo->clases_totales += $infoPaquete->numero_clases;
+                        $usuario->registroTiempo->minutos_totales += ($infoPaquete->numero_clases * $tiempoClase);
+                    } else {
+                        throw new \Exception('Información del paquete no encontrada');
+                    }
+                    break;
+
+                case 'membership':
+                    $infoSuscripcion = $producto->infoSuscripcion;
+                    \Log::debug('Info Suscripción: ' . json_encode($infoSuscripcion));
+                    if ($infoSuscripcion) {
+                        $tiempoClase = $infoSuscripcion->tiempo_clase;
+                        switch ($tiempoClase) {
+                            case 45:
+                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->clases_semanales * (52/12);
+                                break;
+                            case 60:
+                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->clases_semanales * (52/12);
+                                break;
+                            case 120:
+                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->clases_semanales * (52/12);
+                                break;
+                        }
+                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->clases_semanales * (52/12);
+                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->clases_semanales * (52/12) * $tiempoClase);
+                    } else {
+                        throw new \Exception('Información de la suscripción no encontrada');
+                    }
+                    break;
+
+                default:
+                    throw new \Exception('Tipo de producto desconocido');
+            }
+
+            $usuario->registroTiempo->save();
+            \Log::debug('Usuario actualizado: ' . json_encode($usuario));
+            return true;
+        } catch (\Throwable $th) {
+            \Log::error('Error: ' . $th->getMessage());
+            return $th->getMessage();
+        }
     }
+
+
+
 }

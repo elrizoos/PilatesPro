@@ -11,7 +11,7 @@
             <div class="col d-flex flex-column justify-content-center align-items-center gap-3">
                 <div class="row">
                     <div class="col">
-                        <label class="text-light fs-3" for="fotoPerfil">Foto de perfil:</label>
+                        <label class="texto-color-resalte fs-3" for="fotoPerfil">Foto de perfil:</label>
                     </div>
                 </div>
                 <div class="row w-100 h-50">
@@ -32,7 +32,7 @@
                 <div class="row h-50">
                     <div class="col">
                         <div id="subirImagen"
-                            class="w-100 h-100 fs-2 d-flex gap-3 justify-content-center align-items-center text-light">
+                            class="w-100 h-100 fs-2 d-flex gap-3 justify-content-center align-items-center texto-color-resalte">
                             <svg class="icon icono-normal">
                                 <use xlink:href="#subir" />
                             </svg>
