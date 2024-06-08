@@ -21,6 +21,7 @@ use App\Http\Controllers\StripeSyncController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\MetodosRecuperacione;
+use App\Models\Producto;
 use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
@@ -48,6 +49,12 @@ Route::get('/acercaDe', function () {
     return view('acercaDe');
 })->name('acercaDe');
 
+Route::get('/clases', [ProductoController::class, 'mostrarClases'])->name('clases');
+
+
+Route::get('/instructores', [UsuarioController::class, 'mostrarInstructores'])->name('instructores');
+
+
 Route::get(
     '/inicio',
     [PaginaController::class, 'index']
@@ -58,29 +65,8 @@ Route::get('/foro/{pagina}', [PaginaController::class, 'mostrarPagina'])->name('
 Route::group(['middleware' => 'auth'], function () {
 
 
-    Route::get('/clases', function () {
-        return view('clases');
-    })->name('clases');
 
-    Route::get('/horarios', function () {
-        return view('horarios');
-    })->name('horarios');
 
-    Route::get('/instructores', function () {
-        return view('instructores');
-    })->name('instructores');
-
-    Route::get('/reservas', function () {
-        return view('reservas');
-    })->name('reservas');
-
-    Route::get('/preciosVIP', function () {
-        return view('preciosVIP');
-    })->name('preciosVIP');
-
-    Route::get('/contacto', function () {
-        return view('contacto');
-    })->name('contacto');
 
     Route::get('/login', function () {
         return view('auth.login');
