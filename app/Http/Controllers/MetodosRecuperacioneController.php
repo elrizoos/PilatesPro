@@ -32,9 +32,38 @@ class MetodosRecuperacioneController extends Controller
 
             );
         } else {
-            return redirect()->back()->with('formularioPreguntaRespuesta');
+            return redirect()->back()->with('formularioPreguntaRespuesta', true);
         }
 
         return redirect()->back()->with('status', 'Método de recuperación guardado correctamente.');
+    }
+
+    public function guardarInformacionPreRes(Request $request){
+        $usuario = Auth::user();
+
+        $metodoUsuario = MetodosRecuperacione::where('user_id', $usuario->id)->first();
+        if($metodoUsuario != null){
+       try {
+
+            $metodoUsuario->update([
+                'user_id' => $usuario->id,
+                'method' => 'security_question',
+                'pregunta' => $request->preguntas,
+                'respuesta' => $request->respuesta,
+            ]);
+       } catch (\Throwable $th) {
+        \Log::error('Error creando informacion pregunta respuesta, Error: ' . $th->getMessage());
+        return redirect()->back()->with('error', 'Ha ocurrido un error actualizando el metodo de recuperacion');
+       }
+    }else {
+        $metodoUsuario = MetodosRecuperacione::create([
+            'user_id' => $usuario->id,
+            'method' => 'security_question',
+            'pregunta' => $request->preguntas,
+            'respuesta' => $request->respuesta,
+        ]);
+    }
+
+        return redirect()->back()->with('success', 'Su metodo de recuperacion de contraseña ha sido actualizado a recuperacion mediante ' . $metodoUsuario->method == 'email' ? ' recuperacion por correo electronico' : ' pregunta y respuesta de seguridad');
     }
 }

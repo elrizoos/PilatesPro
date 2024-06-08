@@ -165,8 +165,13 @@ table td {
 
 //ESTILOS PROYECTO
 
+.auth:hover {
+    background-color: unset !important;
+    color: unset !important;
+}
+
 ::-webkit-scrollbar {
-    width: 1em;
+    width: 1rem;
 }
 
 //Ancho del scrollbar
@@ -176,7 +181,7 @@ table td {
 
 ::-webkit-scrollbar-thumb {
     background: $colorSecundario;
-    width: 1em;
+    width: 1rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -184,7 +189,7 @@ table td {
 }
 
 ::-webkit-scrollbar-horizontal {
-    height: 1.5em;
+    height: 1.5rem;
 }
 
 ::-webkit-scrollbar-track-horizontal {
@@ -217,6 +222,16 @@ a {
     color: $colorGris;
 }
 
+a:hover {
+    background-color: $colorSecundario !important;
+    color: $colorResalte !important;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in;
+}
+
+input::placeholder {
+    font-size: 1rem;
+}
 .bg-color-fondo-oscuro-transparente {
     background-color: $colorPrincipalTransparente !important;
 }
@@ -243,12 +258,20 @@ a {
     background-color: $colorGrisClaro !important;
 }
 
-.bg-color-fondo-claro {
+.bg-color-fondo-oscuro {
     background-color: $colorFondoClaro !important;
+}
+
+.bg-color-oscuro {
+    background-color: $colorOscuro !important;
 }
 
 .bg-color-negro {
     background-color: $colorNegro !important;
+}
+
+.bg-color-fondo-dorado {
+    background-color: $colorDorado !important;
 }
 
 .texto-color-principal {
@@ -279,7 +302,7 @@ a {
 }
 
 .sombra {
-    box-shadow: 6px 9px 26px 6px rgba(255, 255, 255, 0.5);
+    box-shadow: 0rem 0.1rem 1.5rem -0.2rem rgba(255, 255, 255, 0.5);
 }
 
 .imagen-logo {
@@ -448,12 +471,16 @@ a {
 .border-dorado-claro {
     border-color: $colorDoradoClaro !important;
 }
+
+.border-dorado-oscuro {
+    border-color: $colorSecundarioOscuro !important;
+}
 .max-width-70 {
     max-width: 70% !important;
 }
 
 .max-heigth-10em {
-    max-height: 10em;
+    max-height: 10rem;
 }
 
 .max-heigth-60 {
@@ -462,14 +489,6 @@ a {
 
 .min-height-40 {
     min-height: 5em !important;
-}
-
-.transition-up:hover .transition-up-from-bottom {
-    top: 0% !important;
-}
-
-.transition-up-from-bottom {
-    transition: top 1s ease;
 }
 
 .icono-normal {
@@ -498,18 +517,36 @@ a {
     color: $colorDoradoClaro;
 }
 
+.elementoGeneral {
+    color: $colorSecundario !important;
+    background: unset !important;
+}
+
+.elementoGeneral a {
+    color: $colorSecundario;
+    background: unset !important;
+}
+
+.elementoGeneral:hover {
+    color: $colorDorado !important;
+    background: $colorOscuro !important;
+}
+.elementoGeneral a:hover {
+    color: unset !important ;
+    background: unset !important;
+}
 .estilo-formulario {
     border: 0;
     background: none;
     width: max-content;
-    height: 2em;
+    height: 2rem;
     position: relative;
-    font-size: 1em;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.5);
 }
 
 .estilo-formulario-enviar {
-    font-size: 2em;
+    font-size: 2rem;
     width: 100%;
     color: rgba(255, 255, 255, 0.5);
     border: 0;
@@ -518,28 +555,29 @@ a {
 }
 
 .estilo-formulario-enviar:hover {
-    color: $colorDorado;
+    color: $colorDorado !important;
+    background: unset !important;
 }
 
 .estilo-formulario-select {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     outline: 0;
     background: none;
     color: $colorGris;
-    padding: 4px;
+    padding: 0.2rem;
     text-align: center;
 }
 
 .formulario select {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     outline: 0;
     background: none;
     color: #8e6d45;
-    padding: 4px;
-    border: 1px solid #8e6d45;
-    border-radius: 9px;
+    padding: 0.1rem;
+    border: 0.25rem solid #8e6d45;
+    border-radius: 1rem;
     text-align: center;
 }
 .estilo-formulario-select option {
@@ -570,14 +608,14 @@ a {
     border: 0;
     background: none;
     width: max-content;
-    height: 2em;
+    height: 2rem;
     position: relative;
-    font-size: 1em;
+    font-size: 1rem;
     color: $colorSecundario;
 }
 
 .estilo-formulario-dorado-enviar {
-    font-size: 2em;
+    font-size: 2rem;
     width: 100%;
     color: $colorSecundario;
     border: 0;
@@ -651,11 +689,18 @@ a {
 .enlace {
     color: #e6d5b3;
     text-decoration: none;
+    text-transform: capitalize;
+}
+.enlace-general {
+    color: $colorSecundario !important;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .enlace:hover {
-    color: #8e6d45;
-    text-decoration: underline;
+    color: #8e6d45 !important;
+    text-decoration: underline !important;
+    background: unset !important;
 }
 
 .menu-general li:hover {
@@ -786,7 +831,7 @@ a {
 
 .contenedor-formulario .formulario-horario .central .fecha-placeholder {
     color: $colorSecundario;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 .contenedor-formulario .formulario-horario .central > div {
@@ -842,12 +887,12 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 .encabezado-calendario {
     display: flex;
     justify-content: space-between;
-    padding: 0.4em;
+    padding: 0.4rem;
 }
 
 .encabezado-calendario span {
     display: flex;
-    width: 3em;
+    width: 3rem;
     margin: 5px;
     cursor: pointer;
     background-position: center;
@@ -856,7 +901,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     position: relative;
     align-items: center;
     justify-content: center;
-    padding: 0.5em;
+    padding: 0.5rem;
 }
 
 .encabezado-calendario span::before {
@@ -896,7 +941,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 }
 
 .mes-anno-actual {
-    font-size: 2em;
+    font-size: 2rem;
     text-wrap: nowrap;
     text-align: center;
     flex: 4;
@@ -922,8 +967,8 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 
 .nombres-dias div {
     flex: 1;
-    padding: 0.5em;
-    font-size: 3em;
+    padding: 0.5rem;
+    font-size: 3rem;
 }
 
 .dias-mes {
@@ -941,7 +986,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3em;
+    font-size: 3rem;
     color: $colorSecundario;
 }
 
@@ -985,7 +1030,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 }
 
 .contenedor-horas .horas > div .titulo-hora {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     text-align: center;
     color: $colorSecundario;
     display: flex;
@@ -996,16 +1041,16 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     border: 0.02em solid $colorSecundario;
     width: 100%;
     height: 100%;
-    border-radius: 1em;
+    border-radius: 1rem;
     display: flex;
-    gap: 0.1em;
+    gap: 0.1rem;
 }
 .hora-minuto > div {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 .contenedor-horas .seleccion-horas {
@@ -1016,13 +1061,13 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 }
 
 .contenedor-horas .seleccion-horas .contenedor-seleccion {
-    padding: 1em;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .contenedor-horas .seleccion-horas .contenedor-seleccion > div {
@@ -1034,12 +1079,12 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 .casillaReloj {
     flex: 1;
     width: 20%;
-    max-height: 2em;
+    max-height: 2rem;
     background: none;
     outline: none;
     border: none;
     color: $colorSecundario;
-    padding-left: 0.5em;
+    padding-left: 0.5rem;
     overflow-y: hidden;
 }
 .casillaReloj:hover {
@@ -1062,8 +1107,8 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 }
 
 .contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo {
-    width: 6em;
-    height: 6em;
+    width: 6rem;
+    height: 6rem;
     background-color: $colorFondoOscuro;
     border-radius: 50%;
     position: relative;
@@ -1177,7 +1222,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 #inicioFin {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     text-transform: uppercase;
     color: $colorSecundario;
 }
@@ -1203,16 +1248,16 @@ input[type="range"]::-webkit-slider-runnable-track {
     flex-direction: column;
 
     position: absolute;
-    top: 15em;
-    left: -7em;
-    height: 5em;
+    top: 15rem;
+    left: -7rem;
+    height: 5rem;
 }
 
 input[type="checkbox"] {
     appearance: none;
     background-color: $colorPrincipal;
-    width: 1em;
-    height: 1em;
+    width: 1rem;
+    height: 1rem;
     position: relative;
 }
 
@@ -1235,11 +1280,11 @@ input[type="checkbox"]:checked::before {
 }
 
 .listaDiasSemana li {
-    padding: 1em;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1em;
+    gap: 1rem;
     flex-direction: column;
 }
 
@@ -1276,9 +1321,9 @@ input[type="checkbox"]:checked::before {
 
 .horas-timeline {
     position: absolute;
-    height: 32em;
-    width: 4em;
-    left: -2em;
+    height: 32rem;
+    width: 4rem;
+    left: -2rem;
     top: 0;
     z-index: 35;
     background-color: rgb(0, 0, 0);
@@ -1286,7 +1331,7 @@ input[type="checkbox"]:checked::before {
 
 .horas-timeline div {
     flex: 1;
-    height: 2.3em;
+    height: 2.3rem;
     position: relative;
     color: $colorSecundario;
     border-top: 0.01em solid $colorSecundario;
@@ -1296,14 +1341,14 @@ input[type="checkbox"]:checked::before {
 }
 
 .horas-timeline div:nth-child(1) {
-    height: 2em;
+    height: 2rem;
 }
 .dia-timeline {
     flex: 1;
-    min-width: 10em;
+    min-width: 10rem;
     display: flex;
     flex-direction: column;
-    min-height: 30em;
+    min-height: 30rem;
 }
 
 .par {
@@ -1315,7 +1360,7 @@ input[type="checkbox"]:checked::before {
 }
 
 .dia-timeline div {
-    min-height: 1em;
+    min-height: 1rem;
 }
 
 .evento {
@@ -1335,13 +1380,13 @@ input[type="checkbox"]:checked::before {
 .informacion-evento {
     padding: 1%;
     position: absolute !important;
-    width: 30em;
+    width: 30rem;
     background-color: black;
     outline: 10px groove $colorSecundario;
-    top: -5em;
-    left: 11em;
+    top: -5rem;
+    left: 11rem;
     height: auto !important;
-    padding: 2em;
+    padding: 2rem;
     display: -block;
     z-index: 40;
     border-radius: 50px 50px 50px 0;
@@ -1359,7 +1404,7 @@ input[type="checkbox"]:checked::before {
 
 .informacion-evento > h6 {
     color: $colorGris;
-    padding: 1em;
+    padding: 1rem;
 }
 
 .informacion-evento > h6 span {
@@ -1367,7 +1412,7 @@ input[type="checkbox"]:checked::before {
 }
 .clase {
     grid-area: clase;
-    font-size: 3em;
+    font-size: 3rem;
     color: $colorSecundario;
 }
 
@@ -1400,10 +1445,10 @@ input[type="checkbox"]:checked::before {
 
 .fecha-timeline {
     color: $colorGris;
-    font-size: 1em;
+    font-size: 1rem;
     position: absolute;
-    width: 10em;
-    height: 2em;
+    width: 10rem;
+    height: 2rem;
     top: 0;
     display: flex;
     justify-content: center;
@@ -1413,7 +1458,7 @@ input[type="checkbox"]:checked::before {
 
 .day div {
     position: relative;
-    height: 2em;
+    height: 2rem;
 }
 .deslizamiento {
     transform: translateX(0%);
@@ -1424,36 +1469,97 @@ input[type="checkbox"]:checked::before {
     transform: translateX(100%);
     transition: all 1.5s ease;
 }
+.icon {
+    height: 5rem;
+}
 
+/* Personalización de menú */
+.nav-tabs .nav-link {
+    color: #fff; /* Color de texto */
+    background-color: $colorFondoClaro; /* Fondo del menú principal */
+    border-color: #444; /* Borde */
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    background-color: #333; /* Fondo al pasar el ratón */
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #444; /* Fondo del activo */
+}
+
+.dropdown-menu {
+    background-color: #222; /* Fondo del submenú */
+    border-color: #444; /* Borde del submenú */
+}
+
+.dropdown-item {
+    color: #fff; /* Color de texto de los elementos del submenú */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #555; /* Fondo al pasar el ratón por los elementos del submenú */
+}
 //RESPONSIVE DESING
 /* Base font size for the entire document */
 html {
     font-size: 100%; /* Default font size */
 }
-@media (min-width: 0) {
-    html {
-        font-size: 80%;
+@media (orientation: portrait) {
+    @media (min-width: 0) {
+        html {
+            font-size: 16%;
+        }
+    }
+    @media (min-width: 200px) {
+        html {
+            font-size: 26%;
+        }
+    }
+    @media (min-width: 276px) {
+        html {
+            font-size: 39%;
+        }
+    }
+    @media (min-width: 376px) {
+        html {
+            font-size: 52%;
+        }
+    }
+    @media (min-width: 476px) {
+        html {
+            font-size: 59%;
+        }
     }
 }
-
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     html {
-        font-size: 60%;
+        font-size: 70%;
+    }
+
+    .transition-up:hover .transition-up-from-bottom {
+        top: 0% !important;
+    }
+
+    .transition-up-from-bottom {
+        transition: top 1s ease;
     }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     html {
-        font-size: 65%;
+        font-size: 55%;
     }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     html {
-        font-size: 80%;
+        font-size: 55%;
     }
 }
 

@@ -67,23 +67,23 @@
                     <div class="col h-100 ">
                         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                             <thead class="">
-                                <tr class="text-uppercase sticky-top bg-color-terciario border border-2 border-fondo">
-                                    <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Apellido</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Tipo Usuario</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Opciones</th>
+                                <tr class="text-uppercase sticky-top bg-color-terciario border border-1 border-fondo">
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Apellido</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Tipo Usuario</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($participantesGrupo as $usuario)
                                     <tr>
-                                        <td class="texto-color-resalte border border-2 border-fondo">{{ $usuario->nombre }}
+                                        <td class="texto-color-resalte border border-1 border-fondo">{{ $usuario->nombre }}
                                         </td>
-                                        <td class="texto-color-resalte border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-1 border-fondo">
                                             {{ $usuario->apellidos }}</td>
-                                        <td class="texto-color-resalte border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-1 border-fondo">
                                             {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
-                                        <td class="texto-color-resalte border border-2 border-fondo">
+                                        <td class="texto-color-resalte border border-1 border-fondo">
                                             <div>
                                                 <form class="formulario"
                                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"

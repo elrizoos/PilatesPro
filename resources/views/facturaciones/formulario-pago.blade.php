@@ -247,7 +247,7 @@
                         </div>
                     @endif
                     <div
-                        class="texto-color-secundario bg-color-fondo-claro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
+                        class="texto-color-secundario bg-color-fondo-oscuro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
                         <h1 class="fs-2 p-2">
                             {{ $productoFacturar->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $productoFacturar->name }}
                         </h1>
@@ -259,7 +259,7 @@
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
                     <div
-                        class="bg-color-fondo-claro w-95 h-95 shadow-lifted p-4 d-flex flex-column justify-content-center align-items-center">
+                        class="bg-color-fondo-oscuro w-95 h-95 shadow-lifted p-4 d-flex flex-column justify-content-center align-items-center">
                         <h2 class="fs-2 text-uppercase text-center p-2 texto-color-secundario">Formulario de Pago</h2>
                         <form class="w-80" id="payment-form"
                             action="{{ route('pagar', ['producto' => $productoFacturar->id]) }}" method="POST">

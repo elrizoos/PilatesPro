@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="vw-100 vh-100 d-flex flex-column justify-content-center align-items-center">
-        <div
-            class="w-50 h-85 border border-warning-subtle bg-color-fondo d-flex flex-column justify-content-evenly align-items-center">
+        <div style="min-height: 60%"
+            class="w-50 p-4 border border-warning-subtle bg-color-fondo d-flex flex-column justify-content-evenly align-items-center">
             <div class="w-50 h-20">
                 <div class="imagen-logo w-100 h-100" data-url="{{ route('inicio') }}"></div>
             </div>

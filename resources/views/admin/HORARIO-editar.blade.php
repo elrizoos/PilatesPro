@@ -6,7 +6,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <ul class="row p-2  fs-5">
+                        <ul class="fs-5 row p-2  fs-5">
                             <div
                                 class="col-4 texto-color-resalte d-flex flex-column  justify-content-center align-items-center ">
                                 <li class="p-1">Clase Asociada: <span
@@ -56,20 +56,20 @@
                             <thead>
 
                                 <tr>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Apellidos</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Telefono</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Email</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Apellidos</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Telefono</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($alumnos as $alumno)
-                                    <td class="texto-color-resalte border border-2 border-fondo">{{ $alumno->nombre }}</td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">{{ $alumno->apellidos }}
+                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->nombre }}</td>
+                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->apellidos }}
                                     </td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">{{ $alumno->telefono }}
+                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->telefono }}
                                     </td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">{{ $alumno->email }}</td>
+                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->email }}</td>
                                 @endforeach
                             </tbody>
                         </table>
@@ -83,24 +83,39 @@
                         <table class="table tabla-dorada bg-color-terciario text-center">
                             <thead>
                                 <tr>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Apellidos</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Email</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Gestionar Reserva</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Apellidos</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Email</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Asistencia</th>
+                                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Gestionar Reserva</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($reservas as $reserva)
-                                    <td class="texto-color-resalte border border-2 border-fondo">
+                                    <?php
+                                    $asistencia = \App\Models\Asistencia::where('reserva_id', $reserva->id)->first();
+                                    ?>
+                                    <td class="texto-color-resalte border border-1 border-fondo">
                                         {{ $reserva->alumno->nombre }}</td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">
+                                    <td class="texto-color-resalte border border-1 border-fondo">
                                         {{ $reserva->alumno->apellidos }}</td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">
+                                    <td class="texto-color-resalte border border-1 border-fondo">
                                         {{ $reserva->alumno->email }}</td>
-                                    <td class="texto-color-resalte border border-2 border-fondo">
-                                        <form action="{{ route('reserva.editar', ['reserva' => $reserva->id]) }}">
-                                            <input class="estilo-formulario border-2 borde-dorado border" type="submit"
-                                                value="Editar">
+                                    <td class="texto-color-resalte border border-1 border-fondo">
+                                        {{ $asistencia->asistio }}</td>
+
+                                    <td
+                                        class="texto-color-resalte border border-1 border-fondo d-flex justify-content-center align-items-center">
+                                        <form action="{{ route('cancelarReserva', ['reserva' => $reserva->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            <input class="estilo-formulario border-1 borde-dorado border" type="submit"
+                                                value="Cancelar">
+                                        </form>
+                                        <form class="{{ $asistencia->asistio == true ? 'd-none' : '' }}"
+                                            action="{{ route('asistencia.create', ['reserva' => $reserva->id, 'user' => $reserva->alumno->id]) }}">
+                                            <input class="estilo-formulario border-1 borde-dorado border" type="submit"
+                                                value="Asistio">
                                         </form>
                                     </td>
                                 @endforeach

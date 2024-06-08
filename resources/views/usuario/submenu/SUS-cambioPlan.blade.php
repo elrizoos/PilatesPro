@@ -20,7 +20,7 @@
                                     <div data-id="{{ $subscription->id }}"
                                         class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                         <ul
-                                            class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
+                                            class=" border border-1 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
                                             <li class="p-2 text-center">{{ $subscription->description }}</li>
                                             <li class="p-2 text-center">{{ $subscription->quantity }} clases</li>

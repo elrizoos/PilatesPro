@@ -240,6 +240,10 @@ class PagoController extends Controller
         foreach($facturas as $factura){
             $facturaStripeId = $factura->id;
             $facturaBD = Factura::where('stripe_id', $facturaStripeId)->first();
+            if($facturaBD == null){
+                continue;
+
+            }
             $facturasDatos[] = [
                 'factura' => $factura,
                 'pdf' => $facturaBD->pdf,
