@@ -5,11 +5,11 @@
         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
             <thead>
                 <tr>
-                    <th class="texto-color-titulo border border-2 border-fondo">Tipo Notificacion</th>
-                    <th class="texto-color-titulo border border-2 border-fondo">Titulo</th>
-                    <th class="texto-color-titulo border border-2 border-fondo">Descripcion</th>
-                    <th class="texto-color-titulo border border-2 border-fondo">Mensaje</th>
-                    <th class="texto-color-titulo border border-2 border-fondo">Importancia</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Tipo Notificacion</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Titulo</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Descripcion</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Mensaje</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Importancia</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,12 +20,12 @@
                 @else
                     @foreach ($notificaciones as $notificacion)
                         <tr>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $notificacion->tipo }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $notificacion->titulo }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $notificacion->tipo }}</td>
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $notificacion->titulo }}</td>
+                            <td class="texto-color-resalte border border-1 border-fondo">
                                 {{ $notificacion->descripcion ?? 'S/A' }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $notificacion->mensaje }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $notificacion->importante }}
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $notificacion->mensaje }}</td>
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $notificacion->importante }}
                             </td>
 
                         </tr>

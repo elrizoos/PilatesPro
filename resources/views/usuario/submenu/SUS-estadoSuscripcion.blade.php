@@ -19,7 +19,7 @@
                             </div>
                             <div
                                 class="fs-4 d-flex justify-content-center align-items-center {{ isset($activeSubscription) ? 'd-none' : '' }}">
-                                <ul class="">
+                                <ul class="fs-5 ">
                                     <li class=" text-center">Clases disponibles: <span
                                             class=" texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
                                     </li>
@@ -30,16 +30,16 @@
                 </div>
                 <div class="row h-85 overflow-y-auto p-3 {{ !isset($activeSubscription) ? 'row-cols-3' : '' }}">
                     @if (isset($activeSubscription))
-                        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center">
-                            <ul class="fs-4">
+                        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+                            <ul class="fs-5 fs-4">
                                 <li class="p-2 mb-4 fs-3 text-center"> {{ $activeSubscription->name }}</li>
                                 <li>
-                                    <ul class="d-flex gap-2">
-                                        <li class="p-2 text-center bg-color-fondo-claro">
+                                    <ul class="fs-5 d-flex gap-2">
+                                        <li class="p-2 text-center bg-color-fondo-oscuro">
                                             <h3>Fecha de ultimo pago:</h3>
                                             <span class="text-success">{{ $fechaUltimoPago }}</span>
                                         </li>
-                                        <li class="p-2 text-center bg-color-fondo-claro">
+                                        <li class="p-2 text-center bg-color-fondo-oscuro">
                                             <h3>Fecha fin de periodo: </h3>
                                             <span
                                                 class="text-danger-emphasis">{{ date('D, d M, y', $fechaFinPeriodo) }}</span>
@@ -48,9 +48,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-lg-6 col-12 fs-4 d-flex justify-content-center align-items-center">
-                            <ul class="w-50">
-                                <li class=" p-3 border border-2 border-fondo text-center">Clases disponibles: <span
+                        <div class="col-md-6 col-12 fs-4 d-flex justify-content-center align-items-center">
+                            <ul class="fs-5 w-50">
+                                <li class=" p-3 border border-1 border-fondo text-center">Clases disponibles: <span
                                         class="fs-2 texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
                                 </li>
                             </ul>
@@ -65,7 +65,7 @@
                                     <div data-id="{{ $subscription->id }}"
                                         class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                         <ul
-                                            class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
+                                            class=" border border-1 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column cursor-pointer">
                                             <li class="p-2 text-center text-uppercase">{{ $subscription->name }}</li>
                                             <li class="p-2 text-center">{{ $subscription->description }}</li>
                                             <li class="p-2 text-center">
@@ -117,7 +117,7 @@
                                 <div data-id="{{ $producto->id }}"
                                     class="producto-click col texto-color-resalte d-flex justify-content-center align-items-center">
                                     <ul
-                                        class=" border border-2 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
+                                        class=" border border-1 border-dorado p-3 fs-5 d-flex justify-content-center align-items-center flex-column">
                                         <li class="p-2 text-center text-uppercase">{{ $producto->name }}</li>
                                         <li class="p-2 text-center">{{ $producto->description }}</li>
                                         <li class="p-2 text-center">{{ $producto->infoPaquete->numero_clases }} clases</li>

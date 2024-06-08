@@ -91,16 +91,16 @@ function initVideoControls(playButton, closeButton, videoElement) {
 
     $(playButton).on("click", () => toggleVideo(true, video, tiempo));
     $(document).on("touchstart", playButton, () =>
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
     );
 
     $(closeButton).on("click", () => toggleVideo(false, video, tiempo));
     $(document).on("touchstart", closeButton, () =>
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
     );
 
     function toggleVideo(play, video, tiempo) {
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar");
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar");
         if (play) {
             video.currentTime = tiempo;
             video.play();
@@ -113,7 +113,7 @@ function initVideoControls(playButton, closeButton, videoElement) {
     }
 
     function toggleElements(selector) {
-        $(selector).toggle();
+        $(selector).toggleClass('d-none');
     }
 }
 
@@ -130,7 +130,7 @@ function toggleMenu() {
 
 function togglePagesList() {
     console.log("Lista de páginas personalizadas clicada");
-    $("#listaPaginas").toggleClass("listaPaginasTransicion no-active");
+    $("#listaPaginas").toggleClass('d-none');
 }
 
 function handleOptionSelection(e) {

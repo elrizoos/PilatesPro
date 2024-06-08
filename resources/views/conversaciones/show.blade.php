@@ -5,7 +5,7 @@
         <h1>Conversación con
             {{ $conversacione->userOne->id == auth()->id() ? $conversacione->userTwo->nombre : $conversacione->userOne->nombre }}
         </h1>
-        <ul class="list-group mt-3 mb-3">
+        <ul class="fs-5 list-group mt-3 mb-3">
             @foreach ($conversacione->messages as $message)
                 <li class="list-group-item">
                     <strong>{{ $message->user->nombre }}:</strong> {{ $message->body }}

@@ -19,7 +19,7 @@ class SeccionContenidoController extends Controller
     public function index()
     {
         $secciones = SeccionContenido::all();
-        $tipo = 'foro';
+        $tipo = 'show';
         $imagenes = [];
         $tipo = 'CONT-seleccionarApartado';
         foreach ($secciones as $seccion) {
@@ -30,7 +30,7 @@ class SeccionContenidoController extends Controller
             ];
             //dd($imagenes);
         }
-        return view('foro', compact('secciones', 'tipo', 'imagenes'));
+        return view('pagina.show', compact('secciones', 'tipo', 'imagenes'));
     }
 
     /**

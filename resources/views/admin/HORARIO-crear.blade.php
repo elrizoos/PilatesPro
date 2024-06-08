@@ -2,13 +2,13 @@
 
 @section('HORARIO-crear')
     <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
-        <form class="formulario formulario-horario w-100 h-100 p-5" action="{{ isset($horario) ? route('horario.update', $horario->id) : route('horario.store') }}"
-            method="POST">
+        <form class="formulario formulario-horario w-100 h-100 p-5"
+            action="{{ isset($horario) ? route('horario.update', $horario->id) : route('horario.store') }}" method="POST">
             @csrf
             <?php 
                 if(isset($horario)){
             ?>
-                @method('PUT')
+            @method('PUT')
             <?php 
                 }
             ?>
@@ -49,16 +49,19 @@
                     <div class="contenedor-fecha-placeholder">
                         <input id="fechaEspecifica" type="date" name="fechaEspecifica"
                             value="{{ isset($horario) ? $horario->fecha_especifica : '' }}">
-                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder"  class="fecha-placeholder"
+                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder" class="fecha-placeholder"
                             for="fecha_placeholder">--- Selecciona una
                             fecha concreta
                             ---</label>
                     </div>
                     <select name="tiempoClase" id="tiempoClase" data-value="45">
                         <option value="">--- Selecciona el tiempo de clase ---</option>
-                        <option value="45" {{ isset($horario) && $horario->tiempo_clase === "45" ? 'selected' : '' }}>45 minutos</option>
-                        <option value="60" {{ isset($horario) && $horario->tiempo_clase === "60" ? 'selected' : '' }}>60 minutos</option>
-                        <option value="120" {{ isset($horario) && $horario->tiempo_clase === "120" ? 'selected' : '' }}>120 minutos</option>
+                        <option value="45" {{ isset($horario) && $horario->tiempo_clase === '45' ? 'selected' : '' }}>45
+                            minutos</option>
+                        <option value="60" {{ isset($horario) && $horario->tiempo_clase === '60' ? 'selected' : '' }}>60
+                            minutos</option>
+                        <option value="120" {{ isset($horario) && $horario->tiempo_clase === '120' ? 'selected' : '' }}>
+                            120 minutos</option>
                     </select>
                     <input type="time" name="horaInicio" id="horaInicio" hidden
                         value="{{ isset($horario) ? $horario->hora_inicio : '' }}">
@@ -128,9 +131,11 @@
                                 <h2 id="inicioFin"></h2>
                                 <div class="hora-minuto">
                                     <div class="contenedor-hora-minuto">
-                                        <input disabled placeholder="00" class="casillaReloj" type="number" id="horaProvisional">
+                                        <input disabled placeholder="00" class="casillaReloj" type="number"
+                                            id="horaProvisional">
                                         <div class="puntos">:</div>
-                                        <input disabled placeholder="00" class="casillaReloj" type="number" id="minutosProvisional">
+                                        <input disabled placeholder="00" class="casillaReloj" type="number"
+                                            id="minutosProvisional">
                                     </div>
                                 </div>
                                 <div class="reloj">
@@ -145,25 +150,25 @@
                                     </div>
                                 </div>
                                 <div class="barra-seleccion">
-                                    <input id="sliderHoras" type="range" id="horaMinuto" min="0" max="287"
-                                        value="0">
+                                    <input id="sliderHoras" type="range" id="horaMinuto" min="0"
+                                        max="287" value="0">
                                 </div>
                                 <input class="botonSeleccion" id="seleccionarHora" type="button" value="Seleccionar">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="repeticion {{isset($horario) ? 'd-none' : ''}}">
+                <div class="repeticion {{ isset($horario) ? 'd-none' : '' }}">
                     <div class="grupo-input">
                         <label for="repetir">¿Quieres que esta clase se repita algun dia mas?</label>
                         <input type="checkbox" name="repetir" id="repetir">Sí
                     </div>
                     <div class="grupo-input opcionRepetir position-relative top-0 start-0 mt-3">
-                        <input class="estilo-formulario" type="number" name="numeroSemanas"
-                           value="0" placeholder="Numero de semanas">
+                        <input class="estilo-formulario" type="number" name="numeroSemanas" value="0"
+                            placeholder="Numero de semanas">
                         <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
 
-                        <ul class="listaDiasSemana row row-cols-3">
+                        <ul class="fs-5 listaDiasSemana row row-cols-3">
                             <li>
                                 <label for="lunes">Lunes</label>
                                 <input type="checkbox" name="diasSemana[]" id="lunes" value="0">
@@ -196,7 +201,8 @@
             </div>
 
             <div class="botonEnviar mt-5">
-                <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="{{isset($horario) ? 'Editar registro' : 'Crear clase nueva'}}">
+                <input class="estilo-formulario estilo-formulario-enviar" type="submit"
+                    value="{{ isset($horario) ? 'Editar registro' : 'Crear clase nueva' }}">
             </div>
 
         </form>

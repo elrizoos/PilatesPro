@@ -38,7 +38,8 @@
 
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('registrarUsuarioProducto', ['producto' => $producto->id]) }}" class="btn btn-primary">
+                        <a href="{{ route('registrarUsuarioProducto', ['producto' => $producto->id]) }}"
+                            class="btn btn-primary">
                             Registrarse y Pagar
                         </a>
                     </div>
@@ -47,7 +48,7 @@
 
             <div class="col-md-4">
                 <h4 class="texto-color-titulo mb-4">Otros Productos</h4>
-                <ul class="list-group">
+                <ul class="fs-5 list-group">
                     @foreach ($productos as $prod)
                         <li class="list-group-item  bg-color-principal">
                             <a href="{{ route('mostrarDetallesProducto', ['producto' => $prod->id]) }}">

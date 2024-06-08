@@ -1,8 +1,8 @@
 @extends('admin/panel-control')
 
 @section('USER-formulario')
-    <div class="d-flex align-items-center justify-content-center h-100">
-        <form class="formulario" class="formulario w-100 h-100 container-fluid  fs-5  p-5"
+    <div class="d-flex align-items-center justify-content-center h-100 ">
+        <form class="formulario" class="formulario h-100 container-fluid  fs-5  p-5"
             action="{{ isset($usuario) ? route('usuario.update', ['usuario' => $usuario->id]) : route('usuario.create') }}"
             method="{{ isset($usuario) ? 'post' : 'get' }}">
             @csrf
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="row">
-                <select class="estilo-formulario-select" name="tipo_usuario" id="tipo-usuario">
+                <select class="estilo-formulario-select fs-6" name="tipo_usuario" id="tipo-usuario">
                     <option value="Admin" {{ isset($usuario) && $usuario->tipo_usuario === 'Admin' ? 'selected' : '' }}>
                         Admin</option>
                     <option value="Alumno" {{ isset($usuario) && $usuario->tipo_usuario === 'Alumno' ? 'selected' : '' }}>

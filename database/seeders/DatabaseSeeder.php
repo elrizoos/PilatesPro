@@ -14,8 +14,6 @@ class DataBaseSeeder extends Seeder
             UsersTableSeeder::class,
             GruposTableSeeder::class,
             ClasesTableSeeder::class,
-            ReservasTableSeeder::class,
-            AsistenciasTableSeeder::class,
             SeccionesTableSeeder::class,
         ]);
     }

@@ -258,7 +258,9 @@ class ProductoController extends Controller
         $tipoProducto = $producto->type;
         \Log::info("Informacion a la vista " . $productoEditable );
         \Log::info("Informacion a la vista "  . $tipoProducto);
-        return redirect()->back()->with(['editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto]);
+        $productos = Producto::where('type', 'package')->with(['infoPaquete', 'infoSuscripcion'])->get();
+//dd($productos);
+        return redirect()->route('productos')->with(['productos' => $productos, 'editable' => $productoEditable, 'tipoProducto' => $tipoProducto, 'producto' => $producto]);
     }
 
     /**

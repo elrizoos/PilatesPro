@@ -9,7 +9,7 @@
             data-editarSeccion="{{ route('seccion.edit', ['seccion' => 'INDEFINIDO']) }}">
         <div class="row h-100 texto-color-resalte d-flex gap-3">
             <div
-                class="col  d-flex flex-column justify-content-center align-items-center fs-3 position-relative gap-3 border border-2 border-secondary-subtle rounded-5">
+                class="col  d-flex flex-column justify-content-center align-items-center fs-3 position-relative gap-3 border border-1 border-secondary-subtle rounded-5">
                 <h2 class="fs-1 position-absolute top-0 mt-4 texto-color-secundario">PAGINAS</h2>
                 <div class="opcion d-flex justify-content-center align-items-center gap-2 text-warning" id="eliminarPagina">
                     <svg class="icon icono-normal">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div
-                class="col d-flex flex-column justify-content-center align-items-center fs-3 position-relative gap-3 border border-2 border-secondary-subtle rounded-5">
+                class="col d-flex flex-column justify-content-center align-items-center fs-3 position-relative gap-3 border border-1 border-secondary-subtle rounded-5">
                 <h2 class="fs-1 position-absolute top-0 mt-4 texto-color-secundario">SECCIONES</h2>
                 <div class="opcion d-flex justify-content-center align-items-center gap-2 text-warning"
                     id="eliminarSeccion">

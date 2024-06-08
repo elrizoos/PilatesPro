@@ -8,21 +8,21 @@
                 <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                     <thead>
                         <tr>
-                            <th class="texto-color-titulo border border-2 border-fondo">Alumno</th>
-                            <th class="texto-color-titulo border border-2 border-fondo">Reserva</th>
-                            <th class="texto-color-titulo border border-2 border-fondo">Fecha</th>
-                            <th class="texto-color-titulo border border-2 border-fondo">Asistio</th>
+                            <th class="fs-5 texto-color-titulo border border-1 border-fondo">Alumno</th>
+                            <th class="fs-5 texto-color-titulo border border-1 border-fondo">Reserva</th>
+                            <th class="fs-5 texto-color-titulo border border-1 border-fondo">Fecha</th>
+                            <th class="fs-5 texto-color-titulo border border-1 border-fondo">Asistio</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($asistencias as $asistencia)
                             <tr>
-                                <td class="texto-color-resalte border border-2 border-fondo">
+                                <td class="texto-color-resalte border border-1 border-fondo">
                                     {{ $asistencia->reserva->alumno->nombre }}</td>
-                                <td class="texto-color-resalte border border-2 border-fondo">{{ $asistencia->reserva->id }}
+                                <td class="texto-color-resalte border border-1 border-fondo">{{ $asistencia->reserva->id }}
                                 </td>
-                                <td class="texto-color-resalte border border-2 border-fondo">{{ $asistencia->fecha }}</td>
-                                <td class="texto-color-resalte border border-2 border-fondo">
+                                <td class="texto-color-resalte border border-1 border-fondo">{{ $asistencia->fecha }}</td>
+                                <td class="texto-color-resalte border border-1 border-fondo">
                                     {{ $asistencia->asistio == true ? 'ASISTIDA' : 'NO ASISTIDA' }}</td>
                             </tr>
                         @endforeach

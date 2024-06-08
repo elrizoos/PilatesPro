@@ -249,7 +249,8 @@ class PanelController extends Controller
         return view('admin.GRUP-inicio', compact('alumnos', 'tipo'));
     }
 
-    public function informesGenerales(){
+    public function informesGenerales()
+    {
         $asistencias = Asistencia::all();
 
         $suscripciones = Subscription::all();
@@ -260,29 +261,27 @@ class PanelController extends Controller
 
         $paquetesClases = PaqueteUsuario::all();
         $totalIngresosPaquetes = 0;
-
         foreach ($paquetesClases as $paquete) {
             $totalIngresosPaquetes += $paquete->producto->precio;
         }
-        $suscripcionesAgrupadas = Subscription::all()->groupBy('name');
-        $suscripcinMaxima = '';
-        $maxSucripcion = 0;
 
+        $suscripcionesAgrupadas = Subscription::all()->groupBy('name');
+        $suscripcionMaxima = null;
+        $maxSucripcion = 0;
         foreach ($suscripcionesAgrupadas as $suscripcion) {
             \Log::info('Maximo al inicio: ' . $maxSucripcion);
 
-            if($suscripcion->count() >= $maxSucripcion){
+            if ($suscripcion->count() >= $maxSucripcion) {
                 $maxSucripcion = $suscripcion->count();
                 $suscripcionMaxima = $suscripcion[0];
                 \Log::info('Actualizando maximo ' . $maxSucripcion);
                 \Log::info('ACTUALIZANDO SUSCRIPCION: ' . $suscripcion[0]);
-
-
-
             }
         }
-        $nombreSuscripcionFav = $suscripcionMaxima->name;
+        $nombreSuscripcionFav = $suscripcionMaxima ? $suscripcionMaxima->name : 'N/A';
+
         $paquetesAgrupados = PaqueteUsuario::all()->groupBy('producto_id');
+        $paqueteMaximo = null;
         $maxPaquete = 0;
         \Log::info('Paquetes Agrupados: ' . $paquetesAgrupados);
 
@@ -294,15 +293,12 @@ class PanelController extends Controller
                 $paqueteMaximo = $paquete[0];
                 \Log::info('Actualizando maximo ' . $maxPaquete);
                 \Log::info('ACTUALIZANDO paquete: ' . $paquete[0]);
-
-
-
             }
         }
-        $paqueteFav = Producto::find($paqueteMaximo->producto_id)->name;
-        //dd($paqueteFav);
+        $paqueteFav = $paqueteMaximo ? Producto::find($paqueteMaximo->producto_id)->name : 'N/A';
+
         $tipo = 'INFO-inicio';
-        return view('admin.INFO-inicio', compact('asistencias', 'totalIngresosSuscripcionesActivas','totalIngresosPaquetes', 'paqueteFav', 'nombreSuscripcionFav', 'tipo'));
+        return view('admin.INFO-inicio', compact('asistencias', 'totalIngresosSuscripcionesActivas', 'totalIngresosPaquetes', 'paqueteFav', 'nombreSuscripcionFav', 'tipo'));
     }
 
 
