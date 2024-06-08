@@ -1,13 +1,13 @@
 @extends('usuario.reservas')
 @section('historialReservas')
     @if ($grupoUsuario === null)
-    <div class="container w-100 h-100">
-        <div class="row h-100">
-            <div class="col d-flex justify-content-center align-items-center">
-                <p>No dispones de grupo por ahora, habla con el encargado del estudio para que te asigne uno</p>
+        <div class="container w-100 h-100">
+            <div class="row h-100">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p>No dispones de grupo por ahora, habla con el encargado del estudio para que te asigne uno</p>
+                </div>
             </div>
         </div>
-    </div>
     @else
         @if (isset($reservasPasadas) && isset($reservasFuturas))
             @if ($reservasPasadas->isEmpty() && $reservasFuturas->isEmpty())
@@ -22,10 +22,10 @@
                         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                             <thead>
                                 <tr>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Nº Reserva</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Clase</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Fecha</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Asistida</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Nº Reserva</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Clase</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Fecha</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Asistida</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,10 +52,10 @@
                         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                             <thead>
                                 <tr>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Nº Reserva</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Clase</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Fecha</th>
-                                    <th class="texto-color-resalte border border-2 border-fondo">Asistida</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Nº Reserva</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Clase</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Fecha</th>
+                                    <th class="texto-color-titulo border border-2 border-fondo">Asistida</th>
                                 </tr>
                             </thead>
                             <tbody>

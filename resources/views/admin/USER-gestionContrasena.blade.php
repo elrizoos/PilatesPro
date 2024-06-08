@@ -5,9 +5,9 @@
         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
             <thead>
                 <tr>
-                    <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Apellidos</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Opciones</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Nombre</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Apellidos</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Opciones</th>
                 </tr>
             </thead>
             <tbody>

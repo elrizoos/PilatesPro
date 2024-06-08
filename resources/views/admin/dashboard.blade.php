@@ -45,98 +45,37 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card p-4 bg-color-fondo">
-                    <h2 class="fs-5 text-center texto-color-resalte mb-3 text-uppercase">Calendario de Clases</h2>
-                    <ul class="list-group">
-                        @foreach ($calendarioClases as $clase)
-                            <li
-                                class="list-group-item  texto-color-secundario bg-color-fondo border border-2 border-dorado fs-5 d-flex justify-content-between">
-                                <p>Día: {{ $clase->fecha_especifica }}</p>
-                                <p>Horario: {{ $clase->hora_inicio }} a {{ $clase->hora_fin }}</p>
+                <div class="row">
+                    <div class="col">
+                        <div class="card p-4 bg-color-fondo">
+                            <h2 class="fs-5 text-center texto-color-resalte mb-3 text-uppercase">Calendario de Clases</h2>
+                            <ul class="list-group">
+                                @foreach ($calendarioClases as $clase)
+                                    <li
+                                        class="list-group-item  texto-color-secundario bg-color-fondo border border-2 border-dorado fs-5 d-flex justify-content-between">
+                                        <p>Día: {{ $clase->fecha_especifica }}</p>
+                                        <p>Horario: {{ $clase->hora_inicio }} a {{ $clase->hora_fin }}</p>
 
-                            </li>
-                        @endforeach
-                    </ul>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h2 class="fs-5 text-center">Notificaciones y Anuncios</h2>
+                            <p class="text-center"><a href="#" class="btn btn-info">Enviar Notificación</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Notificaciones y Anuncios</h2>
-                    <p class="text-center"><a href="#" class="btn btn-info">Enviar Notificación</a></p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Tareas y Recordatorios</h2>
-                    <ul class="list-group">
-                        @foreach ($tareasRecordatorios as $tarea)
-                            <li class="list-group-item">{{ $tarea }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
 
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Configuraciones Rápidas</h2>
-                    <ul class="list-group">
-                        @foreach ($configuracionesRapidas as $configuracion)
-                            <li class="list-group-item"><a href="#">{{ $configuracion }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Información del Sistema</h2>
-                    @foreach ($infoSistema as $info => $value)
-                        <p>{{ $info }}: {{ $value }}</p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
 
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Soporte y Ayuda</h2>
-                    @foreach ($soporteAyuda as $soporte => $link)
-                        <p><a href="{{ $link }}">{{ $soporte }}</a></p>
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Reportes Rápidos</h2>
-                    @foreach ($reportesRapidos as $reporte => $link)
-                        <p><a href="{{ $link }}">{{ $reporte }}</a></p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
 
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Noticias y Actualizaciones</h2>
-                    @foreach ($noticiasActualizaciones as $noticia => $link)
-                        <p><a href="{{ $link }}">{{ $noticia }}</a></p>
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <h2 class="fs-5 text-center">Seguridad</h2>
-                    @foreach ($seguridad as $item => $link)
-                        <p><a href="{{ $link }}">{{ $item }}</a></p>
-                    @endforeach
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

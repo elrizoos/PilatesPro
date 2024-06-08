@@ -41,22 +41,22 @@
                                             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">ID</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Nombre
+                                                        <th class="texto-color-titulo border border-2 border-fondo">ID</th>
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Nombre
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Descripcion</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Precio
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Precio
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Nº
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Nº
                                                             Clases</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Tiempo
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Tiempo
                                                             Clase
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Tiempo
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Tiempo
                                                             validez
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -131,28 +131,28 @@
                                             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">ID</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Nombre
+                                                        <th class="texto-color-titulo border border-2 border-fondo">ID</th>
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Nombre
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Descripcion</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Precio
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Precio
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Nº
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Nº
                                                             Clases
                                                             Semanales</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Tiempo
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Tiempo
                                                             Clase
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Asesoramiento
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">Dias
+                                                        <th class="texto-color-titulo border border-2 border-fondo">Dias
                                                             Cancelacion
                                                         </th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Beneficios</th>
-                                                        <th class="texto-color-resalte border border-2 border-fondo">
+                                                        <th class="texto-color-titulo border border-2 border-fondo">
                                                             Opciones</th>
                                                     </tr>
                                                 </thead>

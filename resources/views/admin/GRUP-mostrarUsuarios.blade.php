@@ -7,10 +7,10 @@
             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                 <thead>
                     <tr>
-                        <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Apellido</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Tipo Usuario</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Seleccionar</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Nombre</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Apellido</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Tipo Usuario</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Seleccionar</th>
                     </tr>
                 </thead>
                 <tbody>

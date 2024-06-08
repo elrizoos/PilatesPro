@@ -6,12 +6,12 @@
             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                 <thead>
                     <tr>
-                        <th class="texto-color-resalte border border-2 border-fondo">Clase</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Dia Semana</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Fecha</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Hora Inicio</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Hora Fin</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Reservar</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Clase</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Dia Semana</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Fecha</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Hora Inicio</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Hora Fin</th>
+                        <th class="texto-color-titulo border border-2 border-fondo">Reservar</th>
                     </tr>
                 </thead>
                 <tbody>

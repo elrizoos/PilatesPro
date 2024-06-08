@@ -459,7 +459,9 @@ class ProductoController extends Controller
         Stripe::setApiKey(config('services.stripe.secret'));
         
         $suscripcionUsuario = Subscription::where('user_id', Auth::user()->id)->first();
-        
+        if($suscripcionUsuario == null){
+            return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'Aun no dispones de una suscripcion para poder cambiar el plan');
+        }
         $productoUsuario = Producto::where('precio_stripe_id', $suscripcionUsuario->stripe_price)->first();
 
         $productosRestantes = Producto::whereNot('stripe_id', $productoUsuario->stripe_id)->get();
@@ -477,5 +479,19 @@ class ProductoController extends Controller
         $producto = Producto::find($producto);
         $productos = Producto::all();
         return view('mostrarProducto', compact('mostrarProducto', 'paginas', 'producto', 'productos'));
+    }
+
+    public function mostrarDetallesSuscripcion(){
+        $usuario = Auth::user();
+
+        $suscripcionUsuario = Subscription::where('user_id', $usuario->id)->first();
+        if ($suscripcionUsuario == null) {
+            return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'Aun no dispones de una suscripcion para poder ver sus detalles. ¡Contrata una ahora!');
+        }
+
+        $suscripcion = Producto::where('id', $suscripcionUsuario->producto_id)->with(['infoSuscripcion'])->first();
+
+        return view('usuario.submenu.SUS-detallesPlan', compact('suscripcion'));
+
     }
 }

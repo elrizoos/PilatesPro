@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MetodosRecuperacione extends Model
+class Mensaje extends Model
 {
     use HasFactory;
+    protected $fillable = ['conversation_id', 'user_id', 'body'];
 
-    protected $fillable = ['user_id', 'method', 'pregunta', 'respuesta'];
+    public function conversation()
+    {
+        return $this->belongsTo(Conversacione::class, 'conversation_id');
+    }
 
     public function user()
     {

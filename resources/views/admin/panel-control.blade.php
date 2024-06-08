@@ -251,7 +251,8 @@
             <div class=" w-20">
                 <div class="w-100 h-100 m-auto fs-6 text-nowrap ">
                     <ul class="menu-general">
-                        <li class="p-2 texto-color-secundario">General</li>
+                        <li class="p-2 texto-color-secundario"><a class="enlace"
+                                        href="{{ route('panel-control.index', 'USER-formulario') }}">General</a></li>
                         <li class="p-2 texto-color-secundario">Usuarios
                             <svg class="icon col-2 icono-normal">
                                 <use xlink:href="#flecha-abajo-blanco" />
@@ -329,8 +330,7 @@
                                 <use xlink:href="#flecha-abajo-blanco" />
                             </svg>
                             <ul class="submenu fs-6">
-                                <li class="p-1">Enviar correo o notificacion</li>
-                                <li class="p-1">Mensajeria interna</li>
+                                <li class="p-1"><a class="enlace" href="{{ route('mostrarNotificaciones') }}">Mostrar notificacion</a></li>
                             </ul>
                         </li>
                         <li class="p-2 texto-color-secundario">Analisis y Reportes
@@ -338,7 +338,7 @@
                                 <use xlink:href="#flecha-abajo-blanco" />
                             </svg>
                             <ul class="submenu fs-6">
-                                <li class="p-1">Informes generales</li>
+                                <li class="p-1"><a class="enlace" href="{{ route('informesGenerales') }}">Informes Generales</a></li>
                                 <li class="p-1">Encuestas alumnos</li>
                             </ul>
                         </li>
@@ -363,7 +363,7 @@
                     </svg>
                     <button class="estilo-formulario" onclick="goBack()">Volver</button></div>
                 <div
-                    class="bg-color-fondo-claro w-100 h-100 p-2 border border-4 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
+                    class="bg-color-fondo w-100 h-100 p-2 border border-4 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
                     @if (session('success'))
                         <div>
                             <p>{{ session('success') }}</p>

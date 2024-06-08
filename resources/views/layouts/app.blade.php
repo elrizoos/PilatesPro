@@ -302,7 +302,7 @@
                                         </svg><a
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
-                                   
+                                   <li class="w-100 p-2 text-center"><a href="{{route('conversaciones.index')}}">Mensajes</a></li>
                                     <li class="w-100 p-3 text-center">
                                         <form class="formulario" action="{{ route('logout') }}" method="POST">
                                             @csrf

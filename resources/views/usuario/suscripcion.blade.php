@@ -13,6 +13,9 @@
                     plan</li>
             </div>
             <div class="col-12">
+                <li class="contenido-cargable-interno contenido-item text-center p-2 texto-color-secundario" id="detallesPlan"
+                data-url="{{ route('suscripcion-detallesPlan') }}">
+                Detalles suscripcion</li>
                 <li class="contenido-cargable-interno contenido-item text-center p-2 texto-color-secundario" id="historialPago"
                 data-url="{{ route('suscripcion-historialPago') }}">
                 Historial de pagos</li>
@@ -28,6 +31,10 @@
         </div>
         <div class="row h-100 contenedor-interno historialPago" id="contenedor-historialPago">
             @yield('historialPago')
+        </div>
+
+         <div class="row h-100 contenedor-interno detallesPlan" id="contenedor-detallesPlan">
+            @yield('detallesPlan')
         </div>
     </div>
 @endsection

@@ -5,13 +5,13 @@
         <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
             <thead>
                 <tr>
-                    <th class="texto-color-resalte border border-2 border-fondo">Lunes</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Martes</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Miércoles</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Jueves</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Viernes</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Sábado</th>
-                    <th class="texto-color-resalte border border-2 border-fondo">Domingo</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Lunes</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Martes</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Miércoles</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Jueves</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Viernes</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Sábado</th>
+                    <th class="texto-color-titulo border border-2 border-fondo">Domingo</th>
                 </tr>
             </thead>
             <tbody>

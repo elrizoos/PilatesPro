@@ -2,9 +2,16 @@
 
 @section('HORARIO-crear')
     <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
-        <form class="formulario formulario-horario w-100 h-100 p-5" action="{{ route('horario.store') }}"
+        <form class="formulario formulario-horario w-100 h-100 p-5" action="{{ isset($horario) ? route('horario.update', $horario->id) : route('horario.store') }}"
             method="POST">
             @csrf
+            <?php 
+                if(isset($horario)){
+            ?>
+                @method('PUT')
+            <?php 
+                }
+            ?>
             <div class="central">
                 <div class="inputs gap-3">
                     <div class="contenedor-calendario" id="contenedorCalendario">
@@ -42,16 +49,16 @@
                     <div class="contenedor-fecha-placeholder">
                         <input id="fechaEspecifica" type="date" name="fechaEspecifica"
                             value="{{ isset($horario) ? $horario->fecha_especifica : '' }}">
-                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder" class="fecha-placeholder"
+                        <label {{ isset($horario) ? 'hidden' : '' }} id="fechaPlaceholder"  class="fecha-placeholder"
                             for="fecha_placeholder">--- Selecciona una
                             fecha concreta
                             ---</label>
                     </div>
                     <select name="tiempoClase" id="tiempoClase" data-value="45">
                         <option value="">--- Selecciona el tiempo de clase ---</option>
-                        <option value="45">45 minutos</option>
-                        <option value="60">60 minutos</option>
-                        <option value="120">120 minutos</option>
+                        <option value="45" {{ isset($horario) && $horario->tiempo_clase === "45" ? 'selected' : '' }}>45 minutos</option>
+                        <option value="60" {{ isset($horario) && $horario->tiempo_clase === "60" ? 'selected' : '' }}>60 minutos</option>
+                        <option value="120" {{ isset($horario) && $horario->tiempo_clase === "120" ? 'selected' : '' }}>120 minutos</option>
                     </select>
                     <input type="time" name="horaInicio" id="horaInicio" hidden
                         value="{{ isset($horario) ? $horario->hora_inicio : '' }}">
@@ -146,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="repeticion">
+                <div class="repeticion {{isset($horario) ? 'd-none' : ''}}">
                     <div class="grupo-input">
                         <label for="repetir">¿Quieres que esta clase se repita algun dia mas?</label>
                         <input type="checkbox" name="repetir" id="repetir">Sí
@@ -189,7 +196,7 @@
             </div>
 
             <div class="botonEnviar mt-5">
-                <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Crear clase nueva">
+                <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="{{isset($horario) ? 'Editar registro' : 'Crear clase nueva'}}">
             </div>
 
         </form>
@@ -203,7 +210,7 @@
         const minutoInicio = $('.hora-inicio .minutos');
 
         const horaFin = $('.hora-fin .hora');
-        const minutoFin = $('.hora-fin .minuto');
+        const minutoFin = $('.hora-fin .minutos');
 
         if (valorHoraInicio !== '') {
             let hora = valorHoraInicio.split(':');
