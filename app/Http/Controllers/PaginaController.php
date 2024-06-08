@@ -21,6 +21,7 @@ class PaginaController extends Controller
     public function index()
     {
         $paginas = Pagina::all();
+        //dd($paginas);
         $suscripciones = Producto::where('type', 'membership')->get();
         $usuario = Auth::user();
         $contadorSuscripciones = count($suscripciones);

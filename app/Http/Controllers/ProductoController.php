@@ -496,4 +496,10 @@ class ProductoController extends Controller
         return view('usuario.submenu.SUS-detallesPlan', compact('suscripcion'));
 
     }
+
+    public function mostrarClases(){
+                  $productos = Producto::with(['infoPaquete', 'infoSuscripcion'])->get();
+        //dd($productos);
+        return view('clases', compact('productos'));
+    }
 }

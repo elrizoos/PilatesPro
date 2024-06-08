@@ -11,6 +11,7 @@ $(document).ready(function () {
     $("#imagen-logo").on("click", redirectToUrl);
     $(".iconoMenu").on("click", toggleMenu);
     $("#paginasPersonalizadas").on("click", togglePagesList);
+    $("#paginasPersonalizadasMovil").on("click", togglePagesListMovil);
 
     $("#contenedorSeleccion .opcion").on("click", handleOptionSelection);
     $("#paginaEscogida, #seccionEscogida").on("change", updateFormAction);
@@ -91,16 +92,22 @@ function initVideoControls(playButton, closeButton, videoElement) {
 
     $(playButton).on("click", () => toggleVideo(true, video, tiempo));
     $(document).on("touchstart", playButton, () =>
-        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(
+            ".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar"
+        )
     );
 
     $(closeButton).on("click", () => toggleVideo(false, video, tiempo));
     $(document).on("touchstart", closeButton, () =>
-        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(
+            ".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar"
+        )
     );
 
     function toggleVideo(play, video, tiempo) {
-        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar");
+        toggleElements(
+            ".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar"
+        );
         if (play) {
             video.currentTime = tiempo;
             video.play();
@@ -113,7 +120,7 @@ function initVideoControls(playButton, closeButton, videoElement) {
     }
 
     function toggleElements(selector) {
-        $(selector).toggleClass('d-none');
+        $(selector).toggleClass("d-none");
     }
 }
 
@@ -130,7 +137,11 @@ function toggleMenu() {
 
 function togglePagesList() {
     console.log("Lista de páginas personalizadas clicada");
-    $("#listaPaginas").toggleClass('d-none');
+    $("#listaPaginas").toggleClass("d-none");
+}
+function togglePagesListMovil() {
+    console.log("Lista de páginas personalizadas clicada");
+    $("#listaPaginasMovil").toggleClass("d-none");
 }
 
 function handleOptionSelection(e) {

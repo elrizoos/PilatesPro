@@ -72,7 +72,7 @@
                                                         @csrf
                                                         @method('POST')
                                                         <button type="submit"
-                                                            class="btn btn-link text-uppercase text-nowrap fw-bold fs-6 p-0 m-0 border-0 bg- texto-color-gris text-decoration-none">
+                                                            class=" text-uppercase text-nowrap fw-bold fs-6 p-0 m-0 border-0 bg-color-fondo texto-color-gris text-decoration-none">
                                                             Más detalles
                                                             <svg class="icon icono-normal">
                                                                 <use xlink:href="#flecha-recta" />
@@ -94,11 +94,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        @if ($mostrarMas)
-                            <div class="col-12 text-center mt-3">
-                                <button class="btn btn-primary" id="mostrarMasBtn">Mostrar más suscripciones</button>
-                            </div>
-                        @endif
                     </div>
 
 

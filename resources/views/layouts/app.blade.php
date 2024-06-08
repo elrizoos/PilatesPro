@@ -249,27 +249,23 @@
                                 <li class="p-2"><a href="{{ route('inicio') }}">Inicio</a></li>
                                 <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
                                 <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
-                                <li class="p-2"><a href="{{ route('horarios') }}">Horario</a></li>
                                 <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
-                                <li class="p-2"><a href="{{ route('reservas') }}">Reservas</a></li>
-                                <li class="p-2"><a href="{{ route('preciosVIP') }}">Precios y VIP</a></li>
-                                <li class="p-2"><a href="{{ route('contacto') }}">Contacto</a></li>
-                                <li class="p-2" id="paginasPersonalizadas">
-                                    Más <span></span>
+                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a></li>
+                                <li class="nav-item dropdown col">
+                                    <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
+                                        role="button" aria-expanded="false">Más</a>
+                                    <ul class="dropdown-menu w-100 text-center">
+                                        @if (isset($paginas))
+                                            @foreach ($paginas as $pagina)
+                                                <li><a class="dropdown-item estilo-formulario p-2"
+                                                        href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
                                 </li>
                             </ul>
-                            <div class="d-none" id="listaPaginas">
-                                <div><span></span></div>
-                                <ul>
-                                    @if (isset($paginas))
-                                        @foreach ($paginas as $pagina)
-                                            <li><a
-                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                     <div class="w-100 p-2">
@@ -303,21 +299,18 @@
                                         </svg><a
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
-                                    <li class="w-100 p-2 text-center"><a
-                                            href="{{ route('conversaciones.index') }}">Mensajes</a></li>
-                                    <li class="w-100 p-3 text-center">
-                                        <form class="formulario" action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            <button class="ms-1 estilo-formulario" type="submit"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="white" class="bi bi-box-arrow-right me-1"
-                                                    viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
-                                                    <path fill-rule="evenodd"
-                                                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                                                </svg>Salir</button>
-                                        </form>
+
+                                    <form class="formulario" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="ms-1 estilo-formulario w-100" type="submit"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                            </svg>Salir</button>
+                                    </form>
                                     </li>
                                 </ul>
                             @endauth
@@ -348,29 +341,33 @@
                             <li class="p-1"><a
                                     class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
                                     href="{{ route('clases') }}">Clases</a></li>
-                            <li class="p-1"><a
-                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
-                                    href="{{ route('horarios') }}">Horario</a></li>
+
                             <li class="p-1"><a
                                     class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
                                     href="{{ route('instructores') }}">Instructores</a>
                             </li>
+
                             <li class="p-1"><a
                                     class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
-                                    href="{{ route('reservas') }}">Reservas</a></li>
-                            <li class="p-1"><a
-                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
-                                    href="{{ route('preciosVIP') }}">Precios y VIP</a>
+                                    href="{{ route('conversaciones.index') }}">Mensajes</a></li>
+
                             </li>
-                            <li class="p-1"><a
-                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
-                                    href="{{ route('contacto') }}">Contacto</a></li>
-                            <li class="p-1"><a
-                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
-                                    id="paginasPersonalizadas">
-                                    <span>Más</span></a>
+
+                            <li class="nav-item dropdown col">
+                                <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
+                                    role="button" aria-expanded="false">Más</a>
+                                <ul class="dropdown-menu w-100 text-center">
+                                    @if (isset($paginas))
+                                        @foreach ($paginas as $pagina)
+                                            <li><a class="dropdown-item estilo-formulario p-2"
+                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
                 <div class="row">
@@ -406,11 +403,14 @@
                                 </li>
 
                                 <li class="w-100 p-3 text-center">
-                                    <form class="formulario" action="{{ route('logout') }}" method="POST">
+                                    <form class="formulario d-flex justify-content-center align-items-center"
+                                        action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <button class="ms-1 estilo-formulario" type="submit"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
-                                                fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
+                                        <button
+                                            class="ms-1 estilo-formulario d-flex justify-content-center align-items-center w-100"
+                                            type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                height="1rem" fill="white" class="bi bi-box-arrow-right me-1"
+                                                viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
                                                     d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
                                                 <path fill-rule="evenodd"
