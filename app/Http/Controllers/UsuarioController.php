@@ -276,6 +276,9 @@ class UsuarioController extends Controller
         }
     }
 
-
+    public function mostrarInstructores(){
+        $instructores = User::where('tipo_usuario', 'profesor')->get();
+        return view('instructores', compact('instructores'));
+    }
 
 }
