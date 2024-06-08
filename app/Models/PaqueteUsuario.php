@@ -15,4 +15,14 @@ class PaqueteUsuario extends Model
         'fecha_compra',
         'payment_method_id',
     ];
+
+    /**
+     * Get the producto associated with the PaqueteUsuario
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function producto()
+    {
+        return $this->hasOne(Producto::class ,'id');
+    }
 }

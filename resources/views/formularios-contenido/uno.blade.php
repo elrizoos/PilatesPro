@@ -47,7 +47,7 @@
             </div>
             <div class="row h-75">
                 <div class="col  d-flex justify-content-center align-items-center">
-                    <textarea class="estilo-formulario fs-4  h-75 text-center d-flex border border-1 border-secondary" name="parrafo"
+                    <textarea class="fs-5 estilo-formulario fs-4  h-75 text-center d-flex border border-1 border-secondary" name="parrafo"
                         placeholder="Escribe el parrafo"> {{ isset($seccion) ? $seccion->parrafo : '' }}</textarea>
                     @error('parrafo')
                         <span role="alert">

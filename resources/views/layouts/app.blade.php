@@ -223,7 +223,7 @@
 
 <body class="bg-color-fondo texto-color-secundario no-scrollbar">
     <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
-    <div class="d-flex flex-column flex-sm-row  position-relative bottom-100" id="appEscritorio">
+    <div class="d-flex flex-column flex-md-row  position-relative bottom-100" id="appEscritorio">
         <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"
             id="cuadroActualizacion">
             <h5 class="w-100 p-3 fs-1 text-center texto-color-secundario">¡La página ha sido actualizada!</h5>
@@ -234,7 +234,7 @@
                 Route::currentRouteName() !== 'login' &&
                 Route::currentRouteName() !== 'registrarUsuarioProducto' &&
                 Route::currentRouteName() !== 'register')
-            <nav class="d-none d-sm-block container-fluid bg-color-principal w-20 position-relative">
+            <nav class="d-none d-md-block container-fluid bg-color-principal w-20 position-relative">
                 <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-1">
                     <div class="w-100 h-25 p-2">
                         <div class="img-fluid imagen-logo w-100 h-100 img" id="imagen-logo"
@@ -245,7 +245,7 @@
                     <div class="d-flex flex-column" id="listaMenu">
                         <span></span>
                         <div>
-                            <ul class="text-uppercase fs-5">
+                            <ul class="fs-5 text-uppercase fs-5">
                                 <li class="p-2"><a href="{{ route('inicio') }}">Inicio</a></li>
                                 <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
                                 <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
@@ -275,25 +275,26 @@
                     <div class="w-100 p-2">
                         <div>
                             @guest
-                                <ul class="w-75 d-flex flex-column gap-4 justify-content-center align-items-center m-auto">
+                                <ul
+                                    class="fs-5 w-75 d-flex flex-column gap-4 justify-content-center align-items-center m-auto">
                                     <li
-                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra with-transitions">
-                                        <a class="text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
+                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra with-transitions">
+                                        <a class="fs-5 text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
                                     </li>
                                     <li
-                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra">
-                                        <a class="text-uppercase" href="{{ route('register') }}">Registro</a>
+                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra">
+                                        <a class="fs-5 text-uppercase" href="{{ route('register') }}">Registro</a>
                                     </li>
                                 </ul>
                             @endguest
 
                             @auth
-                                <ul class="w-100 d-flex flex-column  text-uppercase">
+                                <ul class="fs-5 w-100 d-flex flex-column  text-uppercase">
                                     <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
                                         {{ Auth::user()->apellidos }}
                                     </li>
                                     <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" fill="white" class="bi bi-gear me-1"
+                                            width="1rem" height="1rem" fill="white" class="bi bi-gear me-1"
                                             viewBox="0 0 16 16">
                                             <path
                                                 d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
@@ -302,7 +303,8 @@
                                         </svg><a
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
-                                   
+                                    <li class="w-100 p-2 text-center"><a
+                                            href="{{ route('conversaciones.index') }}">Mensajes</a></li>
                                     <li class="w-100 p-3 text-center">
                                         <form class="formulario" action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -325,7 +327,7 @@
                 </div>
             </nav>
 
-            <nav class="container-fluid d-block d-sm-none bg-color-principal">
+            <nav class="container-fluid d-block d-md-none bg-color-principal">
                 <div class="row   p-2">
                     <div class="col p-4 d-flex justify-content-center align-items-center">
                         <div class="img-fluid imagen-logo w-100 h-auto" style="height:10rem !important"
@@ -336,19 +338,37 @@
                 </div>
                 <div class="row p-4 justify-content-center align-items-center">
                     <div class="col">
-                        <ul class="row row-cols-3 text-uppercase fs-5">
-                            <li class="p-3 border border-1"><a href="{{ route('inicio') }}">Inicio</a></li>
-                            <li class="p-3 border border-1"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
-                            <li class="p-3 border border-1"><a href="{{ route('clases') }}">Clases</a></li>
-                            <li class="p-3 border border-1"><a href="{{ route('horarios') }}">Horario</a></li>
-                            <li class="p-3 border border-1"><a href="{{ route('instructores') }}">Instructores</a>
+                        <ul class="fs-5 row row-cols-3 text-uppercase fs-5">
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('inicio') }}">Inicio</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('acercaDe') }}">Acerca de</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('clases') }}">Clases</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('horarios') }}">Horario</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('instructores') }}">Instructores</a>
                             </li>
-                            <li class="p-3 border border-1"><a href="{{ route('reservas') }}">Reservas</a></li>
-                            <li class="p-3 border border-1"><a href="{{ route('preciosVIP') }}">Precios y VIP</a>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('reservas') }}">Reservas</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('preciosVIP') }}">Precios y VIP</a>
                             </li>
-                            <li class="p-3 border border-1"><a href="{{ route('contacto') }}">Contacto</a></li>
-                            <li class="p-3 border border-1" id="paginasPersonalizadas">
-                                Más <span></span>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('contacto') }}">Contacto</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    id="paginasPersonalizadas">
+                                    <span>Más</span></a>
                             </li>
                         </ul>
                     </div>
@@ -356,25 +376,27 @@
                 <div class="row">
                     <div class="col">
                         @guest
-                            <ul class="w-75 d-flex flex-column gap-4 justify-content-center align-items-center m-auto">
+                            <ul
+                                class="fs-5 w-75 d-flex flex-column p-3 gap-2 justify-content-center align-items-center m-auto">
                                 <li
-                                    class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra with-transitions">
-                                    <a class="text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
+                                    class="w-75 p-2 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra ">
+                                    <a class="fs-5 auth text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
                                 </li>
                                 <li
-                                    class="w-100 p-4 text-center bg-color-principal rounded-circle border border-2 border-secondary sombra">
-                                    <a class="text-uppercase" href="{{ route('register') }}">Registro</a>
+                                    class="w-75 p-2 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra">
+                                    <a class="fs-5  auth text-uppercase" href="{{ route('register') }}">Registro</a>
                                 </li>
                             </ul>
                         @endguest
-                      
+
                         @auth
-                            <ul class="w-100 d-flex flex-row align-items-center justify-content-center  text-uppercase">
+                            <ul
+                                class="fs-5 w-100 d-flex flex-row align-items-center justify-content-center  text-uppercase">
                                 <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
                                     {{ Auth::user()->apellidos }}
                                 </li>
-                                <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="white" class="bi bi-gear me-1" viewBox="0 0 16 16">
+                                <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                        height="1rem" fill="white" class="bi bi-gear me-1" viewBox="0 0 16 16">
                                         <path
                                             d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
                                         <path
@@ -382,12 +404,12 @@
                                     </svg><a
                                         href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                 </li>
-                               
+
                                 <li class="w-100 p-3 text-center">
                                     <form class="formulario" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button class="ms-1 estilo-formulario" type="submit"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem"
                                                 fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
                                                     d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />

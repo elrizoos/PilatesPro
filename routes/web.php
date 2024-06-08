@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\ConversacionController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\FacturaDetallesController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
+use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\MetodosRecuperacioneController;
+use App\Http\Controllers\NotificacionesController;
 use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PanelController;
@@ -119,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('usuario-suscripcion');
 
     Route::get('/usuario/suscripcion/estadoSuscripcion', [ProductoController::class, 'index'])->name('suscripcion-estadoSuscripcion');
-    Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetalles'])->name('suscripcion-detallesPlan');
+    Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetallesSuscripcion'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
     Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'historialPago'])->name('suscripcion-historialPago');
     Route::get('/usuario/suscripcion/historialPago/descargarFactura/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
@@ -137,6 +140,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.submenu.CON-opciones');
     })->name('contrasena-opciones');
     Route::post('/usuario/contrasena/opciones/metodosRecueracion', [MetodosRecuperacioneController::class, 'store'])->name('metodoRecuperacion.store');
+    Route::get('/usuario/contrasena/guardarInformacionPreRes', [MetodosRecuperacioneController::class, 'guardarInformacionPreRes'])->name('guardarInformacionPreRes');
+
 
     Route::get('/usuario/contrasena/politicas', function () {
         return view('usuario.submenu.CON-politicas');
@@ -148,9 +153,12 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.otros');
     })->name('usuario-otros');
 
-    Route::get('/usuario/otros/notificaciones', function () {
-        return view('usuario.submenu.OTR-notificaciones');
-    })->name('otros-notificaciones');
+    Route::get('/usuario/otros/notificaciones', [NotificacionesController::class, 'index'])->name('otros-notificaciones');
+    Route::post('/usuario/otros/notificaciones/asignarNotificacion', [NotificacionesController::class, 'asignarNotificacion'])->name('asignarNotificacion');
+
+    Route::resource('/chat/conversaciones', ConversacionController::class)->only(['index', 'create', 'store', 'show']);
+    Route::post('chat/conversaciones/{conversacione}/mensajes', [MensajeController::class, 'store'])->name('messages.store');
+
 
     Route::get('/usuario/otros/privacidad', function () {
         return view('usuario.submenu.OTR-privacidad');
@@ -216,6 +224,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/facturacion/regenerarFacturas', [FacturaController::class, 'regenerarFacturas'])->name('regenerarFacturas');
     //Ruta de sincronizacion de productos con stripe y bd local
     Route::get('/sincronizar-productos', [StripeSyncController::class, 'syncProductos']);
+
+
+    Route::get('/admin/panel-control/notificaciones', [NotificacionesController::class, 'mostrarNotificaciones'])->name('mostrarNotificaciones');
+    Route::post('/admin/panel-control/notificaciones/enviarNotificacion', [NotificacionesController::class, 'enviarNotificacion'])->name('enviarNotificacion');
+
+
+    Route::get('/admin/panel-control/informesGenerales', [PanelController::class, 'informesGenerales'])->name('informesGenerales');
+    Route::get('/admin/panel-control/asistencia/marcarAsistencia/{reserva}/{user}', [ReservasController::class, 'marcarAsistencia'])->name('asistencia.create');
+
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);

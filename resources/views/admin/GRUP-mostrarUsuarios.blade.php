@@ -7,20 +7,20 @@
             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                 <thead>
                     <tr>
-                        <th class="texto-color-resalte border border-2 border-fondo">Nombre</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Apellido</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Tipo Usuario</th>
-                        <th class="texto-color-resalte border border-2 border-fondo">Seleccionar</th>
+                        <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>
+                        <th class="fs-5 texto-color-titulo border border-1 border-fondo">Apellido</th>
+                        <th class="fs-5 texto-color-titulo border border-1 border-fondo">Tipo Usuario</th>
+                        <th class="fs-5 texto-color-titulo border border-1 border-fondo">Seleccionar</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($usuariosSinGrupo as $usuario)
                         <tr>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $usuario->nombre }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">{{ $usuario->apellidos }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $usuario->nombre }}</td>
+                            <td class="texto-color-resalte border border-1 border-fondo">{{ $usuario->apellidos }}</td>
+                            <td class="texto-color-resalte border border-1 border-fondo">
                                 {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
-                            <td class="texto-color-resalte border border-2 border-fondo">
+                            <td class="texto-color-resalte border border-1 border-fondo">
                                 <input class="estilo-formulario" type="checkbox" name="añadir[]"
                                     value="{{ $usuario->id }}">
                             </td>

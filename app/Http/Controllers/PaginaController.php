@@ -6,6 +6,7 @@ use App\Models\ImagenesSeccion;
 use App\Models\Pagina;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
+use App\Models\Seccion;
 use App\Models\SeccionContenido;
 use Auth;
 use Illuminate\Support\Facades\Log;
@@ -26,7 +27,7 @@ class PaginaController extends Controller
 
 
         //dd($paginas);
-        return view('inicio', compact('paginas', 'suscripciones', 'usuario',  'contadorSuscripciones'));
+        return view('inicio', compact('paginas', 'suscripciones', 'usuario', 'contadorSuscripciones'));
     }
 
     /**
@@ -121,16 +122,22 @@ class PaginaController extends Controller
     {
         $paginas = Pagina::all();
         $pagina = Pagina::where('slug', '=', $slug)->first();
+
+        if (!$pagina) {
+            return redirect()->route('home')->with('error', 'Página no encontrada.');
+        }
+
         $secciones = SeccionContenido::where('idPagina', '=', $pagina->id)->orderBy('orden', 'asc')->get();
         $tipo = $pagina->slug;
         $imagenes = [];
+
         foreach ($secciones as $seccion) {
             $imagenes['Seccion: ' . $seccion->id . ': ' . $seccion->titulo] = [
+                'tipo' => Seccion::find($seccion->idSeccion)->tipo,
                 'imagenUno' => ImagenesSeccion::find($seccion->idImagenUno),
                 'imagenDos' => ImagenesSeccion::find($seccion->idImagenDos) ?? null,
             ];
         }
-        //dd($imagenes);
 
         return view('pagina.show', [
             'paginas' => $paginas,
@@ -138,8 +145,9 @@ class PaginaController extends Controller
             'secciones' => $secciones,
             'imagenes' => $imagenes,
         ]);
-
     }
+
+
 
     public function elegirPagina()
     {
@@ -148,17 +156,19 @@ class PaginaController extends Controller
         return view('admin.CONT-elegirPagina', compact('paginas', 'tipo'));
     }
 
-    public function seleccionarPagina(Request $request) {
+    public function seleccionarPagina(Request $request)
+    {
         $pagina = $request->paginaElegida;
 
         return redirect()->route('crearSeccion', ['pagina' => $pagina]);
     }
-    public function eliminarEditarPagina(){
+    public function eliminarEditarPagina()
+    {
         $paginas = Pagina::all();
         $tipo = 'CONT-eliminarEditar';
         $secciones = SeccionContenido::orderBy('idPagina', 'asc')->get();
         return view('admin.CONT-eliminarEditar', compact('paginas', 'tipo', 'secciones'));
     }
 
-   
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Models\MetodosRecuperacione;
 use App\Models\Producto;
 use App\Models\RegistroTiempo;
 use App\Models\User;
@@ -18,7 +19,7 @@ use Validator;
 class UsuarioController extends Controller
 {
 
-   public function create(Request $request)
+    public function create(Request $request)
     {
         $data = $request->all();
         $data['password_confirmation'] = $data['password'];
@@ -31,6 +32,12 @@ class UsuarioController extends Controller
         }
 
         $usuario = $registerController->crearUsuario($data);
+        $recoveryMethod = MetodosRecuperacione::updateOrCreate(
+            ['user_id' => $usuario->id],
+            ['method' => 'email'],
+
+        );
+
 
         if ($usuario) {
             $registroTiempoController = new RegistroTiemposController();
@@ -49,7 +56,8 @@ class UsuarioController extends Controller
     }
 
 
-    public function createConProducto($producto) {
+    public function createConProducto($producto)
+    {
         //dd($producto);
         return view('auth.register', compact('producto'));
     }
@@ -239,17 +247,17 @@ class UsuarioController extends Controller
                         $tiempoClase = $infoSuscripcion->tiempo_clase;
                         switch ($tiempoClase) {
                             case 45:
-                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->clases_semanales * (52/12);
+                                $usuario->registroTiempo->clases_45 += $infoSuscripcion->clases_semanales * (52 / 12);
                                 break;
                             case 60:
-                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->clases_semanales * (52/12);
+                                $usuario->registroTiempo->clases_60 += $infoSuscripcion->clases_semanales * (52 / 12);
                                 break;
                             case 120:
-                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->clases_semanales * (52/12);
+                                $usuario->registroTiempo->clases_120 += $infoSuscripcion->clases_semanales * (52 / 12);
                                 break;
                         }
-                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->clases_semanales * (52/12);
-                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->clases_semanales * (52/12) * $tiempoClase);
+                        $usuario->registroTiempo->clases_totales += $infoSuscripcion->clases_semanales * (52 / 12);
+                        $usuario->registroTiempo->minutos_totales += ($infoSuscripcion->clases_semanales * (52 / 12) * $tiempoClase);
                     } else {
                         throw new \Exception('Información de la suscripción no encontrada');
                     }
