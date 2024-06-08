@@ -9,7 +9,7 @@ class MetodosRecuperacione extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'method'];
+    protected $fillable = ['user_id', 'method', 'pregunta', 'respuesta'];
 
     public function user()
     {

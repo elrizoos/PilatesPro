@@ -181,6 +181,17 @@ class HorarioController extends Controller
         return view('admin.HORARIO-editar', compact('tipo', 'horario', 'reservas','claseHorario', 'grupoHorario', 'profesor', 'alumnos'));
     }
 
+    public function editarHorario(Horario $horario){
+
+        $clases = Clase::all();
+        if ($clases == null) {
+            return redirect()->route('clase.create');
+        }
+
+        $tipo = 'HORARIO-crear';
+        return view('admin.HORARIO-crear', compact('horario','clases', 'tipo'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

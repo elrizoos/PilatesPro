@@ -12,9 +12,9 @@
     </div>
     <div class="row">
         <div class="col d-flex justify-content-start align-items-center flex-column">
-            @if (isset($formularioPreguntaRespues))
+            @if (session()->has('formularioPreguntaRespuesta'))
                 <h5>Formulario Pregunta y Respuesta</h5>
-                <form id="preguntaRespuestaForm" action="">
+                <form id="preguntaRespuestaForm" action="{{ route('guardarInformacionPreRes') }}">
                     <label for="pregunta">Selecciona una de las siguientes preguntas</label>
                     <select name="preguntas" id="preguntas">
                         <option value="1">¿Dónde has nacido?</option>
@@ -35,15 +35,15 @@
                     @csrf
                     <div>
                         <input class="estilo-formulario" type="radio"
-                             name="method"
-                            id="email" value="email">
+                            {{ isset(Auth::user()->metodosRecuperacion) ? (Auth::user()->metodosRecuperacion->method == 'email' ? 'checked' : '') : '' }}
+                            name="method" id="email" value="email">
                         <label class="estilo-formulario" for="email">
                             Recuperar mediante Correo Electrónico
                         </label>
                     </div>
                     <div>
                         <input class="estilo-formulario" type="radio"
-                            {{ isset(Auth::user()->method) ? Auth::user()->metodosRecuperacion->method == 'email' ? 'checked' : '' : '' }}
+                            {{ isset(Auth::user()->metodosRecuperacion) ? (Auth::user()->metodosRecuperacion->method != 'email' ? 'checked' : '') : '' }}
                             name="method" id="security_question" value="security_question">
                         <label class="estilo-formulario" for="security_question">
                             Recuperar mediante Pregunta de Seguridad
@@ -56,7 +56,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -66,7 +67,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Es muy importante que recuerde tanto la pregunta como la respuesta para recuperar la cuenta en el futuro. ¿Desea continuar?
+                    Es muy importante que recuerde tanto la pregunta como la respuesta para recuperar la cuenta en el
+                    futuro. ¿Desea continuar?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -75,6 +77,21 @@
             </div>
         </div>
     </div>
+    <script>
+        const continuarBtn = document.getElementById('continuarFormulario');
+        const confirmYesBtn = document.getElementById('confirmYes');
+        const preguntaRespuestaForm = document.getElementById('preguntaRespuestaForm');
 
+        if (continuarBtn && confirmYesBtn && preguntaRespuestaForm) {
+            continuarBtn.addEventListener('click', function() {
+                $('#confirmModal').modal('show');
+            });
+
+            confirmYesBtn.addEventListener('click', function() {
+                $('#confirmModal').modal('hide');
+                preguntaRespuestaForm.submit();
+            });
+        }
+    </script>
     @vite(['resources/js/contenidoInterno.js'])
 @endsection

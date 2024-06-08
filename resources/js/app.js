@@ -32,21 +32,27 @@ $(document).ready(function () {
         $(this).attr("data-value", seleccionado);
     });
 
+    const label = $("#fechaPlaceholder");
+    const contenedorCalendario = $("#contenedorCalendario");
+    const fechaEspecifica = $("#fechaEspecifica");
+    let dias = $(".dias-mes div");
+    label.on("click", function () {
+        label.hide();
+        contenedorCalendario.addClass("d-flex");
+    });
+    fechaEspecifica.on("click", function () {
+        contenedorCalendario.removeClass("d-none");
+    });
+
     $("#seleccionarHora").on("click", handleTimeSelection);
     $("#sliderHoras").on("input", updateProvisionalTime);
-    $(".mes-anterior").click(() => changeMonth(-1));
-    $(".mes-siguiente").click(() => changeMonth(1));
-    $(".anno-anterior").click(() => changeYear(-1));
-    $(".anno-siguiente").click(() => changeYear(1));
-
-    calendario();
 
     $("#repetir").on("change", toggleRepeatOptions);
     $(".timeline").scroll(syncTimelineScroll);
     $("#input-mas-detalles-pago").on("click", showMorePaymentDetails);
     $(".evento").on("click", submitEventForm);
-    $(".selectorMovil").on('click', function(){
-        $('#listaMovil').toggleClass('d-none');
+    $(".selectorMovil").on("click", function () {
+        $("#listaMovil").toggleClass("d-none");
         $("#listaMovil").toggleClass("deslizamiento-click");
     });
     $("#selectorMovilCerrar").on("click", function () {
@@ -54,6 +60,15 @@ $(document).ready(function () {
         $("#listaMovil").toggleClass("deslizamiento-click");
     });
 });
+function añadirEvento() {
+    const diasCalendario = $(".dia-calendario");
+    diasCalendario.on("click", function () {
+        contenedorCalendario.addClass("d-none");
+        fechaEspecifica.val(
+            annoActual + "-" + pad(mesActual + 1) + "-" + pad($(this).text())
+        );
+    });
+}
 
 function initSlider(selector, sliderName) {
     let slideIndex = 0;
@@ -76,16 +91,16 @@ function initVideoControls(playButton, closeButton, videoElement) {
 
     $(playButton).on("click", () => toggleVideo(true, video, tiempo));
     $(document).on("touchstart", playButton, () =>
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
     );
 
     $(closeButton).on("click", () => toggleVideo(false, video, tiempo));
     $(document).on("touchstart", closeButton, () =>
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar")
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar")
     );
 
     function toggleVideo(play, video, tiempo) {
-        toggleElements(".contenido-video, #reproductor-video, #botonCerrar");
+        toggleElements(".contenido-no-video,.contenido-video, #reproductor-video, #botonCerrar");
         if (play) {
             video.currentTime = tiempo;
             video.play();
@@ -98,7 +113,7 @@ function initVideoControls(playButton, closeButton, videoElement) {
     }
 
     function toggleElements(selector) {
-        $(selector).toggle();
+        $(selector).toggleClass('d-none');
     }
 }
 
@@ -115,7 +130,7 @@ function toggleMenu() {
 
 function togglePagesList() {
     console.log("Lista de páginas personalizadas clicada");
-    $("#listaPaginas").toggleClass("listaPaginasTransicion no-active");
+    $("#listaPaginas").toggleClass('d-none');
 }
 
 function handleOptionSelection(e) {
@@ -283,13 +298,14 @@ function setAgujas(horas, minutos) {
     $(".aguja-minuto").css("transform", "rotate(" + anguloMinutos + "deg)");
 }
 
-function calendario() {
-    const mesAnno = $("#mesAnnoActual");
-    const diasMes = $("#diasMes");
-    const fechaActual = new Date();
-    let mesActual = fechaActual.getMonth();
-    let annoActual = fechaActual.getFullYear();
+const mesAnno = $("#mesAnnoActual");
+const diasMes = $("#diasMes");
+const fechaActual = new Date();
+let mesActual = fechaActual.getMonth();
+console.log(mesActual);
+let annoActual = fechaActual.getFullYear();
 
+function calendario() {
     const primerDia = new Date(annoActual, mesActual, 1);
     const ultimoDia = new Date(annoActual, mesActual + 1, 0);
     const fecha = primerDia.toLocaleDateString("es-ES", {
@@ -315,42 +331,50 @@ function calendario() {
         diasMes.append(diaDiv);
     }
     añadirEvento();
-
-    function añadirEvento() {
-        const diasCalendario = $(".dia-calendario");
-        diasCalendario.on("click", function () {
-            console.log("Día del calendario seleccionado:", $(this).text());
-            $("#contenedorCalendario").addClass("d-none");
-            $("#fechaEspecifica").val(
-                annoActual +
-                    "-" +
-                    pad(mesActual + 1) +
-                    "-" +
-                    pad($(this).text())
-            );
-        });
-    }
 }
 
-function changeMonth(increment) {
-    mesActual += increment;
+$(".mes-anterior").click(function () {
+    mesActual--;
     if (mesActual < 0) {
         mesActual = 11;
         annoActual--;
-    } else if (mesActual > 11) {
+    }
+    calendario();
+});
+
+$(".mes-siguiente").click(function () {
+    mesActual++;
+    if (mesActual > 11) {
         mesActual = 0;
         annoActual++;
     }
-    console.log("Mes cambiado:", mesActual, "Año:", annoActual);
     calendario();
-}
+});
 
-function changeYear(increment) {
-    annoActual += increment;
-    console.log("Año cambiado:", annoActual);
+$(".anno-anterior").click(function () {
+    annoActual--;
     calendario();
-}
+});
 
+$(".anno-siguiente").click(function () {
+    annoActual++;
+    calendario();
+});
+
+calendario();
+
+//Funcion para aparecer y desaparecer calendario y label de placeholder
+const label = $("#fechaPlaceholder");
+const contenedorCalendario = $("#contenedorCalendario");
+const fechaEspecifica = $("#fechaEspecifica");
+let dias = $(".dias-mes div");
+label.on("click", function () {
+    label.hide();
+    contenedorCalendario.addClass("d-flex");
+});
+fechaEspecifica.on("click", function () {
+    contenedorCalendario.removeClass("d-none");
+});
 function toggleRepeatOptions() {
     console.log("Repetir opción cambiada:", $(this).prop("checked"));
     $(".opcionRepetir").toggleClass("d-flex", $(this).prop("checked"));
@@ -377,4 +401,3 @@ function submitEventForm() {
     console.log("Enviando formulario de evento:", formulario);
     formulario.submit();
 }
-

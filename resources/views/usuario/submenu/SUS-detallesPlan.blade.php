@@ -1,45 +1,20 @@
 @extends('usuario.suscripcion')
 @section('detallesPlan')
-    <div>
-        <h2>Detalles del Plan</h2>
-        <div>
-            <div>
-                <div>
-                    <h3>Plan Contratado</h3>
-                    <span></span>
-                    <h3>{{ $membresiaUsuario->nombre }}</h3>
-                </div>
-                <div>
-                    <h4>¿Qué incluye?</h4>
-                    <span></span>
-                    <h4>{{ $membresiaUsuario->descripcion }}</h4>
-                </div>
+     <div class="container mt-5 d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mb-4 fs-2 text-uppercase">Detalles de la Suscripción</h1>
+        <div class="card bg-color-fondo">
+            <div class="card-header texto-color-titulo">
+                <h2 class="fs-2">{{ $suscripcion->name }}</h2>
             </div>
-            <div>
-                <div>
-                    {{ $membresiaUsuario->pivot->status == 'active' ? 'Activo' : 'Desactivado'}}
-                </div>
+            <div class="card-body texto-color-gris">
+                <p><strong>Descripción:</strong> {{ $suscripcion->description }}</p>
+                <p><strong>Precio:</strong> ${{ $suscripcion->precio }}</p>
+                <p><strong>Clases Semanales:</strong> {{ $suscripcion->infoSuscripcion->clases_semanales }}</p>
+                <p><strong>Tiempo de Clase:</strong> {{ $suscripcion->infoSuscripcion->tiempo_clase }} minutos</p>
+                <p><strong>Asesoramiento:</strong> {{ $suscripcion->infoSuscripcion->asesoramiento == 1 ? 'Incluido' : 'No incluido' }}</p>
+                <p><strong>Beneficios:</strong> {{ $suscripcion->infoSuscripcion->beneficios }}</p>
+                <p><strong>Días de Cancelación:</strong> {{ $suscripcion->infoSuscripcion->dias_cancelacion }}</p>
             </div>
-        </div>
-        <div>
-            <div>
-                <h4>Fecha Pago</h4>
-                <div>
-                    <p>{{ $arrayFechaPago['dia'] }}</p>
-                    <p>{{ $arrayFechaPago['mes'] }}</p>
-                    <p>{{ $arrayFechaPago['año'] }}</p>
-                </div>
-            </div>
-            <div>
-                <h4>Fecha Próximo Pago</h4>
-                <div>
-                    <p>{{ $arrayFechaFin['dia'] }}</p>
-                    <p>{{ $arrayFechaFin['mes'] }}</p>
-                    <p>{{ $arrayFechaFin['año'] }}</p>
-                </div>
-            </div>
-            <button>Cancelar Suscripción</button>
-
         </div>
     </div>
     @vite(['resources/js/contenidoInterno.js'])

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asistencia;
 use App\Models\Grupo;
 use App\Models\Horario;
 use App\Models\Imagen;
@@ -13,8 +14,11 @@ use App\Models\Pago;
 use App\Models\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\PaqueteUsuario;
+use App\Models\Producto;
 use App\Models\Reserva;
 use App\Models\SeccionContenido;
+use App\Models\Subscription;
 use App\Models\User;
 use Carbon\Carbon;
 use Hash;
@@ -245,6 +249,57 @@ class PanelController extends Controller
         return view('admin.GRUP-inicio', compact('alumnos', 'tipo'));
     }
 
+    public function informesGenerales()
+    {
+        $asistencias = Asistencia::all();
+
+        $suscripciones = Subscription::all();
+        $totalIngresosSuscripcionesActivas = 0;
+        foreach ($suscripciones as $producto) {
+            $totalIngresosSuscripcionesActivas += $producto->product->precio;
+        }
+
+        $paquetesClases = PaqueteUsuario::all();
+        $totalIngresosPaquetes = 0;
+        foreach ($paquetesClases as $paquete) {
+            $totalIngresosPaquetes += $paquete->producto->precio;
+        }
+
+        $suscripcionesAgrupadas = Subscription::all()->groupBy('name');
+        $suscripcionMaxima = null;
+        $maxSucripcion = 0;
+        foreach ($suscripcionesAgrupadas as $suscripcion) {
+            \Log::info('Maximo al inicio: ' . $maxSucripcion);
+
+            if ($suscripcion->count() >= $maxSucripcion) {
+                $maxSucripcion = $suscripcion->count();
+                $suscripcionMaxima = $suscripcion[0];
+                \Log::info('Actualizando maximo ' . $maxSucripcion);
+                \Log::info('ACTUALIZANDO SUSCRIPCION: ' . $suscripcion[0]);
+            }
+        }
+        $nombreSuscripcionFav = $suscripcionMaxima ? $suscripcionMaxima->name : 'N/A';
+
+        $paquetesAgrupados = PaqueteUsuario::all()->groupBy('producto_id');
+        $paqueteMaximo = null;
+        $maxPaquete = 0;
+        \Log::info('Paquetes Agrupados: ' . $paquetesAgrupados);
+
+        foreach ($paquetesAgrupados as $paquete) {
+            \Log::info('Maximo al inicio: ' . $maxPaquete);
+
+            if ($paquete->count() >= $maxPaquete) {
+                $maxPaquete = $paquete->count();
+                $paqueteMaximo = $paquete[0];
+                \Log::info('Actualizando maximo ' . $maxPaquete);
+                \Log::info('ACTUALIZANDO paquete: ' . $paquete[0]);
+            }
+        }
+        $paqueteFav = $paqueteMaximo ? Producto::find($paqueteMaximo->producto_id)->name : 'N/A';
+
+        $tipo = 'INFO-inicio';
+        return view('admin.INFO-inicio', compact('asistencias', 'totalIngresosSuscripcionesActivas', 'totalIngresosPaquetes', 'paqueteFav', 'nombreSuscripcionFav', 'tipo'));
+    }
 
 
 

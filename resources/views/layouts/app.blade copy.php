@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container vertical aside">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="fs-5 navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,30 +32,34 @@
 
                 <div class="collapse navbar-collapse vertical " id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto ajuste-nav vertical">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
+                    <ul class="fs-5 navbar-nav me-auto ajuste-nav vertical">
+                        <li class="nav-item"><a class="fs-5 nav-link" href="{{ route('inicio') }}">{{ __('Inicio')
+                                }}</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('clases') }}">{{ __('Clases') }}</a>
+                        <li class="nav-item"><a class="fs-5 nav-link" href="{{ route('clases') }}">{{ __('Clases')
+                                }}</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('horarios') }}">{{ __('Horarios') }}</a>
+                        <li class="nav-item"><a class="fs-5 nav-link" href="{{ route('horarios') }}">{{ __('Horarios')
+                                }}</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contacto') }}">{{ __('Contacto') }}</a>
+                        <li class="nav-item"><a class="fs-5 nav-link" href="{{ route('contacto') }}">{{ __('Contacto')
+                                }}</a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto auth-buttons vertical">
+                    <ul class="fs-5 navbar-nav ms-auto auth-buttons vertical">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item login">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="fs-5 nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item register">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="fs-5 nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
@@ -66,7 +70,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="fs-5 dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>

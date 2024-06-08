@@ -204,4 +204,15 @@ class ReservasController extends Controller
         $reserva->delete();
         return redirect()->back()->with('success', 'La reserva se ha cancelado con exito');
     }
+
+    public function marcarAsistencia(Reserva $reserva, User $user){
+
+        $asistencia  = Asistencia::where('reserva_id', $reserva->id);
+
+        $asistencia->update([
+            'asistio' => 1,
+        ]);
+
+        return redirect()->back()->with('success', 'Asistencia marcada con éxito');
+    }
 }

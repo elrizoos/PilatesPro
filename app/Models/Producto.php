@@ -31,4 +31,14 @@ class Producto extends Model
     {
         return $this->hasOne(InfoSuscripcione::class, 'producto_id');
     }
+
+    /**
+     * Get the paquete that owns the Producto
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function paquete()
+    {
+        return $this->belongsTo(PaqueteUsuario::class, 'id');
+    }
 }
