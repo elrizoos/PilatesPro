@@ -46,7 +46,7 @@ Route::get('/', function () {
     return redirect()->route('inicio');
 });
 Route::get('/acercaDe', function () {
-    return view('acercaDe');
+    return view('acercade');
 })->name('acercaDe');
 
 Route::get('/clases', [ProductoController::class, 'mostrarClases'])->name('clases');
