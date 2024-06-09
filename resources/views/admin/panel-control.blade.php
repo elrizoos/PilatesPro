@@ -415,9 +415,6 @@
                             <ul class="dropdown-menu w-100 text-center">
                                 <li><a class="dropdown-item" href="{{ route('productos') }}">Gestionar Productos</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Registrar pagos</a></li>
-                                <li><a class="dropdown-item" href="#">Generar facturacion</a></li>
-                                <li><a class="dropdown-item" href="#">Seguimiento de alumnos</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown col">
