@@ -328,9 +328,6 @@
                                 <li class="p-1"><a class="enlace" href="{{ route('productos') }}">Gestionar
                                         Productos</a>
                                 </li>
-                                <li class="p-1">Registrar pagos</li>
-                                <li class="p-1">Generar facturacion</li>
-                                <li class="p-1">Seguimiento de alumnos</li>
                             </ul>
                         </li>
                         <li class="p-2 texto-color-secundario">Comunicacion y Notificaciones
@@ -349,17 +346,7 @@
                             <ul class="submenu fs-6">
                                 <li class="p-1"><a class="enlace"
                                         href="{{ route('informesGenerales') }}">Informes Generales</a></li>
-                                <li class="p-1">Encuestas alumnos</li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Configuracion del sitio
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6 p-2">
-                                <li class="p-1">Ajustes generales</li>
-                                <li class="p-1">Opciones de seguridad</li>
-                                <li class="p-1">Herramientas externas</li>
+                               
                             </ul>
                         </li>
 
