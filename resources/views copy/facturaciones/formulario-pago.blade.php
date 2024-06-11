@@ -2,15 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario Pago</title>
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -221,28 +216,158 @@
     </svg>
 </div>
 
-<body class="bg-color-principal vw-100 mt-4" style="min-height: 200px">
-    
-    <script>
-        $(document).ready(function() {
-            $('.submenu').hide();
+<body class="bg-color-principal vh-100 texto-color-resalte">
+    <div class="container-fluid h-100">
+        <div class="row h-20">
+            <div class="col">
+                <div class="img-fluid imagen-logo w-100 h-100" id="imagen-logo" data-url="{{ route('inicio') }}">
+                </div>
+            </div>
+        </div>
+        <div class="row h-5 ps-3">
+            <div class="col fs-5">
+                <div class="atras  w-10" id="botonAtras" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
+                    <svg class="icon icono-normal">
+                        <use xlink:href="#botn-cerrar" />
+                    </svg> VOLVER
+                </div>
+            </div>
+            <div class="row h-75 p-3">
+                <div class="col d-flex justify-content-center align-items-center">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
 
-            $('.menu-general li').click(function() {
-                console.log("hola cargando funcion")
-                $('.submenu').hide();
-                $(this).find('.submenu').show();
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
 
+                        </div>
+                    @endif
+                    <div
+                        class="texto-color-secundario bg-color-fondo-oscuro shadow-lifted-dorado border border-dorado-claro p-4 h-50 d-flex flex-column justify-content-center align-items-center ">
+                        <h1 class="fs-2 p-2">
+                            {{ $productoFacturar->type == 'membership' ? 'Suscríbete a ' : '' }}{{ $productoFacturar->name }}
+                        </h1>
+                        <h2 class="fs-3 p-2">Precio a pagar: <b
+                                class="text-danger fs-2">{{ (float) $productoFacturar->precio }}€</b>
+                        </h2>
+                        <h2 class="fs-3 p-2">Detalles: <br> {{ $productoFacturar->description }}</h2>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <div
+                        class="bg-color-fondo-oscuro w-95 h-95 shadow-lifted p-4 d-flex flex-column justify-content-center align-items-center">
+                        <h2 class="fs-2 text-uppercase text-center p-2 texto-color-secundario">Formulario de Pago</h2>
+                        <form class="w-80" id="payment-form"
+                            action="{{ route('pagar', ['producto' => $productoFacturar->id]) }}" method="POST">
+                            @csrf
+                            <div class="form-group p-2">
+                                <label for="name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" class=" bg-color-fondo border-0"
+                                    required>
+                            </div>
+                            <div class="form-group p-2">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" class=" bg-color-fondo border-0"
+                                    required>
+                            </div>
+                            <div class="form-group p-2">
+                                <label for="card-number-element">Número de Tarjeta</label>
+                                <div id="card-number-element" class=" bg-color-fondo border-0">
+                                </div>
+                            </div>
+                            <div class="form-group p-2 row">
+                                <div class="form-group col-md-6">
+                                    <label for="card-expiry-element">Fecha de Vencimiento</label>
+                                    <div id="card-expiry-element" class=" bg-color-fondo border-0">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="card-cvc-element">CVC</label>
+                                    <div id="card-cvc-element" class=" bg-color-fondo border-0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group p-2 d-flex justify-content-center align-items-center">
+                                <button type="submit" id="pagarbtn"
+                                    class="estilo-formulario estilo-formulario-enviar w-50 fs-3 text-uppercase">Pagar</button>
+                            </div>
+                            <div id="card-errors" role="alert" class="text-danger mt-3"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            $(document).ready(function() {
+                $('#botonAtras').on('click', function() {
+                    window.location.href = $(this).data('url');
+                });
             });
-        });
 
-        function goBack() {
-            if (document.referrer.indexOf(window.location.host) !== -1) {
-                window.history.back();
-            } else {
-                window.location.href = '/'; // Cambia '/' a la URL de tu página de inicio si es diferente
-            }
-        }
-    </script>
+            var stripe = Stripe('{{ env('STRIPE_KEY') }}');
+            var elements = stripe.elements();
+
+            var style = {
+                base: {
+                    color: '#fff',
+                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                    fontSmoothing: 'antialiased',
+                    fontSize: '16px',
+                    '::placeholder': {
+                        color: '#fff'
+                    }
+                },
+                invalid: {
+                    color: '#fa755a',
+                    iconColor: '#fa755a'
+                }
+            };
+
+            var cardNumberElement = elements.create('cardNumber', {
+                style: style
+            });
+            var cardExpiryElement = elements.create('cardExpiry', {
+                style: style
+            });
+            var cardCvcElement = elements.create('cardCvc', {
+                style: style
+            });
+
+            cardNumberElement.mount('#card-number-element');
+            cardExpiryElement.mount('#card-expiry-element');
+            cardCvcElement.mount('#card-cvc-element');
+
+            var form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardNumberElement,
+                    billing_details: {
+                        email: document.getElementById('email').value,
+                    },
+                }).then(function(result) {
+                    if (result.error) {
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        var hiddenInput = document.createElement('input');
+                        hiddenInput.setAttribute('type', 'hidden');
+                        hiddenInput.setAttribute('name', 'payment_method_id');
+                        hiddenInput.setAttribute('value', result.paymentMethod.id);
+                        form.appendChild(hiddenInput);
+
+
+
+                        form.submit();
+                    }
+                });
+            });
+        </script>
 </body>
-
-</html>

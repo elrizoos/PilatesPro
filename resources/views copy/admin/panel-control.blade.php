@@ -222,7 +222,272 @@
 </div>
 
 <body class="bg-color-principal vw-100 mt-4" style="min-height: 200px">
-    
+    <div class="container-fluid w-100 h-100">
+        @if (session('error'))
+            <div class="alert alert-danger position-absolute">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <!-- Mostrar mensajes de éxito -->
+        @if (session('success'))
+            <div class="alert alert-success position-absolute">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger position-absolute ">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="row p-0 position-relative">
+            <div class=" bg-color-fondo position-sticky z-1 top-0 start-0  d-flex align-items-center fs-6">
+                <svg class="icon icono-normal">
+                    <use xlink:href="#devolver" />
+                </svg>
+                <button class="estilo-formulario" onclick="goBack()">Volver</button>
+            </div>
+        </div>
+        <div class="row p-3 w-100 h-25" style="min-height: 100px">
+            <div class="w-100 h-auto img-fluid imagen-logo" id="imagen-logo" data-url="{{ route('inicio') }}"></div>
+        </div>
+        <div class="row w-100" style="min-height: 100vh">
+            <div class="d-none d-md-flex w-20">
+                <div class="w-100 h-100 m-auto fs-6 text-nowrap ">
+                    <ul class="menu-general text-uppercase">
+                        <li class="p-2 texto-color-secundario"><a class="enlace"
+                                href="{{ route('panel-control.index', 'USER-formulario') }}">General</a></li>
+                        <li class="p-2 texto-color-secundario">Usuarios
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear
+                                        Usuario
+                                        Nuevo</a></li>
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('mostrarContenido', 'USER-editar') }}">Editar
+                                        Usuario
+                                        Existente</a></li>
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                                        Contraseñas</a>
+                                </li>
+                                <li class="p-1"><a class="enlace" href="{{ route('gestionGrupos') }}">Gestión de
+                                        grupos</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Contenido
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear
+                                        nueva pagina</a>
+                                </li>
+                                <li class="p-1"><a class="enlace" href="{{ route('elegirPagina') }}">Crear nueva
+                                        seccion</a></li>
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('eliminarEditarPagina') }}">Eliminar o editar
+                                        seccion/página</a>
+                                </li>
+                                <li class="p-1"><a class="enlace" href="{{ route('galeriaImagenes') }}">Galeria
+                                        de imagenes y
+                                        videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Clases y Horarios
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace" href="{{ route('horario.create') }}">Crear
+                                        nuevo registro
+                                        horario</a></li>
+                                <li class="p-1"><a class="enlace" href="{{ route('mostrarHorarios') }}">Editar
+                                        registro
+                                        horario</a>
+                                </li>
+                                <li class="p-1"><a class="enlace" href="{{ route('clase.create') }}">Crear nueva
+                                        clase</a></li>
+                                <li class="p-1"><a class="enlace" href="{{ route('mostrarClases') }}">Editar
+                                        clase</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Pagos y Facturación
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace" href="{{ route('productos') }}">Gestionar
+                                        Productos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Comunicacion y Notificaciones
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('mostrarNotificaciones') }}">Mostrar notificacion</a></li>
+                            </ul>
+                        </li>
+                        <li class="p-2 texto-color-secundario">Analisis y Reportes
+                            <svg class="icon col-2 icono-normal">
+                                <use xlink:href="#flecha-abajo-blanco" />
+                            </svg>
+                            <ul class="submenu fs-6">
+                                <li class="p-1"><a class="enlace"
+                                        href="{{ route('informesGenerales') }}">Informes Generales</a></li>
+                               
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="container-fluid" style="min-height: 50%">
+
+                    <div style="min-height: 400px"
+                        class="bg-color-fondo w-100 h-100 border border-1 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
+                        @if (session('success'))
+                            <div>
+                                <p>{{ session('success') }}</p>
+                                <span id=cerrarBoton></span>
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div>
+                                <p>{{ session('error') }}</p>
+                                <span id=cerrarBoton></span>
+                            </div>
+                        @endif
+                        @if ($tipo)
+                            @yield($tipo)
+                        @else
+                            @yield('content')
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid d-flex d-md-none vw-100">
+                <div class="row">
+
+                    <ul
+                        class="nav nav-tabs w-100  fs-6 text-uppercase text-center justify-content-center row-cols-1 row-cols-md-auto p-4">
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link""
+                                href="{{ route('panel-control.index', 'USER-formulario') }}">General</a>
+
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Usuarios</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear Usuario
+                                        Nuevo</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
+                                        Existente</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                                        Contraseñas</a></li>
+                                <li><a class="dropdown-item" href="{{ route('gestionGrupos') }}">Gestión de
+                                        Grupos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Contenido</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva
+                                        pagina</a></li>
+                                <li><a class="dropdown-item" href="{{ route('elegirPagina') }}">Crear nueva
+                                        seccion</a></li>
+                                <li><a class="dropdown-item" href="{{ route('eliminarEditarPagina') }}">Eliminar o
+                                        editar seccion/página</a></li>
+                                <li><a class="dropdown-item" href="{{ route('galeriaImagenes') }}">Galeria de
+                                        imagenes y videos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Clases y Horarios</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item" href="{{ route('horario.create') }}">Crear nuevo
+                                        registro horario</a></li>
+                                <li><a class="dropdown-item" href="{{ route('mostrarHorarios') }}">Editar registro
+                                        horario</a></li>
+                                <li><a class="dropdown-item" href="{{ route('clase.create') }}">Crear nueva clase</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('mostrarClases') }}">Editar clase</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Pagos y Facturación</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item" href="{{ route('productos') }}">Gestionar Productos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Comunicacion y Notificaciones</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item" href="{{ route('mostrarNotificaciones') }}">Mostrar
+                                        notificacion</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown col">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-expanded="false">Analisis y Reportes</a>
+                            <ul class="dropdown-menu w-100 text-center">
+                                <li><a class="dropdown-item" href="{{ route('informesGenerales') }}">Informes
+                                        Generales</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="container-fluid" style="min-height: 50%">
+
+                    <div style="min-height: 400px"
+                        class="bg-color-fondo w-100 h-100 border border-1 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
+                        @if (session('success'))
+                            <div>
+                                <p>{{ session('success') }}</p>
+                                <span id=cerrarBoton></span>
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div>
+                                <p>{{ session('error') }}</p>
+                                <span id=cerrarBoton></span>
+                            </div>
+                        @endif
+                        @if ($tipo)
+                            @yield($tipo)
+                        @else
+                            @yield('content')
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function() {
             $('.submenu').hide();

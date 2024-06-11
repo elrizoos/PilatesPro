@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -15,7 +15,6 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <div hidden>
@@ -221,28 +220,114 @@
     </svg>
 </div>
 
-<body class="bg-color-principal vw-100 mt-4" style="min-height: 200px">
-    
-    <script>
-        $(document).ready(function() {
-            $('.submenu').hide();
+<body class="container-fluid w-100 vh-100 bg-color-principal">
+    <div class="row h-25">
+        <div class="col  w-100 h-100 p-4">
+            <div class="img-fluid imagen-logo w-100 h-100 img" id="imagen-logo" data-url="{{ route('inicio') }}">
+            </div>
+        </div>
+    </div>
+    <div class=" row h-75 g-0" id="app">
+        <div class="col">
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
 
-            $('.menu-general li').click(function() {
-                console.log("hola cargando funcion")
-                $('.submenu').hide();
-                $(this).find('.submenu').show();
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
 
-            });
-        });
+                </div>
+            @endif
+            <div class="row d-none d-md-flex h-15">
+                <ul
+                    class="col d-flex gap-5 align-items-center justify-content-center texto-color-secundario text-center text-uppercase">
+                    <li class="contenido-cargable p-4 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoGeneral" data-url="{{ route('general-informacion') }}">
+                        General
+                    </li>
+                    <li class="contenido-cargable p-4 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoReservas" data-url="{{ route('reservas-historialReservas') }}">Reservas
+                    </li>
+                    <li class="contenido-cargable p-4 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
+                        Suscripcion</li>
+                    <li class="contenido-cargable p-4 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">
+                        Cambiar contraseña</li>
+                    <li class="contenido-cargable p-4 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">
+                        Otros
+                        ajustes
+                    </li>
+                </ul>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <div class="w-100 h-100 p-4 d-flex gap-2 fs-5 text-capitalize texto-color-resalte">
+                        {{ Auth::user()->nombre }}
+                        <svg class="icon icono-normal">
+                            <use xlink:href="#botn-cerrar" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0 p-0 h-85 position-relative" id="contenido-dinamico" class="contenido-ajustes">
+                <ul id="listaMovil"
+                    class="position-absolute end-100 deslizamiento z-2 w-100 h-100 bg-color-principal d-flex d-none flex-column d-md-none gap-5 align-items-center justify-content-center texto-color-secundario text-center text-uppercase">
+                    <li id="selectorMovilCerrar">
+                        <svg class="icon icono-normal">
+                            <use xlink:href="#botn-cerrar" />
+                        </svg>
+                    </li>
+                    <li class="contenido-cargable p-3 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoGeneral" data-url="{{ route('general-informacion') }}">
+                        General
+                    </li>
+                    <li class="contenido-cargable  p-3 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoReservas" data-url="{{ route('reservas-historialReservas') }}">Reservas
+                    </li>
+                    <li class="contenido-cargable  p-3 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoSuscripcion" data-url="{{ route('suscripcion-estadoSuscripcion') }}">
+                        Suscripcion</li>
+                    <li class="contenido-cargable p-3 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">
+                        Cambiar contraseña</li>
+                    <li class="contenido-cargable  p-3 border border-1 rounded-3 border-fondo border-top-0 border-start-0 border-end-0"
+                        id="contenidoOtros" data-url="{{ route('otros-notificaciones') }}">
+                        Otros
+                        ajustes
+                    </li>
+                </ul>
+                <div class="col p-0 contenidoGeneral" id="contenedor-contenidoGeneral">
+                    <div class="row w-100 h-100 g-0">
+                        @yield('contenidoGeneral')
+                    </div>
+                </div>
+                <div class="col contenidoReservas" id="contenedor-contenidoReservas">
+                    <div class="row w-100 h-100 g-0">
+                        @yield('contenidoReservas')
+                    </div>
+                </div>
+                <div class="col contenidoSuscripcion" id="contenedor-contenidoSuscripcion">
+                    <div class="row w-100 h-100 g-0">
+                        @yield('contenidoSuscripcion')
+                    </div>
+                </div>
+                <div class="col contenidoContrasena" id="contenedor-contenidoContrasena">
+                    <div class="row w-100 h-100 g-0">
+                        @yield('contenidoContrasena')
+                    </div>
+                </div>
+                <div class="col contenidoOtros" id="contenedor-contenidoOtros">
+                    <div class="row w-100    h-100 g-0">
+                        @yield('contenidoOtros')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        function goBack() {
-            if (document.referrer.indexOf(window.location.host) !== -1) {
-                window.history.back();
-            } else {
-                window.location.href = '/'; // Cambia '/' a la URL de tu página de inicio si es diferente
-            }
-        }
-    </script>
 </body>
 
 </html>
