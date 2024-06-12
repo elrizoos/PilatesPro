@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss','resources/sass/panel-control.scss', 'resources/js/app.js'])
 </head>
 <div hidden>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -221,8 +221,90 @@
     </svg>
 </div>
 
-<body class="bg-color-principal vw-100 mt-4" style="min-height: 200px">
-    
+<body class="vw-100 vh-100 bg-color-fondo">
+    <div class=" w-100 h-20 d-flex justify-content-center align-items-center">
+        <img src="../../../public/imagenes/logo.png" alt="" class="img-fluid w-auto h-90">
+    </div>
+    <div class="w-100 h-10">
+        <ul class="navegador-panel-control  d-flex justify-content-evenly align-items-center fs-5">
+            <li class="p-4">
+                <a href="{{ route('panel-control.index', 'USER-formulario') }}">General</a>
+
+            </li>
+            <li  class="p-4">
+                <a data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Usuarios</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li class="p-2"><a href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear
+                            Usuario
+                            Nuevo</a></li>
+                    <li class="p-2"><a href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
+                            Existente</a></li>
+                    <li class="p-2"><a
+                            href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                            Contraseñas</a></li>
+                    <li class="p-2"><a href="{{ route('gestionGrupos') }}">Gestión de
+                            Grupos</a></li>
+                </ul>
+            </li>
+            <li class="p-4" class="">
+                <a class="" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Contenido</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li><a class="" href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear
+                            nueva
+                            pagina</a></li>
+                    <li><a class="" href="{{ route('elegirPagina') }}">Crear nueva
+                            seccion</a></li>
+                    <li><a class="" href="{{ route('eliminarEditarPagina') }}">Eliminar o
+                            editar seccion/página</a></li>
+                    <li><a class="" href="{{ route('galeriaImagenes') }}">Galeria de
+                            imagenes y videos</a></li>
+                </ul>
+            </li>
+            <li class="p-4">
+                <a class="" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Clases y Horarios</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li><a  href="{{ route('horario.create') }}">Crear nuevo
+                            registro horario</a></li>
+                    <li><a  href="{{ route('mostrarHorarios') }}">Editar registro
+                            horario</a></li>
+                    <li><a  href="{{ route('clase.create') }}">Crear nueva clase</a>
+                    </li>
+                    <li><a  href="{{ route('mostrarClases') }}">Editar clase</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Pagos y Facturación</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li><a  href="{{ route('productos') }}">Gestionar Productos</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="p-4" >
+                <a data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Comunicacion y Notificaciones</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li><a  href="{{ route('mostrarNotificaciones') }}">Mostrar
+                            notificacion</a></li>
+                </ul>
+            </li>
+            <li class="p-4" >
+                <a  data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Analisis y Reportes</a>
+                <ul class="d-none position-absolute start-0 mt-3 w-100 d-flex p-2 justify-content-center align-items-center">
+                    <li><a  href="{{ route('informesGenerales') }}">Informes
+                            Generales</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class=" w-100 h-70">
+
+    </div>
     <script>
         $(document).ready(function() {
             $('.submenu').hide();
