@@ -25,7 +25,8 @@ class PaginaController extends Controller
         $suscripciones = Producto::where('type', 'membership')->get();
         $usuario = Auth::user();
         $contadorSuscripciones = count($suscripciones);
-
+        $mensaje = Mensaje::all();
+        
 
         //dd($paginas);
         return view('inicio', compact('paginas', 'suscripciones', 'usuario', 'contadorSuscripciones'));

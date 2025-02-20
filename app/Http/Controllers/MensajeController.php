@@ -75,4 +75,8 @@ class MensajeController extends Controller
     {
         //
     }
+
+    public function leerMensaje(Mensaje $mensaje){
+        
+    }
 }

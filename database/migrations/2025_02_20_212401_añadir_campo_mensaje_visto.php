@@ -4,14 +4,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('grupo_id')->nullable()->constrained('grupos')->onDelete('set null');
+        Schema::table('mensajes', function (Blueprint $table) {
+            $table->boolean('mensajeVisto');
         });
     }
 
@@ -20,6 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        $table->dropColumn('grupo_id');
+        Schema::table('mensajes', function (Blueprint $table) {
+            $table->dropColumn('mensajeVisto');
+        });
     }
 };

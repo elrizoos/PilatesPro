@@ -18,12 +18,8 @@
                         class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                         <div
                             class="carousel-caption  position-relative start-0 top-0 w-75 h-50 d-flex flex-column gap-4 justify-content-center align-items-center">
-                            <h5 class="fs-1 texto-color-resalte">Titulo 1</h5>
-                            <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Voluptatum doloribus at illo, quae a
-                                totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt
-                                accusamus
-                                quidem libero sequi.</p>
+                            <h5 class="fs-1 texto-color-resalte">Pilates auténtico en Valladolid</h5>
+                            <p class="fs-4 texto-color-titulo">Descubre el verdadero pilates, sin añadidos ni modas pasajeras. Mejora tu postura, fortalece tu cuerpo y siéntete mejor desde la primera clase.</p>
                         </div>
                     </div>
                 </div>
@@ -34,12 +30,8 @@
                         class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                         <div
                             class="carousel-caption   position-relative start-0 top-0 w-75 h-50  d-flex flex-column gap-4 justify-content-center align-items-center">
-                            <h5 class="fs-1 texto-color-resalte">Titulo 2</h5>
-                            <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Voluptatum doloribus at illo, quae a
-                                totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt
-                                accusamus
-                                quidem libero sequi.</p>
+                            <h5 class="fs-1 texto-color-resalte">Muévete mejor, siéntete mejor</h5>
+                            <p class="fs-4 texto-color-titulo">No importa tu edad ni condición física. En Chus Álvarez Pilates trabajamos contigo para que ganes fuerza, flexibilidad y bienestar en cada sesión.</p>
                         </div>
                     </div>
 
@@ -51,12 +43,8 @@
                         class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                         <div
                             class="carousel-caption   position-relative start-0 top-0 w-75 h-50 d-flex  flex-column gap-4 justify-content-center align-items-center">
-                            <h5 class="fs-1 texto-color-resalte">Titulo 3</h5>
-                            <p class="fs-4 texto-color-titulo">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Voluptatum doloribus at illo, quae a
-                                totam illum officiis veniam, harum earum repudiandae accusamus ut! Ut saepe sunt
-                                accusamus
-                                quidem libero sequi.</p>
+                            <h5 class="fs-1 texto-color-resalte">Resultados reales con pilates real</h5>
+                            <p class="fs-4 texto-color-titulo">Aquí practicamos pilates de verdad. Con un método preciso y eficaz, notarás la diferencia desde el primer día. ¡Ven y pruébalo!</p>
                         </div>
                     </div>
                 </div>

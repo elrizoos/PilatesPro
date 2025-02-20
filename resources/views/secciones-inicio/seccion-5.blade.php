@@ -3,7 +3,7 @@
         <div class="col h-100 py-5  g-0">
             <h2 class="text-center text-uppercase fs-2 texto-color-resalte">Nuestros servicios</h2>
             <h3 class="text-center text-uppercase fs-3 texto-color-secundario">Facilidades del estudio</h3>
-            <div class="row row-cols-md-2  h-75  row-gap-md-4 mt-5 p-5 pt-0 ">
+            <div class="row row-cols-md-2  h-75  row-gap-md-4 mt-5 p-5 pt-0 servicios">
                 <div class="col-md-4">
                     <div class="service-box w-100 border border-warning-subtle">
                         <div class="d-flex align-items-center justify-content-center mb-3 min-height-40">

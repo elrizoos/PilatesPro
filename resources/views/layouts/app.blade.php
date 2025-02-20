@@ -251,19 +251,20 @@
                                 <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
                                 <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
                                 <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a></li>
-                                <li class="nav-item dropdown col">
-                                    <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
-                                        role="button" aria-expanded="false">Más</a>
-                                    <ul class="dropdown-menu w-100 text-center">
-                                        @if (isset($paginas))
+                               
+                                @if (isset($paginas) && $paginas->isNotEmpty())
+                                    <li class="nav-item dropdown col">
+                                        <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
+                                            role="button" aria-expanded="false">Más</a>
+                                        <ul class="dropdown-menu w-100 text-center">
                                             @foreach ($paginas as $pagina)
                                                 <li><a class="dropdown-item estilo-formulario p-2"
                                                         href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
                                                 </li>
                                             @endforeach
-                                        @endif
-                                    </ul>
-                                </li>
+                                        </ul>
+                                    </li>
+                                @endif
                             </ul>
 
                         </div>
