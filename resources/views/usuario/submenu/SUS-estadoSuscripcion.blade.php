@@ -21,7 +21,7 @@
                                 class="fs-4 d-flex justify-content-center align-items-center {{ isset($activeSubscription) ? 'd-none' : '' }}">
                                 <ul class="fs-5 ">
                                     <li class=" text-center">Clases disponibles: <span
-                                            class=" texto-color-resalte">{{ $user->registroTiempo->clases_totales }}</span>
+                                            class=" texto-color-resalte">{{ isset($user->registroTiempo->clases_totales) ? $user->registroTiempo->clases_totales : ''}}</span>
                                     </li>
                                 </ul>
                             </div>

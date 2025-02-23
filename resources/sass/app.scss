@@ -510,6 +510,8 @@ input::placeholder {
     background-color: #333333; /* Fondo de los cuadros de servicios */
     padding: 20px;
     margin-bottom: 20px;
+    min-height: 13rem;
+    max-height: 13rem;
 }
 
 :focus {
@@ -776,6 +778,14 @@ input::placeholder {
         0 15px 30px $colorSecundario;
 }
 
+
+.acerca-de-seccion div.row:nth-child(even) {
+    background-color: $colorPrincipalClaro;
+}
+
+.acerca-de-seccion div {
+    padding: 2rem;
+}
 //
 //
 //
@@ -1470,7 +1480,7 @@ input[type="checkbox"]:checked::before {
     transition: all 1.5s ease;
 }
 .icon {
-    height: 5rem;
+    height: 3rem;
 }
 
 /* Personalización de menú */
@@ -1502,6 +1512,8 @@ input[type="checkbox"]:checked::before {
 .dropdown-item:focus {
     background-color: #555; /* Fondo al pasar el ratón por los elementos del submenú */
 }
+
+
 //RESPONSIVE DESING
 /* Base font size for the entire document */
 html {

@@ -22,6 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::rename('paquetes_usuarios', 'table_paquetes_usuarios');
+        $table->dropColumn('payment_method_id');
     }
 };
