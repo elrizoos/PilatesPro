@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ImagenesSeccion;
-use App\Models\Pagina;
-use App\Http\Controllers\Controller;
-use App\Models\Producto;
-use App\Models\Seccion;
-use App\Models\SeccionContenido;
 use Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 use Validator;
+use App\Models\Pagina;
+use App\Models\Mensaje;
+use App\Models\Seccion;
+use App\Models\Producto;
+use Illuminate\Http\Request;
+use App\Models\ImagenesSeccion;
+use App\Models\SeccionContenido;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class PaginaController extends Controller
 {

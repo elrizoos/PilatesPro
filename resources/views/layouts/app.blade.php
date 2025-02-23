@@ -250,12 +250,20 @@
                                 <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
                                 <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
                                 <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
-                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a></li>
-                               
+                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a>
+                                    @if (isset($conversacionesSinLeer))
+                                        @if ($conversacionesSinLeer['totalMensajes'] !== 0)
+                                            <p>Tienes {{ $conversacionesSinLeer['totalMensajes'] }} mensajes de
+                                                {{ $conversacionesSinLeer['totalConversaciones'] }} conversaciones
+                                                distintas</p>
+                                        @endif
+                                    @endif
+                                </li>
+
                                 @if (isset($paginas) && $paginas->isNotEmpty())
                                     <li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
-                                            role="button" aria-expanded="false">Más</a>
+                                        <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown"
+                                            href="#" role="button" aria-expanded="false">Más</a>
                                         <ul class="dropdown-menu w-100 text-center">
                                             @foreach ($paginas as $pagina)
                                                 <li><a class="dropdown-item estilo-formulario p-2"
