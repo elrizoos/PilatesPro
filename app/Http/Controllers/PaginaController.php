@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Validator;
-use App\Models\Pagina;
-use App\Models\Mensaje;
-use App\Models\Seccion;
-use App\Models\Producto;
-use Illuminate\Http\Request;
 use App\Models\ImagenesSeccion;
+use App\Models\Mensaje;
+use App\Models\Pagina;
+use App\Models\Producto;
+use App\Models\Seccion;
 use App\Models\SeccionContenido;
+use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
+use Validator;
 
 class PaginaController extends Controller
 {
@@ -24,10 +23,15 @@ class PaginaController extends Controller
         $paginas = Pagina::all();
         //dd($paginas);
         $suscripciones = Producto::where('type', 'membership')->get();
+        if ($suscripciones->isEmpty() || $suscripciones->count() == 0) {
+            $suscripciones = false;
+            $contadorSuscripciones = 0;
+        } else {
+
+            $contadorSuscripciones = count($suscripciones);
+        }
         $usuario = Auth::user();
-        $contadorSuscripciones = count($suscripciones);
         $mensaje = Mensaje::all();
-        
 
         //dd($paginas);
         return view('inicio', compact('paginas', 'suscripciones', 'usuario', 'contadorSuscripciones'));
@@ -39,6 +43,7 @@ class PaginaController extends Controller
     public function create()
     {
         $tipo = 'CONT-crearPagina';
+
         return view('admin.CONT-crearPagina', compact('tipo'));
     }
 
@@ -94,6 +99,7 @@ class PaginaController extends Controller
         Log::debug('Pagina edit', ['pagina' => $pagina]);
         dd($pagina);
         $tipo = 'CONT-crearPagina';
+
         return view('admin.CONT-crearPagina', compact('pagina', 'tipo'));
     }
 
@@ -126,7 +132,7 @@ class PaginaController extends Controller
         $paginas = Pagina::all();
         $pagina = Pagina::where('slug', '=', $slug)->first();
 
-        if (!$pagina) {
+        if (! $pagina) {
             return redirect()->route('home')->with('error', 'Página no encontrada.');
         }
 
@@ -135,7 +141,7 @@ class PaginaController extends Controller
         $imagenes = [];
 
         foreach ($secciones as $seccion) {
-            $imagenes['Seccion: ' . $seccion->id . ': ' . $seccion->titulo] = [
+            $imagenes['Seccion: '.$seccion->id.': '.$seccion->titulo] = [
                 'tipo' => Seccion::find($seccion->idSeccion)->tipo,
                 'imagenUno' => ImagenesSeccion::find($seccion->idImagenUno),
                 'imagenDos' => ImagenesSeccion::find($seccion->idImagenDos) ?? null,
@@ -150,12 +156,11 @@ class PaginaController extends Controller
         ]);
     }
 
-
-
     public function elegirPagina()
     {
         $paginas = Pagina::all();
         $tipo = 'CONT-elegirPagina';
+
         return view('admin.CONT-elegirPagina', compact('paginas', 'tipo'));
     }
 
@@ -165,13 +170,13 @@ class PaginaController extends Controller
 
         return redirect()->route('crearSeccion', ['pagina' => $pagina]);
     }
+
     public function eliminarEditarPagina()
     {
         $paginas = Pagina::all();
         $tipo = 'CONT-eliminarEditar';
         $secciones = SeccionContenido::orderBy('idPagina', 'asc')->get();
+
         return view('admin.CONT-eliminarEditar', compact('paginas', 'tipo', 'secciones'));
     }
-
-
 }
