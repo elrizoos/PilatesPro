@@ -38,7 +38,10 @@ class ViewServiceProvider extends ServiceProvider
         $contadorMensajes = 0;
 
         foreach ($conversacion->messages as $message) {
-            if ($message->mensajesVistos->mensajeVisto === 0 && $message->mensajesVistos->user_id === Auth()->user()->id) {
+            if ($message->mensajesVistos !== null
+                && $message->mensajesVistos->mensajeVisto === 0
+                && $message->mensajesVistos->user_id === Auth()->user()->id) {
+                
                 $contadorMensajes++;
             }
         }
