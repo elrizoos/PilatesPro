@@ -26,6 +26,7 @@ use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers;
+use App\Http\Controllers\MensajeVistoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -232,6 +233,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/panel-control/horario', HorarioController::class);
     Route::resource('/facturacion/factura', FacturaController::class);
     Route::resource('/facturacion/facturaDetalle', FacturaDetallesController::class);
+    Route::resource('/mensajesVistos', MensajeVistoController::class);
 });
 
 

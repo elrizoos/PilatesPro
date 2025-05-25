@@ -19,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::rename('paquete_usuarios', 'paquetes_usuarios');
     }
 };
