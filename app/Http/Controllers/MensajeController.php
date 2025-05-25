@@ -37,10 +37,15 @@ class MensajeController extends Controller
         $message = new Mensaje([
             'body' => $request->body,
             'user_id' => auth()->id(),
+            'conversation_id'=> $conversacione->id,
         ]);
 
-        $conversacione->messages()->save($message);
+        $message->save();
 
+        $mensajeVistoController = new MensajeVistoController();
+
+        $mensajeVistoController->store($message, $conversacione);
+        
         return redirect()->route('conversaciones.show', $conversacione);
     }
 
@@ -75,4 +80,10 @@ class MensajeController extends Controller
     {
         //
     }
+
+    public function leerMensaje(Mensaje $mensaje){
+        
+    }
+
+    
 }

@@ -4,20 +4,20 @@
         <div class="w-100  bg-color-fondo-oscuro p-5 border-bottom border-top border-1 border-dorado-claro">
             <div class="row h-50">
                 <div class="col d-flex flex-column justify-content-center align-items-center">
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <svg class="icon col-2">
+                    <div class="row d-flex justify-content-center align-items-center p-4">
+                        <svg class="icon col-1 ">
                             <use xlink:href="#pilates" />
                         </svg>
-                        <svg class="icon col-2">
+                        <svg class="icon col-1">
                             <use xlink:href="#pilates" />
                         </svg>
-                        <svg class="icon col-2">
+                        <svg class="icon col-1">
                             <use xlink:href="#pilates" />
                         </svg>
-                        <svg class="icon col-2">
+                        <svg class="icon col-1">
                             <use xlink:href="#pilates" />
                         </svg>
-                        <svg class="icon col-2">
+                        <svg class="icon col-1">
                             <use xlink:href="#pilates" />
                         </svg>
                     </div>
@@ -43,15 +43,8 @@
                 </div>
                 <div
                     class="col p-3 fs-5 d-flex flex-column gap-5 justify-content-center align-items-center texto-color-gris">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque nihil corrupti sit velit modi
-                        quia
-                        tempore laudantium consectetur soluta quas totam, recusandae suscipit reiciendis numquam
-                        explicabo
-                        nostrum optio mollitia rerum!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id beatae aliquid
-                        incidunt rerum fugit dolore consequuntur voluptatum excepturi eaque! Impedit nesciunt enim id
-                        velit
-                        optio magni eaque, qui mollitia ad.</p>
+                    <p>En Chus Álvarez Pilates te ofrecemos un espacio dedicado al pilates auténtico, sin mezclas ni modas pasajeras. Aquí trabajamos con precisión y control para que mejores tu postura, fortalezcas tu cuerpo y aumentes tu bienestar en cada sesión. No importa tu edad o nivel de experiencia, adaptamos cada ejercicio a tus necesidades para que consigas resultados reales.</p>
+                    <p>Desde el primer día notarás la diferencia: un ambiente cercano, atención personalizada y un método de trabajo basado en la esencia del pilates. Cada sesión está diseñada para que conectes con tu cuerpo, mejores tu movilidad y te sientas mejor en tu día a día. Ven a probar y descubre lo que el pilates de verdad puede hacer por ti.</p>
                 </div>
             </div>
         </div>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Models\Conversacione;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Auth;
-use Illuminate\Http\Request;
+use App\Http\Controllers\MensajeVistoController;
 
 class ConversacionController extends Controller
 {
@@ -15,8 +16,8 @@ class ConversacionController extends Controller
      */
     public function index()
     {
-        $conversaciones = Conversacione::where('user_one_id', Auth::user()->id)->orWhere('user_two_id', Auth::user()->id)->get();
-
+        $conversaciones = Conversacione::where('user_one_id', Auth()->id())->orWhere('user_two_id', Auth()->id())->get();
+        //dd($conversacionesSinLeer);
         return view('conversaciones.index', compact('conversaciones'));
 
     }
@@ -26,7 +27,7 @@ class ConversacionController extends Controller
      */
     public function create()
     {
-        $users = User::whereNot('id', Auth::user()->id)->get();
+        $users = User::whereNot('id', Auth()->id())->get();
         return view('conversaciones.create', compact('users'));
     }
 
@@ -40,7 +41,7 @@ class ConversacionController extends Controller
         ]);
 
         $conversacion = Conversacione::create([
-            'user_one_id' => Auth::user()->id,
+            'user_one_id' => Auth()->id(),
             'user_two_id' => $request->user_two_id,
         ]);
 
@@ -52,6 +53,10 @@ class ConversacionController extends Controller
      */
     public function show(Conversacione $conversacione)
     {
+        foreach ($conversacione->messages as $message) {
+            $controladorMensajesVistos = new MensajeVistoController();
+            $controladorMensajesVistos->update($message->mensajesVistos);
+        }
         return view('conversaciones.show', compact('conversacione'));
     }
 
@@ -78,4 +83,6 @@ class ConversacionController extends Controller
     {
         //
     }
+
+   
 }

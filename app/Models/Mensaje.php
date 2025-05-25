@@ -19,4 +19,8 @@ class Mensaje extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function mensajesVistos() {
+        return $this->hasOne(MensajesVisto::class,'mensaje_id');
+    }
 }

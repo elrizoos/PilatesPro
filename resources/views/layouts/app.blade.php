@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -250,25 +250,34 @@
                                 <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
                                 <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
                                 <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
-                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a></li>
-                                <li class="nav-item dropdown col">
-                                    <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
-                                        role="button" aria-expanded="false">Más</a>
-                                    <ul class="dropdown-menu w-100 text-center">
-                                        @if (isset($paginas))
+                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a>
+                                    @if (isset($conversacionesSinLeer))
+                                        @if ($conversacionesSinLeer['totalMensajes'] !== 0)
+                                            <p>Tienes {{ $conversacionesSinLeer['totalMensajes'] }} mensajes de
+                                                {{ $conversacionesSinLeer['totalConversaciones'] }} conversaciones
+                                                distintas</p>
+                                        @endif
+                                    @endif
+                                </li>
+
+                                @if (isset($paginas) && $paginas->isNotEmpty())
+                                    <li class="nav-item dropdown col">
+                                        <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown"
+                                            href="#" role="button" aria-expanded="false">Más</a>
+                                        <ul class="dropdown-menu w-100 text-center">
                                             @foreach ($paginas as $pagina)
                                                 <li><a class="dropdown-item estilo-formulario p-2"
                                                         href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
                                                 </li>
                                             @endforeach
-                                        @endif
-                                    </ul>
-                                </li>
+                                        </ul>
+                                    </li>
+                                @endif
                             </ul>
 
                         </div>
                     </div>
-                    <div class="w-100 p-2">
+                    <div class="w-100 p-2 mb-5">
                         <div>
                             @guest
                                 <ul
@@ -300,7 +309,7 @@
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
 
-                                    <form class="formulario" action="{{ route('logout') }}" method="POST">
+                                    <form class="formulario p-2" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button class="ms-1 estilo-formulario w-100" type="submit"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
