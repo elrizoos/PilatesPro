@@ -8,7 +8,7 @@
         </div>
 
         <div class="row mb-5">
-            <div class="col-12">
+            <div class="col-12 border-right btn">
                 <h2 class="texto-color-titulo fs-3 text-center p-4">Nuestra Historia</h2>
                 <p class="texto-color-gris fs-4">Chus Álvarez Pilates nació con el objetivo de ofrecer un espacio dedicado al bienestar y la salud a través de la práctica del Pilates. Fundado por Chus Álvarez, nuestro estudio ha crecido con el compromiso de proporcionar clases de alta calidad y un ambiente acogedor y profesional.</p>
             </div>

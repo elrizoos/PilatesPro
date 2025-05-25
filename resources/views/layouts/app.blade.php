@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -277,7 +277,7 @@
 
                         </div>
                     </div>
-                    <div class="w-100 p-2">
+                    <div class="w-100 p-2 mb-5">
                         <div>
                             @guest
                                 <ul
@@ -309,7 +309,7 @@
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
 
-                                    <form class="formulario" action="{{ route('logout') }}" method="POST">
+                                    <form class="formulario p-2" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button class="ms-1 estilo-formulario w-100" type="submit"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
