@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row   bg-color-fondo-oscuro border-bottom border-1 border-dorado-claro">
+    <div class="row  vh-100 bg-color-fondo-oscuro border-bottom border-1 border-dorado-claro">
         <div class="col h-100 py-5  g-0">
             <h2 class="text-center text-uppercase fs-2 texto-color-resalte">Nuestros servicios</h2>
             <h3 class="text-center text-uppercase fs-3 texto-color-secundario">Facilidades del estudio</h3>

@@ -12,7 +12,9 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -340,7 +342,7 @@
                 </div>
                 <div class="row p-4 justify-content-center align-items-center">
                     <div class="col">
-                        <ul class="fs-5 row row-cols-3 text-uppercase fs-5">
+                        <ul class=" row row-cols-5 text-uppercase fs-6">
                             <li class="p-1"><a
                                     class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
                                     href="{{ route('inicio') }}">Inicio</a></li>
@@ -361,21 +363,23 @@
                                     href="{{ route('conversaciones.index') }}">Mensajes</a></li>
 
                             </li>
-
-                            <li class="nav-item dropdown col">
-                                <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
-                                    role="button" aria-expanded="false">Más</a>
-                                <ul class="dropdown-menu w-100 text-center">
-                                    @if (isset($paginas))
+                        </ul>
+                        @if (isset($paginas) && $paginas->isNotEmpty())
+                            <ul class="d-flex flex-row">
+                                <li class="nav-item dropdown col">
+                                    <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
+                                        role="button" aria-expanded="false">Más</a>
+                                    <ul class="dropdown-menu w-100 text-center">
                                         @foreach ($paginas as $pagina)
                                             <li><a class="dropdown-item estilo-formulario p-2"
                                                     href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
                                             </li>
                                         @endforeach
-                                    @endif
-                                </ul>
-                            </li>
-                        </ul>
+                                    </ul>
+                                </li>
+                            </ul>
+                        @endif
+
 
                     </div>
                 </div>
@@ -383,7 +387,7 @@
                     <div class="col">
                         @guest
                             <ul
-                                class="fs-5 w-75 d-flex flex-column p-3 gap-2 justify-content-center align-items-center m-auto">
+                                class="fs-5 w-75 d-flex flex-row p-3 gap-2 justify-content-center align-items-center m-auto">
                                 <li
                                     class="w-75 p-2 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra ">
                                     <a class="fs-5 auth text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>

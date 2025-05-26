@@ -1,7 +1,7 @@
 <div class="container-fluid">
-    <div class="row  vh-100">
-    <div class="col w-100 vh-100 g-0">
-        <div class="w-100 vh-100 bg-color-fondo-oscuro-transparente border-bottom border-1 border-dorado-claro">
+    <div class="row  seccion-video">
+    <div class="col w-100 h-100 g-0">
+        <div class="w-100 h-100 bg-color-fondo-oscuro-transparente border-bottom border-1 border-dorado-claro">
             <div class="position-relative w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                 <div class="contenido-video position-absolute d-none w-75 h-75 d-flex flex-column align-items-end gap-2">
                     <svg class="icon icono-normal top-0 end-0 fs-1  z-3 d-none" id="botonCerrar">
