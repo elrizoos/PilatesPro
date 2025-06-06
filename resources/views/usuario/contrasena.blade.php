@@ -8,12 +8,12 @@
             <div class="col-12 d-flex d-md-inline-block justify-content-center align-items-center">
                 <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario"
                     id="cambiarContrasena" data-url="{{ route('contrasena-cambiarContrasena') }}">Cambio de Contrasena</li>
-                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="opciones"
+                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="politicas"
                     data-url="{{ route('contrasena-politicas') }}">Politicas de
                     contraseña</li>
             </div>
             <div class="col-12">
-                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="politicas"
+                <li class="contenido-cargable-interno contenido-item p-2 text-center texto-color-secundario" id="opciones"
                     data-url="{{ route('contrasena-opciones') }}">Opciones de
                     recuperación de cuenta</li>
             </div>

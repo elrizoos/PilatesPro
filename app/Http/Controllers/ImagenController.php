@@ -94,9 +94,45 @@ class ImagenController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Imagen $imagen)
-    {
-        //
+{
+    try {
+        $request->validate([
+            'fotoPerfil' => 'required|image|max:2048',
+        ]);
+
+        if ($request->hasFile('fotoPerfil') && $request->file('fotoPerfil')->isValid()) {
+            $archivo = $request->file('fotoPerfil');
+
+            $hash = md5_file($archivo->getRealPath());
+
+            $existe = Imagen::where('hash', $hash)->first();
+
+            if ($existe) {
+                return redirect()->back()->with('error', 'La imagen ya está en la base de datos');
+            }
+
+            $nombreArchivo = time() . '.' . $archivo->getClientOriginalExtension();
+            $ruta = $archivo->storeAs('imagenes_perfil', $nombreArchivo, 'public');
+
+            // Actualizar el modelo recibido por parámetro
+            $imagen->update([
+                'usuario_id' => auth()->id(),
+                'ruta_imagen' => $ruta,
+                'descripcion' => 'Imagen de perfil de usuario ' . auth()->id(),
+                'hash' => $hash,
+            ]);
+
+            $imagen->save();
+
+            return redirect()->back()->with('success', 'Foto subida con éxito');
+        }
+
+        return redirect()->back()->with('error', 'No se ha recibido una imagen válida');
+    } catch (\Throwable $th) {
+        return redirect()->back()->with('error', $th->getMessage());
     }
+}
+
 
     /**
      * Remove the specified resource from storage.

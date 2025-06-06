@@ -9,6 +9,7 @@ $(document).ready(function () {
     initVideoControls("#botonPlay", "#botonCerrar", "#reproductor-video");
 
     $("#imagen-logo").on("click", redirectToUrl);
+    $("#icono-salir").on("click", redirectToUrl);
     $(".iconoMenu").on("click", toggleMenu);
     $("#paginasPersonalizadas").on("click", togglePagesList);
     $("#paginasPersonalizadasMovil").on("click", togglePagesListMovil);
@@ -59,6 +60,16 @@ $(document).ready(function () {
     $("#selectorMovilCerrar").on("click", function () {
         $("#listaMovil").toggleClass("d-none");
         $("#listaMovil").toggleClass("deslizamiento-click");
+    });
+
+    document.querySelectorAll("form").forEach((form) => {
+        form.setAttribute("autocomplete", "off");
+    });
+
+    document.querySelectorAll("input, textarea").forEach((input) => {
+        input.setAttribute("autocomplete", "off");
+        // Evita autocompletado usando un nombre "falso"
+       
     });
 });
 function añadirEvento() {

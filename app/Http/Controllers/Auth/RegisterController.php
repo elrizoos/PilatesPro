@@ -81,8 +81,8 @@ class RegisterController extends Controller
             'email.max' => 'El correo electrónico no debe superar los 255 caracteres.',
             'email.unique' => 'El correo electrónico ya ha sido registrado.',
 
-            'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria.',
-            'fecha_nacimiento.date' => 'La fecha de nacimiento no tiene un formato válido.',
+            'fecha_nacimiento.required' => 'La fecha es obligatoria.',
+            'fecha_nacimiento.date' => 'La fecha no tiene un formato válido.',
 
             'direccion.required' => 'El campo dirección es obligatorio.',
             'direccion.string' => 'La dirección debe ser una cadena de texto.',

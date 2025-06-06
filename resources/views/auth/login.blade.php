@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="vw-100 vh-100 d-flex flex-column justify-content-center align-items-center">
-        <div  id="login"
-            class="w-50 border border-warning-subtle bg-color-fondo d-flex flex-column justify-content-evenly align-items-center p-4" style="min-height: 40%">
-            <div class="w-50 h-25">
-                <div class="imagen-logo w-100 h-100" data-url="{{ route('inicio') }}"></div>
+    <div class="contenido contenido-login">
+        <div class="caja-formulario">
+            <div class="caja-logo">
+                <div id="imagen-logo" class="imagen-logo w-100 h-100" data-url="{{ route('inicio') }}"></div>
             </div>
             @if ($errors->any())
                 <div>
@@ -16,14 +15,32 @@
                     </ul>
                 </div>
             @endif
-            <form class="formulario" class="formulario d-flex flex-column fs-5" action="{{ route('login') }}" method="post">
+            <form class="formulario-login" action="{{ route('login') }}" method="post">
                 @csrf
-                <input class="estilo-formulario" type="email" name="email" id="email" placeholder="Email">
-                <hr class="linea-transition-rigth border border-warning-subtle w-25 border-1 ">
-                <input class="estilo-formulario" type="password" name="password" id="password" placeholder="Contraseña">
-                <hr class="linea-transition-rigth border border-warning-subtle w-25 border-1">
-                <input class="estilo-formulario estilo-formulario-enviar text-center mb-3" type="submit" value="Entrar">
-                <a href="{{ route('password.request') }}" class="estilo-formulario text-center p-2   d-inline-block">¿Olvidaste tu contraseña?</a>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="label-error">
+                            <label for="email">Email: </label>
+                            @error('email')
+                                <span role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <input type="email" name="email" id="email" />
+                    </div>
+                    <div class="form-group">
+                        <div class="label-error">
+                            <label for="password">Password:</label>
+                            @error('password')
+                                <span role="alert">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <input type="password" name="password" id="password" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-entrar">Entrar</button>
+                </div>
+                <a href="{{ route('password.request') }}" class="">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
     </div>

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asistencia;
-use App\Models\Clase;
 use App\Models\Horario;
 use App\Models\Reserva;
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
@@ -25,6 +23,7 @@ class ReservasController extends Controller
 
         if ($grupoUsuario === null) {
             \Log::error('El usuario no tiene grupo, así que no se muestran reservas asociadas');
+
             return view('usuario.submenu.RES-histoReservas', compact('grupoUsuario'));
         }
 
@@ -48,7 +47,6 @@ class ReservasController extends Controller
 
         return view('usuario.submenu.RES-histoReservas', compact('reservasPasadas', 'reservasFuturas', 'grupoUsuario'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -112,11 +110,15 @@ class ReservasController extends Controller
     {
         $usuario = User::where('id', Auth::user()->id)->with(['grupo.clases', 'registroTiempo'])->first();
 
-        if ($usuario->registroTiempo->clases_totales == 0) {
-            return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'No tienes clases disponibles para reservar');
+        if ($usuario->registroTiempo) {
+            if ($usuario->registroTiempo->clases_totales == 0 || $usuario->registroTiempo->clases_totales == null) {
+                return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'No tienes clases disponibles para reservar');
+            }
+        } else {
+            return redirect()->route('suscripcion-estadoSuscripcion')->with('error', 'Aun no tienes reservas realizadas');
         }
 
-        if (!$usuario->grupo || $usuario->grupo->clases->isEmpty()) {
+        if (! $usuario->grupo || $usuario->grupo->clases->isEmpty()) {
             return redirect()->back()->with('error', 'No se encontraron clases para tu grupo.');
         }
 
@@ -137,7 +139,6 @@ class ReservasController extends Controller
         return view('usuario.submenu.RES-sugerenciasReservas', compact('horariosClase', 'dayCount', 'diasMes', 'primerDiaMes', 'semanasMes', 'fechaActual'));
     }
 
-
     public function mostrarHorariosFecha(Request $request)
     {
         $alumnoId = Auth::user()->id;
@@ -147,13 +148,11 @@ class ReservasController extends Controller
             ->get();
 
         $horariosDisponibles = $horarios->filter(function ($horario) use ($alumnoId) {
-            return !$horario->reserva->contains('alumno_id', $alumnoId);
+            return ! $horario->reserva->contains('alumno_id', $alumnoId);
         });
 
         return view('usuario.submenu.RES-mostrarHorariosFecha', ['horarios' => $horariosDisponibles]);
     }
-
-
 
     public function reservar(Request $request)
     {
@@ -167,21 +166,21 @@ class ReservasController extends Controller
         try {
             // Obtener el horario
             $horario = Horario::find($request->horario);
-            \Log::info('Horario encontrado: ' . json_encode($horario));
+            \Log::info('Horario encontrado: '.json_encode($horario));
 
             // Crear reserva
             $reserva = Reserva::create([
                 'horario_id' => $request->horario,
                 'alumno_id' => Auth::user()->id,
             ]);
-            \Log::info("Reserva creada con éxito: " . json_encode($reserva));
+            \Log::info('Reserva creada con éxito: '.json_encode($reserva));
 
             // Crear asistencia
             $asistencia = Asistencia::create([
                 'reserva_id' => $reserva->id,
                 'fecha' => $horario->fecha_especifica,  // Aquí deberías poner la fecha correspondiente
             ]);
-            \Log::info("Asistencia creada con éxito: " . json_encode($asistencia));
+            \Log::info('Asistencia creada con éxito: '.json_encode($asistencia));
 
             // Confirmar transacción
             DB::commit();
@@ -192,22 +191,24 @@ class ReservasController extends Controller
             // Revertir transacción
             DB::rollBack();
 
-            \Log::error('Error en el proceso de reserva: ' . $th->getMessage());
+            \Log::error('Error en el proceso de reserva: '.$th->getMessage());
 
             return redirect()->back()->with('error', 'Ocurrió un error durante el proceso de reserva. Por favor, inténtelo de nuevo.');
         }
     }
 
-
-    public function cancelarReserva($reservaId){
+    public function cancelarReserva($reservaId)
+    {
         $reserva = Reserva::find($reservaId);
         $reserva->delete();
+
         return redirect()->back()->with('success', 'La reserva se ha cancelado con exito');
     }
 
-    public function marcarAsistencia(Reserva $reserva, User $user){
+    public function marcarAsistencia(Reserva $reserva, User $user)
+    {
 
-        $asistencia  = Asistencia::where('reserva_id', $reserva->id);
+        $asistencia = Asistencia::where('reserva_id', $reserva->id);
 
         $asistencia->update([
             'asistio' => 1,

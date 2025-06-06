@@ -25,7 +25,7 @@
     </div>
 
 
-    <div class="col-12 col-md-9 contenido-dinamico-interno" id="contenido-dinamico-interno">
+    <div class="col-12 col-md-9 h-95 contenido-dinamico-interno" id="contenido-dinamico-interno">
         <div class="row h-100 contenedor-interno informacionGeneral" id="contenedor-informacionGeneral">
             @yield('informacionGeneral')</div>
         <div class="row h-100 contenedor-interno informacionContacto" id="contenedor-informacionContacto">

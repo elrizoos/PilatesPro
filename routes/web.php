@@ -9,6 +9,7 @@ use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesSeccionController;
 use App\Http\Controllers\MensajeController;
+use App\Http\Controllers\MensajeVistoController;
 use App\Http\Controllers\MetodosRecuperacioneController;
 use App\Http\Controllers\NotificacionesController;
 use App\Http\Controllers\PaginaController;
@@ -18,15 +19,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservasController;
 use App\Http\Controllers\SeccionContenidoController;
 use App\Http\Controllers\StripeSyncController;
-use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\MetodosRecuperacione;
-use App\Models\Producto;
-use App\Models\SeccionContenido;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\File;
-use App\Http\Controllers;
-use App\Http\Controllers\MensajeVistoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +32,6 @@ use App\Http\Controllers\MensajeVistoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 Route::get('/vista-factura', [FacturaController::class, 'mostrarFactura'])->name('vista.factura');
 Route::get('/productos/mostrarDetalles/{producto}', [ProductoController::class, 'mostrarDetalles'])->name('mostrarDetallesProducto');
@@ -52,9 +45,7 @@ Route::get('/acercaDe', function () {
 
 Route::get('/clases', [ProductoController::class, 'mostrarClases'])->name('clases');
 
-
 Route::get('/instructores', [UsuarioController::class, 'mostrarInstructores'])->name('instructores');
-
 
 Route::get(
     '/inicio',
@@ -65,15 +56,9 @@ Route::get('/registrarUsuarioProducto/{producto}', [UsuarioController::class, 'c
 Route::get('/foro/{pagina}', [PaginaController::class, 'mostrarPagina'])->name('mostrarPagina');
 Route::group(['middleware' => 'auth'], function () {
 
-
-
-
-
     Route::get('/login', function () {
         return view('auth.login');
     })->name('login');
-
-
 
     Route::get('/configuracion', function () {
         return view('usuario.perfil');
@@ -94,7 +79,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/general/fotoPerfil', function () {
         return view('usuario.submenu.GEN-fotoPerfil');
     })->name('general-fotoPerfil');
-
 
     Route::get('/usuario/reservas', function () {
         return view('usuario.reservas');
@@ -118,7 +102,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.contrasena');
     })->name('usuario-contrasena');
 
-
     Route::get('/usuario/contrasena/cambiarContrasena', function () {
         return view('usuario.submenu.CON-cambiarContraseña');
     })->name('contrasena-cambiarContrasena');
@@ -128,7 +111,6 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('contrasena-opciones');
     Route::post('/usuario/contrasena/opciones/metodosRecueracion', [MetodosRecuperacioneController::class, 'store'])->name('metodoRecuperacion.store');
     Route::get('/usuario/contrasena/guardarInformacionPreRes', [MetodosRecuperacioneController::class, 'guardarInformacionPreRes'])->name('guardarInformacionPreRes');
-
 
     Route::get('/usuario/contrasena/politicas', function () {
         return view('usuario.submenu.CON-politicas');
@@ -146,7 +128,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/chat/conversaciones', ConversacionController::class)->only(['index', 'create', 'store', 'show']);
     Route::post('chat/conversaciones/{conversacione}/mensajes', [MensajeController::class, 'store'])->name('messages.store');
 
-
     Route::get('/usuario/otros/privacidad', function () {
         return view('usuario.submenu.OTR-privacidad');
     })->name('otros-privacidad');
@@ -159,19 +140,14 @@ Route::group(['middleware' => 'auth'], function () {
         return view('usuario.submenu.OTR-eliminar');
     })->name('otros-eliminar');
 
-
     //Enlaces a controladores
 
     Route::get('/usuario/guardarCambios', [UsuarioController::class, 'guardarCambios'])->name('usuario-guardarCambios');
-
-
-
 
     Route::get('/usuario/reservas/historialReservas', [ReservasController::class, 'index'])->name('reservas-historialReservas');
     Route::get('/usuario/reservas/reservasActivas', [ReservasController::class, 'obtenerClasesReservadas'])->name('reservas-reservasActivas');
 
     Route::get('/admin/panel-control/galeria', [PanelController::class, 'mostrarGaleria'])->name('galeriaImagenes');
-
 
     Route::get('/admin/panel-control/mostrarContenido/elegirPagina', [PaginaController::class, 'elegirPagina'])->name('elegirPagina');
 
@@ -203,7 +179,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
-    //Rutas de facturacion 
+    //Rutas de facturacion
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::post('/facturacion/pago/pagar/{producto}', [PagoController::class, 'procesarPago'])->name('pagar');
@@ -212,14 +188,11 @@ Route::group(['middleware' => 'auth'], function () {
     //Ruta de sincronizacion de productos con stripe y bd local
     Route::get('/sincronizar-productos', [StripeSyncController::class, 'syncProductos']);
 
-
     Route::get('/admin/panel-control/notificaciones', [NotificacionesController::class, 'mostrarNotificaciones'])->name('mostrarNotificaciones');
     Route::post('/admin/panel-control/notificaciones/enviarNotificacion', [NotificacionesController::class, 'enviarNotificacion'])->name('enviarNotificacion');
 
-
     Route::get('/admin/panel-control/informesGenerales', [PanelController::class, 'informesGenerales'])->name('informesGenerales');
     Route::get('/admin/panel-control/asistencia/marcarAsistencia/{reserva}/{user}', [ReservasController::class, 'marcarAsistencia'])->name('asistencia.create');
-
 
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
@@ -235,10 +208,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/facturacion/facturaDetalle', FacturaDetallesController::class);
     Route::resource('/mensajesVistos', MensajeVistoController::class);
 });
-
-
-
-
 
 Auth::routes();
 

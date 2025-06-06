@@ -300,7 +300,7 @@
                                     <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
                                         {{ Auth::user()->apellidos }}
                                     </li>
-                                    <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg"
+                                    <li class="w-100 p-2 text-center d-flex justify-content-center align-items-center"><svg xmlns="http://www.w3.org/2000/svg"
                                             width="1rem" height="1rem" fill="white" class="bi bi-gear me-1"
                                             viewBox="0 0 16 16">
                                             <path
@@ -311,9 +311,9 @@
                                             href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                     </li>
 
-                                    <form class="formulario p-2" action="{{ route('logout') }}" method="POST">
+                                    <form class="formulario-salir" action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <button class="ms-1 estilo-formulario w-100" type="submit"><svg
+                                        <button class="boton-salir" type="submit"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
@@ -415,12 +415,12 @@
                                         href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                 </li>
 
-                                <li class="w-100 p-3 text-center">
-                                    <form class="formulario d-flex justify-content-center align-items-center"
+                                <li class="w-100 text-center">
+                                    <form class=""
                                         action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <button
-                                            class="ms-1 estilo-formulario d-flex justify-content-center align-items-center w-100"
+                                            class=""
                                             type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="1rem"
                                                 height="1rem" fill="white" class="bi bi-box-arrow-right me-1"
                                                 viewBox="0 0 16 16">

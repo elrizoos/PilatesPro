@@ -2,14 +2,14 @@
 
 @section('reservasActivas')
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100 rounded-5">
-        <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
+        <table class="table w-75 fs-5 bg-fondo-general text-center">
             <thead>
                 <tr>
                     <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nº Reserva</th>
                     <th class="fs-5 texto-color-titulo border border-1 border-fondo">Clase</th>
                     <th class="fs-5 texto-color-titulo border border-1 border-fondo">Fecha</th>
                     <th class="fs-5 texto-color-titulo border border-1 border-fondo">Profesor</th>
-                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Cnacelar</th>
+                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Cancelar</th>
                 </tr>
             </thead>
             <tbody>

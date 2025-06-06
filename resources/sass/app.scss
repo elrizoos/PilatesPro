@@ -7,11 +7,14 @@
 // Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+//Fuentes de Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 //Iconos CSS
 @import url("https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
 
 @import "flaticon";
+
 //RESET CSS
 html,
 body,
@@ -101,6 +104,7 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+
 article,
 aside,
 details,
@@ -114,19 +118,23 @@ nav,
 section {
     display: block;
 }
+
 body {
     line-height: 1;
     padding: 0;
     margin: 0;
 }
+
 ol,
 ul {
     list-style: none;
 }
+
 blockquote,
 q {
     quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -134,6 +142,7 @@ q:after {
     content: "";
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -147,10 +156,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 50px #292929 inset !important;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0.4) !important;
-    color: #ffffff80;
-    background: none;
+    -webkit-box-shadow: 0 0 0 50px $formulario inset !important;
+    -webkit-text-fill-color: $colorPrincipal !important;
 }
 
 table,
@@ -158,6 +165,7 @@ table *,
 table td {
     background: none;
 }
+
 //ESTILOS DESARROLLO
 .colorRojo {
     background-color: red !important;
@@ -209,6 +217,7 @@ table td {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 .no-scrollbar::-webkit-scrollbar {
     width: 0px;
     background: transparent;
@@ -233,9 +242,11 @@ a:hover {
 input::placeholder {
     font-size: 1rem;
 }
+
 .bg-color-fondo-oscuro-transparente {
     background-color: $colorPrincipalTransparente !important;
 }
+
 .bg-color-fondo-oscuro-transparente-0 {
     background-color: $colorPrincipalTransparenteCero !important;
 }
@@ -243,18 +254,23 @@ input::placeholder {
 .bg-color-principal {
     background-color: $colorPrincipal !important;
 }
+
 .bg-color-secundario {
     background-color: $colorSecundario !important;
 }
+
 .bg-color-terciario {
     background-color: $colorTerciario !important;
 }
+
 .bg-color-resalte {
     background-color: $colorResalte !important;
 }
+
 .bg-color-fondo {
     background-color: $colorFondo !important;
 }
+
 .bg-color-gris {
     background-color: $colorGrisClaro !important;
 }
@@ -278,18 +294,23 @@ input::placeholder {
 .texto-color-principal {
     color: $colorPrincipal !important;
 }
+
 .texto-color-secundario {
     color: $colorSecundario !important;
 }
+
 .texto-color-terciario {
     color: $colorTerciario !important;
 }
+
 .texto-color-resalte {
     color: $colorResalte !important;
 }
+
 .texto-color-fondo {
     color: $colorFondo !important;
 }
+
 .texto-color-gris {
     color: $colorGrisClaro !important;
 }
@@ -297,6 +318,23 @@ input::placeholder {
 .texto-color-titulo {
     color: $colorTitulo !important;
 }
+
+.bg-fondo-general {
+    background-color: $fondoGeneral !important;
+}
+
+.bg-formulario {
+    background-color: $formulario !important;
+}
+
+.texto-color-formulario {
+    color: $textoPrincipal !important;
+}
+
+.texto-color-dorado {
+    color: $colorDoradoNuevo;
+}
+
 
 .bg-none {
     background: none !important;
@@ -336,60 +374,79 @@ input::placeholder {
 .h-5 {
     height: 5% !important;
 }
+
 .h-10 {
     height: 10% !important;
 }
+
 .h-15 {
     height: 15% !important;
 }
+
 .h-20 {
     height: 20% !important;
 }
+
 .h-25 {
     height: 25% !important;
 }
+
 .h-30 {
     height: 30% !important;
 }
+
 .h-35 {
     height: 35% !important;
 }
+
 .h-40 {
     height: 40% !important;
 }
+
 .h-45 {
     height: 45% !important;
 }
+
 .h-50 {
     height: 50% !important;
 }
+
 .h-55 {
     height: 55% !important;
 }
+
 .h-60 {
     height: 60% !important;
 }
+
 .h-65 {
     height: 65% !important;
 }
+
 .h-70 {
     height: 70% !important;
 }
+
 .h-75 {
     height: 75% !important;
 }
+
 .h-80 {
     height: 80% !important;
 }
+
 .h-85 {
     height: 85% !important;
 }
+
 .h-90 {
     height: 90% !important;
 }
+
 .h-95 {
     height: 95% !important;
 }
+
 .h-100 {
     height: 100% !important;
 }
@@ -398,60 +455,79 @@ input::placeholder {
 .w-5 {
     width: 5% !important;
 }
+
 .w-10 {
     width: 10% !important;
 }
+
 .w-15 {
     width: 15% !important;
 }
+
 .w-20 {
     width: 20% !important;
 }
+
 .w-25 {
     width: 25% !important;
 }
+
 .w-30 {
     width: 30% !important;
 }
+
 .w-35 {
     width: 35% !important;
 }
+
 .w-40 {
     width: 40% !important;
 }
+
 .w-45 {
     width: 45% !important;
 }
+
 .w-50 {
     width: 50% !important;
 }
+
 .w-55 {
     width: 55% !important;
 }
+
 .w-60 {
     width: 60% !important;
 }
+
 .w-65 {
     width: 65% !important;
 }
+
 .w-70 {
     width: 70% !important;
 }
+
 .w-75 {
     width: 75% !important;
 }
+
 .w-80 {
     width: 80% !important;
 }
+
 .w-85 {
     width: 85% !important;
 }
+
 .w-90 {
     width: 90% !important;
 }
+
 .w-95 {
     width: 95% !important;
 }
+
 .w-100 {
     width: 100% !important;
 }
@@ -476,6 +552,7 @@ input::placeholder {
 .border-dorado-oscuro {
     border-color: $colorSecundarioOscuro !important;
 }
+
 .max-width-70 {
     max-width: 70% !important;
 }
@@ -508,7 +585,8 @@ input::placeholder {
 }
 
 .service-box {
-    background-color: #333333; /* Fondo de los cuadros de servicios */
+    background-color: #333333;
+    /* Fondo de los cuadros de servicios */
     padding: 20px;
     margin-bottom: 20px;
     min-height: 13rem;
@@ -534,19 +612,12 @@ input::placeholder {
     color: $colorDorado !important;
     background: $colorOscuro !important;
 }
+
 .elementoGeneral a:hover {
-    color: unset !important ;
+    color: unset !important;
     background: unset !important;
 }
-.estilo-formulario {
-    border: 0;
-    background: none;
-    width: max-content;
-    height: 2rem;
-    position: relative;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.5);
-}
+
 
 .estilo-formulario-enviar {
     font-size: 2rem;
@@ -578,7 +649,7 @@ input::placeholder {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
+    width: 80%;
 }
 
 .formulario select {
@@ -592,6 +663,7 @@ input::placeholder {
     border-radius: 1rem;
     text-align: center;
 }
+
 .estilo-formulario-select option {
     background: none;
     background: #585858;
@@ -605,13 +677,14 @@ input::placeholder {
 .formulario input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
-.formulario input:focus + .linea-transition-rigth {
+
+.formulario input:focus+.linea-transition-rigth {
     border: 2px solid #ffe69c !important;
     width: 100% !important;
     transition: all 0.6s ease-in;
 }
 
-.formulario input:focus + .linea-transition-weigth {
+.formulario input:focus+.linea-transition-weigth {
     border: 2px solid #ffe69c !important;
     transition: all 0.2s ease-in-out;
 }
@@ -660,6 +733,7 @@ input::placeholder {
     border-radius: 9px;
     text-align: center;
 }
+
 .estilo-formulario-dorado-select option {
     background: none;
     background: #585858;
@@ -677,13 +751,14 @@ input::placeholder {
 .formulario-dorado input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
-.formulario-dorado input:focus + .linea-transition-rigth {
+
+.formulario-dorado input:focus+.linea-transition-rigth {
     border: 2px solid #ffe69c !important;
     width: 100% !important;
     transition: all 0.6s ease-in;
 }
 
-.formulario-dorado input:focus + .linea-transition-weigth {
+.formulario-dorado input:focus+.linea-transition-weigth {
     border: 2px solid #ffe69c !important;
     transition: all 0.2s ease-in-out;
 }
@@ -703,6 +778,7 @@ input::placeholder {
     text-decoration: none;
     text-transform: capitalize;
 }
+
 .enlace-general {
     color: $colorSecundario !important;
     text-decoration: none;
@@ -756,19 +832,22 @@ input::placeholder {
 .contenedor-grid-seccion-dos .titulo {
     grid-area: titulo;
 }
+
 .contenedor-grid-seccion-dos .imagen-uno {
     grid-area: imagen-uno;
 }
+
 .contenedor-grid-seccion-dos .imagen-dos {
     grid-area: imagen-dos;
 }
+
 .contenedor-grid-seccion-dos .parrafo {
     grid-area: parrafo;
 }
 
 .contenido-cargable:hover {
-    border-bottom: 0.1em solid $colorDorado !important;
-    color: $colorDoradoClaro;
+    border-bottom: 0.1em solid $colorDoradoNuevoResaltado !important;
+    color: $colorDoradoNuevoResaltado;
     transition: all 0.6s ease;
 }
 
@@ -782,6 +861,7 @@ input::placeholder {
     box-shadow: 0 4px 6px $colorGrisClaro, 0 10px 20px $colorGrisClaro,
         0 15px 30px $colorGrisClaro;
 }
+
 .shadow-lifted-dorado {
     position: relative;
     box-shadow: 0 4px 6px $colorSecundario, 0 10px 20px $colorSecundario,
@@ -796,6 +876,7 @@ input::placeholder {
 .acerca-de-seccion div {
     padding: 2rem;
 }
+
 //
 //
 //
@@ -817,6 +898,7 @@ input::placeholder {
     display: flex;
     flex-direction: column;
 }
+
 .contenedor-formulario .formulario-horario .central {
     width: 100%;
     display: flex;
@@ -840,6 +922,7 @@ input::placeholder {
     text-align: center;
     font-size: 1em !important;
 }
+
 .contenedor-formulario .formulario-horario input[type="date"] {
     background: none;
     border: 0px;
@@ -854,7 +937,7 @@ input::placeholder {
     font-size: 1.2rem;
 }
 
-.contenedor-formulario .formulario-horario .central > div {
+.contenedor-formulario .formulario-horario .central>div {
     flex: 1;
 }
 
@@ -865,14 +948,12 @@ input::placeholder {
     align-items: center;
     position: relative;
 }
-.contenedor-formulario .formulario-horario .central .inputs > * {
+
+.contenedor-formulario .formulario-horario .central .inputs>* {
     width: 100%;
 }
 
-.contenedor-formulario
-    .formulario-horario
-    .grupo-formulario
-    input[type="time"] {
+.contenedor-formulario .formulario-horario .grupo-formulario input[type="time"] {
     margin-bottom: 10px;
     margin-top: 10px;
     outline: 0;
@@ -882,12 +963,15 @@ input::placeholder {
     border: 1px solid #8e6d45;
     border-radius: 9px;
 }
+
 input[type="time"] {
     background-color: $colorSecundario;
 }
+
 input[type="time" i]::-webkit-calendar-picker-indicator {
     background-image: url($ruta + "/reloj.png");
 }
+
 //Estilos para personalizar el calendario propio
 .contenedor-calendario {
     border-radius: 5%;
@@ -1039,17 +1123,17 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     flex-direction: column;
 }
 
-.contenedor-horas .horas > div {
+.contenedor-horas .horas>div {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.contenedor-horas .horas > div > div {
+.contenedor-horas .horas>div>div {
     flex: 1;
 }
 
-.contenedor-horas .horas > div .titulo-hora {
+.contenedor-horas .horas>div .titulo-hora {
     font-size: 1.2rem;
     text-align: center;
     color: $colorSecundario;
@@ -1057,6 +1141,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     justify-content: center;
     align-items: center;
 }
+
 .contenedor-hora-minuto {
     border: 0.02em solid $colorSecundario;
     width: 100%;
@@ -1065,7 +1150,8 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     display: flex;
     gap: 0.1rem;
 }
-.hora-minuto > div {
+
+.hora-minuto>div {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -1090,7 +1176,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     gap: 1rem;
 }
 
-.contenedor-horas .seleccion-horas .contenedor-seleccion > div {
+.contenedor-horas .seleccion-horas .contenedor-seleccion>div {
     flex: 1;
     width: 100%;
     height: 100%;
@@ -1107,6 +1193,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     padding-left: 0.5rem;
     overflow-y: hidden;
 }
+
 .casillaReloj:hover {
     overflow: hidden;
 }
@@ -1118,6 +1205,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
 .casillaReloj::placeholder {
     color: $colorSecundario;
 }
+
 .contenedor-horas .seleccion-horas .contenedor-seleccion .reloj {
     position: relative;
     flex: 2;
@@ -1134,7 +1222,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     position: relative;
 }
 
-.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo > div {
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo>div {
     width: 20%;
     height: 20%;
     position: absolute;
@@ -1144,39 +1232,27 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     align-items: center;
 }
 
-.contenedor-horas
-    .seleccion-horas
-    .contenedor-seleccion
-    .reloj
-    .circulo
-    .norte {
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .norte {
     top: 0;
     left: 40%;
 }
+
 .contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .este {
     right: 0;
     top: 40%;
 }
+
 .contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .sur {
     bottom: 0;
     left: 40%;
 }
-.contenedor-horas
-    .seleccion-horas
-    .contenedor-seleccion
-    .reloj
-    .circulo
-    .oeste {
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .oeste {
     left: 0;
     top: 40%;
 }
 
-.contenedor-horas
-    .seleccion-horas
-    .contenedor-seleccion
-    .reloj
-    .circulo
-    .punto-centro {
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .punto-centro {
     top: 47.5%;
     left: 47.5%;
     width: 5%;
@@ -1185,12 +1261,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     background-color: black;
 }
 
-.contenedor-horas
-    .seleccion-horas
-    .contenedor-seleccion
-    .reloj
-    .circulo
-    .aguja-hora {
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .aguja-hora {
     position: absolute;
     width: 2%;
     height: 30%;
@@ -1200,12 +1271,7 @@ input[type="time" i]::-webkit-calendar-picker-indicator {
     transform-origin: 50% 100%;
 }
 
-.contenedor-horas
-    .seleccion-horas
-    .contenedor-seleccion
-    .reloj
-    .circulo
-    .aguja-minuto {
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .aguja-minuto {
     position: absolute;
     width: 2%;
     height: 40%;
@@ -1246,6 +1312,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     text-transform: uppercase;
     color: $colorSecundario;
 }
+
 #inicioFinContenedor {
     display: flex;
     flex-direction: column;
@@ -1326,6 +1393,7 @@ input[type="checkbox"]:checked::before {
     justify-content: center;
     align-items: center;
 }
+
 //Estilos para mostrar la linea temporal de registros horarios
 .timeline {
     position: relative;
@@ -1363,6 +1431,7 @@ input[type="checkbox"]:checked::before {
 .horas-timeline div:nth-child(1) {
     height: 2rem;
 }
+
 .dia-timeline {
     flex: 1;
     min-width: 10rem;
@@ -1422,14 +1491,15 @@ input[type="checkbox"]:checked::before {
     grid-template-rows: repeat(6, 1fr);
 }
 
-.informacion-evento > h6 {
+.informacion-evento>h6 {
     color: $colorGris;
     padding: 1rem;
 }
 
-.informacion-evento > h6 span {
+.informacion-evento>h6 span {
     color: $colorSecundario;
 }
+
 .clase {
     grid-area: clase;
     font-size: 3rem;
@@ -1455,11 +1525,12 @@ input[type="checkbox"]:checked::before {
 .fecha {
     grid-area: fecha;
 }
+
 .grupo {
     grid-area: grupo;
 }
 
-.informacion-evento > * {
+.informacion-evento>* {
     display: inline-block;
 }
 
@@ -1480,6 +1551,7 @@ input[type="checkbox"]:checked::before {
     position: relative;
     height: 2rem;
 }
+
 .deslizamiento {
     transform: translateX(0%);
     transition: all 1.5s ease;
@@ -1489,40 +1561,490 @@ input[type="checkbox"]:checked::before {
     transform: translateX(100%);
     transition: all 1.5s ease;
 }
+
 .icon {
     height: 3rem;
 }
 
 /* Personalización de menú */
 .nav-tabs .nav-link {
-    color: #fff; /* Color de texto */
-    background-color: $colorFondoClaro; /* Fondo del menú principal */
-    border-color: #444; /* Borde */
+    color: #fff;
+    /* Color de texto */
+    background-color: $colorFondoClaro;
+    /* Fondo del menú principal */
+    border-color: #444;
+    /* Borde */
 }
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
-    background-color: #333; /* Fondo al pasar el ratón */
+    background-color: #333;
+    /* Fondo al pasar el ratón */
 }
 
 .nav-tabs .nav-link.active {
-    background-color: #444; /* Fondo del activo */
+    background-color: #444;
+    /* Fondo del activo */
 }
 
 .dropdown-menu {
-    background-color: #222; /* Fondo del submenú */
-    border-color: #444; /* Borde del submenú */
+    background-color: #222;
+    /* Fondo del submenú */
+    border-color: #444;
+    /* Borde del submenú */
 }
 
 .dropdown-item {
-    color: #fff; /* Color de texto de los elementos del submenú */
+    color: #fff;
+    /* Color de texto de los elementos del submenú */
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    background-color: #555; /* Fondo al pasar el ratón por los elementos del submenú */
+    background-color: #555;
+    /* Fondo al pasar el ratón por los elementos del submenú */
 }
 
+//Nuevos estilos para formulario registro login
+.contenido-registro {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-login {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-login .caja-formulario,
+.contenido-registro .caja-formulario {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    background-color: $colorFondoOscuro;
+    border: 1px solid $colorDorado;
+}
+
+.contenido-registro .caja-formulario {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background-color: $colorFondoOscuro;
+    border: 1px solid $colorDorado;
+}
+
+.caja-logo {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid $colorDorado;
+    padding: 1%;
+}
+
+.caja-logo .imagen-logo {
+    background-image: url($ruta + "/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 65%;
+    height: 95%;
+}
+
+
+.formulario-registro {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.formulario-registro .form-title {
+    text-align: center;
+    color: #f5d58d;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-registro .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.formulario-registro .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-registro .form-group label {
+    color: #caa76d;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.formulario-registro .form-group input {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #caa76d;
+    color: #fefefe;
+    outline: none;
+}
+
+.formulario-registro .form-group input:focus {
+    border-color: #f5d58d;
+}
+
+.formulario-registro .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.formulario-registro .btn-registrar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: #f5d58d;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.formulario-registro .btn-registrar:hover {
+    background-color: #caa76d;
+    color: #1a1a1a;
+}
+
+
+
+.formulario-login {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.formulario-login .form-title {
+    text-align: center;
+    color: #f5d58d;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-login .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.formulario-login .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-login .form-group label {
+    color: #caa76d;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.formulario-login .form-group input {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #caa76d;
+    color: #fefefe;
+    outline: none;
+}
+
+.formulario-login .form-group input:focus {
+    border-color: #f5d58d;
+}
+
+.formulario-login .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.formulario-login .btn-entrar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: #f5d58d;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.formulario-login .btn-entrar:hover {
+    background-color: #caa76d;
+    color: #1a1a1a;
+}
+
+.formulario-login a {
+    display: inline-block;
+
+}
+
+.lista_errores {
+    position: absolute;
+    left: 2%;
+    color: red;
+}
+
+
+
+.label-error {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+}
+
+.label-error span {
+    color: red;
+}
+
+
+//Botón de salir de navegacion de inicio
+.formulario-salir {
+    width: 100%;
+    display: inline-block;
+    padding-top: 2%;
+}
+
+.boton-salir {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: $colorDorado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    color: $colorDoradoNuevoResaltado !important;
+    border-bottom: 0.1em solid $colorDoradoNuevoResaltado !important;
+
+    transition: all 0.5s;
+}
+
+.contenido-dinamico-interno {
+    background: $formulario;
+    border: 1px solid $colorDoradoClaro;
+}
+
+.formulario-infoUsuario {
+    width: 80%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+.formulario-infoUsuario .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.formulario-infoUsuario .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.formulario-infoUsuario .form-group label {
+    font-size: 1.3rem;
+}
+
+.formulario-infoUsuario .form-group input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $colorDorado;
+    color: $colorPrincipal;
+    font-size: 1.3rem;
+}
+
+.formulario-infoUsuario .btn-guardar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.formulario-infoUsuario .btn-guardar:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.row-btn-guardar {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+
+//Estilos de administrador de usuario
+.fila-imagen-perfil, .fila-imagen-perfil .foto-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fila-imagen-perfil .foto-perfil img{
+    border-radius: 50%;
+    max-width: 180px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.imagen-perfil-usuario {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    
+}
+
+.fila-inputs-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fila-inputs-imagen form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+input[type="file"] {
+    display: block;
+    padding: 0.5rem;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+input[type="file"]:hover {
+    border-color: #bfa256; /* dorado suave */
+}
+
+/* Botones de acción */
+input[type="submit"] {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #bfa256; /* dorado */
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #a88b41;
+    transform: scale(1.02);
+}
+
+input[type="submit"]:active {
+    background-color: #8c7432;
+}
+
+/* Estilo específico para botón de eliminar */
+.destroy input[type="submit"] {
+    background-color: #e74c3c; /* rojo */
+}
+
+.destroy input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+.formulario-contraseña {
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+.formulario-contraseña .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.formulario-contraseña .form-group {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 0 5%;
+}
+
+.formulario-contraseña .form-group label {
+    font-size: 1.3rem;
+}
+
+.formulario-contraseña .form-group input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $colorDorado;
+    color: $colorPrincipal;
+    font-size: 1.3rem;
+}
+
+.formulario-contraseña .btn-guardar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.recuadro-politicas h5{
+    color: $colorDoradoNuevoResaltado;
+}
+
+.recuadro-politicas ul {
+    color: $colorNegro;
+}
 
 //RESPONSIVE DESING
 /* Base font size for the entire document */

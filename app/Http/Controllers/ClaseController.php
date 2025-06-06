@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
-use App\Http\Controllers\Controller;
 use App\Models\Grupo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClaseController extends Controller
 {
@@ -34,6 +34,26 @@ class ClaseController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        try {
+            $validator = Validator::make($request->all(), [
+                'nombre' => ['required', 'string', 'max:50'],
+                'grupo' => ['required'],
+            ], [
+                'nombre.required' => 'El campo nombre es obligatorio.',
+                'nombre.string' => 'El nombre debe ser una cadena de texto.',
+                'nombre.max' => 'El nombre no debe superar los 255 caracteres.',
+
+                'grupo.required' => 'El campo nombre es obligatorio.',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+        } catch (\Throwable $th) {
+            \Log::error('Error Validación: '.$th->getMessage());
+
+            return redirect()->back()->with('error', 'Hubo un problema con la validación de los datos.');
+        }
         $clase = new Clase;
         $clase->nombre = $request->nombre;
         $clase->grupo_id = $request->grupo;
@@ -66,7 +86,7 @@ class ClaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $clase)
+    public function update(Request $request, $clase)
     {
         $clase = Clase::find($clase);
         $clase->update([
@@ -85,12 +105,12 @@ class ClaseController extends Controller
         //
     }
 
-    public function mostrarClases() {
+    public function mostrarClases()
+    {
         $clases = Clase::all();
 
         $tipo = 'CLASE-inicio';
 
         return view('admin.CLASE-inicio', compact('clases', 'tipo'));
     }
-
 }

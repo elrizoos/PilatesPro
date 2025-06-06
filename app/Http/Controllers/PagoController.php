@@ -223,8 +223,8 @@ class PagoController extends Controller
 
 
     public function historialPago() {
-
-        Stripe::setApiKey(config('services.stripe.secret'));
+        try {
+            Stripe::setApiKey(config('services.stripe.secret'));
 
         $usuario = Auth::user();
         $customer = Customer::retrieve($usuario->stripe_id);
@@ -252,5 +252,8 @@ class PagoController extends Controller
 
         //dd($facturasDatos);
         return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
+        } catch (\Exception $th) {
+            return redirect()->back()->with('error', 'No hay cliente asignado, probablemente no hayas realizado ningun pago hasta el momento.');
+        }
     }
 }
