@@ -22,7 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table->dropColumn('pregunta');
-        $table->dropColumn('respuesta');
+        Schema::table('metodos_recuperaciones', function (Blueprint $table) {
+            $table->dropColumn('pregunta');
+            $table->dropColumn('respuesta');
+        });
     }
 };

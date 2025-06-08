@@ -146,7 +146,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/usuario/reservas/historialReservas', [ReservasController::class, 'index'])->name('reservas-historialReservas');
     Route::get('/usuario/reservas/reservasActivas', [ReservasController::class, 'obtenerClasesReservadas'])->name('reservas-reservasActivas');
-
+    Route::delete('/usuario/otros/eliminarCuenta/{usuario}', [UsuarioController::class, 'eliminarCuenta'])->name('eliminarCuenta');
     Route::get('/admin/panel-control/galeria', [PanelController::class, 'mostrarGaleria'])->name('galeriaImagenes');
 
     Route::get('/admin/panel-control/mostrarContenido/elegirPagina', [PaginaController::class, 'elegirPagina'])->name('elegirPagina');

@@ -23,6 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::rename('paquetes_usuarios', 'table_paquetes_usuarios');
-        $table->dropColumn('payment_method_id');
+        Schema::table('table_paquetes_usuarios', function (Blueprint $table) {
+            $table->dropColumn('payment_method_id');
+        });
     }
 };

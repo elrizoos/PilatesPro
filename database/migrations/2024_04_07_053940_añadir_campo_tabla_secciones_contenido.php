@@ -22,7 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table->dropForeign(['idPagina']);
-        $table->dropColumn('idPagina');
+        Schema::table('seccion_contenidos', function (Blueprint $table) {
+            $table->dropForeign(['idPagina']);
+            $table->dropColumn('idPagina');
+        });
     }
 };

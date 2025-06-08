@@ -1908,12 +1908,14 @@ input[type="checkbox"]:checked::before {
 
 
 //Estilos de administrador de usuario
-.fila-imagen-perfil, .fila-imagen-perfil .foto-perfil{
+.fila-imagen-perfil,
+.fila-imagen-perfil .foto-perfil {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.fila-imagen-perfil .foto-perfil img{
+
+.fila-imagen-perfil .foto-perfil img {
     border-radius: 50%;
     max-width: 180px;
     height: auto;
@@ -1925,7 +1927,7 @@ input[type="checkbox"]:checked::before {
     max-width: 100%;
     height: auto;
     object-fit: contain;
-    
+
 }
 
 .fila-inputs-imagen {
@@ -1934,7 +1936,7 @@ input[type="checkbox"]:checked::before {
     align-items: center;
 }
 
-.fila-inputs-imagen form{
+.fila-inputs-imagen form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1956,7 +1958,8 @@ input[type="file"] {
 }
 
 input[type="file"]:hover {
-    border-color: #bfa256; /* dorado suave */
+    border-color: #bfa256;
+    /* dorado suave */
 }
 
 /* Botones de acción */
@@ -1964,7 +1967,8 @@ input[type="submit"] {
     padding: 0.6rem 1.5rem;
     border: none;
     border-radius: 8px;
-    background-color: #bfa256; /* dorado */
+    background-color: #bfa256;
+    /* dorado */
     color: white;
     font-weight: bold;
     font-size: 0.95rem;
@@ -1983,7 +1987,8 @@ input[type="submit"]:active {
 
 /* Estilo específico para botón de eliminar */
 .destroy input[type="submit"] {
-    background-color: #e74c3c; /* rojo */
+    background-color: #e74c3c;
+    /* rojo */
 }
 
 .destroy input[type="submit"]:hover {
@@ -2038,7 +2043,12 @@ input[type="submit"]:active {
     width: 50%;
 }
 
-.recuadro-politicas h5{
+.formulario-contraseña .btn-guardar:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.recuadro-politicas h5 {
     color: $colorDoradoNuevoResaltado;
 }
 
@@ -2046,44 +2056,239 @@ input[type="submit"]:active {
     color: $colorNegro;
 }
 
+//Estilos formulario recuperacion de contraseña
+.contenedor-formulario-recuperacion {
+    position: relative;
+    border: 1px solid yellow;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-formulario-recuperacion .alert {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+.contenedor-formulario-recuperacion h3,
+.contenedor-formulario-recuperacion h5 {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    padding: 1rem;
+}
+
+.contenedor-formulario-recuperacion p {
+    font-size: 1.1rem;
+    color: $colorNegro;
+    padding: 0.5rem;
+}
+
+.formulario-recuperacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-recuperacion .contenedor-opciones {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    padding: 1rem;
+}
+
+.formulario-recuperacion button {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.formulario-recuperacion button:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.formulario-preguntas-respuestas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formulario-preguntas-respuestas label {
+    font-size: 1.1rem;
+    color: $colorNegro;
+    padding: 0.5rem;
+}
+
+.formulario-preguntas-respuestas select {
+    background: $colorDoradoNuevoResaltado;
+    border: 1px solid $colorDoradoClaro;
+    border-radius: 1rem;
+    color: $white;
+    padding: 0.5rem;
+}
+
+.formulario-preguntas-respuestas .input-respuesta {
+    background: $colorDoradoClaro;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    color: $colorNegro;
+    ;
+}
+
+.formulario-preguntas-respuestas .continuar {
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 0.5rem;
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+}
+
+.formulario-preguntas-respuestas .continuar:hover {
+    background: $colorDorado;
+    color: $colorNegro;
+}
+
+.contenedor-formulario-recuperacion .modal.fade .modal-title {
+    color: $colorNegro;
+}
+
+.contenedor-formulario-recuperacion .modal.fade .close {
+    background: red;
+    border: 1px solid red;
+    border-radius: 100%;
+    color: white;
+}
+
+//Estilos contenedor-notificaciones 
+.contenedor-notificaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones .alert {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+.contenedor-notificaciones form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones h3 {
+    padding: 1rem;
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+
+}
+
+.contenedor-notificaciones .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones select {
+    background: $colorDoradoNuevoResaltado;
+    border: 1px solid $colorDoradoClaro;
+    border-radius: 1rem;
+    color: $white;
+    padding: 0.5rem;
+}
+
+.contenedor-notificaciones button {
+    background: $colorDorado;
+    border: 1px solid $colorDoradoNuevoResaltado;
+
+}
+
+.contenedor-notificaciones button:hover {
+    background: $colorDoradoNuevoResaltado;
+    color: $colorNegro;
+}
+
+
+//Estilos eliminacion de cuenta 
+.contenedor-eliminar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contenedor-eliminar h3 {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+}
+
 //RESPONSIVE DESING
 /* Base font size for the entire document */
 html {
-    font-size: 100%; /* Default font size */
+    font-size: 100%;
+    /* Default font size */
 }
+
 @media (orientation: portrait) {
     @media (min-width: 0) {
         html {
             font-size: 16%;
         }
     }
+
     @media (min-width: 200px) {
         html {
             font-size: 26%;
         }
+
         .seccion-video {
             height: 50vh;
         }
     }
+
     @media (min-width: 276px) {
         html {
             font-size: 39%;
         }
     }
+
     @media (min-width: 376px) {
         html {
             font-size: 52%;
         }
+
         .seccion-video {
             height: 50vh;
         }
     }
+
     @media (min-width: 476px) {
         html {
             font-size: 59%;
         }
     }
 }
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 376px) {
     html {
@@ -2103,7 +2308,7 @@ html {
         height: 70% !important;
         font-size: 2rem !important;
     }
-    
+
     #login .formulario {
         width: 80%;
     }
@@ -2114,7 +2319,8 @@ html {
     html {
         font-size: 55%;
     }
-      #login .formulario {
+
+    #login .formulario {
         width: 50%;
     }
 }
@@ -2124,9 +2330,11 @@ html {
     html {
         font-size: 55%;
     }
+
     .seccion-video {
         height: 100vh;
     }
+
     #login {
         width: 50% !important;
         height: 70% !important;

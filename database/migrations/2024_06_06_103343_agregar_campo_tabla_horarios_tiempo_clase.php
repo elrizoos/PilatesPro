@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $table->dropColumn('tiempo_clase');
+        Schema::table('horarios', function (Blueprint $table) {
+            $table->dropColumn('tiempo_clase');
+        });
     }
 };

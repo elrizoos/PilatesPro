@@ -224,6 +224,11 @@
 </div>
 
 <body class="bg-color-fondo texto-color-secundario no-scrollbar">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
     <div class="d-flex flex-column flex-md-row  position-relative bottom-100" id="appEscritorio">
         <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"

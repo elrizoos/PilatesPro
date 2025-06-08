@@ -55,6 +55,15 @@ class UsuarioController extends Controller
         return redirect()->back()->with('error', 'Hubo un problema al registrarse. Por favor, inténtalo de nuevo.');
     }
 
+    public function eliminarCuenta(User $usuario) {
+        try {
+            $usuario->delete();
+            return redirect('/')->with('success', 'Tu cuenta ha sido eliminada con exito');
+        } catch(\Exception $e){
+            return back()->with('error', 'ERROR AL BORRAR LA CUENTA' . $e->getMessage());
+        }
+    }
+
 
     public function createConProducto($producto)
     {

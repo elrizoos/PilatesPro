@@ -20,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        $table->dropColumn('grupo_id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('grupo_id');
+        });
     }
 };

@@ -6,15 +6,7 @@
             <div class="caja-logo">
                 <div id="imagen-logo" class="imagen-logo w-100 h-100" data-url="{{ route('inicio') }}"></div>
             </div>
-            @if ($errors->any())
-                <div>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+         
             <form class="formulario-login" action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="row">

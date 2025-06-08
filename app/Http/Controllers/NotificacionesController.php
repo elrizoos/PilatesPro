@@ -39,7 +39,7 @@ class NotificacionesController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('succes', 'Notificaciones guardadas');
+        return redirect()->back()->with('success', 'Notificaciones guardadas');
 
     }
 
