@@ -1568,30 +1568,23 @@ input[type="checkbox"]:checked::before {
 
 /* Personalización de menú */
 .nav-tabs .nav-link {
-    color: #fff;
-    /* Color de texto */
-    background-color: $colorFondoClaro;
-    /* Fondo del menú principal */
-    border-color: #444;
-    /* Borde */
 }
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
-    background-color: #333;
+    background-color: $colorDoradoClaro;
     /* Fondo al pasar el ratón */
 }
 
 .nav-tabs .nav-link.active {
-    background-color: #444;
+    background-color: $colorDoradoClaro;
     /* Fondo del activo */
 }
 
 .dropdown-menu {
-    background-color: #222;
-    /* Fondo del submenú */
+    background-color: $colorDoradoClaro;
     border-color: #444;
-    /* Borde del submenú */
+    color: $colorDoradoNuevoResaltado;
 }
 
 .dropdown-item {
@@ -2240,6 +2233,172 @@ input[type="submit"]:active {
 .contenedor-eliminar h3 {
     font-size: 1.3rem;
     padding: 0.5rem;
+}
+
+//Nuevos estilos panel de control del admin
+#panel-control {
+    background: $fondoGeneral;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#panel-control .alert {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+#panel-control > .container-fluid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+}
+
+#contenedor-dinamico {
+    background: $colorGris;
+}
+.boton-volver {
+    background: transparent;
+    border: 0;
+}
+
+#lista-elementos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+#lista-elementos ul {
+    font-size: 1.1rem;
+}
+
+#lista-elementos a {
+    color: $colorDoradoNuevoResaltado;
+}
+
+#titulo-panel {
+    color: $colorDoradoNuevo;
+}
+.general-dashboard .card, .general-dashboard .card .list-group li {
+    background: $formulario;
+}
+
+.general-dashboard .card h3 {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.general-dashboard .card > p {
+    color: $colorNegro;
+}
+
+.general-dashboard .card > h2 {
+    color: $colorNegro;
+}
+
+.general-dashboard #botonPerfil {
+    background: $colorDoradoClaro;
+}
+
+//Estilos formulario crear usuario desde admin
+.formulario-editar .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.formulario-editar .row-tipo-usuario {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.formulario-editar .row .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.formulario-editar label {
+    color: $colorPrincipal;
+}
+
+.formulario-editar input {
+    background: $colorGris;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+    text-align: center;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.3rem;
+}
+
+.formulario-editar .row-tipo-usuario select {
+    background: $colorGris;
+    border: 1px solid $colorDorado;
+    padding: 0.3rem;
+    text-align: center;
+    color: $colorDoradoNuevoResaltado;
+    border-radius: 1rem;
+}
+
+
+
+.formulario-editar .row-tipo-usuario option {
+    color: $colorDoradoNuevoResaltado;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: 1px solid $colorDorado;
+
+}
+
+
+
+.formulario-editar .row.input-submit {
+    padding: 1rem;
+    grid-template-columns: 1fr;
+}
+
+.formulario-editar .row.input-submit input {
+    background-color: $colorDoradoClaro;
+    padding: 0.5rem;
+}
+
+.formulario-editar .row.input-submit input:hover {
+    background: $colorDorado;
+    color: $colorSecundario;
+    transition: all 0.5s ease-out;
+}
+
+//Estilos tabla de edicion de usuarios
+
+#tabla-editar-usuarios  {
+    background: $formulario;
+}
+
+#tabla-editar-usuarios th {
+    padding: 1rem;
+    color: $colorPrincipal;
+    text-transform: uppercase;
+}
+
+#tabla-editar-usuarios td {
+    padding: 1rem;
+    color: $colorDoradoNuevoResaltado;
+}
+
+#tabla-editar-usuarios #input-eliminar {
+    background: red;
+    color: white;
+    border: 0;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#tabla-editar-usuarios #input-editar {
+    padding: 1rem;
+    font-size: 1.3rem;
+
 }
 
 //RESPONSIVE DESING
