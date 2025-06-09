@@ -22,8 +22,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="calidad-premium" viewBox="0 0 32 32">
             <title>calidad-premium</title>
-            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1"
-                data-original="#e6e7e8" />
+            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1" data-original="#e6e7e8" />
             <g data-name="Layer 2">
                 <path
                     d="m9.256 18.55-.935-6.077a.507.507 0 0 1 .8-.483l2.913 2.185a.7.7 0 0 0 1-.171l2.425-3.638a.648.648 0 0 1 1.078 0L18.964 14a.7.7 0 0 0 1 .171l2.913-2.185a.507.507 0 0 1 .8.483l-.935 6.077zM9.256 19.674h13.488v1.3a.949.949 0 0 1-.949.949h-11.59a.949.949 0 0 1-.949-.949v-1.3z"
@@ -32,16 +31,15 @@
         </symbol>
         <symbol id="configuraciones" viewBox="0 0 32 32">
             <title>configuraciones</title>
-            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1"
-                data-original="#e6e7e8" />
+            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1" data-original="#e6e7e8" />
             <path fill="#ffffff"
                 d="m23.2 14.473-.891-.12a.3.3 0 0 1-.248-.213 6.642 6.642 0 0 0-.458-1.11.284.284 0 0 1 .025-.323l.492-.652c.145-.189.135-.358.025-.467l-.86-.856-.871-.875a.3.3 0 0 0-.4-.025l-.711.542a.292.292 0 0 1-.328.025 6.642 6.642 0 0 0-1.11-.458.3.3 0 0 1-.213-.248l-.12-.891a.306.306 0 0 0-.3-.264h-2.456a.306.306 0 0 0-.3.264l-.12.891a.3.3 0 0 1-.213.248 6.642 6.642 0 0 0-1.11.458.284.284 0 0 1-.323-.025l-.652-.492c-.189-.145-.358-.135-.467-.025l-1.734 1.731a.3.3 0 0 0-.025.4l.542.711a.292.292 0 0 1 .025.328 6.642 6.642 0 0 0-.458 1.11.3.3 0 0 1-.248.213l-.891.12a.306.306 0 0 0-.264.3v2.448a.306.306 0 0 0 .264.3l.891.12a.3.3 0 0 1 .248.213 6.642 6.642 0 0 0 .458 1.11.284.284 0 0 1-.025.323l-.492.652c-.145.189-.135.358-.025.467l1.731 1.731a.3.3 0 0 0 .4.025l.711-.542a.292.292 0 0 1 .328-.025 6.642 6.642 0 0 0 1.11.458.3.3 0 0 1 .213.248l.12.891a.306.306 0 0 0 .3.264h2.448a.306.306 0 0 0 .3-.264l.12-.891a.3.3 0 0 1 .213-.248 6.642 6.642 0 0 0 1.11-.458.284.284 0 0 1 .323.025l.652.492c.189.145.358.135.467.025l.856-.86.875-.871a.3.3 0 0 0 .025-.4l-.542-.711a.292.292 0 0 1-.025-.328 6.642 6.642 0 0 0 .458-1.11.3.3 0 0 1 .248-.213l.891-.12a.306.306 0 0 0 .264-.3v-2.445a.306.306 0 0 0-.253-.303zM16 18.487A2.487 2.487 0 1 1 18.487 16 2.488 2.488 0 0 1 16 18.487z"
                 data-name="Layer 2" opacity="1" data-original="#231f20" class="" />
         </symbol>
         <symbol id="desconectar" viewBox="0 0 32 32">
             <title>desconectar</title>
-            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1"
-                data-original="#e6e7e8" class="" />
+            <circle cx="16" cy="16" r="14" fill="#8e6d45" data-name="Layer 1" opacity="1" data-original="#e6e7e8"
+                class="" />
             <g fill="#231f20" data-name="Layer 2">
                 <path
                     d="M22.681 8.105H9.319a1.215 1.215 0 0 0-1.214 1.214v13.362A1.215 1.215 0 0 0 9.319 23.9h13.362a1.215 1.215 0 0 0 1.219-1.219v-3.644a1.215 1.215 0 1 0-2.429 0v2.429H10.534V10.534h10.932v2.429a1.215 1.215 0 1 0 2.429 0V9.319a1.215 1.215 0 0 0-1.214-1.214z"
@@ -109,8 +107,7 @@
             <path
                 d="M143.317 128.936c-16.159 3.974-26.036 20.295-22.063 36.454l25.297 102.862h74.708c6.729 0 13.302.671 19.673 1.916l65.151-12.881 11.321-7.794 6.949 9.405c7.476 1.939 98.025 48.497 98.527 48.773l-63.293-88-31.766 6.064a39.707 39.707 0 0 1-21.519 13.256c-88.023 20.51-81.936 19.436-87.987 19.436a39.636 39.636 0 0 1-27.267-10.816c-2.328-2.192 1.256 2.832-48.694-72.613l62.047 58.429c4.887 4.597 11.872 6.54 18.515 4.99h.002l78.962-18.398c5.89-1.372 10.991-5.301 13.737-11.114l61.838-11.805c6.805-1.298 11.272-7.87 9.972-14.677-1.297-6.788-7.89-11.265-14.678-9.972l-62.776 11.984a20.26 20.26 0 0 0-15.109-4.324c-1.69.204 3.417-.927-70.56 16.309l-56.189-52.912 59.009 32.251 13.301-3.099-8.483-34.492c-3.974-16.159-20.295-26.036-36.453-22.063l-52.172 12.831z"
                 fill="#8e6d45" opacity="1" data-original="#000000" />
-            <circle cx="155.791" cy="66.184" r="44.602" fill="#8e6d45" opacity="1"
-                data-original="#000000" />
+            <circle cx="155.791" cy="66.184" r="44.602" fill="#8e6d45" opacity="1" data-original="#000000" />
             <path
                 d="M221.259 289.581h-99.157L75.286 98.911c-5.019-20.443-25.633-32.97-46.091-28.01a38.196 38.196 0 0 0-28.099 46.204c73.508 300.193 68.658 279.346 68.658 282.22 0 7.3 5.918 13.217 13.217 13.217h7.473v15.326c0 2.217.663 4.277 1.793 6.004 1.961 2.996 5.342 4.98 9.191 4.98h27.507c3.849 0 7.229-1.983 9.191-4.98a10.923 10.923 0 0 0 1.793-6.004v-15.326h81.017v15.326c0 2.217.663 4.277 1.793 6.004 1.961 2.996 5.342 4.98 9.191 4.98h27.507c3.849 0 7.229-1.983 9.191-4.98a10.923 10.923 0 0 0 1.793-6.004v-15.326h18.706c7.3 0 13.217-5.917 13.217-13.217v-28.673c-.003-44.773-36.3-81.071-81.075-81.071zM450.257 376.706H406.482c6.202-2.076 11.632-6.473 14.829-12.762 6.463-12.715 1.395-28.26-11.318-34.723l-86.724-44.084a25.827 25.827 0 0 0-11.711-2.804l-.227.001-37.738.345c21.703 12.959 38.227 33.711 45.689 58.37l67.306 34.214a25.897 25.897 0 0 0 3.457 1.444h-27.099c-5.402 0-9.808 4.217-10.136 9.536-.013.21-.032.419-.032.632v41.811c0 5.616 4.552 10.168 10.168 10.168h87.312c5.616 0 10.168-4.553 10.168-10.168v-41.811c-.001-5.616-4.553-10.169-10.169-10.169z"
                 fill="#8e6d45" opacity="1" data-original="#000000" />
@@ -150,14 +147,13 @@
             <path
                 d="M32.889 25H5.111l.947 9h25.883zM28 41v.4A25.687 25.687 0 0 0 32.538 56h16.924A25.687 25.687 0 0 0 54 41.4V41a1 1 0 0 0-1-1H29a1 1 0 0 0-1 1zm13 2h2v2h-2zm-10 0h8v2h-8z"
                 fill="#8e6d45" opacity="1" data-original="#000000" class="" />
-            <rect width="32" height="4" x="3" y="19" rx="1" fill="#8e6d45" opacity="1"
-                data-original="#000000" class="" />
+            <rect width="32" height="4" x="3" y="19" rx="1" fill="#8e6d45" opacity="1" data-original="#000000"
+                class="" />
             <path d="M20 10a1 1 0 0 1 .293-.707L24.586 5 23 3.414l-5 5V13h2zM33 16a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1v1h28z"
                 fill="#8e6d45" opacity="1" data-original="#000000" class="" />
-            <circle cx="19" cy="44" r="4" fill="#8e6d45" opacity="1" data-original="#000000"
-                class="" />
-            <path d="M54 58H28a1 1 0 0 0-1 1 2 2 0 0 0 2 2h24a2 2 0 0 0 2-2 1 1 0 0 0-1-1z" fill="#8e6d45"
-                opacity="1" data-original="#000000" class="" />
+            <circle cx="19" cy="44" r="4" fill="#8e6d45" opacity="1" data-original="#000000" class="" />
+            <path d="M54 58H28a1 1 0 0 0-1 1 2 2 0 0 0 2 2h24a2 2 0 0 0 2-2 1 1 0 0 0-1-1z" fill="#8e6d45" opacity="1"
+                data-original="#000000" class="" />
             <path
                 d="M28 56h2.146a29.41 29.41 0 0 1-1.129-2H8.163l.454 4.314A2.994 2.994 0 0 0 11.6 61h13.956A3.959 3.959 0 0 1 25 59a3 3 0 0 1 3-3zM26 41.4V41a3 3 0 0 1 3-3h2.52l.211-2H6.269l1.684 16h20.141A27.713 27.713 0 0 1 26 41.4zM19 50a6 6 0 1 1 6-6 6.006 6.006 0 0 1-6 6zM37 30.586a3.414 3.414 0 0 0 0 4.828l1.293 1.293 1.414-1.414L38.414 34a1.415 1.415 0 0 1 0-2l.586-.586a3.414 3.414 0 0 0 0-4.828l-1.293-1.293-1.414 1.414L37.586 28a1.415 1.415 0 0 1 0 2zM45 30.586a3.414 3.414 0 0 0 0 4.828l1.293 1.293 1.414-1.414L46.414 34a1.415 1.415 0 0 1 0-2l.586-.586a3.414 3.414 0 0 0 0-4.828l-1.293-1.293-1.414 1.414L45.586 28a1.415 1.415 0 0 1 0 2zM60 41h-4v.4c0 .537-.025 1.071-.055 1.6H60a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-5.055a27.666 27.666 0 0 1-.659 2H60a3 3 0 0 0 3-3v-4a3 3 0 0 0-3-3z"
                 fill="#8e6d45" opacity="1" data-original="#000000" class="" />
@@ -221,270 +217,138 @@
     </svg>
 </div>
 
-<body class="bg-color-principal vw-100 mt-4" style="min-height: 200px">
-    <div class="container-fluid w-100 h-100">
+<body id="panel-control" class="vw-100" style="min-height: 200px">
+    <div class="container-fluid w-100 vh-100">
         @if (session('error'))
-            <div class="alert alert-danger position-absolute">
-                {{ session('error') }}
-            </div>
+        <div class="alert alert-danger position-absolute" >
+            {{ session('error') }}
+        </div>
         @endif
 
         <!-- Mostrar mensajes de éxito -->
         @if (session('success'))
-            <div class="alert alert-success position-absolute">
-                {{ session('success') }}
-            </div>
+        <div class="alert alert-success position-absolute ">
+            {{ session('success') }}
+        </div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger position-absolute ">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger position-absolute  ">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         <div class="row p-0 position-relative">
-            <div class=" bg-color-fondo position-sticky z-1 top-0 start-0  d-flex align-items-center fs-6">
-                <svg class="icon icono-normal">
+            <div class="position-sticky z-1 top-0 start-0  d-flex align-items-center fs-6">
+                <svg onclick="goBack()" class="icon icono-normal">
                     <use xlink:href="#devolver" />
                 </svg>
-                <button class="estilo-formulario" onclick="goBack()">Volver</button>
+                <button class="boton-volver" onclick="goBack()">Volver</button>
             </div>
         </div>
-        <div class="row p-3 w-100 h-25" style="min-height: 100px">
+        <div class="row p-1" style="min-height: 100px">
             <div class="w-100 h-auto img-fluid imagen-logo" id="imagen-logo" data-url="{{ route('inicio') }}"></div>
         </div>
-        <div class="row w-100" style="min-height: 100vh">
-            <div class="d-none w-20">
-                <div class="w-100 h-100 m-auto fs-6 text-nowrap ">
-                    <ul class="menu-general text-uppercase">
-                        <li class="p-2 texto-color-secundario"><a class="enlace"
-                                href="{{ route('panel-control.index', 'USER-formulario') }}">General</a></li>
-                        <li class="p-2 texto-color-secundario">Usuarios
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear
-                                        Usuario
-                                        Nuevo</a></li>
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarContenido', 'USER-editar') }}">Editar
-                                        Usuario
-                                        Existente</a></li>
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
-                                        Contraseñas</a>
-                                </li>
-                                <li class="p-1"><a class="enlace" href="{{ route('gestionGrupos') }}">Gestión de
-                                        grupos</a></li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Contenido
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear
-                                        nueva pagina</a>
-                                </li>
-                                <li class="p-1"><a class="enlace" href="{{ route('elegirPagina') }}">Crear nueva
-                                        seccion</a></li>
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('eliminarEditarPagina') }}">Eliminar o editar
-                                        seccion/página</a>
-                                </li>
-                                <li class="p-1"><a class="enlace" href="{{ route('galeriaImagenes') }}">Galeria
-                                        de imagenes y
-                                        videos</a></li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Clases y Horarios
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace" href="{{ route('horario.create') }}">Crear
-                                        nuevo registro
-                                        horario</a></li>
-                                <li class="p-1"><a class="enlace" href="{{ route('mostrarHorarios') }}">Editar
-                                        registro
-                                        horario</a>
-                                </li>
-                                <li class="p-1"><a class="enlace" href="{{ route('clase.create') }}">Crear nueva
-                                        clase</a></li>
-                                <li class="p-1"><a class="enlace" href="{{ route('mostrarClases') }}">Editar
-                                        clase</a></li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Pagos y Facturación
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace" href="{{ route('productos') }}">Gestionar
-                                        Productos</a>
-                                </li>
-                                <li class="p-1">Registrar pagos</li>
-                                <li class="p-1">Generar facturacion</li>
-                                <li class="p-1">Seguimiento de alumnos</li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Comunicacion y Notificaciones
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('mostrarNotificaciones') }}">Mostrar notificacion</a></li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Analisis y Reportes
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6">
-                                <li class="p-1"><a class="enlace"
-                                        href="{{ route('informesGenerales') }}">Informes Generales</a></li>
-                                <li class="p-1">Encuestas alumnos</li>
-                            </ul>
-                        </li>
-                        <li class="p-2 texto-color-secundario">Configuracion del sitio
-                            <svg class="icon col-2 icono-normal">
-                                <use xlink:href="#flecha-abajo-blanco" />
-                            </svg>
-                            <ul class="submenu fs-6 p-2">
-                                <li class="p-1">Ajustes generales</li>
-                                <li class="p-1">Opciones de seguridad</li>
-                                <li class="p-1">Herramientas externas</li>
-                            </ul>
-                        </li>
-
+        <div class="row h-100 p-0">
+            <ul id="lista-elementos" class="nav nav-tabs w-100 h-10">
+                <li class="nav-item dropdown col">
+                    <a class="nav-link" href=" {{ route('panel-control.index', 'USER-formulario' ) }}">General</a>
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Usuarios</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear
+                                Usuario
+                                Nuevo</a></li>
+                        <li><a class="dropdown-item" href="{{ route('mostrarContenido', 'USER-editar') }}">Editar
+                                Usuario
+                                Existente</a></li>
+                        <li><a class="dropdown-item"
+                                href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
+                                Contraseñas</a></li>
+                        <li><a class="dropdown-item" href="{{ route('gestionGrupos') }}">Gestión de
+                                Grupos</a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="container-fluid vw-100">
-                <div class="row">
-
-                    <ul
-                        class="nav nav-tabs w-100  fs-6 text-uppercase text-center justify-content-center row-cols-1 p-4">
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link""
-                                href="{{ route('panel-control.index', 'USER-formulario') }}">General</a>
-
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Contenido</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear
+                                nueva
+                                pagina</a></li>
+                        <li><a class="dropdown-item" href="{{ route('elegirPagina') }}">Crear nueva
+                                seccion</a></li>
+                        <li><a class="dropdown-item" href="{{ route('eliminarEditarPagina') }}">Eliminar o
+                                editar seccion/página</a></li>
+                        <li><a class="dropdown-item" href="{{ route('galeriaImagenes') }}">Galeria de
+                                imagenes y videos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Clases y Horarios</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('horario.create') }}">Crear nuevo
+                                registro horario</a></li>
+                        <li><a class="dropdown-item" href="{{ route('mostrarHorarios') }}">Editar registro
+                                horario</a></li>
+                        <li><a class="dropdown-item" href="{{ route('clase.create') }}">Crear nueva clase</a>
                         </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Usuarios</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item"
-                                        href="{{ route('mostrarContenido', 'USER-formulario') }}">Crear Usuario
-                                        Nuevo</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('mostrarContenido', 'USER-editar') }}">Editar Usuario
-                                        Existente</a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('mostrarContenido', 'USER-gestionContrasena') }}">Gestion
-                                        Contraseñas</a></li>
-                                <li><a class="dropdown-item" href="{{ route('gestionGrupos') }}">Gestión de
-                                        Grupos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Contenido</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item"
-                                        href="{{ route('mostrarContenido', 'CONT-crearPagina') }}">Crear nueva
-                                        pagina</a></li>
-                                <li><a class="dropdown-item" href="{{ route('elegirPagina') }}">Crear nueva
-                                        seccion</a></li>
-                                <li><a class="dropdown-item" href="{{ route('eliminarEditarPagina') }}">Eliminar o
-                                        editar seccion/página</a></li>
-                                <li><a class="dropdown-item" href="{{ route('galeriaImagenes') }}">Galeria de
-                                        imagenes y videos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Clases y Horarios</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item" href="{{ route('horario.create') }}">Crear nuevo
-                                        registro horario</a></li>
-                                <li><a class="dropdown-item" href="{{ route('mostrarHorarios') }}">Editar registro
-                                        horario</a></li>
-                                <li><a class="dropdown-item" href="{{ route('clase.create') }}">Crear nueva clase</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('mostrarClases') }}">Editar clase</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Pagos y Facturación</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item" href="{{ route('productos') }}">Gestionar Productos</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Registrar pagos</a></li>
-                                <li><a class="dropdown-item" href="#">Generar facturacion</a></li>
-                                <li><a class="dropdown-item" href="#">Seguimiento de alumnos</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Comunicacion y Notificaciones</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item" href="{{ route('mostrarNotificaciones') }}">Mostrar
-                                        notificacion</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown col">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                                role="button" aria-expanded="false">Analisis y Reportes</a>
-                            <ul class="dropdown-menu w-100 text-center">
-                                <li><a class="dropdown-item" href="{{ route('informesGenerales') }}">Informes
-                                        Generales</a></li>
-                            </ul>
+                        <li><a class="dropdown-item" href="{{ route('mostrarClases') }}">Editar clase</a>
                         </li>
                     </ul>
-                </div>
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Pagos y Facturación</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('productos') }}">Gestionar Productos</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Registrar pagos</a></li>
+                        <li><a class="dropdown-item" href="#">Generar facturacion</a></li>
+                        <li><a class="dropdown-item" href="#">Seguimiento de alumnos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Comunicacion y Notificaciones</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('mostrarNotificaciones') }}">Mostrar
+                                notificacion</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown col">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-expanded="false">Analisis y Reportes</a>
+                    <ul class="dropdown-menu w-100 text-center">
+                        <li><a class="dropdown-item" href="{{ route('informesGenerales') }}">Informes
+                                Generales</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-
-                <div class="container-fluid" style="min-height: 50%">
-
-                    <div style="min-height: 400px"
-                        class="bg-color-fondo w-100 h-100 border border-1 rounded-5 border-warning-subtle d-flex justify-content-center align-items-center flex-column position-relative">
-                        @if (session('success'))
-                            <div>
-                                <p>{{ session('success') }}</p>
-                                <span id=cerrarBoton></span>
-                            </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div>
-                                <p>{{ session('error') }}</p>
-                                <span id=cerrarBoton></span>
-                            </div>
-                        @endif
-                        @if ($tipo)
-                            @yield($tipo)
-                        @else
-                            @yield('content')
-                        @endif
-                    </div>
+            <div id="contenedor-dinamico" class="container-fluid h-90 p-0" style="min-height: 50%">
+                <div style="min-height: 400px"
+                    class="w-100 h-100 d-flex justify-content-center align-items-center flex-column position-relative">
+                    
+                    @if ($tipo)
+                    @yield($tipo)
+                    @else
+                    @yield('content')
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.submenu').hide();
 
-            $('.menu-general li').click(function() {
+            $('.menu-general li').click(function () {
                 console.log("hola cargando funcion")
                 $('.submenu').hide();
                 $(this).find('.submenu').show();

@@ -2,31 +2,31 @@
 
 @section('USER-editar')
     <div class="container-fluid  d-flex justify-content-center align-items-center h-100 w-100 rounded-5 ">
-        <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
+        <table id="tabla-editar-usuarios" class="w-100 fs-5  text-center">
             <thead>
                 <tr>
-                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>
-                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Apellido</th>
-                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Tipo Usuario</th>
-                    <th class="fs-5 texto-color-titulo border border-1 border-fondo">Opciones</th>
+                    <th class="fs-5 border border-1 border-fondo">Nombre</th>
+                    <th class="fs-5 border border-1 border-fondo">Apellido</th>
+                    <th class="fs-5 border border-1 border-fondo">Tipo Usuario</th>
+                    <th class="fs-5 border border-1 border-fondo">Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($datos['usuarios'] as $usuario)
                     <tr>
-                        <td class="texto-color-resalte border border-1 border-fondo">{{ $usuario->nombre }}</td>
-                        <td class="texto-color-resalte border border-1 border-fondo">{{ $usuario->apellidos }}</td>
-                        <td class="texto-color-resalte border border-1 border-fondo">
+                        <td class=" border border-1 border-fondo">{{ $usuario->nombre }}</td>
+                        <td class=" border border-1 border-fondo">{{ $usuario->apellidos }}</td>
+                        <td class=" border border-1 border-fondo">
                             {{ $usuario->tipo_usuario ?? 'S/A' }}</td>
-                        <td class="texto-color-resalte border border-1 border-fondo">
+                        <td class=" border border-1 border-fondo">
                             <div class=" d-flex flex-row justify-content-center align-items-center">
                                 <form class="formulario"
                                     action="{{ route('mostrarFormulario', ['usuario' => $usuario->id, 'tipo' => 'USER-editar-formulario']) }}"
                                     method="get">
                                     @csrf
-                                    <input class="texto-color-resalte estilo-formulario" type="submit" value="Editar">
+                                    <input  id="input-editar" class=" estilo-formulario" type="submit" value="Editar">
                                 </form>
-                                <input class="texto-color-resalte estilo-formulario" type="button" value="Eliminar"
+                                <input id="input-eliminar" class=" estilo-formulario" type="button" value="Eliminar"
                                     onclick="eliminarUsuario({{ $usuario->id }})">
                             </div>
                         </td>

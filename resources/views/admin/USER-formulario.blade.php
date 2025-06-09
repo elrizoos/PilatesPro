@@ -1,15 +1,71 @@
 @extends('admin/panel-control')
 
 @section('USER-formulario')
-    <div class="d-flex align-items-center justify-content-center h-100 ">
-        <form class="formulario" class="formulario h-100 container-fluid  fs-5  p-5"
-            action="{{ isset($usuario) ? route('usuario.update', ['usuario' => $usuario->id]) : route('usuario.create') }}"
-            method="{{ isset($usuario) ? 'post' : 'get' }}">
-            @csrf
-            @isset($usuario)
-                @method('PUT')
-            @endisset
-            <div class="row">
+<div class="d-flex align-items-center justify-content-center h-100 ">
+    <form class="formulario-editar" class="formulario h-100 container-fluid  fs-5  p-5"
+        action="{{ isset($usuario) ? route('usuario.update', ['usuario' => $usuario->id]) : route('usuario.create') }}"
+        method="{{ isset($usuario) ? 'post' : 'get' }}">
+        @csrf
+        @isset($usuario)
+        @method('PUT')
+        @endisset
+
+        <div class="row">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" name="name" id="name" value="{{ isset($usuario) ? $usuario->nombre : '' }}">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" id="apellidos"
+                    value="{{ isset($usuario) ? $usuario->apellidos : '' }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" name="dni" id="dni" value="{{ isset($usuario) ? $usuario->dni : '' }}">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input type="text" name="telefono" id="telefono"
+                    value="{{ isset($usuario) ? $usuario->telefono : '' }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" value="{{ isset($usuario) ? $usuario->email : '' }}">
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" name="direccion" id="direccion"
+                    value="{{ isset($usuario) ? $usuario->direccion : '' }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
+                    value="{{ isset($usuario) ? $usuario->fecha_nacimiento : '' }}">
+            </div>
+        </div>
+        <div class="row row-tipo-usuario">
+            <select class="fs-6" name="tipo_usuario" id="tipo-usuario">
+                <option value="Admin" {{ isset($usuario) && $usuario->tipo_usuario === 'Admin' ? 'selected' : '' }}>
+                    Admin</option>
+                <option value="Alumno" {{ isset($usuario) && $usuario->tipo_usuario === 'Alumno' ? 'selected' : '' }}>
+                    Alumno</option>
+                <option value="Profesor" {{ isset($usuario) && $usuario->tipo_usuario === 'Profesor' ? 'selected' : ''
+                    }}>Profesor
+                </option>
+            </select>
+        </div>
+        <div class="row input-submit">
+            <input type="submit" value="Guardar usuario">
+        </div>
+        <!--
+                <div class="row">
                 <div class="col">
                     <input class="p-1 estilo-formulario w-100" type="text" name="name" id="nombre"
                         placeholder="Nombre" value="{{ isset($usuario) ? $usuario->nombre : '' }}">
@@ -124,6 +180,7 @@
             <div class="row">
                 <input class="estilo-formulario estilo-formulario-enviar" type="submit" value="Enviar">
             </div>
-        </form>
-    </div>
+            -->
+    </form>
+</div>
 @endsection
