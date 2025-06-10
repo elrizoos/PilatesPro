@@ -7,22 +7,17 @@ use App\Models\Grupo;
 use App\Models\Horario;
 use App\Models\Imagen;
 use App\Models\ImagenesSeccion;
-use App\Models\ImagenSeccion;
-use App\Models\ImagenSeccione;
-use App\Models\Pagina;
-use App\Models\Pago;
 use App\Models\Panel;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Models\PaqueteUsuario;
 use App\Models\Producto;
 use App\Models\Reserva;
-use App\Models\SeccionContenido;
 use App\Models\Subscription;
 use App\Models\User;
 use Carbon\Carbon;
 use Hash;
+use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Validator;
 
 class PanelController extends Controller
@@ -31,6 +26,7 @@ class PanelController extends Controller
      * Display a listing of the resource.
      */
     protected $datos;
+
     public function __construct()
     {
         $this->datos = [
@@ -38,13 +34,16 @@ class PanelController extends Controller
             'profesores' => User::where('tipo_usuario', '=', 'profesor')->get(),
             'usuarios' => User::all(),
         ];
+        $this->orden = '';
+        $this->elementoOrden = '';
     }
+
     public function index()
     {
         $alumnos = User::where('tipo_usuario', '=', 'alumno')->get();
         $profesores = User::where('tipo_usuario', '=', 'profesor')->get();
         $reservas = Reserva::get();
-        $tipo = "";
+        $tipo = '';
         $totalUsuarios = User::count();
         $clasesProgramadas = Horario::where('fecha_especifica', '>=', Carbon::now())->count();
 
@@ -58,42 +57,42 @@ class PanelController extends Controller
         $tareasRecordatorios = [
             'Revisar pagos pendientes',
             'Actualizar calendario de clases',
-            'Enviar boletín mensual'
+            'Enviar boletín mensual',
         ];
 
         // Obtener configuraciones rápidas
         $configuracionesRapidas = [
             'Configurar Horarios',
             'Cambiar Tarifas',
-            'Políticas del Sitio'
+            'Políticas del Sitio',
         ];
 
         // Información del sistema
         $infoSistema = [
             'Versión del Software' => '1.0.0',
-            'Estado del Servidor' => 'Activo'
+            'Estado del Servidor' => 'Activo',
         ];
 
         // Soporte y ayuda
         $soporteAyuda = [
             'Documentación' => '#',
-            'Contactar Soporte Técnico' => '#'
+            'Contactar Soporte Técnico' => '#',
         ];
 
         // Reportes rápidos
         $reportesRapidos = [
             'Generar Reporte de Usuarios' => '#',
-            'Generar Reporte de Clases' => '#'
+            'Generar Reporte de Clases' => '#',
         ];
 
         // Noticias y actualizaciones
         $noticiasActualizaciones = [
-            'Ver Noticias Recientes' => '#'
+            'Ver Noticias Recientes' => '#',
         ];
 
         // Seguridad
         $seguridad = [
-            'Configurar Seguridad' => '#'
+            'Configurar Seguridad' => '#',
         ];
 
         return view('admin.dashboard', compact(
@@ -169,29 +168,56 @@ class PanelController extends Controller
     public function mostrarContenido($tipo)
     {
         $datos = $this->datos;
-        $ruta = 'admin.' . $tipo;
+        $ruta = 'admin.'.$tipo;
+        if(!$this->orden == null){
+            $orden = $this->orden;
+            $elementoOrden = $this->elementoOrden;
+            return view($ruta, compact('tipo', 'datos', 'orden', 'elementoOrden'));
+        }
         return view($ruta, compact('tipo', 'datos'));
     }
 
+    public function mostrarContenidoOrdenado($tipo, $orden, $elementoOrden) {
+       try {
+        //dd(User::all()->sortBy('tipo_usuario'));
+        switch($orden){
+            case 'ASC':
+                $this->datos['usuarios'] = User::all()->sortBy($elementoOrden);
+                break;
+            case 'DESC':
+                $this->datos['usuarios'] = User::all()->sortByDesc($elementoOrden);
+        }
 
+        $this->orden = $orden;
+        $this->elementoOrden = $elementoOrden;
 
+        //dd($this->datos);
+        Log::info('funcionando correctamente');
+        return $this->mostrarContenido($tipo);
+       } catch(\Exception $e){
+        Log::info('Se ha producido un error');
+        Log::error('SE HA PRODUCIDO UN ERROR EN FUNCION mostrarContenidoOrdenado' . $e->getMessage());
+        return redirect()->back()->with('error', 'Se ha producido un error' . $e->getMessage());
+        
+       }
 
+    }
 
     public function mostrarFormulario($usuario)
     {
         $usuario = User::where('id', '=', $usuario)->first();
         $tipo = 'USER-formulario';
+
         // *  dd($usuario);
         return view('admin.USER-formulario', compact('usuario', 'tipo'));
 
     }
 
-
-
     public function mostrarFormularioContrasena($usuarioId)
     {
         $usuario = User::find($usuarioId);
         $tipo = 'USER-gestionContrasena-formulario';
+
         return view('admin.USER-gestionContrasena-formulario', compact('usuario', 'tipo'));
     }
 
@@ -214,6 +240,7 @@ class PanelController extends Controller
         $usuario->update([
             'password' => Hash::make($request->input('password')),
         ]);
+
         return redirect()->back()->with('success', 'Información actualizada correctamente.');
 
     }
@@ -225,6 +252,7 @@ class PanelController extends Controller
 
         $imagenesSeccion = ImagenesSeccion::all();
         $tipo = 'galeria-inicio';
+
         return view('admin.galeria.inicio', compact('imagenesPerfil', 'imagenesSeccion', 'tipo'));
     }
 
@@ -269,13 +297,13 @@ class PanelController extends Controller
         $suscripcionMaxima = null;
         $maxSucripcion = 0;
         foreach ($suscripcionesAgrupadas as $suscripcion) {
-            \Log::info('Maximo al inicio: ' . $maxSucripcion);
+            \Log::info('Maximo al inicio: '.$maxSucripcion);
 
             if ($suscripcion->count() >= $maxSucripcion) {
                 $maxSucripcion = $suscripcion->count();
                 $suscripcionMaxima = $suscripcion[0];
-                \Log::info('Actualizando maximo ' . $maxSucripcion);
-                \Log::info('ACTUALIZANDO SUSCRIPCION: ' . $suscripcion[0]);
+                \Log::info('Actualizando maximo '.$maxSucripcion);
+                \Log::info('ACTUALIZANDO SUSCRIPCION: '.$suscripcion[0]);
             }
         }
         $nombreSuscripcionFav = $suscripcionMaxima ? $suscripcionMaxima->name : 'N/A';
@@ -283,27 +311,22 @@ class PanelController extends Controller
         $paquetesAgrupados = PaqueteUsuario::all()->groupBy('producto_id');
         $paqueteMaximo = null;
         $maxPaquete = 0;
-        \Log::info('Paquetes Agrupados: ' . $paquetesAgrupados);
+        \Log::info('Paquetes Agrupados: '.$paquetesAgrupados);
 
         foreach ($paquetesAgrupados as $paquete) {
-            \Log::info('Maximo al inicio: ' . $maxPaquete);
+            \Log::info('Maximo al inicio: '.$maxPaquete);
 
             if ($paquete->count() >= $maxPaquete) {
                 $maxPaquete = $paquete->count();
                 $paqueteMaximo = $paquete[0];
-                \Log::info('Actualizando maximo ' . $maxPaquete);
-                \Log::info('ACTUALIZANDO paquete: ' . $paquete[0]);
+                \Log::info('Actualizando maximo '.$maxPaquete);
+                \Log::info('ACTUALIZANDO paquete: '.$paquete[0]);
             }
         }
         $paqueteFav = $paqueteMaximo ? Producto::find($paqueteMaximo->producto_id)->name : 'N/A';
 
         $tipo = 'INFO-inicio';
+
         return view('admin.INFO-inicio', compact('asistencias', 'totalIngresosSuscripcionesActivas', 'totalIngresosPaquetes', 'paqueteFav', 'nombreSuscripcionFav', 'tipo'));
     }
-
-
-
-
-
-
 }

@@ -2394,11 +2394,26 @@ input[type="submit"]:active {
     border-radius: 1rem;
     padding: 1rem;
 }
+#tabla-editar-usuarios #input-eliminar:hover {
+    background: rgb(151, 12, 12);
+    transition: all .5s ease-in;
+}
 
 #tabla-editar-usuarios #input-editar {
     padding: 1rem;
     font-size: 1.3rem;
 
+}
+
+#tabla-editar-usuarios #casilla-opciones {
+    width: max-content;
+    gap: 1rem;
+    margin: 0 auto;
+
+}
+
+#tabla-editar-usuarios th a {
+    color: $colorDoradoClaro;
 }
 
 //RESPONSIVE DESING

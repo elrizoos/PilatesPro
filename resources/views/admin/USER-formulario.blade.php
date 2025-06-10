@@ -24,11 +24,14 @@
         <div class="row">
             <div class="form-group">
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni" value="{{ isset($usuario) ? $usuario->dni : '' }}">
+                <input pattern="^[0-9]{8}[A-Z]$" maxlength="9"
+                    title="Debe contener 8 números seguidos de una letra mayúscula (ej: 12345678Z)" required type="text"
+                    name="dni" id="dni" value="{{ isset($usuario) ? $usuario->dni : '' }}">
             </div>
             <div class="form-group">
                 <label for="telefono">Telefono:</label>
-                <input type="text" name="telefono" id="telefono"
+                <input type="text" name="telefono" id="telefono" pattern="^[0-9]{9}$" maxlength="9"
+                    title="Debe ser un numero de telefono con formato valido" required
                     value="{{ isset($usuario) ? $usuario->telefono : '' }}">
             </div>
         </div>
@@ -49,6 +52,12 @@
                 <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"
                     value="{{ isset($usuario) ? $usuario->fecha_nacimiento : '' }}">
             </div>
+            @if(!isset($usuario))
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" id="password">
+            </div>
+            @endif
         </div>
         <div class="row row-tipo-usuario">
             <select class="fs-6" name="tipo_usuario" id="tipo-usuario">

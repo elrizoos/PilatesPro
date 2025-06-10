@@ -152,6 +152,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/mostrarContenido/elegirPagina', [PaginaController::class, 'elegirPagina'])->name('elegirPagina');
 
     Route::get('/admin/panel-control/mostrarContenido/{tipo}', [PanelController::class, 'mostrarContenido'])->name('mostrarContenido');
+    Route::get('/admin/panel-control/mostrarContenido/{tipo}/{orden}/{elementoOrden}', [PanelController::class, 'mostrarContenidoOrdenado'])->name('mostrarContenidoOrdenado');
     Route::get('/admin/panel-control/inicio', [PanelController::class, 'index'])->name('panel-control');
     Route::get('/admin/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
     Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
@@ -194,6 +195,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/informesGenerales', [PanelController::class, 'informesGenerales'])->name('informesGenerales');
     Route::get('/admin/panel-control/asistencia/marcarAsistencia/{reserva}/{user}', [ReservasController::class, 'marcarAsistencia'])->name('asistencia.create');
 
+    
     Route::resource('usuario/imagen', ImagenController::class);
     Route::resource('usuario/reservas', ReservasController::class);
     Route::resource('/admin/panel-control', PanelController::class);

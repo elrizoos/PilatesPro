@@ -2,8 +2,8 @@
 
 @section('GRUP-inicio')
     <div
-        class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100 bg-color-negro rounded-5">
-        <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
+        class="container-fluid d-flex flex-column justify-content-center align-items-center h-100 w-100 ">
+        <table class="table tabla-dorada w-100 fs-5  text-center">
             <thead>
                 <tr class="text-uppercase">
                     <th class="fs-5 texto-color-titulo border border-1 border-fondo">ID</th>
