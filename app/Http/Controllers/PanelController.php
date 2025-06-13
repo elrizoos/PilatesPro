@@ -167,14 +167,13 @@ class PanelController extends Controller
 
     public function mostrarContenido($tipo)
     {
+        //dd($this->orden, $this->elementoOrden);
         $datos = $this->datos;
         $ruta = 'admin.'.$tipo;
-        if(!$this->orden == null){
+        
             $orden = $this->orden;
             $elementoOrden = $this->elementoOrden;
             return view($ruta, compact('tipo', 'datos', 'orden', 'elementoOrden'));
-        }
-        return view($ruta, compact('tipo', 'datos'));
     }
 
     public function mostrarContenidoOrdenado($tipo, $orden, $elementoOrden) {

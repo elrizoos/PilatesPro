@@ -11,30 +11,53 @@ $ordenTipo = ($elementoOrden == 'tipo_usuario' && $orden == 'ASC') ? 'ASC' : 'DE
         <thead>
             <tr>
 
-                <th class="fs-5 border border-1 border-fondo"><a
+                <th class="fs-5 border border-1 border-fondo"><a id="enlace-ordenacion"
                         href="{{ route('mostrarContenidoOrdenado', ['tipo' => 'USER-editar', 'orden' => $ordenNombre == 'ASC' ? 'DESC' : 'ASC', 'elementoOrden' => 'nombre']) }}"
                         class="d-flex justify-content-center align-items-center">Nombre
                         @if ($elementoOrden === 'nombre')
-                        <img src="{{ ($ordenNombre == 'ASC') ? asset('svg/keyboard_down.svg') : asset('svg/keyboard_up.svg') }}" alt="Flecha">
-
+                        @if ($orden === 'ASC')
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                        </svg>
+                        @else
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" />
+                        </svg>
+                        @endif
                         @endif
                     </a>
                 </th>
-                <th class="fs-5 border border-1 border-fondo"><a
+                <th class="fs-5 border border-1 border-fondo"><a id="enlace-ordenacion"
                         href="{{ route('mostrarContenidoOrdenado', ['tipo' => 'USER-editar', 'orden' => $ordenApellidos == 'ASC' ? 'DESC' : 'ASC', 'elementoOrden' => 'apellidos']) }}"
                         class="d-flex justify-content-center align-items-center">Apellido
                         @if ($elementoOrden === 'apellidos')
-                        <img src="{{ ($ordenApellidos == 'ASC') ? asset('svg/keyboard_down.svg') : asset('svg/keyboard_up.svg') }}" alt="Flecha">
+                        @if ($orden === 'ASC')
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                        </svg>
+                        @else
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" />
+                        </svg>
+                        @endif
 
                         @endif
                     </a>
                 </th>
-                <th class="fs-5 border border-1 border-fondo"><a
+                <th class="fs-5 border border-1 border-fondo"><a id="enlace-ordenacion"
                         href="{{ route('mostrarContenidoOrdenado', ['tipo' => 'USER-editar', 'orden' => $ordenTipo == 'ASC' ? 'DESC' : 'ASC', 'elementoOrden' => 'tipo_usuario']) }}"
                         class="d-flex justify-content-center align-items-center">Tipo
                         de usuario
                         @if ($elementoOrden === 'tipo_usuario')
-                        <img src="{{ ($ordenTipo == 'ASC') ? asset('svg/keyboard_down.svg') : asset('svg/keyboard_up.svg') }}" alt="Flecha">
+                        @if ($orden==='ASC' ) <svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                            viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                        </svg>
+                        @else
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z" />
+                        </svg>
+                        @endif
 
                         @endif
                     </a></th>

@@ -69,7 +69,6 @@ $(document).ready(function () {
     document.querySelectorAll("input, textarea").forEach((input) => {
         input.setAttribute("autocomplete", "off");
         // Evita autocompletado usando un nombre "falso"
-       
     });
 });
 function añadirEvento() {
