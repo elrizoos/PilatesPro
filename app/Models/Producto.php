@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'stripe_id',
         'name',
@@ -17,6 +18,7 @@ class Producto extends Model
         'quantity',
         'precio_stripe_id',
     ];
+
     public function subscription()
     {
         return $this->hasMany(Subscription::class);
@@ -32,13 +34,9 @@ class Producto extends Model
         return $this->hasOne(InfoSuscripcione::class, 'producto_id');
     }
 
-    /**
-     * Get the paquete that owns the Producto
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+   
     public function paquete()
     {
-        return $this->belongsTo(PaqueteUsuario::class, 'id');
+        return $this->hasMany(PaqueteUsuario::class, 'producto_id');
     }
 }

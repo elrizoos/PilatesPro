@@ -4,7 +4,7 @@
     <div class="container-fluid w-100 h-100 overflow-auto">
         <div class="row">
             <div class="col">
-                <ul class="fs-5 nav nav-tabs" id="tabImagenes" role="tablist">
+                <ul class="fs-5 nav nav-tabs justify-content-center align-items-center position-fixed" id="tabImagenes" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="fs-5 nav-link" href="" id="perfil-tab" data-bs-toggle="tab"
                             data-bs-target="#imagenes-perfil" role="tab" aria-controls="imagenes-perfil"
@@ -17,9 +17,9 @@
                     </li>
                 </ul>
                 <div class="tab-content w-100 h-100" id="tabImagenesContent">
-                    <div class="tab-pane fade container-fluid" id="imagenes-perfil" role="tabpanel"
+                    <div class="tab-pane fade container-fluid p-4" id="imagenes-perfil" role="tabpanel"
                         aria-labelledby="imagenes-perfil" tabindex="0">
-                        <h2 id="tituloImagenesPerfil">Imágenes de Perfil</h2>
+                        <h2 id="tituloImagenesPerfil" class="w-100 text-center text-black">Imágenes de Perfil</h2>
                         <div class=" row row-cols-3" id="galeriaPerfil">
                             @foreach ($imagenesPerfil as $imagen)
                                 <div class="col d-flex justify-content-center align-items-center p-4">
@@ -29,9 +29,9 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="tab-pane fade container-fluid" id="imagenes-seccion" role="tabpanel"
+                    <div class="tab-pane fade container-fluid p-4" id="imagenes-seccion" role="tabpanel"
                         aria-labelledby="imagenes-seccion" tabindex="0">
-                        <h2 id="tituloImagenesSeccion">Imágenes de Sección</h2>
+                        <h2 id="tituloImagenesSeccion" class="w-100 text-center text-black">Imágenes de Sección</h2>
                         <div class=" row row-cols-3" id="galeriaSeccion">
                             @foreach ($imagenesSeccion as $imagen)
                                 <div class="col d-flex justify-content-center align-items-center p-4">

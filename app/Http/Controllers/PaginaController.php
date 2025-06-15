@@ -97,7 +97,7 @@ class PaginaController extends Controller
     public function edit(Pagina $pagina)
     {
         Log::debug('Pagina edit', ['pagina' => $pagina]);
-        dd($pagina);
+        //dd($pagina);
         $tipo = 'CONT-crearPagina';
 
         return view('admin.CONT-crearPagina', compact('pagina', 'tipo'));
@@ -159,6 +159,9 @@ class PaginaController extends Controller
     public function elegirPagina()
     {
         $paginas = Pagina::all();
+        if($paginas->isEmpty()){
+            return redirect()->route('crearPagina')->with('error', 'No exite ninguna pagina aún. Por favor, crea una antes.');
+        }
         $tipo = 'CONT-elegirPagina';
 
         return view('admin.CONT-elegirPagina', compact('paginas', 'tipo'));

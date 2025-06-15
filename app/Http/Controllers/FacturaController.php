@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factura;
-use App\Http\Controllers\Controller;
+use App\Models\PaqueteUsuario;
+use App\Models\Subscription as Suscripcion;
 use App\Models\User;
 use Auth;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Stripe\Invoice;
 use Stripe\InvoiceItem;
-use Stripe\PaymentIntent;
 use Stripe\Stripe;
 use Stripe\Subscription;
-use Barryvdh\DomPDF\Facade\PDF;
 
 class FacturaController extends Controller
 {
@@ -74,12 +73,13 @@ class FacturaController extends Controller
         //
     }
 
-    public function generarFactura($customerID, $precio, $descripcion, $priceID = null, $tipoProducto = 'paquete')
+    public function generarFactura($customerID, $precio, $descripcion, $priceID, $tipoProducto, $fecha = null, $usuario = null)
     {
+        //dd("entrando fyncui");
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $usuario = Auth::user();
-
+        $user = $usuario != null ? $usuario : Auth::user();
+        $usuario = User::find($user);
         try {
             // Verificar que el precio no sea cero
             if ($precio <= 0) {
@@ -102,7 +102,7 @@ class FacturaController extends Controller
                     'auto_advance' => true, // Auto-finaliza la factura
                 ]);
 
-                \Log::debug('Factura creada: ' . json_encode($factura));
+                \Log::debug('Factura creada: '.json_encode($factura));
                 \Log::debug('Creando InvoiceItem');
 
                 // Crear un InvoiceItem
@@ -114,7 +114,7 @@ class FacturaController extends Controller
                     'invoice' => $factura->id,
                 ]);
 
-                \Log::debug('InvoiceItem creado: ' . json_encode($invoiceItem));
+                \Log::debug('InvoiceItem creado: '.json_encode($invoiceItem));
 
                 // Finalizar la factura
                 \Log::debug('Finalizando factura');
@@ -125,7 +125,7 @@ class FacturaController extends Controller
                 $factura = Invoice::retrieve($factura->id, ['expand' => ['lines']]);
             }
 
-            \Log::debug('Factura obtenida: ' . json_encode($factura));
+            \Log::debug('Factura obtenida: '.json_encode($factura));
 
             if (count($factura->lines->data) == 0) {
                 return redirect()->back()->with('error', 'No se ha encontrado ningún ítem en la factura.');
@@ -149,7 +149,7 @@ class FacturaController extends Controller
 
             $facturaArray = [
                 'numero' => $factura->number,
-                'fecha_emision' => now(),
+                'fecha_emision' => $fecha ?? now(),
                 'fecha_vencimiento' => now()->addMonth(),
                 'items' => $factura->lines->data,
                 'subtotal' => number_format($factura->subtotal / 100, 2),
@@ -164,37 +164,39 @@ class FacturaController extends Controller
             $pdf = PDF::loadView('facturaciones.factura', $data);
 
             // Guardar el PDF en storage
-            $pdfFilePath = 'facturas/' . time() . 'factura_user_' . $usuario->id . '_idFactura_' . $factura->number . '.pdf';
-            Storage::put('public/' . $pdfFilePath, $pdf->output());
+            $pdfFilePath = 'facturas/'.time().'factura_user_'.$usuario->id.'_idFactura_'.$factura->number.'.pdf';
+            Storage::disk('public')->put($pdfFilePath, $pdf->output());
 
+            \Log::info('Guardada la factura en storage');
             // Guardar información de la factura en la base de datos
             $facturaNueva = new Factura();
-            $facturaNueva->fecha_emision = now();
+            $facturaNueva->fecha_emision = $fecha ?? now();
             $facturaNueva->monto_total = $facturaArray['total'];
             $facturaNueva->stripe_id = $factura->id;
             $facturaNueva->alumno_id = $usuario->id;
             $facturaNueva->pdf = $pdfFilePath;
             $facturaNueva->save();
 
-            \Log::debug("Factura generada correctamente");
+            \Log::debug('Factura generada correctamente');
+
             return true;
         } catch (\Throwable $th) {
-            \Log::debug("Error en guardar factura: " . $th->getMessage());
-            return redirect()->back()->withErrors(['message' => 'Hubo un problema al generar la factura: ' . $th->getMessage()]);
+            \Log::debug('Error en guardar factura: '.$th->getMessage());
+
+            return redirect()->back()->withErrors(['message' => 'Hubo un problema al generar la factura: '.$th->getMessage()]);
         }
     }
-
-
 
     public function descargarFactura($filename)
-    {
-        $filePath = 'public/facturas/' . $filename;
-        if (Storage::exists($filePath)) {
-            return Storage::download($filePath);
-        } else {
-            return redirect()->back()->with('error', 'La factura no se encuentra disponible.');
-        }
+{   //dd($filename);
+    $filePath = 'facturas/' . $filename;
+
+    if (Storage::disk('public')->exists($filePath)) {
+        return Storage::disk('public')->download($filePath);
+    } else {
+        return redirect()->back()->with('error', 'La factura no se encuentra disponible.');
     }
+}
 
     public function regenerarFacturas()
     {
@@ -204,19 +206,20 @@ class FacturaController extends Controller
         Factura::truncate();
 
         $usuarios = User::all(); // Ajusta esto según tu modelo de usuario
-        \Log::info('Número total de usuarios: ' . $usuarios->count());
+        \Log::info('Número total de usuarios: '.$usuarios->count());
 
         foreach ($usuarios as $usuario) {
             $customerID = $usuario->stripe_id;
 
-            \Log::info('Procesando usuario ' . $usuario->id . ' de ' . $usuarios->count());
+            \Log::info('Procesando usuario '.$usuario->id.' de '.$usuarios->count());
 
             if ($customerID == null) {
-                \Log::alert("No existe usuario de stripe para el usuario con ID: " . $usuario->id);
+                \Log::alert('No existe usuario de stripe para el usuario con ID: '.$usuario->id);
+
                 continue; // Saltar al siguiente usuario
             }
 
-            \Log::info('Obteniendo facturas cliente para el usuario con ID: ' . $usuario->id);
+            \Log::info('Obteniendo facturas cliente para el usuario con ID: '.$usuario->id);
 
             // Obtener facturas de Stripe para el cliente
             $facturasStripe = Invoice::all(['customer' => $customerID]);
@@ -264,8 +267,8 @@ class FacturaController extends Controller
                 $pdf = PDF::loadView('facturaciones.factura', $data);
 
                 // Guardar el PDF en storage
-                $pdfFilePath = 'facturas/' . time() . 'factura_user_' . $usuario->id . '_idFactura_' . $factura->number . '.pdf';
-                Storage::put('public/' . $pdfFilePath, $pdf->output());
+                $pdfFilePath = 'facturas/'.time().'factura_user_'.$usuario->id.'_idFactura_'.$factura->number.'.pdf';
+                Storage::put('public/'.$pdfFilePath, $pdf->output());
 
                 // Guardar información de la factura en la base de datos
                 Factura::create([
@@ -276,16 +279,118 @@ class FacturaController extends Controller
                     'pdf' => $pdfFilePath,
                 ]);
 
-                \Log::debug("Factura regenerada correctamente para el usuario con ID: " . $usuario->id);
+                \Log::debug('Factura regenerada correctamente para el usuario con ID: '.$usuario->id);
             }
         }
 
         \Log::info('Proceso completado. Todas las facturas han sido regeneradas.');
+
         return redirect()->route('panel-control')->with('success', 'Facturas regeneradas correctamente para todos los clientes.');
     }
 
+    public function generarFacturasMasivas(Request $request)
+    {
+        try {
+            //dd($request->alumnos);
+            $request->validate([
+                'alumnos' => 'required|array',
+                'mes' => 'required|integer|min:1|max:12',
+                'anio' => 'required|integer|min:2000|max:2100',
+            ]);
 
+            // Bloquear facturación del mes en curso
+            if ((int) $request->mes >= now()->month && (int) $request->anio >= now()->year) {
+                return redirect()->back()->withErrors(['No se pueden generar facturas del mes actual o posterior.']);
+            }
 
+            $alumnos = User::whereIn('id', $request->alumnos)->get();
+            //dd($alumnos);
+            $errores = [];
+
+            $fechaEmision = \Carbon\Carbon::createFromDate($request->anio, $request->mes, 1);
+            foreach ($alumnos as $alumno) {
+                $existeFactura = Factura::where('alumno_id', $alumno->id)
+                    ->whereMonth('fecha_emision', $request->mes)
+                    ->whereYear('fecha_emision', $request->anio)
+
+                    ->exists();
+
+                if ($existeFactura) {
+                    $errores[] = "Ya existe una factura de paquete para {$alumno->nombre} en {$request->mes}/{$request->anio}.";
+
+                    continue;
+                }
+                if ($alumno->tipo_usuario !== 'Alumno') {
+                    $errores[] = "El usuario {$alumno->id} no es alumno";
+
+                    continue; // Saltar si no es alumno
+                }
+                $customerID = $alumno->stripe_id;
+
+                if (! $customerID) {
+                    $errores[] = "El alumno {$alumno->nombre} no tiene Customer ID de Stripe.";
+
+                    continue;
+                }
+
+                // Productos del mes seleccionado
+                $productosAlumno = PaqueteUsuario::where('user_id', $alumno->id)
+                    ->whereMonth('fecha_compra', $request->mes)
+                    ->whereYear('fecha_compra', $request->anio)
+                    ->get();
+
+                $precio_total_productos = $productosAlumno->sum('precio');
+                \Log::debug("Intentando generar factura para alumno: {$alumno->id} - {$alumno->nombre}");
+
+                // Generar factura de productos (si hay)
+                if ($precio_total_productos > 0) {
+                    $resultadoPaquete = $this->generarFactura(
+                        $customerID,
+                        $precio_total_productos,
+                        "Factura de productos mes {$request->mes}/{$request->anio} para {$alumno->nombre} {$alumno->apellidos}",
+                        null,
+                        'paquete',
+                        $fechaEmision,
+                        $alumno->id,
+                    );
+
+                    if ($resultadoPaquete !== true) {
+                        $errores[] = "Error al generar factura de productos para {$alumno->nombre}.";
+                    }
+                }
+                \Log::debug("Intentando generar factura para alumno: {$alumno->id} - {$alumno->nombre}");
+
+                // Suscripción activa (si la tiene)
+                $suscripcionAlumno = Suscripcion::where('user_id', $alumno->id)->whereMonth('created_at', $request->mes)
+                    ->whereYear('created_at', $request->anio)->first();
+                if ($suscripcionAlumno && $suscripcionAlumno->product) {
+                    $precioSuscripcion = $suscripcionAlumno->product->precio;
+
+                    $resultadoSuscripcion = $this->generarFactura(
+                        $customerID,
+                        $precioSuscripcion,
+                        "Factura de suscripción mes {$request->mes}/{$request->anio} para {$alumno->nombre} {$alumno->apellidos}",
+                        null,
+                        'membership',
+                        $fechaEmision,
+                        $alumno->id,
+                    );
+
+                    if ($resultadoSuscripcion !== true) {
+                        $errores[] = "Error al generar factura de suscripción para {$alumno->nombre}.";
+                    }
+                }
+            }
+
+            if (count($errores) > 0) {
+                return redirect()->back()->withErrors($errores);
+            }
+
+            return redirect()->back()->with('success', 'Facturas generadas correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'errorrrrrr'.$e->getMessage());
+        }
+    }
 
     public function mostrarFactura()
     {

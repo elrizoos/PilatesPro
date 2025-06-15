@@ -224,7 +224,7 @@ class UsuarioController extends Controller
             $usuario = Auth::user();
             \Log::debug('Usuario: ' . json_encode($usuario));
             $tipoProducto = $producto->type;
-
+           
             switch ($tipoProducto) {
                 case 'package':
                     $infoPaquete = $producto->infoPaquete;

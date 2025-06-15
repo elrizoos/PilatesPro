@@ -19,10 +19,10 @@ class PaqueteUsuario extends Model
     /**
      * Get the producto associated with the PaqueteUsuario
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     *@return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function producto()
-    {
-        return $this->hasOne(Producto::class ,'id');
-    }
+{
+    return $this->belongsTo(Producto::class, 'producto_id');
+}
 }

@@ -17,6 +17,8 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
 </head>
 <div hidden>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -308,8 +310,8 @@
                     <ul class="dropdown-menu w-100 text-center">
                         <li><a class="dropdown-item" href="{{ route('productos') }}">Gestionar Productos</a>
                         </li>
-                        <li><a class="dropdown-item" href="#">Registrar pagos</a></li>
-                        <li><a class="dropdown-item" href="#">Generar facturacion</a></li>
+                        <li><a class="dropdown-item" href="{{ route('registroPagos') }}">Registros pagos</a></li>
+                        <li><a class="dropdown-item" href="{{ route('generarFacturacion') }}">Generar facturacion</a></li>
                         <li><a class="dropdown-item" href="#">Seguimiento de alumnos</a></li>
                     </ul>
                 </li>
@@ -364,6 +366,8 @@
             }
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

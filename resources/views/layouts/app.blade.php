@@ -19,6 +19,9 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 </head>
 <div hidden>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -472,7 +475,8 @@
             </div>
         </main>
     </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

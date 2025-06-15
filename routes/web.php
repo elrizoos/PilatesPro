@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetallesSuscripcion'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
     Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'historialPago'])->name('suscripcion-historialPago');
-    Route::get('/usuario/suscripcion/historialPago/descargarFactura/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
+    Route::get('/usuario/suscripcion/historialPago/descargarFactura/facturas/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
 
     Route::get('/usuario/contrasena', function () {
         return view('usuario.contrasena');
@@ -150,8 +150,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/galeria', [PanelController::class, 'mostrarGaleria'])->name('galeriaImagenes');
 
     Route::get('/admin/panel-control/mostrarContenido/elegirPagina', [PaginaController::class, 'elegirPagina'])->name('elegirPagina');
-
+    Route::get('/admin/panel-control/mostrarContenido/crearPagina', [PaginaController::class, 'create'])->name('crearPagina');
     Route::get('/admin/panel-control/mostrarContenido/{tipo}', [PanelController::class, 'mostrarContenido'])->name('mostrarContenido');
+    Route::get('/admin/panel-control/mostrarContenido/{tipo}/{orden}/{elementoOrden}', [PanelController::class, 'mostrarContenidoOrdenado'])->name('mostrarContenidoOrdenado');
     Route::get('/admin/panel-control/inicio', [PanelController::class, 'index'])->name('panel-control');
     Route::get('/admin/panel-control/actualizarUsuario/{usuario}/{tipo}', [PanelController::class, 'mostrarFormulario'])->name('mostrarFormulario');
     Route::get('/admin/panel-control/mostrarFormularioContrasena/{usuario}', [PanelController::class, 'mostrarFormularioContrasena'])->name('mostrarFormularioContrasena');
@@ -165,7 +166,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/contenido/seleccionApartado/{pagina}/{seccion}', [SeccionContenidoController::class, 'seleccionApartado'])->name('seleccionApartado');
     Route::post('/admin/panel-control/contenido/seleccionarOrden/{seccion}', [SeccionContenidoController::class, 'seleccionarOrden'])->name('seleccionarOrden');
     Route::get('/admin/panel-control/contenido/eliminarEditarPagina', [PaginaController::class, 'eliminarEditarPagina'])->name('eliminarEditarPagina');
-    Route::get('/admin/panel-control/seccion/{seccion}/edit', [SeccionContenidoController::class, 'edit'])->name('seccion.edit');
+    Route::post('/admin/panel-control/seccion/{seccion}/edit', [SeccionContenidoController::class, 'edit'])->name('seccion.edit');
+    Route::post('/admin/panel-control/pagina/{pagina}/edit', [PaginaController::class, 'edit'])->name('pagina.edit');
     Route::get('/admin/panel-control/gestionGrupos/inicio', [PanelController::class, 'mostrarGrupos'])->name('gestionGrupos');
     Route::get('/admin/panel-control/grupo/añadirParticipantes/{grupo}', [GrupoController::class, 'añadirParticipantes'])->name('añadirParticipantes');
     Route::get('/admin/panel-control/grupo/mostrarUsuarios/{grupo}', [GrupoController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
@@ -175,10 +177,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/{horario}/editar', [HorarioController::class, 'editarHorario'])->name('horario.editar');
     Route::get('/admin/panel-control/reserva/{reserva}/editar', [ReservasController::class, 'edit'])->name('reserva.editar');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
-    Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
-    Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::post('/admin/panel-control/productos/crear', [ProductoController::class, 'store'])->name('productos.store');
+    Route::get('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
+
+    Route::get('/admin/panel-control/facturacion/registroPagos', [PagoController::class, 'registroPagos'])->name('registroPagos');
+    Route::get('/admin/panel-control/facturacion/generarFacturacion', [PagoController::class, 'generarFacturacion'])->name('generarFacturacion');
+
+    Route::post('/admin/panel-control/facturacion/generar', [FacturaController::class, 'generarFacturasMasivas'])->name('facturacion.generar');
+
     //Rutas de facturacion
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');

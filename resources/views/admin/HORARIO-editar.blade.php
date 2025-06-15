@@ -50,8 +50,8 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h3 class="texto-color-resalte fs-4 text-center mb-4">Alumnos que pueden reservar esta clase</h3>
-                        <table class="table tabla-dorada bg-color-terciario text-center">
+                        <h3 class="texto-color-dorado fs-4 text-center mb-4">Alumnos que pueden reservar esta clase</h3>
+                        <table id="tabla-ediccion-clase" class="table tabla-dorada text-center">
 
                             <thead>
 
@@ -64,12 +64,12 @@
                             </thead>
                             <tbody>
                                 @foreach ($alumnos as $alumno)
-                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->nombre }}</td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->apellidos }}
+                                    <td class=" border border-1 border-fondo">{{ $alumno->nombre }}</td>
+                                    <td class=" border border-1 border-fondo">{{ $alumno->apellidos }}
                                     </td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->telefono }}
+                                    <td class=" border border-1 border-fondo">{{ $alumno->telefono }}
                                     </td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">{{ $alumno->email }}</td>
+                                    <td class=" border border-1 border-fondo">{{ $alumno->email }}</td>
                                 @endforeach
                             </tbody>
                         </table>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <h3 class="texto-color-resalte fs-4 text-center mb-4">Alumnos que han reservado esta clase</h3>
+                        <h3 class="texto-color-dorado fs-4 text-center mb-4">Alumnos que han reservado esta clase</h3>
                         <table class="table tabla-dorada bg-color-terciario text-center">
                             <thead>
                                 <tr>
@@ -95,17 +95,17 @@
                                     <?php
                                     $asistencia = \App\Models\Asistencia::where('reserva_id', $reserva->id)->first();
                                     ?>
-                                    <td class="texto-color-resalte border border-1 border-fondo">
+                                    <td class=" border border-1 border-fondo">
                                         {{ $reserva->alumno->nombre }}</td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">
+                                    <td class=" border border-1 border-fondo">
                                         {{ $reserva->alumno->apellidos }}</td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">
+                                    <td class=" border border-1 border-fondo">
                                         {{ $reserva->alumno->email }}</td>
-                                    <td class="texto-color-resalte border border-1 border-fondo">
+                                    <td class=" border border-1 border-fondo">
                                         {{ $asistencia->asistio }}</td>
 
                                     <td
-                                        class="texto-color-resalte border border-1 border-fondo d-flex justify-content-center align-items-center">
+                                        class=" border border-1 border-fondo d-flex justify-content-center align-items-center">
                                         <form action="{{ route('cancelarReserva', ['reserva' => $reserva->id]) }}"
                                             method="post">
                                             @csrf
