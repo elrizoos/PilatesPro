@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Factura;
 use App\Models\PaqueteUsuario;
 use App\Models\Producto;
 use App\Models\Subscription as Suscripcion;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Stripe\Customer;
 use Stripe\Invoice;
-use Stripe\InvoiceItem;
 use Stripe\PaymentIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
@@ -22,6 +21,7 @@ class PagoController extends Controller
     public function index($productoFacturarId)
     {
         $productoFacturar = Producto::find($productoFacturarId);
+
         return view('facturaciones.formulario-pago', compact('productoFacturar'));
     }
 
@@ -30,12 +30,12 @@ class PagoController extends Controller
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $producto = Producto::find($productoId);
-        if (!$producto) {
+        if (! $producto) {
             return redirect()->back()->with('error', 'Producto no encontrado');
         }
 
         $paymentMethodId = $request->input('payment_method_id');
-        if (!$paymentMethodId) {
+        if (! $paymentMethodId) {
             return redirect()->back()->with('error', 'Método de pago no proporcionado');
         }
 
@@ -70,7 +70,7 @@ class PagoController extends Controller
 
         if ($producto->type == 'membership') {
             return $this->procesarMembresia($user, $producto, $customer, $paymentMethod);
-        } else if ($producto->type == 'package') {
+        } elseif ($producto->type == 'package') {
             return $this->procesarPaquete($user, $producto, $customer, $paymentMethod);
         } else {
             return redirect()->back()->with('error', 'Tipo de producto desconocido');
@@ -109,17 +109,17 @@ class PagoController extends Controller
                 'producto_id' => $producto->id,
             ]);
 
-            if (!$usuarioController->sumatorioClases($producto)) {
+            if (! $usuarioController->sumatorioClases($producto)) {
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id, $producto->precio, $producto->descripcion, $producto->precio_stripe_id, $producto->type)) {
+            if (! $facturaController->generarFactura($customer->id, $producto->precio, $producto->descripcion, $producto->precio_stripe_id, $producto->type)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
             return redirect()->route('suscripcion-estadoSuscripcion')->with('success', 'Se ha actualizado su suscripción. Desde ya mismo puedes disfrutar de las ventajas');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al procesar la suscripción: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al procesar la suscripción: '.$e->getMessage());
         }
     }
 
@@ -148,21 +148,19 @@ class PagoController extends Controller
                 'payment_method_id' => $paymentMethod->id,
             ]);
 
-            if (!$usuarioController->sumatorioClases($producto)) {
+            if (! $usuarioController->sumatorioClases($producto)) {
                 return redirect()->back()->with('error', 'No se ha podido sumar las clases al usuario');
             }
 
-            if (!$facturaController->generarFactura($customer->id, $producto->precio, $producto->description, $producto->precio_stripe_id, $producto->type)) {
+            if (! $facturaController->generarFactura($customer->id, $producto->precio, $producto->description, $producto->precio_stripe_id, $producto->type)) {
                 return redirect()->back()->with('error', 'Error al generar la factura');
             }
 
-            return redirect()->route('suscripcion-estadoSuscripcion')->with('success', 'Se ha añadido el número de clases del paquete. Ahora cuentas con ' . $producto->infoPaquete->numero_clases . ' clases extra');
+            return redirect()->route('suscripcion-estadoSuscripcion')->with('success', 'Se ha añadido el número de clases del paquete. Ahora cuentas con '.$producto->infoPaquete->numero_clases.' clases extra');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error en el pago: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error en el pago: '.$e->getMessage());
         }
     }
-
-
 
     public function cambioPlan($productoNuevo)
     {
@@ -190,7 +188,6 @@ class PagoController extends Controller
             $productoFacturar = clone $productoNuevo;
 
             $productoFacturar->precio = number_format($precioNuevo, 2);
-
 
             return view('facturaciones.formulario-pago', compact('productoFacturar'));
         }
@@ -221,39 +218,108 @@ class PagoController extends Controller
         return $clasesExtra;
     }
 
-
-    public function historialPago() {
+    public function historialPago()
+    {
         try {
             Stripe::setApiKey(config('services.stripe.secret'));
 
-        $usuario = Auth::user();
-        $customer = Customer::retrieve($usuario->stripe_id);
-        $facturas = Invoice::search(['query' => 'customer:\''.$customer->id.'\'']);
-        //dd($facturas);
+            $usuario = Auth::user();
+            $customer = Customer::retrieve($usuario->stripe_id);
+            $facturas = Invoice::search(['query' => 'customer:\''.$customer->id.'\'']);
+            //dd($facturas);
 
-        if(count($facturas) == 0){
-            $facturasDatos = null;
-            return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
+            if (count($facturas) == 0) {
+                $facturasDatos = null;
 
-        }
-        $facturasDatos = [];
-        foreach($facturas as $factura){
-            $facturaStripeId = $factura->id;
-            $facturaBD = Factura::where('stripe_id', $facturaStripeId)->first();
-            if($facturaBD == null){
-                continue;
+                return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
 
             }
-            $facturasDatos[] = [
-                'factura' => $factura,
-                'pdf' => $facturaBD->pdf,
-            ];
-        };
+            $facturasDatos = [];
+            foreach ($facturas as $factura) {
+                $facturaStripeId = $factura->id;
+                $facturaBD = Factura::where('stripe_id', $facturaStripeId)->first();
+                if ($facturaBD == null) {
+                    continue;
 
-        //dd($facturasDatos);
-        return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
+                }
+                $facturasDatos[] = [
+                    'factura' => $factura,
+                    'pdf' => $facturaBD->pdf,
+                ];
+            }
+
+            //dd($facturasDatos);
+            return view('usuario.submenu.SUS-historialPago', compact('facturasDatos'));
         } catch (\Exception $th) {
             return redirect()->back()->with('error', 'No hay cliente asignado, probablemente no hayas realizado ningun pago hasta el momento.');
         }
+    }
+
+    public function registroPagos(Request $request)
+    {
+        $tipo = 'FACTU-registroPagos';
+
+        // Validación de los filtros y orden
+        $request->validate([
+            'nombre' => 'nullable|string|max:20',
+            'apellidos' => 'nullable|string|max:50',
+            'fecha' => 'nullable|date|before_or_equal:today',
+            'orden' => 'nullable|in:ASC,DESC',
+            'elementoOrden' => 'nullable|in:nombre,apellidos,fecha',
+        ]);
+
+        $orden = $request->orden ?? 'ASC';
+        $elementoOrden = $request->elementoOrden;
+
+        // Query base con relación
+        $query = Factura::with('alumno');
+
+        // Filtros
+        if ($request->filled('nombre')) {
+            $query->whereHas('alumno', fn ($q) => $q->where('nombre', 'like', '%'.$request->nombre.'%'));
+        }
+
+        if ($request->filled('apellidos')) {
+            $query->whereHas('alumno', fn ($q) => $q->where('apellidos', 'like', '%'.$request->apellidos.'%'));
+        }
+
+        if ($request->filled('fecha')) {
+            $query->whereDate('fecha_emision', $request->fecha);
+        }
+
+        // Ordenación dinámica
+        if ($elementoOrden === 'nombre' || $elementoOrden === 'apellidos') {
+            $query->join('users', 'facturas.alumno_id', '=', 'users.id')
+                ->orderBy("users.$elementoOrden", $orden)
+                ->select('facturas.*');
+        } elseif ($elementoOrden === 'fecha') {
+            $query->orderBy('fecha_emision', $orden);
+        }
+
+        // Paginación con filtros preservados
+        $facturas = $query->paginate(10)->appends($request->all());
+
+        return view('admin.FACTU-registroPagos', compact('facturas', 'tipo', 'orden', 'elementoOrden'));
+    }
+
+    public function generarFacturacion(Request $request)
+    {
+        //dd($request->all());
+        $tipo = 'FACTU-generaFacturacion';
+        $mes = $request->input('mes', now()->month);
+        $anio = $request->input('anio', now()->year);
+
+        // Obtener los IDs de alumnos que ya tienen factura ese mes y año
+        $facturados = Factura::whereMonth('fecha_emision', $mes)
+            ->whereYear('fecha_emision', $anio)
+            ->pluck('alumno_id')
+            ->toArray();
+
+        // Obtener alumnos que aún no tienen factura ese mes
+        $alumnos = User::where('tipo_usuario', 'alumno')
+            ->whereNotIn('id', $facturados)
+            ->get();
+
+        return view('admin.FACTU-generaFacturacion', compact('tipo', 'alumnos', 'mes', 'anio'));
     }
 }

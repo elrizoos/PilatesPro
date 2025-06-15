@@ -4,7 +4,9 @@
         <h2 class="fs-3 p-4">Historial de Pagos</h2>
         @if ($facturasDatos == null)
             <p>No hay pagos registrados.</p>
+            
         @else
+
             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                 <thead>
                     <tr>
@@ -23,7 +25,7 @@
                                 {{ \Carbon\Carbon::createFromTimestamp($factura['factura']->created)->toFormattedDateString() }}
                             </td>
                             <td class="texto-color-resalte border border-1 border-fondo">
-                                ${{ number_format($factura['factura']->amount / 100, 2) }}</td>
+                                ${{ number_format($factura['factura']->amount_paid / 100, 2) }}</td>
                             <td class="texto-color-resalte border border-1 border-fondo">{{ $factura['factura']->status }}
                             </td>
                             <td class="texto-color-resalte border border-1 border-fondo"><a

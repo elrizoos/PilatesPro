@@ -6,12 +6,12 @@ use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Laravel\Cashier\Billable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Billable;
+    use Billable, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'nombre',
@@ -26,7 +26,7 @@ class User extends Authenticatable
         'especializacion',
         'grupo_id',
         'numero_clases',
-        'registro_clases'
+        'registro_clases',
     ];
 
     protected $hidden = [
@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function facturas()
     {
-        return $this->hasMany(Factura::class);
+        return $this->hasMany(Factura::class, 'alumno_id');
     }
 
     public function productos()
@@ -92,8 +92,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(MetodosRecuperacione::class);
     }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    
+
+    public function esAlumno()
+    {
+        return $this->tipo_usuario === 'alumno'; 
     }
 }

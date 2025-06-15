@@ -126,16 +126,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="seleccion-horas d-none">
+                        <div class="seleccion-horas d-none" id="contenedor-horas">
                             <div class="contenedor-seleccion">
                                 <h2 id="inicioFin"></h2>
                                 <div class="hora-minuto">
                                     <div class="contenedor-hora-minuto">
-                                        <input disabled placeholder="00" class="casillaReloj" type="number"
+                                        <input placeholder="00" class="casillaReloj" type="number" min="1" max="24"
                                             id="horaProvisional">
                                         <div class="puntos">:</div>
-                                        <input disabled placeholder="00" class="casillaReloj" type="number"
-                                            id="minutosProvisional">
+                                        <input placeholder="00" class="casillaReloj" type="number" id="minutosProvisional"
+                                          min="1"  max="60">
                                     </div>
                                 </div>
                                 <div class="reloj">
@@ -159,13 +159,14 @@
                     </div>
                 </div>
                 <div class="repeticion {{ isset($horario) ? 'd-none' : '' }}">
-                    <div class="grupo-input">
+                    <div id="grupo-repeticion" class="grupo-input">
                         <label for="repetir">¿Quieres que esta clase se repita algun dia mas?</label>
-                        <input type="checkbox" name="repetir" id="repetir">Sí
+                        <input class="boton-repetir" type="checkbox" name="repetir" id="repetir">Sí
                     </div>
                     <div class="grupo-input opcionRepetir position-relative top-0 start-0 mt-3">
-                        <input class="estilo-formulario" type="number" name="numeroSemanas" value="0"
-                            placeholder="Numero de semanas">
+                        <label for="numeroSemanas">¿Cuantas semanas quieres que se repita?</label>
+                        <input id="input-repeticion-semamas" class="estilo-formulario" type="number"
+                            name="numeroSemanas" value="0">
                         <hr class="mt-0 w-100 linea-transition-weigth border border-warning-subtle  border-1 ">
 
                         <ul class="fs-5 listaDiasSemana row row-cols-3">
@@ -235,5 +236,41 @@
             horaFin.text(horas);
             minutoFin.text(minutos);
         }
+
+        document.addEventListener('click', function(event) {
+            const calendario = $('#contenedorCalendario');
+            const reloj = $('#contenedor-horas');
+
+            if (!calendario.get(0).contains(event.target) && !$('.contenedor-fecha-placeholder').get(0).contains(
+                    event.target)) {
+                calendario.addClass('d-none');
+            }
+
+            if (!reloj.get(0).contains(event.target) && !$('.horas').get(0).contains(event.target)) {
+                reloj.addClass('d-none');
+            }
+        });
+        $("#horaProvisional, #minutosProvisional").on("input", function() {
+            let val = parseInt(this.value, 10);
+            const id = this.id;
+
+            if (isNaN(val)) {
+                this.value = "";
+                return;
+            }
+
+            if (id === "horaProvisional") {
+                console.log('corrigiendo horas');
+                if (val > 24) this.value = 24;
+                else if (val < 1) this.value = 1;
+            }
+
+            if (id === "minutosProvisional") {
+                console.log('corrigiendo minutos');
+
+                if (val > 60) this.value = 60;
+                else if (val < 1) this.value = 1;
+            }
+        });
     </script>
 @endsection

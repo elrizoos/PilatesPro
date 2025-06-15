@@ -220,10 +220,13 @@ function handleTimeSelection() {
     const h3 = $("#inicioFin").text();
     let minutos, horas;
 
+    
+
     switch (h3) {
         case "Hora Inicio":
             minutos = parseInt($("#minutosProvisional").val(), 10);
             horas = parseInt($("#horaProvisional").val(), 10);
+
             console.log("Horas:", horas, "Minutos:", minutos);
             var tiempoClase = parseInt(
                 $("#tiempoClase").attr("data-value"),

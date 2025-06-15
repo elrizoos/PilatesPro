@@ -286,7 +286,8 @@ class PanelController extends Controller
             $totalIngresosSuscripcionesActivas += $producto->product->precio;
         }
 
-        $paquetesClases = PaqueteUsuario::all();
+        $paquetesClases = PaqueteUsuario::with('producto')->get();
+        //dd($paquetesClases);
         $totalIngresosPaquetes = 0;
         foreach ($paquetesClases as $paquete) {
             $totalIngresosPaquetes += $paquete->producto->precio;

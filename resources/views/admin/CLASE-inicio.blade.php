@@ -14,15 +14,15 @@
 
                 @foreach ($clases as $clase)
                     <tr>
-                        <td class="texto-color-resalte border border-1 border-fondo">{{ $clase->nombre }}</td>
-                        <td class="texto-color-resalte border border-1 border-fondo">{{ $clase->grupo->nombre }}</td>
-                        <td class="texto-color-resalte border border-1 border-fondo">
+                        <td class="texto-color-dorado border border-1 border-fondo">{{ $clase->nombre }}</td>
+                        <td class="texto-color-dorado border border-1 border-fondo">{{ $clase->grupo->nombre }}</td>
+                        <td class="d-flex justify-content-center align-items-center gap-1 texto-color-dorado border-fondo">
                             <form action="{{ route('clase.edit', ['clase' => $clase->id]) }}">
-                                <input class="texto-color-resalte estilo-formulario" type="submit" value="Editar">
+                                <input class=" p-3 texto-color-resalte estilo-formulario" type="submit" value="Editar">
                             </form>
 
                             <form action="{{ route('clase.destroy', ['clase' => $clase->id]) }}">
-                                <input class="texto-color-resalte estilo-formulario" type="submit" value="Borrar">
+                                <input id="input-eliminar" class=" p-3 texto-color-resalte estilo-formulario" type="submit" value="Borrar">
                             </form>
                         </td>
                     </tr>

@@ -2,7 +2,7 @@
 
 @section('USER-gestionContrasena')
 <div class="container-fluid d-flex justify-content-center align-items-center h-100 w-100">
-    <table class="table w-100 fs-5 text-center">
+    <table class="table tabla-dorada w-100 fs-5 text-center">
         <thead>
             <tr>
                 <th class="fs-5 texto-color-titulo border border-1 border-fondo">Nombre</th>

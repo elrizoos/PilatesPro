@@ -30,18 +30,18 @@
                 </table>
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col">
+        <div class="row text-center ">
+            <div class="col border border-dorado p-4">
                 <h2 class="fs-3 mb-4 text-uppercase">Ingresos</h2>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col border-right-1rem border-top-1rem">
                         <h4 class="fs-4 texto-color-titulo">Ingresos totales Suscripciones ACTIVAS: <h1 class="display-3">
                                 {{ $totalIngresosSuscripcionesActivas }}€</h1>
                         </h4>
 
                     </div>
-                    <div class="col">
+                    <div class="col border-top-1rem">
                         <h4 class="fs-4 texto-color-titulo">Ingresos totales Paquetes de Clases: <h1 class="display-3">
                                 {{ $totalIngresosPaquetes }}€</h1>
                         </h4>
@@ -49,15 +49,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col  border border-dorado p-4">
                 <h3 class="fs-3 mb-4 text-uppercase">Tendencias de usuarios</h3>
                 <div class="row">
-                    <div class="col bg-color-fondo">
+                    <div class="col  border-right-1rem border-top-1rem">
                         <h4 class="fs-4 texto-color-titulo">Suscripcion preferida: <h1 class="display-5">
                                 {{ $nombreSuscripcionFav }}</h1>
                         </h4>
                     </div>
-                    <div class="col">
+                    <div class="col border-top-1rem">
                         <h4 class="fs-4 texto-color-titulo">Pack de clases preferido: <h1 class="display-5">
                                 {{ $paqueteFav }}</h1>
                         </h4>

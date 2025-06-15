@@ -96,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/suscripcion/detallesPlan', [ProductoController::class, 'mostrarDetallesSuscripcion'])->name('suscripcion-detallesPlan');
     Route::get('/usuario/suscripcion/cambioPlan', [ProductoController::class, 'cambiarPlan'])->name('suscripcion-cambioPlan');
     Route::get('/usuario/suscripcion/historialPago', [PagoController::class, 'historialPago'])->name('suscripcion-historialPago');
-    Route::get('/usuario/suscripcion/historialPago/descargarFactura/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
+    Route::get('/usuario/suscripcion/historialPago/descargarFactura/facturas/{factura}', [FacturaController::class, 'descargarFactura'])->name('descargarFactura');
 
     Route::get('/usuario/contrasena', function () {
         return view('usuario.contrasena');
@@ -177,10 +177,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/horario/{horario}/editar', [HorarioController::class, 'editarHorario'])->name('horario.editar');
     Route::get('/admin/panel-control/reserva/{reserva}/editar', [ReservasController::class, 'edit'])->name('reserva.editar');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
-    Route::get('/admin/panel-control/productos', [ProductoController::class, 'store'])->name('productos.store');
-    Route::post('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
+    Route::post('/admin/panel-control/productos/crear', [ProductoController::class, 'store'])->name('productos.store');
+    Route::get('/admin/panel-control/productos/{producto}/{tipo}/edit', [ProductoController::class, 'edit'])->name('productos.edit');
     Route::delete('/admin/panel-control/productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
     Route::put('/admin/panel-control/productos/{producto}/update', [ProductoController::class, 'update'])->name('productos.update');
+
+    Route::get('/admin/panel-control/facturacion/registroPagos', [PagoController::class, 'registroPagos'])->name('registroPagos');
+    Route::get('/admin/panel-control/facturacion/generarFacturacion', [PagoController::class, 'generarFacturacion'])->name('generarFacturacion');
+
+    Route::post('/admin/panel-control/facturacion/generar', [FacturaController::class, 'generarFacturasMasivas'])->name('facturacion.generar');
+
     //Rutas de facturacion
     Route::post('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
     Route::get('/facturacion/pago/formularioPago/{producto}', [PagoController::class, 'index'])->name('formularioPago');
