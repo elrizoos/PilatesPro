@@ -175,6 +175,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/panel-control/clase/inicio', [ClaseController::class, 'mostrarClases'])->name('mostrarClases');
     Route::get('/admin/panel-control/horario/inicio', [HorarioController::class, 'index'])->name('mostrarHorarios');
     Route::get('/admin/panel-control/horario/{horario}/editar', [HorarioController::class, 'editarHorario'])->name('horario.editar');
+    Route::delete('/admin/panel-control/horario/{horario}', [HorarioController::class, 'destroy'])->name('horario.destroy');
     Route::get('/admin/panel-control/reserva/{reserva}/editar', [ReservasController::class, 'edit'])->name('reserva.editar');
     Route::get('/admin/panel-control/productos/gestionar', [ProductoController::class, 'gestionarProductos'])->name('productos');
     Route::post('/admin/panel-control/productos/crear', [ProductoController::class, 'store'])->name('productos.store');

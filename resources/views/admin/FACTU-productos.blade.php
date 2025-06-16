@@ -37,22 +37,22 @@
                                             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">ID</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Nombre
+                                                        <th class="texto-color-dorado border border-1 border-fondo">ID</th>
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Nombre
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Descripcion</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Precio
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Precio
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Nº
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Nº
                                                             Clases</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Tiempo
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Tiempo
                                                             Clase
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Tiempo
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Tiempo
                                                             validez
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -61,40 +61,40 @@
                                                         @if ($product->type == 'package')
                                                             <tr>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->id }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->name }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->description }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->precio }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoPaquete->numero_clases) ? $product->infoPaquete->numero_clases : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoPaquete->tiempo_clase) ? $product->infoPaquete->tiempo_clase : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoPaquete->tiempo_validez) ? $product->infoPaquete->tiempo_validez : '' }}
                                                                 </td>
 
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     <div
-                                                                        class=" d-flex flex-row justify-content-center align-items-center">
+                                                                        class=" d-flex flex-row justify-content-center align-items-center gap-1">
                                                                         <form
                                                                             action="{{ route('productos.edit', ['producto' => $product->id, 'infoPaquete']) }}"
                                                                             method="GET">
                                                                             @csrf
                                                                             <input
-                                                                                class="texto-color-resalte estilo-formulario"
+                                                                                class="texto-color-resalte estilo-formulario p-2"
                                                                                 type="submit" value="Editar">
                                                                         </form>
                                                                         <form
@@ -102,8 +102,8 @@
                                                                             method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
-                                                                            <input
-                                                                                class="texto-color-resalte estilo-formulario"
+                                                                            <input id="input-eliminar"
+                                                                                class="p-2 texto-color-resalte estilo-formulario"
                                                                                 type="submit" value="Eliminar">
                                                                         </form>
                                                                     </div>
@@ -130,28 +130,28 @@
                                             <table class="table tabla-dorada w-100 fs-5 bg-color-terciario text-center">
                                                 <thead>
                                                     <tr>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">ID</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Nombre
+                                                        <th class="texto-color-dorado border border-1 border-fondo">ID</th>
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Nombre
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Descripcion</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Precio
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Precio
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Nº
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Nº
                                                             Clases
                                                             Semanales</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Tiempo
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Tiempo
                                                             Clase
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Asesoramiento
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">Dias
+                                                        <th class="texto-color-dorado border border-1 border-fondo">Dias
                                                             Cancelacion
                                                         </th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Beneficios</th>
-                                                        <th class="texto-color-resalte border border-1 border-fondo">
+                                                        <th class="texto-color-dorado border border-1 border-fondo">
                                                             Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -160,39 +160,39 @@
                                                         @if ($product->type == 'membership')
                                                             <tr>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->id }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->name }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->description }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ $product->precio }}</td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoSuscripcion->clases_semanales) ? $product->infoSuscripcion->clases_semanales : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoSuscripcion->tiempo_clase) ? $product->infoSuscripcion->tiempo_clase : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoSuscripcion->asesoramiento) ? $product->infoSuscripcion->asesoramiento : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoSuscripcion->dias_cancelacion) ? $product->infoSuscripcion->dias_cancelacion : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     {{ isset($product->infoSuscripcion->beneficio) ? $product->infoSuscripcion->beneficio : '' }}
                                                                 </td>
                                                                 <td
-                                                                    class="texto-color-resalte border border-1 border-fondo">
+                                                                    class="texto-color-dorado border border-1 border-fondo">
                                                                     <div
                                                                         class=" d-flex flex-row justify-content-center align-items-center gap-1">
                                                                         <form

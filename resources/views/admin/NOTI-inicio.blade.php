@@ -37,27 +37,33 @@
         <div>
             <form class="d-none" id="fomrNotificacion" action="{{ route('enviarNotificacion') }}" method="POST">
                 @csrf
-                <label for="tipo">Tipo de notificacion</label>
-                <select name="tipo" id="tipo">
-                    <option value="email">Email</option>
-                </select>
+                <div class="row">
+                    <div class="form-group ">
+                        <label for="tipo">Tipo de notificacion</label>
+                        <select name="tipo" id="tipo">
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="titulo">Titulo</label>
+                        <input type="text" name="titulo">
+                    </div>
+                    <div class="form-group"><label for="descripcion">Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion">
+                    </div>
+                    <div class="form-group"><label for="mensaje">Mensaje:</label>
+                        <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="importante">Importante:</label>
+                        <select name="importante" id="importante">
+                            <option value="0">No</option>
+                            <option value="1">Si</option>
+                        </select>
+                    </div>
+                </div>
 
-                <label for="titulo">Titulo</label>
-                <input type="text" name="titulo">
 
-                <label for="descripcion">Descripcion</label>
-                <input type="text" name="descripcion" id="descripcion">
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea name="mensaje" id="mensaje" cols="30" rows="10">
-
-                </textarea>
-                <label for="importante">Importante:</label>
-                <select name="importante" id="importante">
-                    <option value="0">No</option>
-                    <option value="1">Si</option>
-                </select>
-                <input type="submit" value="Enviar Notificacion">
+                <input id="inputNotificacion" type="submit" value="Enviar Notificacion">
             </form>
         </div>
     </div>

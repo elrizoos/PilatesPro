@@ -1,4 +1,4 @@
-<div class="row vh-100 d-none d-md-block">
+<div id="seccionUno" class="row vh-100 d-none d-md-block">
     <div class="col w-100 vh-100 g-0">
         <div id="carousel-inicio" class="w-100 vh-100 bg-color-fondo  carousel slide carousel-fade" data-bs-ride="true"
             data-bs-keyboard="true">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="carousel-item w-100 vh-100">
                     <img src="{{ asset('imagenes/pilates_valladolid-scaled.jpg') }}" alt="Tercera imagen de slider"
-                        class="img-fluid w-100 h-auto  d-block">
+                        class="img-fluid w-100 h-100  d-block">
                     <div
                         class="position-absolute w-100 vh-100 top-0 left-0 d-flex justify-content-center align-items-center bg-color-fondo-oscuro-transparente">
                         <div

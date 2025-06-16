@@ -272,7 +272,7 @@
 
                                 @if (isset($paginas) && $paginas->isNotEmpty())
                                     <li class="nav-item dropdown col">
-                                        <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown"
+                                        <a class="text-center nav-link dropdown-toggle w-100 p-2" data-bs-toggle="dropdown"
                                             href="#" role="button" aria-expanded="false">Más</a>
                                         <ul class="dropdown-menu w-100 text-center">
                                             @foreach ($paginas as $pagina)
@@ -374,8 +374,8 @@
                         </ul>
                         @if (isset($paginas) && $paginas->isNotEmpty())
                             <ul class="d-flex flex-row">
-                                <li class="nav-item dropdown col">
-                                    <a class="nav-link dropdown-toggle p-2" data-bs-toggle="dropdown" href="#"
+                                <li class="border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo nav-item dropdown col">
+                                    <a class="text-center  nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                                         role="button" aria-expanded="false">Más</a>
                                     <ul class="dropdown-menu w-100 text-center">
                                         @foreach ($paginas as $pagina)

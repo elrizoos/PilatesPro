@@ -47,9 +47,7 @@ class SendNotification extends Notification
     {
         return (new MailMessage)
                     ->subject($this->details['titulo'])
-                    ->line($this->details['descripcion'])
-                    ->line($this->details['mensaje'])
-                    ->line('Gracias por usar nuestra aplicación!');
+                    ->markdown('emails.notificacion', ['details' => $this->details]);
     }
 
  
