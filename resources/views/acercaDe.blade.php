@@ -4,7 +4,7 @@
     <div class="container-fluid bg-color-oscuro w-100  p-5 text-center acerca-de-seccion">
         <div class="text-center mb-5">
             <h1 class="fs-2 texto-color-titulo text-uppercase p-4">Acerca de Chus Álvarez Pilates</h1>
-            <p class="texto-color-gris fs-4">Bienvenido a nuestro estudio de Pilates, Chus Álvarez Pilates. Aquí encontrará información sobre nuestra historia, misión y valores.</p>
+            <p class="texto-color-gris fs-4">Bienvenido a  nuestro estudio de Pilates, Chus Álvarez Pilates. Aquí encontrará información sobre nuestra historia, misión y valores.</p>
         </div>
 
         <div class="row mb-5">
