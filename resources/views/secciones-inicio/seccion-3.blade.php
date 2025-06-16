@@ -1,5 +1,5 @@
-@if($suscripciones !== false)
-    <div class="container-fluid vh-100">
+@if($suscripcionesEmpty !== false)
+    <div id="seccionTres" class="container-fluid vh-100">
         <div class="row vh-100">
             <div class="col w-100 vh-100  g-0">
                 <div class="w-100 vh-100 bg-color-fondo-oscuro p-5 border-bottom border-1 border-dorado-claro">
@@ -26,11 +26,11 @@
                                 <div
                                     class="col p-3 h-100 position-relative overflow-hidden text-center transition-up texto-color-resalte d-flex justify-content-center align-items-center">
                                     <div
-                                        class="bg-color-fondo-oscuro-transparente  position-relative top-0 left-0 w-90 h-90 transition-up z-2">
+                                        class="bg-color-terciario position-relative top-0 left-0 w-90 h-90 transition-up z-2">
                                         <div
                                             class="position-absolute transition-up-from-bottom p-3 w-100 h-100 start-0">
                                             <div class="p-3 d-flex flex-column gap-3 text-uppercase texto-color-gris fs-5">
-                                                <p>{{ $suscripcion->precio }}€ / mes</p>
+                                                <p>{{ $suscripcion->precio }}€/mes</p>
                                                 <p>{{ $suscripcion->name }}</p>
                                             </div>
                                             <hr class="d-none border border-light border-1 opacity-75">

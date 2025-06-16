@@ -68,8 +68,6 @@ class NotificacionesController extends Controller
             'importante' => $request->importante,
         ];
 
-        // Aquí puedes especificar los usuarios a los que se enviarán las notificaciones.
-        // Por ejemplo, puedes enviar a todos los usuarios:
         $usuarios = User::all();
 
         Notification::send($usuarios, new SendNotification($details));

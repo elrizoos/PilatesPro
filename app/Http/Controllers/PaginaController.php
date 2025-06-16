@@ -23,8 +23,10 @@ class PaginaController extends Controller
         $paginas = Pagina::all();
         //dd($paginas);
         $suscripciones = Producto::where('type', 'membership')->get();
+        
+        $suscripcionesEmpty = true;
         if ($suscripciones->isEmpty() || $suscripciones->count() == 0) {
-            $suscripciones = false;
+            $suscripcionesEmpty = false;
             $contadorSuscripciones = 0;
         } else {
 
@@ -34,7 +36,7 @@ class PaginaController extends Controller
         $mensaje = Mensaje::all();
 
         //dd($paginas);
-        return view('inicio', compact('paginas', 'suscripciones', 'usuario', 'contadorSuscripciones'));
+        return view('inicio', compact('paginas', 'suscripciones', 'usuario', 'contadorSuscripciones', 'suscripcionesEmpty'));
     }
 
     /**

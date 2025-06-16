@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Clase;
 use App\Models\Horario;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
@@ -16,27 +15,29 @@ class HorarioController extends Controller
      */
     public function index()
     {
-        $horarios = Horario::all(); 
+        $horarios = Horario::all();
         //dd($horarios);
         $eventosFormateados = $horarios->map(function ($evento) {
             $dia = new DateTime($evento->fecha_especifica);
-            $numeroDia = $dia->format('z') + 1; 
+            $numeroDia = $dia->format('z') + 1;
 
             $horasDecimalStart = $this->convertirHoraADecimal($evento->hora_inicio);
             $horasDecimalFin = $this->convertirHoraADecimal($evento->hora_fin);
             //dd($horasDecimalFin, $horasDecimalStart);
             $diferenciaHoras = $horasDecimalFin - $horasDecimalStart;
-            $alturaDiv = $diferenciaHoras * (30 / 13); 
-            $posicionArriba = (($horasDecimalStart - 8) * (30 / 13)); 
+            $alturaDiv = $diferenciaHoras * (30 / 13);
+            $posicionArriba = (($horasDecimalStart - 8) * (30 / 13));
+
             return [
                 'numeroDia' => $numeroDia,
                 'alturaDiv' => number_format($alturaDiv, 2, '.', ''),
                 'posicionArriba' => number_format($posicionArriba, 2, '.', ''),
-                'evento' => $evento 
+                'evento' => $evento,
             ];
         });
 
         $today = now()->dayOfYear();
+
         //dd($eventosFormateados);
         return view('admin.HORARIO-inicio', ['today' => $today, 'tipo' => 'HORARIO-inicio', 'eventosFormateados' => $eventosFormateados]);
 
@@ -63,7 +64,7 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         try {
-           ///dd($request->all());
+            //dd($request->all());
             // Validar los datos de entrada
             $request->validate([
                 'clase' => 'required|exists:clases,id',
@@ -98,10 +99,8 @@ class HorarioController extends Controller
 
             return redirect()->back()->with('success', 'El registro horario se ha agregado con éxito');
 
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error: '.$e->getMessage());
         }
     }
 
@@ -121,13 +120,13 @@ class HorarioController extends Controller
     {
         $fechasDias = [];
         $diasAsociados = [
-            'Monday' => 1,
-            'Tuesday' => 2,
-            'Wednesday' => 3,
-            'Thursday' => 4,
-            'Friday' => 5,
-            'Saturday' => 6,
-            'Sunday' => 0,
+            'Monday' => 0,
+            'Tuesday' => 1,
+            'Wednesday' => 2,
+            'Thursday' => 3,
+            'Friday' => 4,
+            'Saturday' => 5,
+            'Sunday' => 6,
         ];
 
         $fecha = new DateTime($fechaInicio);
@@ -139,17 +138,17 @@ class HorarioController extends Controller
                 $offsetDias = ($diasAsociados[$dia] - $indiceFechaInicio + 7) % 7;
                 $fechaDia->modify("+$offsetDias days");
                 if ($semana > 0) {
-                    $fechaDia->modify('+' . $semana . ' weeks');
+                    $fechaDia->modify('+'.$semana.' weeks');
                 }
-                if (!in_array($fechaDia, $fechasDias)) {
-                    $fechasDias[] = $fechaDia;
-                }
+                $carbonFecha = Carbon::instance($fechaDia);
+                if (!in_array($carbonFecha, $fechasDias)) {
+                $fechasDias[] = $carbonFecha;
+            }
             }
         }
 
         return $fechasDias;
     }
-
 
     /**
      * Display the specified resource.
@@ -174,14 +173,13 @@ class HorarioController extends Controller
 
         $alumnos = $horario->clase->grupo->usuarios;
 
-
         $tipo = 'HORARIO-editar';
 
-
-        return view('admin.HORARIO-editar', compact('tipo', 'horario', 'reservas','claseHorario', 'grupoHorario', 'profesor', 'alumnos'));
+        return view('admin.HORARIO-editar', compact('tipo', 'horario', 'reservas', 'claseHorario', 'grupoHorario', 'profesor', 'alumnos'));
     }
 
-    public function editarHorario(Horario $horario){
+    public function editarHorario(Horario $horario)
+    {
 
         $clases = Clase::all();
         if ($clases == null) {
@@ -189,7 +187,8 @@ class HorarioController extends Controller
         }
 
         $tipo = 'HORARIO-crear';
-        return view('admin.HORARIO-crear', compact('horario','clases', 'tipo'));
+
+        return view('admin.HORARIO-crear', compact('horario', 'clases', 'tipo'));
     }
 
     /**
@@ -215,7 +214,8 @@ class HorarioController extends Controller
      */
     public function destroy(Horario $horario)
     {
-        //
+        $horario->delete();
+        return redirect()->route('mostrarHorarios')->with('success', 'Horario eliminado con exito');
     }
 
     public function mostrarHorarios()
@@ -233,6 +233,8 @@ class HorarioController extends Controller
     {
         //dd($hora);
         [$horas, $minutos] = explode(':', $hora);
+
         return round((int) $horas + (int) $minutos / 60, 2);
     }
+    
 }
