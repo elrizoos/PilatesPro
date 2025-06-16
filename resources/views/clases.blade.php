@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid bg-color-oscuro w-100 p-5">
+    <div class="container-fluid bg-color-oscuro w-100 vh-100 p-5">
         <div class="text-center mb-5">
             <h1 class="fs-2 texto-color-titulo text-uppercase">Nuestras Clases</h1>
             <p class="texto-color-gris fs-4">Explora nuestras clases y encuentra la opción perfecta para ti. Ofrecemos una
@@ -17,9 +17,9 @@
                             <div class="col">
                                 <div class="card h-100 bg-color-fondo">
                                     <div class="card-body">
-                                        <h5 class="card-title texto-color-resalte">{{ $producto->name }}</h5>
-                                        <p class="card-text texto-color-gris">{{ $producto->description }}</p>
-                                        <ul class="list-group list-group-flush">
+                                        <h5 class="card-title texto-color-resalte text-center text-uppercase">{{ $producto->name }}</h5>
+                                        <p class="card-text texto-color-grisClaro text-center">{{ $producto->description }}</p>
+                                        <ul class="p-4 text-center gap-1 list-group list-group-flush">
                                             <li class="bg-color-fondo texto-color-gris">Precio: {{ $producto->precio }}€
                                             </li>
                                             <li class="bg-color-fondo texto-color-gris">Número de Clases:
@@ -51,9 +51,9 @@
                             <div class="col">
                                 <div class="card h-100 bg-color-fondo">
                                     <div class="card-body">
-                                        <h5 class="card-title texto-color-resalte">{{ $producto->name }}</h5>
-                                        <p class="card-text texto-color-gris">{{ $producto->description }}</p>
-                                        <ul class="list-group list-group-flush">
+                                        <h5 class="card-title texto-color-resalte  text-center text-uppercase">{{ $producto->name }}</h5>
+                                        <p class="card-text texto-color-grisClaro text-center">{{ $producto->description }}</p>
+                                        <ul class="text-center p-1 gap-1 list-group list-group-flush">
                                             <li class="bg-color-fondo texto-color-gris">Precio: {{ $producto->precio }}€ /
                                                 mes</li>
                                             @if (isset($producto->infoSuscripcion))

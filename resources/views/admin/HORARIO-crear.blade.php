@@ -1,7 +1,7 @@
 @extends('admin/panel-control')
 
 @section('HORARIO-crear')
-    <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center">
+    <div class="contenedor-formulario w-100 h-100 d-flex justify-content-center align-items-center flex-column p-4">
         <form class="formulario formulario-horario w-100 h-100 p-5"
             action="{{ isset($horario) ? route('horario.update', $horario->id) : route('horario.store') }}" method="POST">
             @csrf
@@ -131,11 +131,11 @@
                                 <h2 id="inicioFin"></h2>
                                 <div class="hora-minuto">
                                     <div class="contenedor-hora-minuto">
-                                        <input placeholder="00" class="casillaReloj" type="number" min="1" max="24"
-                                            id="horaProvisional">
+                                        <input placeholder="00" class="casillaReloj" type="number" min="1"
+                                            max="24" id="horaProvisional">
                                         <div class="puntos">:</div>
                                         <input placeholder="00" class="casillaReloj" type="number" id="minutosProvisional"
-                                          min="1"  max="60">
+                                            min="1" max="60">
                                     </div>
                                 </div>
                                 <div class="reloj">
@@ -172,27 +172,27 @@
                         <ul class="fs-5 listaDiasSemana row row-cols-3">
                             <li>
                                 <label for="lunes">Lunes</label>
-                                <input type="checkbox" name="diasSemana[]" id="lunes" value="0">
+                                <input type="checkbox" name="diasSemana[]" id="lunes" value="Monday">
                             </li>
                             <li>
-                                <label for="martes">martes</label>
-                                <input type="checkbox" name="diasSemana[]" id="martes" value="1">
+                                <label for="martes">Martes</label>
+                                <input type="checkbox" name="diasSemana[]" id="martes" value="Tuesday">
                             </li>
                             <li>
-                                <label for="miercoles">miercoles</label>
-                                <input type="checkbox" name="diasSemana[]" id="miercoles" value="2">
+                                <label for="miercoles">Miércoles</label>
+                                <input type="checkbox" name="diasSemana[]" id="miercoles" value="Wednesday">
                             </li>
                             <li>
-                                <label for="jueves">jueves</label>
-                                <input type="checkbox" name="diasSemana[]" id="jueves" value="3">
+                                <label for="jueves">Jueves</label>
+                                <input type="checkbox" name="diasSemana[]" id="jueves" value="Thursday">
                             </li>
                             <li>
-                                <label for="viernes">viernes</label>
-                                <input type="checkbox" name="diasSemana[]" id="viernes" value="4">
+                                <label for="viernes">Viernes</label>
+                                <input type="checkbox" name="diasSemana[]" id="viernes" value="Friday">
                             </li>
                             <li>
-                                <label for="sabado">sabado</label>
-                                <input type="checkbox" name="diasSemana[]" id="sabado" value="5">
+                                <label for="sabado">Sábado</label>
+                                <input type="checkbox" name="diasSemana[]" id="sabado" value="Saturday">
                             </li>
                         </ul>
                     </div>
@@ -206,7 +206,15 @@
                     value="{{ isset($horario) ? 'Editar registro' : 'Crear clase nueva' }}">
             </div>
 
+
         </form>
+        @if (isset($horario))
+            <form id="formulario-eliminar" action="{{ route('horario.destroy', ['horario' => $horario->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" id="input-eliminar" value="Eliminar">
+            </form>
+        @endif
     </div>
 
     <script>
