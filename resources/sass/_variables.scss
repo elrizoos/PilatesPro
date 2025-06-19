@@ -1,36 +1,59 @@
-$colorPrincipalTransparente: #1b1b1bc8;
-$colorPrincipalTransparenteCero: #1b1b1b00;
-$colorGrisClaro: #b1b1b1;
-$colorFondoTransparente: #18181893;
+// Rutas
 $ruta: "../../public/imagenes";
 
-//Colores
-$colorPrincipalClaro: #222121;
-$colorSecundario: #8e6d45;
-$colorPrincipal: #1b1b1b;
+// Colores base
+$colorNegro: #000000;
+$colorOscuro: #111111;
 $colorPrincipalOscuro: #0e0e0e;
-$colorPrincipalTransparenteCero: #1b1b1b00;
+$colorPrincipal: #1b1b1b;
+$colorPrincipalClaro: #222121;
+$colorTerciario: $colorPrincipalClaro;
 
+// Tonos dorados
+$colorDorado: #ebb472;
+$colorDoradoClaro: #e6d5b3;
+$colorDoradoNuevo: #5a4b2c;
+$colorDoradoNuevoResaltado: #c49b45;
+$colorTitulo: #c39b6a; // Color del título de los servicios
+$colorResalte: $colorDoradoClaro;
+
+// Grises
+$colorGris: #ffffff80;
+$colorGrisClaro: #b1b1b1;
+$colorGrisMedio: lighten($colorGrisClaro, 15%); // gris intermedio
+$colorGrisOscuro: darken($colorGrisClaro, 15%);
+
+// Fondos
 $colorFondoClaro: #181818;
 $colorFondoOscuro: #292929;
-$colorPrincipalTransparente: #0000008e;
-$colorGris: #ffffff80;
-$colorDoradoClaro: #e6d5b3;
-$colorDorado: #ebb472;
-$colorNegro :#000000;
-$colorOscuro :#111111;
+$colorFondo: $colorFondoOscuro;
+$colorFondoTransparente: rgba(24, 24, 24, 0.58); // más legible que #18181893
 
-$colorTerciario: #222121;
-$colorResalte: #e6d5b3;
-$colorFondo: #292929;
+// Transparencias principales
+$colorPrincipalTransparente: rgba(27, 27, 27, 0.78); // equivalente a #1b1b1bc8
+$colorPrincipalTransparenteCero: rgba(27, 27, 27, 0);
 
-$colorTitulo: #c39b6a; /* Color del título de los servicios */
+// Colores secundarios
+$colorSecundario: #8e6d45;
 $colorSecundarioOscuro: #463623;
+$colorSecundarioClaro: lighten($colorSecundario, 20%);
 
-//Colores de centro de control de usuario
-
+// Centro de control de usuario
 $fondoGeneral: #fdfaf3;
 $formulario: #f8f5f5;
 $textoPrincipal: #1e1e1e;
-$colorDoradoNuevoResaltado: #c49b45 ;
-$colorDoradoNuevo: #5a4b2c ;
+
+// Nuevas variables para sombras y estados
+$sombraLigera: rgba($colorNegro, 0.15);
+$sombraMedia: rgba($colorNegro, 0.3);
+$sombraFuerte: rgba($colorNegro, 0.6);
+
+$hoverDorado: darken($colorDorado, 10%);
+$activeDorado: darken($colorDorado, 20%);
+
+$hoverSecundario: darken($colorSecundario, 10%);
+$activeSecundario: darken($colorSecundario, 20%);
+
+// Variables para textos
+$textoClaro: #fafafa;
+$textoOscuro: #222222;

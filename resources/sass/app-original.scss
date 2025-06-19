@@ -1,0 +1,3239 @@
+// Fonts
+@import url("https://fonts.bunny.net/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+//Fuentes de Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+//Iconos CSS
+@import url("https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css");
+
+@import "flaticon";
+
+//RESET CSS
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 50px $formulario inset !important;
+    -webkit-text-fill-color: $colorPrincipal !important;
+}
+
+table,
+table *,
+table td {
+    background: none;
+}
+
+//ESTILOS DESARROLLO
+.colorRojo {
+    background-color: red !important;
+    color: white !important;
+}
+
+//ESTILOS PROYECTO
+
+.auth:hover {
+    background-color: unset !important;
+    color: unset !important;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+//Ancho del scrollbar
+::-webkit-scrollbar-track {
+    background: $colorPrincipal;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $colorSecundario;
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 1.5rem;
+}
+
+::-webkit-scrollbar-track-horizontal {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb-horizontal {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb-horizontal:hover {
+    background: #555;
+}
+
+.no-scrollbar {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+body {
+    color: $colorResalte !important;
+}
+
+a {
+    text-decoration: none;
+    color: $colorGris;
+}
+
+a:hover {
+    background-color: $colorSecundario !important;
+    color: $colorResalte !important;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in;
+}
+
+input::placeholder {
+    font-size: 1rem;
+}
+
+.bg-color-fondo-oscuro-transparente {
+    background-color: $colorPrincipalTransparente !important;
+}
+
+.bg-color-fondo-oscuro-transparente-0 {
+    background-color: $colorPrincipalTransparenteCero !important;
+}
+
+.bg-color-principal {
+    background-color: $colorPrincipal !important;
+}
+
+.bg-color-secundario {
+    background-color: $colorSecundario !important;
+}
+
+.bg-color-terciario {
+    background-color: $colorTerciario !important;
+}
+
+.bg-color-resalte {
+    background-color: $colorResalte !important;
+}
+
+.bg-color-fondo {
+    background-color: $colorFondo !important;
+}
+
+.bg-color-gris {
+    background-color: $colorGrisClaro !important;
+}
+
+.bg-color-fondo-oscuro {
+    background-color: $colorFondoClaro !important;
+}
+
+.bg-color-oscuro {
+    background-color: $colorOscuro !important;
+}
+
+.bg-color-negro {
+    background-color: $colorNegro !important;
+}
+
+.bg-color-fondo-dorado {
+    background-color: $colorDorado !important;
+}
+
+.texto-color-principal {
+    color: $colorPrincipal !important;
+}
+
+.texto-color-secundario {
+    color: $colorSecundario !important;
+}
+
+.texto-color-terciario {
+    color: $colorTerciario !important;
+}
+
+.texto-color-resalte {
+    color: $colorResalte !important;
+}
+
+.texto-color-fondo {
+    color: $colorFondo !important;
+}
+
+.texto-color-gris {
+    color: $colorGris !important;
+}
+
+.texto-color-grisClaro {
+    color: $colorGrisClaro !important;
+}
+
+.texto-color-titulo {
+    color: $colorTitulo !important;
+}
+
+.bg-fondo-general {
+    background-color: $fondoGeneral !important;
+}
+
+.bg-formulario {
+    background-color: $formulario !important;
+}
+
+.texto-color-formulario {
+    color: $textoPrincipal !important;
+}
+
+.texto-color-dorado {
+    color: $colorDoradoNuevo !important;
+}
+
+
+.bg-none {
+    background: none !important;
+}
+
+.sombra {
+    box-shadow: 0rem 0.1rem 1.5rem -0.2rem rgba(255, 255, 255, 0.5);
+}
+
+.imagen-logo {
+    background-image: url($ruta + "/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.imagen {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.centrado {
+    left: 9.5%;
+    top: 3.5%;
+}
+
+.bottom-40 {
+    bottom: 40% !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+/* Alturas */
+.h-5 {
+    height: 5% !important;
+}
+
+.h-10 {
+    height: 10% !important;
+}
+
+.h-15 {
+    height: 15% !important;
+}
+
+.h-20 {
+    height: 20% !important;
+}
+
+.h-25 {
+    height: 25% !important;
+}
+
+.h-30 {
+    height: 30% !important;
+}
+
+.h-35 {
+    height: 35% !important;
+}
+
+.h-40 {
+    height: 40% !important;
+}
+
+.h-45 {
+    height: 45% !important;
+}
+
+.h-50 {
+    height: 50% !important;
+}
+
+.h-55 {
+    height: 55% !important;
+}
+
+.h-60 {
+    height: 60% !important;
+}
+
+.h-65 {
+    height: 65% !important;
+}
+
+.h-70 {
+    height: 70% !important;
+}
+
+.h-75 {
+    height: 75% !important;
+}
+
+.h-80 {
+    height: 80% !important;
+}
+
+.h-85 {
+    height: 85% !important;
+}
+
+.h-90 {
+    height: 90% !important;
+}
+
+.h-95 {
+    height: 95% !important;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+/* Anchos */
+.w-5 {
+    width: 5% !important;
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+
+.w-25 {
+    width: 25% !important;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
+.w-35 {
+    width: 35% !important;
+}
+
+.w-40 {
+    width: 40% !important;
+}
+
+.w-45 {
+    width: 45% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.w-55 {
+    width: 55% !important;
+}
+
+.w-60 {
+    width: 60% !important;
+}
+
+.w-65 {
+    width: 65% !important;
+}
+
+.w-70 {
+    width: 70% !important;
+}
+
+.w-75 {
+    width: 75% !important;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
+.w-85 {
+    width: 85% !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.w-95 {
+    width: 95% !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.top-40 {
+    top: 40% !important;
+}
+
+.border-fondo {
+    border-color: $colorFondoOscuro !important;
+    border-style: inset;
+}
+
+.border-dorado {
+    border-color: $colorSecundario !important;
+}
+
+.border-dorado-claro {
+    border-color: $colorDoradoClaro !important;
+}
+
+.border-dorado-oscuro {
+    border-color: $colorSecundarioOscuro !important;
+}
+
+.max-width-70 {
+    max-width: 70% !important;
+}
+
+.max-heigth-10em {
+    max-height: 10rem;
+}
+
+.max-heigth-60 {
+    max-height: 60% !important;
+}
+
+.min-height-40 {
+    min-height: 5em !important;
+}
+
+.icono-normal {
+    width: 2rem;
+    height: 2rem;
+}
+
+.icono-grande {
+    width: 3rem;
+    height: 3rem;
+}
+
+.icono-muy-grande {
+    width: 5rem;
+    height: 5rem;
+}
+
+.service-box {
+    background-color: #333333;
+    /* Fondo de los cuadros de servicios */
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 13rem;
+    max-height: 13rem;
+}
+
+
+
+.elementoGeneral {
+    color: $colorSecundario !important;
+    background: unset !important;
+}
+
+.elementoGeneral a {
+    color: $colorSecundario;
+    background: unset !important;
+}
+
+.elementoGeneral:hover {
+    color: $colorDorado !important;
+    background: $colorOscuro !important;
+}
+
+.elementoGeneral a:hover {
+    color: unset !important;
+    background: unset !important;
+}
+
+
+.estilo-formulario-enviar {
+    font-size: 2rem;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+    border: 0;
+    color: #8e6d45;
+    font-weight: bold;
+}
+
+.estilo-formulario-enviar:hover {
+    color: $colorDorado !important;
+    background: $colorDoradoClaro;
+}
+
+.estilo-formulario-select {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    outline: 0;
+    background: none;
+    color: $colorGris;
+    padding: 0.2rem;
+    text-align: center;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.formulario select {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 0.1rem;
+    border: 0.25rem solid #8e6d45;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.estilo-formulario-select option {
+    background: none;
+    background: #585858;
+    color: white;
+}
+
+.estilo-formulario-select option:hover {
+    background: none;
+}
+
+.formulario input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.formulario input:focus+.linea-transition-rigth {
+    border: 2px solid #ffe69c !important;
+    width: 100% !important;
+    transition: all 0.6s ease-in;
+}
+
+.formulario input:focus+.linea-transition-weigth {
+    border: 2px solid #ffe69c !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.estilo-formulario-dorado {
+    border: 0;
+    background: none;
+    width: max-content;
+    height: 2rem;
+    position: relative;
+    font-size: 1rem;
+    color: $colorSecundario;
+}
+
+.estilo-formulario-dorado-enviar {
+    font-size: 2rem;
+    width: 100%;
+    color: $colorSecundario;
+    border: 0;
+    color: #8e6d45;
+    font-weight: bold;
+}
+
+.estilo-formulario-dorado-enviar:hover {
+    color: $colorDorado;
+}
+
+.estilo-formulario-dorado-select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: $colorGris;
+    padding: 4px;
+    text-align: center;
+}
+
+.formulario-dorado select {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 4px;
+    border: 1px solid #8e6d45;
+    border-radius: 9px;
+    text-align: center;
+}
+
+.estilo-formulario-dorado-select option {
+    background: none;
+    background: #585858;
+    color: white;
+}
+
+.estilo-formulario-dorado-select option:hover {
+    background: none;
+}
+
+.formulario-dorado input[type="date"] {
+    color: $colorSecundario;
+}
+
+.formulario-dorado input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.formulario-dorado input:focus+.linea-transition-rigth {
+    border: 2px solid #ffe69c !important;
+    width: 100% !important;
+    transition: all 0.6s ease-in;
+}
+
+.formulario-dorado input:focus+.linea-transition-weigth {
+    border: 2px solid #ffe69c !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabla-dorada {
+    width: 100% !important;
+    font-size: 1rem !important;
+}
+
+.tabla-dorada thead tr th,
+.tabla-dorada tbody tr td {
+    background: none !important;
+}
+
+.enlace {
+    color: #e6d5b3;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.enlace-general {
+    color: $colorSecundario !important;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.enlace:hover {
+    color: #8e6d45 !important;
+    text-decoration: underline !important;
+    background: unset !important;
+}
+
+.menu-general li:hover {
+    color: $colorDorado;
+    cursor: pointer;
+}
+
+.seccion-elegir:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.seccion-elegir:hover:before {
+    width: 100%;
+    height: 100%;
+    background-color: $colorPrincipalTransparente;
+}
+
+.seccion-elegir:hover a {
+    display: block !important;
+}
+
+.contenedor-grid-seccion-dos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+    grid-template-areas:
+        "titulo titulo imagen-uno imagen-uno"
+        "imagen-dos imagen-dos imagen-uno imagen-uno"
+        "imagen-dos imagen-dos parrafo parrafo";
+}
+
+.contenedor-grid-seccion-dos .titulo {
+    grid-area: titulo;
+}
+
+.contenedor-grid-seccion-dos .imagen-uno {
+    grid-area: imagen-uno;
+}
+
+.contenedor-grid-seccion-dos .imagen-dos {
+    grid-area: imagen-dos;
+}
+
+.contenedor-grid-seccion-dos .parrafo {
+    grid-area: parrafo;
+}
+
+.contenido-cargable:hover {
+    border-bottom: 0.1em solid $colorDoradoNuevoResaltado !important;
+    color: $colorDoradoNuevoResaltado;
+    transition: all 0.6s ease;
+}
+
+.contenido-item:hover {
+    color: $colorGris;
+    transition: all 0.1s ease;
+}
+
+.shadow-lifted {
+    position: relative;
+    box-shadow: 0 4px 6px $colorGrisClaro, 0 10px 20px $colorGrisClaro,
+        0 15px 30px $colorGrisClaro;
+}
+
+.shadow-lifted-dorado {
+    position: relative;
+    box-shadow: 0 4px 6px $colorSecundario, 0 10px 20px $colorSecundario,
+        0 15px 30px $colorSecundario;
+}
+
+
+.acerca-de-seccion div.row:nth-child(even) {
+    background-color: $colorPrincipalClaro;
+}
+
+.acerca-de-seccion div {
+    padding: 2rem;
+}
+
+//
+//
+//
+//
+//
+//
+// Al cambiar los estilos a bootstrap estas secciones de abajo
+// son estilos que ya habia creado personalmente antes de hacer el cambio
+// a bootstrap. Como he visto que me habia quedado bien,
+// he intentado volver a hacerlo con bootstrap pero al final he decidido no dedicar mas tiempo
+// del que tiene y copiar los mismos estilos que ya tenia.
+//
+//
+//
+//
+
+//Estilos para el apartado de registro horario
+.contenedor-formulario .formulario-horario {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-formulario .formulario-horario .central {
+    width: 100%;
+    display: flex;
+    height: 100%;
+}
+
+.contenedor-fecha-placeholder {
+    position: relative;
+    padding: 1rem;
+}
+
+.contenedor-fecha-placeholder input {
+    width: 100% !important;
+}
+
+.contenedor-fecha-placeholder label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $colorDoradoClaro;
+    width: 100%;
+    text-align: center;
+    font-size: 1em !important;
+    border: 0.25rem solid #8e6d45;
+    border-radius: 1rem;
+}
+
+.contenedor-formulario .formulario-horario input[type="date"] {
+    background: none;
+    border: 0px;
+    border-bottom: 2px solid #8e6d45;
+    color: #8e6d45;
+    width: 40%;
+    text-align: center;
+}
+
+.contenedor-formulario .formulario-horario .central .fecha-placeholder {
+    color: $colorSecundario;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.contenedor-formulario .formulario-horario .central>div {
+    flex: 1;
+}
+
+.contenedor-formulario .formulario-horario .central .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor-formulario .formulario-horario .central .inputs>* {
+    width: 100%;
+}
+
+.contenedor-formulario .formulario-horario .grupo-formulario input[type="time"] {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: none;
+    color: #8e6d45;
+    padding: 4px;
+    border: 1px solid #8e6d45;
+    border-radius: 9px;
+}
+
+input[type="time"] {
+    background-color: $colorSecundario;
+}
+
+input[type="time" i]::-webkit-calendar-picker-indicator {
+    background-image: url($ruta + "/reloj.png");
+}
+
+//Estilos para personalizar el calendario propio
+.contenedor-calendario {
+    border-radius: 5%;
+    font-size: 40%;
+    position: absolute;
+    top: 0;
+    background: $colorDoradoClaro;
+    width: 20%;
+    padding: 5%;
+    text-align: center;
+    border: 1px solid $colorSecundario;
+    display: none;
+    flex-direction: column;
+    z-index: 20;
+}
+
+.encabezado-calendario {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem;
+}
+
+.encabezado-calendario span {
+    display: flex;
+    width: 3rem;
+    margin: 5px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.encabezado-calendario span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $colorPrincipalTransparenteCero;
+}
+
+.encabezado-calendario span#mesAnnoActual {
+    color: #e6d5b3;
+}
+
+.encabezado-calendario span:hover::before {
+    background: $colorFondoTransparente;
+}
+
+.anno-anterior {
+    background-image: url($ruta + "/flecha-derecha-doble.png");
+    transform: rotate(180deg);
+}
+
+.mes-anterior {
+    background-image: url($ruta + "/flecha-derecha-sencilla.png");
+    transform: rotate(180deg);
+}
+
+.anno-siguiente {
+    background-image: url($ruta + "/flecha-derecha-doble.png");
+}
+
+.mes-siguiente {
+    background-image: url($ruta + "/flecha-derecha-sencilla.png");
+}
+
+.mes-anno-actual {
+    font-size: 2rem;
+    text-wrap: nowrap;
+    text-align: center;
+    flex: 4;
+    cursor: auto !important;
+}
+
+.mes-anno-actual:hover::before {
+    background: none !important;
+}
+
+.cuerpo-calendario {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5%;
+}
+
+.nombres-dias {
+    display: flex;
+    background-color: $colorSecundario;
+    color: $colorPrincipal;
+}
+
+.nombres-dias div {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 3rem;
+}
+
+.dias-mes {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 5;
+}
+
+.dias-mes div {
+    width: calc(100% / 7);
+    padding: 10px 0;
+    cursor: pointer;
+    border-right: 1px solid $colorPrincipal;
+    border-bottom: 1px solid $colorPrincipal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: $colorSecundario;
+}
+
+.dias-mes div:hover {
+    background-color: $colorFondoTransparente;
+    color: white;
+}
+
+.dias-mes div.today {
+    background-color: $colorPrincipal;
+    color: $colorDorado;
+}
+
+//Estilos para la seleccion de hora personalizada
+
+.contenedor-horas {
+    color: $colorSecundario;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor-horas .horas {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-horas .horas>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-horas .horas>div>div {
+    flex: 1;
+}
+
+.contenedor-horas .horas>div .titulo-hora {
+    font-size: 1.2rem;
+    text-align: center;
+    color: $colorSecundario;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-hora-minuto {
+    border: 0.02em solid $colorSecundario;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    display: flex;
+    gap: 0.1rem;
+}
+
+.hora-minuto>div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.contenedor-horas .seleccion-horas {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background-color: $colorDoradoClaro;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion>div {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.casillaReloj {
+    flex: 1;
+    width: 20%;
+    max-height: 2rem;
+    background: none;
+    outline: none;
+    border: none;
+    color: $colorSecundario;
+    padding-left: 0.5rem;
+    overflow-y: hidden;
+}
+
+.casillaReloj:hover {
+    overflow: hidden;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+.casillaReloj::placeholder {
+    color: $colorSecundario;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj {
+    position: relative;
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo {
+    width: 6rem;
+    height: 6rem;
+    background-color: $colorFondoOscuro;
+    border-radius: 50%;
+    position: relative;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo>div {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    display: flex;
+    color: $colorSecundario;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .norte {
+    top: 0;
+    left: 40%;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .este {
+    right: 0;
+    top: 40%;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .sur {
+    bottom: 0;
+    left: 40%;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .oeste {
+    left: 0;
+    top: 40%;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .punto-centro {
+    top: 47.5%;
+    left: 47.5%;
+    width: 5%;
+    height: 5%;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .aguja-hora {
+    position: absolute;
+    width: 2%;
+    height: 30%;
+    background-color: $colorDorado;
+    top: 20%;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+.contenedor-horas .seleccion-horas .contenedor-seleccion .reloj .circulo .aguja-minuto {
+    position: absolute;
+    width: 2%;
+    height: 40%;
+    background-color: $colorDorado;
+    top: 10%;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    background: #ddd;
+    border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: $colorSecundario;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: $colorFondoOscuro;
+}
+
+#inicioFin {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: $colorSecundario;
+}
+
+#inicioFinContenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.botonSeleccion {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    background: $colorPrincipal;
+    color: #e6d5b3;
+    padding: 4px;
+    border: 1px solid #e6d5b3;
+    border-radius: 9px;
+}
+
+.opcionRepetir {
+    flex-direction: column;
+
+    position: absolute;
+    top: 15rem;
+    left: -7rem;
+    height: 5rem;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: $colorPrincipal;
+    width: 1rem;
+    height: 1rem;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    background-image: url($ruta + "/check2.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.repeticion .grupo-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.repeticion .grupo-input.opcionRepetir {
+    background: $colorGris;
+    width: 100%;
+    height: 70%;
+}
+
+.listaDiasSemana {
+    display: flex;
+}
+
+.listaDiasSemana li {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.listaDiasSemana input {
+    border-radius: 1rem;
+}
+
+.repeticion {
+    color: $colorSecundario;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.repeticion div.opcionRepetir {
+    display: none;
+}
+
+.botonEnviar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton-repetir {
+    background-color: $colorDorado;
+    border-radius: 1rem;
+    color: white;
+}
+
+//Estilos para mostrar la linea temporal de registros horarios
+.timeline {
+    position: relative;
+    width: 90%;
+    height: 95%;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.contenedor-horario {
+    display: flex;
+}
+
+.horas-timeline {
+    position: absolute;
+    height: 32rem;
+    width: 4rem;
+    left: -2rem;
+    top: 0;
+    z-index: 35;
+    background-color: rgb(0, 0, 0);
+}
+
+.horas-timeline div {
+    flex: 1;
+    height: 2.3rem;
+    position: relative;
+    color: $colorSecundario;
+    border-top: 0.01em solid $colorSecundario;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horas-timeline div:nth-child(1) {
+    height: 2rem;
+}
+
+.dia-timeline {
+    flex: 1;
+    min-width: 10rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 30rem;
+}
+
+.par {
+    background-color: $colorNegro;
+}
+
+.impar {
+    background-color: $colorFondoOscuro;
+}
+
+.dia-timeline div {
+    min-height: 1rem;
+}
+
+.evento {
+    background-color: $colorGrisClaro;
+    color: $colorDorado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border: 0.2em outset $white;
+}
+
+.evento:hover .informacion-evento {
+    display: grid;
+}
+
+.informacion-evento {
+    padding: 1%;
+    position: absolute !important;
+    width: 30rem;
+    background-color: black;
+    outline: 10px groove $colorSecundario;
+    top: -5rem;
+    left: 11rem;
+    height: auto !important;
+    padding: 2rem;
+    display: -block;
+    z-index: 40;
+    border-radius: 50px 50px 50px 0;
+    display: none;
+    grid-template-areas:
+        "clase clase clase clase"
+        "profesor profesor grupo grupo"
+        "horaInicio horaInicio horaInicio horaInicio"
+        "horaFin horaFin horaFin horaFin"
+        "dia dia dia dia"
+        "fecha fecha fecha fecha";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.informacion-evento>h6 {
+    color: $colorGris;
+    padding: 1rem;
+}
+
+.informacion-evento>h6 span {
+    color: $colorSecundario;
+}
+
+.clase {
+    grid-area: clase;
+    font-size: 3rem;
+    color: $colorSecundario;
+}
+
+.horaInicio {
+    grid-area: horaInicio;
+}
+
+.horaFin {
+    grid-area: horaFin;
+}
+
+.profesor {
+    grid-area: profesor;
+}
+
+.dia {
+    grid-area: dia;
+}
+
+.fecha {
+    grid-area: fecha;
+}
+
+.grupo {
+    grid-area: grupo;
+}
+
+.informacion-evento>* {
+    display: inline-block;
+}
+
+.fecha-timeline {
+    color: $colorGris;
+    font-size: 1rem;
+    position: absolute;
+    width: 10rem;
+    height: 2rem;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.day div {
+    position: relative;
+    height: 2rem;
+}
+
+.deslizamiento {
+    transform: translateX(0%);
+    transition: all 1.5s ease;
+}
+
+.deslizamiento-click {
+    transform: translateX(100%);
+    transition: all 1.5s ease;
+}
+
+.icon {
+    height: 3rem;
+}
+
+/* Personalización de menú */
+.nav-tabs .nav-link {}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    background-color: $colorDoradoClaro;
+    /* Fondo al pasar el ratón */
+}
+
+.nav-tabs .nav-link.active {
+    background-color: $colorDoradoClaro;
+    /* Fondo del activo */
+}
+
+.dropdown-menu {
+    background-color: $colorDoradoClaro;
+    border-color: #444;
+    color: $colorDoradoNuevoResaltado;
+}
+
+.dropdown-item {
+    color: #fff;
+    /* Color de texto de los elementos del submenú */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #555;
+    /* Fondo al pasar el ratón por los elementos del submenú */
+}
+
+//Nuevos estilos para formulario registro login
+.contenido-registro {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-login {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-login .caja-formulario,
+.contenido-registro .caja-formulario {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    background-color: $colorFondoOscuro;
+    border: 1px solid $colorDorado;
+}
+
+.contenido-registro .caja-formulario {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background-color: $colorFondoOscuro;
+    border: 1px solid $colorDorado;
+}
+
+.caja-logo {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid $colorDorado;
+    padding: 1%;
+}
+
+.caja-logo .imagen-logo {
+    background-image: url($ruta + "/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 65%;
+    height: 95%;
+}
+
+
+.formulario-registro {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.formulario-registro .form-title {
+    text-align: center;
+    color: #f5d58d;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-registro .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.formulario-registro .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-registro .form-group label {
+    color: #caa76d;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.formulario-registro .form-group input {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #caa76d;
+    color: #fefefe;
+    outline: none;
+}
+
+.formulario-registro .form-group input:focus {
+    border-color: #f5d58d;
+}
+
+.formulario-registro .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.formulario-registro .btn-registrar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: #f5d58d;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.formulario-registro .btn-registrar:hover {
+    background-color: #caa76d;
+    color: #1a1a1a;
+}
+
+
+
+.formulario-login {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.formulario-login .form-title {
+    text-align: center;
+    color: #f5d58d;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-login .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.formulario-login .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-login .form-group label {
+    color: #caa76d;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.formulario-login .form-group input {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #caa76d;
+    color: #fefefe;
+    outline: none;
+}
+
+.formulario-login .form-group input:focus {
+    border-color: #f5d58d;
+}
+
+.formulario-login .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.formulario-login .btn-entrar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: #f5d58d;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.formulario-login .btn-entrar:hover {
+    background-color: #caa76d;
+    color: #1a1a1a;
+}
+
+.formulario-login a {
+    display: inline-block;
+
+}
+
+.lista_errores {
+    position: absolute;
+    left: 2%;
+    color: red;
+}
+
+
+
+.label-error {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+}
+
+.label-error span {
+    color: red;
+}
+
+
+//Botón de salir de navegacion de inicio
+.formulario-salir {
+    width: 100%;
+    display: inline-block;
+    padding-top: 2%;
+}
+
+.boton-salir {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: $colorDorado;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected {
+    color: $colorDoradoNuevoResaltado !important;
+    border-bottom: 0.1em solid $colorDoradoNuevoResaltado !important;
+
+    transition: all 0.5s;
+}
+
+.contenido-dinamico-interno {
+    background: $formulario;
+    border: 1px solid $colorDoradoClaro;
+}
+
+.formulario-infoUsuario {
+    width: 80%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+.formulario-infoUsuario .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.formulario-infoUsuario .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.formulario-infoUsuario .form-group label {
+    font-size: 1.3rem;
+}
+
+.formulario-infoUsuario .form-group input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $colorDorado;
+    color: $colorPrincipal;
+    font-size: 1.3rem;
+}
+
+.formulario-infoUsuario .btn-guardar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.formulario-infoUsuario .btn-guardar:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.row-btn-guardar {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+
+//Estilos de administrador de usuario
+.fila-imagen-perfil,
+.fila-imagen-perfil .foto-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fila-imagen-perfil .foto-perfil img {
+    border-radius: 50%;
+    max-width: 180px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.imagen-perfil-usuario {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+
+}
+
+.fila-inputs-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fila-inputs-imagen form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+input[type="file"] {
+    display: block;
+    padding: 0.5rem;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+input[type="file"]:hover {
+    border-color: #bfa256;
+    /* dorado suave */
+}
+
+/* Botones de acción */
+input[type="submit"] {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #bfa256;
+    /* dorado */
+    color: white;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #a88b41;
+    transform: scale(1.02);
+}
+
+input[type="submit"]:active {
+    background-color: #8c7432;
+}
+
+/* Estilo específico para botón de eliminar */
+.destroy input[type="submit"] {
+    background-color: #e74c3c;
+    /* rojo */
+}
+
+.destroy input[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+.formulario-contraseña {
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+
+.formulario-contraseña .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+
+.formulario-contraseña .form-group {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 0 5%;
+}
+
+.formulario-contraseña .form-group label {
+    font-size: 1.3rem;
+}
+
+.formulario-contraseña .form-group input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid $colorDorado;
+    color: $colorPrincipal;
+    font-size: 1.3rem;
+}
+
+.formulario-contraseña .btn-guardar {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.formulario-contraseña .btn-guardar:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.recuadro-politicas h5 {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.recuadro-politicas ul {
+    color: $colorNegro;
+}
+
+//Estilos formulario recuperacion de contraseña
+.contenedor-formulario-recuperacion {
+    position: relative;
+    border: 1px solid yellow;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-formulario-recuperacion .alert {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+.contenedor-formulario-recuperacion h3,
+.contenedor-formulario-recuperacion h5 {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    padding: 1rem;
+}
+
+.contenedor-formulario-recuperacion p {
+    font-size: 1.1rem;
+    color: $colorNegro;
+    padding: 0.5rem;
+}
+
+.formulario-recuperacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-recuperacion .contenedor-opciones {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    padding: 1rem;
+}
+
+.formulario-recuperacion button {
+    background-color: transparent;
+    border: 2px solid #caa76d;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.formulario-recuperacion button:hover {
+    background-color: #caa76d;
+    color: $colorPrincipal;
+}
+
+.formulario-preguntas-respuestas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formulario-preguntas-respuestas label {
+    font-size: 1.1rem;
+    color: $colorNegro;
+    padding: 0.5rem;
+}
+
+.formulario-preguntas-respuestas select {
+    background: $colorDoradoNuevoResaltado;
+    border: 1px solid $colorDoradoClaro;
+    border-radius: 1rem;
+    color: $white;
+    padding: 0.5rem;
+}
+
+.formulario-preguntas-respuestas .input-respuesta {
+    background: $colorDoradoClaro;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    color: $colorNegro;
+    ;
+}
+
+.formulario-preguntas-respuestas .continuar {
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 0.5rem;
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+}
+
+.formulario-preguntas-respuestas .continuar:hover {
+    background: $colorDorado;
+    color: $colorNegro;
+}
+
+.contenedor-formulario-recuperacion .modal.fade .modal-title {
+    color: $colorNegro;
+}
+
+.contenedor-formulario-recuperacion .modal.fade .close {
+    background: red;
+    border: 1px solid red;
+    border-radius: 100%;
+    color: white;
+}
+
+//Estilos contenedor-notificaciones 
+.contenedor-notificaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones .alert {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.contenedor-notificaciones form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones h3 {
+    padding: 1rem;
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+
+}
+
+.contenedor-notificaciones .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    gap: 0.5rem;
+}
+
+.contenedor-notificaciones select {
+    background: $colorDoradoNuevoResaltado;
+    border: 1px solid $colorDoradoClaro;
+    border-radius: 1rem;
+    color: $white;
+    padding: 0.5rem;
+}
+
+.contenedor-notificaciones button {
+    background: $colorDorado;
+    border: 1px solid $colorDoradoNuevoResaltado;
+
+}
+
+.contenedor-notificaciones button:hover {
+    background: $colorDoradoNuevoResaltado;
+    color: $colorNegro;
+}
+
+
+//Estilos eliminacion de cuenta 
+.contenedor-eliminar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contenedor-eliminar h3 {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+}
+
+//Nuevos estilos panel de control del admin
+#panel-control {
+    background: $fondoGeneral;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.alert {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+#panel-control .alert {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+#panel-control>.container-fluid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+#contenedor-dinamico {
+    background: $colorGris;
+    position: relative;
+}
+
+.boton-volver {
+    background: transparent;
+    border: 0;
+}
+
+#lista-elementos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+#lista-elementos ul {
+    font-size: 1.1rem;
+}
+
+#lista-elementos a {
+    color: $colorDoradoNuevoResaltado;
+}
+
+#titulo-panel {
+    color: $colorDoradoNuevo;
+}
+
+.general-dashboard .card,
+.general-dashboard .card .list-group li {
+    background: $formulario;
+}
+
+.general-dashboard .card h3 {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.general-dashboard .card>p {
+    color: $colorNegro;
+}
+
+.general-dashboard .card>h2 {
+    color: $colorNegro;
+}
+
+.general-dashboard #botonPerfil {
+    background: $colorDoradoClaro;
+}
+
+//Estilos formulario crear usuario desde admin
+.formulario-editar .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.formulario-editar .row-tipo-usuario {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.formulario-editar .row .form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.formulario-editar label {
+    color: $colorPrincipal;
+}
+
+.formulario-editar input {
+    background: $colorGris;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+    text-align: center;
+    color: $colorDoradoNuevoResaltado;
+    padding: 0.3rem;
+}
+
+.formulario-editar .row-tipo-usuario select {
+    background: $colorGris;
+    border: 1px solid $colorDorado;
+    padding: 0.3rem;
+    text-align: center;
+    color: $colorDoradoNuevoResaltado;
+    border-radius: 1rem;
+}
+
+
+
+.formulario-editar .row-tipo-usuario option {
+    color: $colorDoradoNuevoResaltado;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: 1px solid $colorDorado;
+
+}
+
+
+
+.formulario-editar .row.input-submit {
+    padding: 1rem;
+    grid-template-columns: 1fr;
+}
+
+.formulario-editar .row.input-submit input {
+    background-color: $colorDoradoClaro;
+    padding: 0.5rem;
+}
+
+.formulario-editar .row.input-submit input:hover {
+    background: $colorDorado;
+    color: $colorSecundario;
+    transition: all 0.5s ease-out;
+}
+
+//Estilos tabla de edicion de usuarios
+
+#tabla-editar-usuarios {
+    background: $formulario;
+}
+
+#tabla-editar-usuarios th {
+    padding: 1rem;
+    color: $colorPrincipal;
+    text-transform: uppercase;
+    width: max-content;
+}
+
+#tabla-editar-usuarios #enlace-ordenacion:hover {
+    background-color: transparent !important;
+    color: $colorDoradoClaro !important;
+}
+
+#tabla-editar-usuarios td {
+    padding: 1rem;
+    color: $colorDoradoNuevoResaltado;
+}
+
+#input-eliminar {
+    background: red;
+    color: white;
+    border: 0;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#input-eliminar:hover {
+    background: rgb(151, 12, 12);
+    transition: all .5s ease-in;
+}
+
+#input-editar {
+    padding: 1rem;
+    font-size: 1.3rem;
+
+}
+
+#tabla-editar-usuarios #casilla-opciones {
+    width: max-content;
+    gap: 1rem;
+    margin: 0 auto;
+
+}
+
+#tabla-editar-usuarios #enlace-ordenacion {
+    color: $colorPrincipal;
+    gap: 0.3rem;
+}
+
+#tabla-editar-usuarios #enlace-ordenacion svg {
+    border: 0;
+    border-radius: 1rem;
+    color: $colorDoradoNuevoResaltado;
+}
+
+#input-crear-grupo {
+    color: $colorNegro;
+    border: 1px solid $colorDoradoNuevoResaltado;
+    background-color: #caa76d;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+
+#inputs-grupo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+#inputs-grupo label {
+    color: $colorDoradoNuevoResaltado;
+}
+
+#inputs-grupo input {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+#tabla-participantes input:hover {
+    transform: none !important;
+}
+
+.contenedor-participantes h4 {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.formulario-pagina {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+
+}
+
+.formulario-pagina .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+}
+
+.formulario-pagina label {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.formulario-pagina input {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-top: 0;
+    border-radius: 1rem;
+}
+
+.contenedor-elegir-seccion {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 90%;
+    height: 90%;
+
+}
+
+
+.contenedor-elegir-seccion .contenedor-interno {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.5fr repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div1 {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div3 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div4 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div5 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div1,
+.contenedor-elegir-seccion .contenedor-interno .div2,
+.contenedor-elegir-seccion .contenedor-interno .div3,
+.contenedor-elegir-seccion .contenedor-interno .div4,
+.contenedor-elegir-seccion .contenedor-interno .div5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-elegir-seccion .contenedor-interno .div1 {
+    font-size: 1.3rem;
+    color: $colorDoradoNuevoResaltado;
+}
+
+.titulo-elegir-seccion {
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+}
+
+.formulario-seccion {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.formulario-seccion h3 {
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.4rem;
+
+}
+
+.contenedor-seccion {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.5fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 70%;
+    height: 90%;
+    border: 1px solid $colorDoradoNuevoResaltado;
+}
+
+.contenedor-seccion .div1 {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.contenedor-seccion .div2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.contenedor-seccion .div3 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.contenedor-seccion .titulo-seccion {
+    width: 80%;
+    text-align: center;
+    border: 0;
+    border-bottom: 1px solid $colorDorado;
+    color: $colorNegro;
+    background: transparent;
+}
+
+.contenedor-seccion .titulo-seccion:focus {
+    background-color: transparent;
+}
+
+.contenedor-seccion .parrafo-seccion {
+    width: 90%;
+    min-height: 30%;
+    resize: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.contenedor-seccion .parrafo-seccion:focus {
+    background-color: transparent;
+    color: $colorNegro;
+}
+
+.contenedor-seccion .imagen-seccion {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-seccion .titulo-seccion-previa {
+    font-size: 2rem;
+}
+
+.contenedor-seccion .parrafo-seccion-previa {
+    color: $colorDoradoClaro;
+    font-size: 1.4rem;
+}
+
+.contenedor-seccion .imagen-seccion-previa {
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-seccion .imagen-seccion-previa div {
+    width: 90%;
+    height: 90%;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.inputs-seccion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.inputs-seccion .cancelar input {
+    background-color: red !important;
+    border: 1px solid rgb(252, 77, 77);
+}
+
+.contenedor-previsualizacion-secciones {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor-previsualizacion-secciones .formulario-posicion {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    gap: 1rem;
+}
+
+.contenedor-previsualizacion-secciones .formulario-posicion h3 {
+    color: $colorDoradoNuevoResaltado;
+    font-size: 1.3rem;
+}
+
+.contenedor-previsualizacion-secciones .formulario-posicion select {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    padding: .5rem;
+    border-radius: 1rem;
+}
+
+.contenedor-previsualizacion-secciones .formulario-posicion .form-group {
+    display: flex;
+    gap: 1rem;
+
+}
+
+.contenedor-previsualizacion-secciones .formulario-posicion select option:nth-child(odd) {
+    background-color: $colorResalte;
+    color: $colorPrincipal;
+}
+
+.contenedor-previsualizacion-secciones .contenedor-secciones {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+    position: relative;
+    padding: 3rem;
+}
+
+.contenedor-previsualizacion-secciones .contenedor-secciones .contenedor-seccion {
+    position: relative;
+    height: 80%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+}
+
+.contenedor-previsualizacion-secciones .contenedor-secciones .contenedor-seccion:last-child {
+    margin-bottom: 0;
+}
+
+.contenedor-seccion.contenedor-dos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.contenedor-seccion.contenedor-dos .div1 {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.contenedor-seccion.contenedor-dos .div2 {
+    grid-area: 1 / 3 / 3 / 5;
+}
+
+.contenedor-seccion.contenedor-dos .div3 {
+    grid-area: 2 / 1 / 4 / 3;
+}
+
+.contenedor-seccion.contenedor-dos .div4 {
+    grid-area: 3 / 3 / 4 / 5;
+}
+
+.contenedor-editarEliminar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.contenedor-editarEliminar>div {
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.contenedor-paginas.aux,
+.contenedor-secciones.aux {
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: 1rem;
+
+}
+
+.contenedor-paginas.aux form,
+.contenedor-secciones.aux form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contenedor-paginas.aux form,
+.contenedor-secciones.aux form select {
+    background: transparent;
+    border: 1px solid $colorDoradoClaro;
+    padding: .5rem;
+    border-radius: 1rem;
+    color: $colorPrincipal;
+}
+
+.contenedor-paginas.aux form input,
+.contenedor-secciones.aux form input {
+    text-transform: uppercase;
+}
+
+.table {
+    background: $formulario !important;
+}
+
+#formulario-creacion-clase {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#formulario-creacion-clase .row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#formulario-creacion-clase .row .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario-creacion-clase .row.input-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formulario-creacion-clase label {
+    color: $colorDoradoNuevoResaltado;
+}
+
+#formulario-creacion-clase>.row>.form-group input {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: .5rem;
+    text-align: center;
+}
+
+#formulario-creacion-clase>.row>.form-group select {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+
+.contenedor-formulario-producto {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+#formulario-creacion-producto {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#formulario-creacion-producto .row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#formulario-creacion-producto .row .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario-creacion-producto .row.input-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formulario-creacion-producto label {
+    color: $colorDoradoNuevoResaltado;
+}
+
+#formulario-creacion-producto .row .form-group input {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: .5rem;
+    text-align: center;
+}
+
+#formulario-creacion-producto .row .form-group select {
+    background: transparent;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+
+#formulario-creacion-producto .contenedor-membership {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+#formulario-creacion-producto .contenedor-membership h3,
+#formulario-creacion-producto .contenedor-paquete h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: $colorDoradoNuevoResaltado;
+}
+
+#formulario-creacion-producto .contenedor-membership .row.tres-columnas {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#formulario-creacion-producto .contenedor-membership .row.tres-columnas .form-group {
+    flex-direction: row;
+}
+
+#formulario-creacion-producto .contenedor-membership .row:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario-creacion-producto .contenedor-paquete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $colorDorado;
+    border-radius: 1rem;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+#formulario-creacion-producto .contenedor-paquete .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+#formulario-creacion-producto .contenedor-paquete .row:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabla-facturas nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.tabla-facturas>nav>ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $colorPrincipal;
+}
+
+.tabla-facturas>nav>ul a {
+    color: $colorDoradoNuevoResaltado;
+}
+
+.border-right-1rem {
+    border-right: .5rem solid $colorPrincipal !important;
+
+}
+
+.border-top-1rem {
+    border-top: .5rem solid $colorPrincipal !important;
+}
+
+.contenedor-seccion-inicio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 1rem;
+}
+
+.contenedor-seccion-inicio .div1,
+.contenedor-seccion-inicio .div2,
+.contenedor-seccion-inicio .div3,
+.contenedor-seccion-inicio .div4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contenedor-seccion-inicio .div1 h2 {
+    font-size: 3rem;
+    color: $colorDorado;
+}
+
+.contenedor-seccion-inicio .div1 h3 {
+    font-size: 2rem;
+    color: $colorDoradoClaro;
+}
+
+.contenedor-seccion-inicio .div4 {
+    font-size: 1.5rem;
+    color: $formulario;
+}
+
+#enviarNotificacion {
+    background: transparent;
+    padding: 1rem;
+    border: 1px solid $colorDorado;
+    transition: all 0.5s ease;
+    border-radius: 1rem;
+}
+
+#enviarNotificacion:hover {
+    background-color: $colorDorado;
+    transition: all 0.5s ease;
+}
+
+#fomrNotificacion .row {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#fomrNotificacion .row .form-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+//RESPONSIVE DESING
+/* Base font size for the entire document */
+html {
+    font-size: 100%;
+    /* Default font size */
+}
+
+@media (orientation: portrait) {
+    @media (min-width: 0) {
+        html {
+            font-size: 16%;
+        }
+    }
+
+    @media (min-width: 200px) {
+        html {
+            font-size: 26%;
+        }
+
+        .seccion-video {
+            height: 50vh;
+        }
+    }
+
+    @media (min-width: 276px) {
+        html {
+            font-size: 39%;
+        }
+    }
+
+    @media (min-width: 376px) {
+        html {
+            font-size: 52%;
+        }
+
+        .seccion-video {
+            height: 50vh;
+        }
+    }
+
+    @media (min-width: 476px) {
+        html {
+            font-size: 59%;
+        }
+    }
+}
+
+
+
+
+/* Small devices (landscape phones, 376 and up) */
+@media (min-width: 370px) {
+    html {
+        font-size: 60%;
+    }
+
+    .contenedor-seccion-inicio {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "div1 div1"
+            "div2 div3"
+            "div4 div4";
+    }
+
+    .contenedor-seccion-inicio .div1 {
+        grid-area: div1;
+        padding: 0;
+
+    }
+
+    .contenedor-seccion-inicio .div2 {
+        grid-area: div2;
+        padding: 0;
+
+    }
+
+    .contenedor-seccion-inicio .div2 img,
+    .contenedor-seccion-inicio .div3 img {
+        width: 90% !important;
+    }
+
+    .contenedor-seccion-inicio .div3 {
+        padding: 0;
+        grid-area: div3;
+    }
+
+    .contenedor-seccion-inicio .div4 {
+        grid-area: div4;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .transition-up:hover .transition-up-from-bottom {
+        top: 0% !important;
+    }
+
+    .transition-up-from-bottom {
+        transition: top 1s ease;
+    }
+
+    #login {
+        width: 80% !important;
+        height: 70% !important;
+        font-size: 2rem !important;
+    }
+
+    #login .formulario {
+        width: 80%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    html {
+        font-size: 55%;
+    }
+
+    #login .formulario {
+        width: 50%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    html {
+        font-size: 55%;
+    }
+
+    .seccion-video {
+        height: 100vh;
+    }
+
+    #login {
+        width: 50% !important;
+        height: 70% !important;
+        font-size: 2rem !important;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+/* Extra extra large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    html {
+        font-size: 100%;
+    }
+}

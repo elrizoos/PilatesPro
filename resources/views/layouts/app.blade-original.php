@@ -19,7 +19,7 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
 </head>
@@ -226,46 +226,195 @@
     </svg>
 </div>
 
-<body>
-    @if (session('success'))
-        <div>
+<body class="bg-color-fondo texto-color-secundario no-scrollbar">
+    @if(session('success'))
+        <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-
-    <div class="contenedor-pagina">
-        <div class="d-none" id="cuadroActualizacion">
-            <h5>¡La página ha sido actualizada!</h5>
-            <h3>Version 0.0.1 (Primeras notas)</h3>
+    <img class="vw-100 vh-100 z-0 position-fixed top-0" src="{{ asset('imagenes/pilatesIa.png') }}" alt="">
+    <div class="d-flex flex-column flex-md-row  position-relative bottom-100" id="appEscritorio">
+        <div class="d-none position-absolute bottom-100 z-3 vh-100 p-5 bg-color-principal border border-1 border-warning-subtle h-75 z-2 centrado overflow-y-scroll"
+            id="cuadroActualizacion">
+            <h5 class="w-100 p-3 fs-1 text-center texto-color-secundario">¡La página ha sido actualizada!</h5>
+            <h3 class="p-2 fs-3 texto-color-importante">Version 0.0.1 (Primeras notas)</h3>
             @include('actualizacion.version_0_0_1')
         </div>
         @if (Route::currentRouteName() !== 'formularioPago' &&
                 Route::currentRouteName() !== 'login' &&
                 Route::currentRouteName() !== 'registrarUsuarioProducto' &&
                 Route::currentRouteName() !== 'register')
-            <nav class="navegador-inicio">
-                <div class="imagen-logo " id="imagen-logo" data-url="{{ route('inicio') }}">
-                    <img class="img-fluid" src="{{ asset('imagenes/logo.png') }}" alt="Imagen de logo">
-                </div>
-                <div class="contenedor-items-menu">
-                    <div class="contenedor-items-loginRegister">
-                        @guest
-                            <ul class="lista-inicio-registro">
-                                <li>
-                                    <a href="{{ route('login') }}">Inicio Sesión</a>
+            <nav class="d-none d-md-block container-fluid bg-color-principal w-20 position-relative">
+                <div class="full-width position-sticky top-0 d-flex flex-column justify-content-between vh-100 p-1">
+                    <div class="w-100 h-25 p-2">
+                        <div class="img-fluid imagen-logo w-100 h-100 img" id="imagen-logo"
+                            data-url="{{ route('inicio') }}">
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column" id="listaMenu">
+                        <span></span>
+                        <div>
+                            <ul class="fs-5 text-uppercase fs-5">
+                                <li class="p-2"><a href="{{ route('inicio') }}">Inicio</a></li>
+                                <li class="p-2"><a href="{{ route('acercaDe') }}">Acerca de</a></li>
+                                <li class="p-2"><a href="{{ route('clases') }}">Clases</a></li>
+                                <li class="p-2"><a href="{{ route('instructores') }}">Instructores</a></li>
+                                <li class="p-2"><a href="{{ route('conversaciones.index') }}">Mensajes</a>
+                                    @if (isset($conversacionesSinLeer))
+                                        @if ($conversacionesSinLeer['totalMensajes'] !== 0)
+                                            <p>Tienes {{ $conversacionesSinLeer['totalMensajes'] }} mensajes de
+                                                {{ $conversacionesSinLeer['totalConversaciones'] }} conversaciones
+                                                distintas</p>
+                                        @endif
+                                    @endif
                                 </li>
-                                <li>
-                                    <a href="{{ route('register') }}">Registro</a>
+
+                                @if (isset($paginas) && $paginas->isNotEmpty())
+                                    <li class="nav-item dropdown col">
+                                        <a class="text-center nav-link dropdown-toggle w-100 p-2" data-bs-toggle="dropdown"
+                                            href="#" role="button" aria-expanded="false">Más</a>
+                                        <ul class="dropdown-menu w-100 text-center">
+                                            @foreach ($paginas as $pagina)
+                                                <li><a class="dropdown-item estilo-formulario p-2"
+                                                        href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="w-100 p-2 mb-5">
+                        <div>
+                            @guest
+                                <ul
+                                    class="fs-5 w-75 d-flex flex-column gap-4 justify-content-center align-items-center m-auto">
+                                    <li
+                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra with-transitions">
+                                        <a class="fs-5 text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
+                                    </li>
+                                    <li
+                                        class="w-100 p-4 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra">
+                                        <a class="fs-5 text-uppercase" href="{{ route('register') }}">Registro</a>
+                                    </li>
+                                </ul>
+                            @endguest
+
+                            @auth
+                                <ul class="fs-5 w-100 d-flex flex-column  text-uppercase">
+                                    <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
+                                        {{ Auth::user()->apellidos }}
+                                    </li>
+                                    <li class="w-100 p-2 text-center d-flex justify-content-center align-items-center"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="1rem" height="1rem" fill="white" class="bi bi-gear me-1"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+                                            <path
+                                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+                                        </svg><a
+                                            href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
+                                    </li>
+
+                                    <form class="formulario-salir" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="boton-salir" type="submit"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="white" class="bi bi-box-arrow-right me-1" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                            </svg>Salir</button>
+                                    </form>
+                                    </li>
+                                </ul>
+                            @endauth
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <nav class="container-fluid d-block d-md-none bg-color-principal">
+                <div class="row   p-2">
+                    <div class="col p-4 d-flex justify-content-center align-items-center">
+                        <div class="img-fluid imagen-logo w-100 h-auto" style="height:10rem !important"
+                            id="imagen-logo" data-url="{{ route('inicio') }}">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row p-4 justify-content-center align-items-center">
+                    <div class="col">
+                        <ul class=" row row-cols-5 text-uppercase fs-6">
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('inicio') }}">Inicio</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('acercaDe') }}">Acerca de</a></li>
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('clases') }}">Clases</a></li>
+
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('instructores') }}">Instructores</a>
+                            </li>
+
+                            <li class="p-1"><a
+                                    class=" border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo"
+                                    href="{{ route('conversaciones.index') }}">Mensajes</a></li>
+
+                            </li>
+                        </ul>
+                        @if (isset($paginas) && $paginas->isNotEmpty())
+                            <ul class="d-flex flex-row">
+                                <li class="border border-1 rounded text-center w-100 d-flex justify-content-center align-items-center p-1 border border-dorado texto-color-titulo nav-item dropdown col">
+                                    <a class="text-center  nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                        role="button" aria-expanded="false">Más</a>
+                                    <ul class="dropdown-menu w-100 text-center">
+                                        @foreach ($paginas as $pagina)
+                                            <li><a class="dropdown-item estilo-formulario p-2"
+                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            </ul>
+                        @endif
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @guest
+                            <ul
+                                class="fs-5 w-75 d-flex flex-row p-3 gap-2 justify-content-center align-items-center m-auto">
+                                <li
+                                    class="w-75 p-2 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra ">
+                                    <a class="fs-5 auth text-uppercase" href="{{ route('login') }}">Inicio Sesión</a>
+                                </li>
+                                <li
+                                    class="w-75 p-2 text-center bg-color-principal rounded-circle border border-1 border-secondary sombra">
+                                    <a class="fs-5  auth text-uppercase" href="{{ route('register') }}">Registro</a>
                                 </li>
                             </ul>
                         @endguest
+
                         @auth
-                            <ul>
-                                <li>{{ Auth::user()->nombre }}
+                            <ul
+                                class="fs-5 w-100 d-flex flex-row align-items-center justify-content-center  text-uppercase">
+                                <li class="w-100 p-3 text-center">{{ Auth::user()->nombre }}
                                     {{ Auth::user()->apellidos }}
                                 </li>
-                                <li><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="white"
-                                        viewBox="0 0 16 16">
+                                <li class="w-100 p-2 text-center"><svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                        height="1rem" fill="white" class="bi bi-gear me-1" viewBox="0 0 16 16">
                                         <path
                                             d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
                                         <path
@@ -273,55 +422,25 @@
                                     </svg><a
                                         href="{{ Auth::user()->nombre === 'admin' ? route('panel-control') : route('general-informacion') }}">Ajustes</a>
                                 </li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                            height="16" fill="white" class="bi bi-box-arrow-right me-1"
-                                            viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
-                                            <path fill-rule="evenodd"
-                                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                                        </svg>Salir</button>
-                                </form>
+
+                                <li class="w-100 text-center">
+                                    <form class=""
+                                        action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button
+                                            class=""
+                                            type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                height="1rem" fill="white" class="bi bi-box-arrow-right me-1"
+                                                viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                            </svg>Salir</button>
+                                    </form>
                                 </li>
                             </ul>
                         @endauth
-                    </div>
-                    <span class="btn-menu" id="btnAbrirMenu"></span>
-                </div>
-                <div class="menu-desplegable" id="listaMenu">
-                    <div>
-                        <ul>
-                            <li><a href="{{ route('inicio') }}">Inicio</a></li>
-                            <li><a href="{{ route('acercaDe') }}">Acerca de</a></li>
-                            <li><a href="{{ route('clases') }}">Clases</a></li>
-                            <li><a href="{{ route('instructores') }}">Instructores</a></li>
-                            <li><a href="{{ route('conversaciones.index') }}">Mensajes</a>
-                                @if (isset($conversacionesSinLeer))
-                                    @if ($conversacionesSinLeer['totalMensajes'] !== 0)
-                                        <p>Tienes {{ $conversacionesSinLeer['totalMensajes'] }} mensajes de
-                                            {{ $conversacionesSinLeer['totalConversaciones'] }} conversaciones
-                                            distintas</p>
-                                    @endif
-                                @endif
-                            </li>
-
-                            @if (isset($paginas) && $paginas->isNotEmpty())
-                                <li>
-                                    <a data-bs-toggle="dropdown" href="#" role="button"
-                                        aria-expanded="false">Más</a>
-                                    <ul>
-                                        @foreach ($paginas as $pagina)
-                                            <li><a
-                                                    href="{{ route('mostrarPagina', ['pagina' => $pagina->slug]) }}">{{ $pagina->titulo }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endif
-                        </ul>
-
                     </div>
                 </div>
             </nav>
@@ -330,17 +449,17 @@
 
 
 
-        <main>
-            <div>
-                <div>
+        <main class="position-relative container-fluid w-100 p-0 overflow-hidden w-80">
+            <div class="row g-0">
+                <div class="col g-0">
                     @if (session('success'))
-                        <div role="alert">
+                        <div class="alert alert-success" role="alert">
                             {{ session('success') }}
 
                         </div>
                     @endif
                     @if (session('error'))
-                        <div role="alert">
+                        <div class="alert alert-danger" role="alert">
                             {{ session('error') }}
 
                         </div>
@@ -356,13 +475,8 @@
             </div>
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script>
-        $('#btnAbrirMenu').click(function(){
-            $('.menu-desplegable').addClass('open');
-        })
-    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
