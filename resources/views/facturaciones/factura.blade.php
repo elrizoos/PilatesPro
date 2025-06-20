@@ -161,11 +161,11 @@
                     </tr>
                     <tr>
                         <th>Fecha de emisión</th>
-                        <td>{{ $facturaArray['fecha_emision']->format('d/m/Y') }}</td>
+                        <td>{{ $facturaArray['fecha_emision'] }}</td>
                     </tr>
                     <tr>
                         <th>Fecha de vencimiento</th>
-                        <td>{{ $facturaArray['fecha_vencimiento']->format('d/m/Y') }}</td>
+                        <td>{{ $facturaArray['fecha_vencimiento'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -186,10 +186,10 @@
                     <tbody>
                         @foreach ($facturaArray['items'] as $item)
                             <tr>
-                                <td>{{ $item->description }}</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>{{ number_format($item->amount / 100, 2) }}€</td>
-                                <td>{{ number_format(($item->amount * $item->quantity) / 100, 2) }}€</td>
+                                <td>{{ $item['concepto'] }}</td>
+                                <td>1</td>
+                                <td>{{ $item['importe'] }}€</td>
+                                <td>{{ $item['importe'] }}€</td>
                             </tr>
                         @endforeach
                     </tbody>

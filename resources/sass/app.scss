@@ -3082,8 +3082,15 @@ input[type="submit"]:active {
     display: flex;
     justify-content: center;
     align-items: center;
+
+
 }
 
+
+
+#payment-form input {
+    border: 1px solid $colorDorado;
+}
 //RESPONSIVE DESING
 /* Base font size for the entire document */
 html {
@@ -3135,7 +3142,7 @@ html {
 
 
 /* Small devices (landscape phones, 376 and up) */
-@media (min-width: 370px) {
+@media (min-width: 370px) and (max-width:575px) {
     html {
         font-size: 60%;
     }

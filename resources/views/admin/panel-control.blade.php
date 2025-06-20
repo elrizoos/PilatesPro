@@ -312,7 +312,10 @@
                         </li>
                         <li><a class="dropdown-item" href="{{ route('registroPagos') }}">Registros pagos</a></li>
                         <li><a class="dropdown-item" href="{{ route('generarFacturacion') }}">Generar facturacion</a></li>
+                        <!--
                         <li><a class="dropdown-item" href="#">Seguimiento de alumnos</a></li>
+                            
+                        -->
                     </ul>
                 </li>
                 <li class="nav-item dropdown col">

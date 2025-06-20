@@ -237,7 +237,7 @@ class PagoController extends Controller
             $facturasDatos = [];
             foreach ($facturas as $factura) {
                 $facturaStripeId = $factura->id;
-                $facturaBD = Factura::where('stripe_id', $facturaStripeId)->first();
+                $facturaBD = Factura::where('stripe_id', $facturaStripeId)->where('tipo', '=', 'producto')->first();
                 if ($facturaBD == null) {
                     continue;
 
@@ -303,23 +303,22 @@ class PagoController extends Controller
     }
 
     public function generarFacturacion(Request $request)
-    {
-        //dd($request->all());
-        $tipo = 'FACTU-generaFacturacion';
-        $mes = $request->input('mes', now()->month);
-        $anio = $request->input('anio', now()->year);
+{
+    $tipo = 'FACTU-generaFacturacion';
+    $mes = $request->input('mes', now()->month);
+    $anio = $request->input('anio', now()->year);
 
-        // Obtener los IDs de alumnos que ya tienen factura ese mes y año
-        $facturados = Factura::whereMonth('fecha_emision', $mes)
-            ->whereYear('fecha_emision', $anio)
-            ->pluck('alumno_id')
-            ->toArray();
+    // IDs de alumnos ya facturados ese mes y año
+    $facturados = Factura::whereMonth('fecha_emision', $mes)
+        ->whereYear('fecha_emision', $anio)
+        ->pluck('alumno_id')
+        ->toArray();
 
-        // Obtener alumnos que aún no tienen factura ese mes
-        $alumnos = User::where('tipo_usuario', 'alumno')
-            ->whereNotIn('id', $facturados)
-            ->get();
+    // Alumnos sin factura en ese mes
+    $alumnos = User::where('tipo_usuario', 'alumno')
+        ->whereNotIn('id', $facturados)
+        ->get();
 
-        return view('admin.FACTU-generaFacturacion', compact('tipo', 'alumnos', 'mes', 'anio'));
-    }
+    return view('admin.FACTU-generaFacturacion', compact('tipo', 'alumnos', 'mes', 'anio'));
+}
 }

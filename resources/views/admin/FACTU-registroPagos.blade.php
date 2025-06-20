@@ -51,7 +51,7 @@
                         <td>{{ $factura->alumno->apellidos }}</td>
                         <td>{{ \Carbon\Carbon::parse($factura->fecha_emision)->format('d/m/Y') }}</td>
                         <td>{{ number_format($factura->monto_total, 2, ',', '.') }}€</td>
-                        <td><a class="text-secondary p-1" href="{{ route('descargarFactura', ['factura' => $factura->pdf]) }}">Descargar Factura</a>
+                        <td><a class="texto-color-dorado p-1" href="{{ route('descargarFactura', basename($factura->pdf)) }}">Descargar factura</a>
                         </td>
                     </tr>
                 @endforeach
